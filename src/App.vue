@@ -1,7 +1,7 @@
 <template>
   <div
     class="min-h-screen w-full relative overflow-x-hidden select-none"
-    :style="{ backgroundColor: colors.walnut, fontFamily: \"'JetBrains Mono', monospace\" }"
+    :style="{ backgroundColor: colors.walnut, fontFamily: "'JetBrains Mono', monospace" }"
   >
     <div
       class="pointer-events-none fixed inset-0 z-0"
@@ -18,7 +18,7 @@
       class="pointer-events-none fixed inset-0 z-[100]"
       :style="{
         opacity: 0.04,
-        backgroundImage: 'url(\"data:image/svg+xml,%3Csvg viewBox=\\'0 0 256 256\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cfilter id=\\'noiseFilter\\'%3E%3CfeTurbulence type=\\'fractalNoise\\' baseFrequency=\\'0.9\\' numOctaves=\\'4\\' stitchTiles=\\'stitch\\'/%3E%3C/filter%3E%3Crect width=\\'100%25\\' height=\\'100%25\\' filter=\\'url(%23noiseFilter)\\'/%3E%3C/svg%3E\")'
+        backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")'
       }"
     ></div>
 
@@ -59,7 +59,7 @@
             <div class="w-full">
               <div
                 class="text-[10px] tracking-[0.22em] font-medium"
-                :style="{ color: colors.tan, fontFamily: \"'JetBrains Mono', monospace\" }"
+                :style="{ color: colors.tan, fontFamily: "'JetBrains Mono', monospace" }"
               >
                 PERSONAL PORTFOLIO — FILE NO. BT-001
               </div>
@@ -73,7 +73,7 @@
             <div class="flex flex-col items-center gap-5 mt-2">
               <h1
                 class="text-[38px] sm:text-[42px] leading-[0.9] tracking-[-0.02em]"
-                :style="{ fontFamily: \"'Special Elite', serif\", color: colors.paper }"
+                :style="{ fontFamily: "'Special Elite', serif", color: colors.paper }"
               >
                 BUTSHA<br />TENGWA
               </h1>
@@ -102,7 +102,7 @@
                   <div class="absolute inset-0 flex flex-col items-center justify-center">
                     <div
                       class="w-[86px] h-[86px] rounded-full border border-black/10 flex items-center justify-center text-[36px] font-bold"
-                      :style="{ fontFamily: \"'Special Elite', serif\", color: colors.ink, background: colors.paperInner }"
+                      :style="{ fontFamily: "'Special Elite', serif", color: colors.ink, background: colors.paperInner }"
                     >
                       {{ profilePhoto ? '' : 'BT' }}
                     </div>
@@ -113,13 +113,13 @@
 
                   <div
                     class="absolute inset-0 opacity-30 mix-blend-multiply pointer-events-none"
-                    :style="{ backgroundImage: 'url(\"data:image/svg+xml,%3Csvg viewBox=\\'0 0 200 200\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cfilter id=\\'n\\'%3E%3CfeTurbulence baseFrequency=\\'0.95\\'/%3E%3C/filter%3E%3Crect width=\\'100%25\\' height=\\'100%25\\' filter=\\'url(%23n)\\'/%3E%3C/svg%3E\")' }"
+                    :style="{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.95'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")' }"
                   ></div>
                 </div>
 
                 <div
                   class="absolute -bottom-2 -right-2 px-2 py-[2px] text-[8px] tracking-widest bg-white text-black/70"
-                  :style="{ fontFamily: \"'JetBrains Mono', monospace\", transform: 'rotate(1deg)' }"
+                  :style="{ fontFamily: "'JetBrains Mono', monospace", transform: 'rotate(1deg)' }"
                 >
                   ATTACHED PHOTOGRAPH — FILE PHOTO
                 </div>
@@ -144,7 +144,7 @@
             <div class="w-full flex flex-col items-center gap-4">
               <div
                 class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold"
-                :style="{ transform: 'rotate(-2deg)', fontFamily: \"'Special Elite', serif\" }"
+                :style="{ transform: 'rotate(-2deg)', fontFamily: "'Special Elite', serif" }"
               >
                 CLASSIFIED — OPEN ON REQUEST
               </div>
@@ -163,7 +163,7 @@
               borderLeft: 'none',
               boxShadow: tabHover ? '6px 8px 18px rgba(0,0,0,0.4)' : '4px 4px 12px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.2)',
               borderRadius: '0 4px 4px 0',
-              fontFamily: \"'Special Elite', serif\",
+              fontFamily: "'Special Elite', serif",
               transition: 'transform 200ms ease, box-shadow 200ms ease',
               transform: tabHover
                 ? (window.innerWidth < 640 ? 'translateX(62%) translateY(-2px)' : 'translateX(calc(100% - 8px)) translateY(-2px)')
@@ -218,7 +218,7 @@
           }"
         >
           <div class="flex items-center gap-4">
-            <div class="text-[11px] tracking-[0.2em]" :style="{ fontFamily: \"'Special Elite', serif\" }">
+            <div class="text-[11px] tracking-[0.2em]" :style="{ fontFamily: "'Special Elite', serif" }">
               BUTSHA TENGWA — FILE: {{ activeFileIndexDisplay }}
             </div>
             <div class="hidden sm:flex items-center gap-2">
@@ -232,7 +232,7 @@
             <button
               @click="closeFolder"
               class="px-3 py-1 text-[10px] tracking-[0.16em] border bg-white hover:bg-[#fffdf7] transition-colors"
-              :style="{ borderColor: colors.tan, fontFamily: \"'Special Elite', serif\" }"
+              :style="{ borderColor: colors.tan, fontFamily: "'Special Elite', serif" }"
             >
               CLOSE FILE ×
             </button>
@@ -247,7 +247,7 @@
             class="relative px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] tracking-[0.12em] border-t border-l border-r transition-all"
             :class="{ 'z-10': activeFile === file.id, 'opacity-70 hover:opacity-100': activeFile !== file.id }"
             :style="{
-              fontFamily: \"'Special Elite', serif\",
+              fontFamily: "'Special Elite', serif",
               background: activeFile === file.id ? colors.paperInner : colors.paperDark,
               borderColor: colors.tan,
               color: activeFile === file.id ? colors.ink : '#5a4a3a',
@@ -294,7 +294,7 @@
                   <div class="flex gap-3 items-start mb-6">
                     <div class="w-[52px] h-[68px] bg-[#ddd] border-[2px] border-white shadow-md relative shrink-0" style="transform:rotate(-2deg)">
                       <div class="absolute inset-0 bg-gradient-to-br from-[#eee] to-[#b8a898] grayscale"></div>
-                      <div class="absolute inset-0 flex items-center justify-center text-[18px] font-bold" :style="{ fontFamily: \"'Special Elite', serif\" }">BT</div>
+                      <div class="absolute inset-0 flex items-center justify-center text-[18px] font-bold" :style="{ fontFamily: "'Special Elite', serif" }">BT</div>
                       <div
                         class="absolute -top-3 -right-2 w-4 h-6 border-[2px] border-[#8a8a8a] rounded-[6px] rotate-12"
                         style="border-bottom-color:transparent"
@@ -303,7 +303,7 @@
 
                     <div>
                       <div class="text-[10px] tracking-[0.2em] opacity-60">FIELD NOTES — PROFILE</div>
-                      <h2 class="text-[26px] sm:text-[30px] leading-[1.05] mt-1" :style="{ fontFamily: \"'Crimson Pro', serif\", fontWeight:600 }">
+                      <h2 class="text-[26px] sm:text-[30px] leading-[1.05] mt-1" :style="{ fontFamily: "'Crimson Pro', serif", fontWeight:600 }">
                         I build products <br />people pay for.
                       </h2>
                       <p class="mt-3 text-[13px] leading-[1.6] opacity-80 max-w-[380px]">
@@ -318,7 +318,7 @@
                       <div class="absolute -left-[26px] top-1 w-2 h-2 rounded-full bg-[#a32626] border border-white shadow"></div>
                       <div class="text-[10px] tracking-[0.18em] text-[#a32626] font-bold">{{ entry.year }}</div>
                       <div class="text-[13px] font-semibold mt-0.5">{{ entry.title }}</div>
-                      <div class="text-[11px] opacity-60 mt-0.5 italic" :style="{ fontFamily: \"'Crimson Pro', serif\" }">— {{ entry.note }}</div>
+                      <div class="text-[11px] opacity-60 mt-0.5 italic" :style="{ fontFamily: "'Crimson Pro', serif" }">— {{ entry.note }}</div>
                     </div>
                   </div>
                 </div>
@@ -336,7 +336,7 @@
 
                   <div class="bg-[#f5efe0] border border-[#d6a66f]/40 p-4">
                     <div class="text-[10px] tracking-[0.18em] text-[#a32626] font-bold">PRINCIPLE</div>
-                    <p class="mt-2 text-[12px] leading-[1.6]" :style="{ fontFamily: \"'Crimson Pro', serif\" }">
+                    <p class="mt-2 text-[12px] leading-[1.6]" :style="{ fontFamily: "'Crimson Pro', serif" }">
                       "Everything belongs inside the file. If you need a new tab to explain it, you haven’t designed it well enough."
                     </p>
                     <div class="mt-2 text-[9px] opacity-50">— FILE NOTE 001-A</div>
@@ -350,7 +350,7 @@
 
               <section v-else-if="activeFile === '02_STOCKWELL'">
                 <div class="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-                  <h2 class="text-[20px] sm:text-[22px] tracking-[-0.01em]" :style="{ fontFamily: \"'Special Elite', serif\" }">
+                  <h2 class="text-[20px] sm:text-[22px] tracking-[-0.01em]" :style="{ fontFamily: "'Special Elite', serif" }">
                     STOCKWELL — FILE 02 — E-COMMERCE PLATFORM
                   </h2>
                   <div class="text-[10px] tracking-[0.16em] opacity-60">Vue • JavaScript • Node • PayFast</div>
@@ -374,7 +374,7 @@
 
                   <div class="h-14 border-b bg-[#fffdf7] flex items-center justify-between px-5">
                     <div class="flex items-center gap-6">
-                      <div class="text-[18px] font-black tracking-[-0.02em]" :style="{ fontFamily: \"'Special Elite', serif\" }">STOCKWELL</div>
+                      <div class="text-[18px] font-black tracking-[-0.02em]" :style="{ fontFamily: "'Special Elite', serif" }">STOCKWELL</div>
                       <div class="hidden sm:flex gap-4 text-[11px] tracking-[0.12em] opacity-70">
                         <span>SHOP</span><span>NEW</span><span>JOURNAL</span>
                       </div>
@@ -423,7 +423,7 @@
                     @click="stockTab = tab"
                     class="px-3 py-1 text-[10px] tracking-[0.16em] border"
                     :class="stockTab === tab ? 'bg-black text-white border-black' : 'bg-white border-[#d6a66f] opacity-70 hover:opacity-100'"
-                    :style="{ fontFamily: \"'Special Elite', serif\" }"
+                    :style="{ fontFamily: "'Special Elite', serif" }"
                   >
                     [ {{ tab }} ]
                   </button>
@@ -438,7 +438,7 @@
                   </p>
                   <div v-else-if="stockTab === 'CHALLENGE'" class="bg-[#fff8ee] border border-[#d6a66f]/40 p-3 max-w-[680px]">
                     <div class="text-[10px] tracking-[0.18em] text-[#a32626] font-bold">CASE NOTE — PAYFAST WEBHOOK — 14.02.24</div>
-                    <p class="mt-2 text-[12px] leading-[1.6] italic" :style="{ fontFamily: \"'Crimson Pro', serif\" }">
+                    <p class="mt-2 text-[12px] leading-[1.6] italic" :style="{ fontFamily: "'Crimson Pro', serif" }">
                       "PayFast ITN ping arrives before order is committed. Had to implement idempotency + pending state. Lost 3 test payments to race condition. Fixed with queue + 2s delay buffer. Learned to never trust gateway timing."
                     </p>
                   </div>
@@ -451,7 +451,7 @@
 
               <section v-else-if="activeFile === '03_VOYA_BITE'">
                 <div class="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-                  <h2 class="text-[20px] sm:text-[22px]" :style="{ fontFamily: \"'Special Elite', serif\" }">VOYA BITE — FILE 03 — FOOD DELIVERY</h2>
+                  <h2 class="text-[20px] sm:text-[22px]" :style="{ fontFamily: "'Special Elite', serif" }">VOYA BITE — FILE 03 — FOOD DELIVERY</h2>
                   <div class="text-[10px] tracking-[0.16em] opacity-60">React • Firebase • Maps • Realtime</div>
                 </div>
 
@@ -503,7 +503,7 @@
                     @click="voyaTab=tab"
                     class="px-3 py-1 text-[10px] tracking-[0.16em] border"
                     :class="voyaTab === tab ? 'bg-black text-white border-black' : 'bg-white border-[#d6a66f]'"
-                    :style="{ fontFamily: \"'Special Elite', serif\" }"
+                    :style="{ fontFamily: "'Special Elite', serif" }"
                   >
                     [ {{ tab }} ]
                   </button>
@@ -517,7 +517,7 @@
               </section>
 
               <section v-else-if="activeFile === '04_SKILLS'">
-                <h2 class="text-[20px]" :style="{ fontFamily: \"'Special Elite', serif\" }">SKILLS — FILE 04 — EVIDENCE MAP</h2>
+                <h2 class="text-[20px]" :style="{ fontFamily: "'Special Elite', serif" }">SKILLS — FILE 04 — EVIDENCE MAP</h2>
                 <div class="text-[10px] tracking-[0.16em] opacity-50 mt-1">HOVER TAGS TO SEE FILE CONNECTIONS</div>
 
                 <div class="mt-6 relative w-full h-[380px] bg-[#fcfaf6] border border-[#e8ddd0] rounded-[3px] overflow-hidden">
@@ -547,7 +547,7 @@
                     <div
                       class="px-3 py-1.5 text-[11px] tracking-[0.08em] border shadow-sm cursor-pointer transition-all select-none"
                       :style="{
-                        fontFamily: \"'Special Elite', serif\",
+                        fontFamily: "'Special Elite', serif",
                         background: skillHover === skill.name ? '#11100e' : '#fff',
                         color: skillHover === skill.name ? '#eee6d7' : '#11100e',
                         borderColor: skillHover === skill.name ? '#11100e' : '#d6a66f',
@@ -576,7 +576,7 @@
               </section>
 
               <section v-else-if="activeFile === '05_JOURNEY'">
-                <h2 class="text-[20px]" :style="{ fontFamily: \"'Special Elite', serif\" }">JOURNEY — FILE 05 — DEVELOPMENT LOG</h2>
+                <h2 class="text-[20px]" :style="{ fontFamily: "'Special Elite', serif" }">JOURNEY — FILE 05 — DEVELOPMENT LOG</h2>
 
                 <div class="mt-6 relative border-l-[1.5px] border-[#d6a66f] ml-4 sm:ml-10 pl-8 sm:pl-10 space-y-10">
                   <div v-for="entry in journey" :key="entry.date + entry.title" class="relative">
@@ -587,13 +587,13 @@
                     <div class="flex gap-4 items-start">
                       <div class="min-w-[80px]">
                         <div class="text-[11px] font-bold tracking-[0.14em] text-[#a32626]">{{ entry.date }}</div>
-                        <div class="mt-6 hidden sm:block text-[10px] italic opacity-50 rotate-[-4deg] max-w-[90px]" :style="{ fontFamily: \"'Crimson Pro', serif\" }">{{ entry.margin }}</div>
+                        <div class="mt-6 hidden sm:block text-[10px] italic opacity-50 rotate-[-4deg] max-w-[90px]" :style="{ fontFamily: "'Crimson Pro', serif" }">{{ entry.margin }}</div>
                       </div>
 
                       <div class="flex-1">
-                        <div class="text-[15px] font-semibold" :style="{ fontFamily: \"'Crimson Pro', serif\" }">{{ entry.title }}</div>
+                        <div class="text-[15px] font-semibold" :style="{ fontFamily: "'Crimson Pro', serif" }">{{ entry.title }}</div>
                         <div class="text-[12px] leading-[1.6] opacity-70 mt-1 max-w-[420px]">{{ entry.note }}</div>
-                        <div v-if="entry.sub" class="mt-2 bg-[#fff8ee] border-l-2 border-[#a32626] pl-3 py-1.5 text-[11px] italic max-w-[420px]" :style="{ fontFamily: \"'Crimson Pro', serif\" }">
+                        <div v-if="entry.sub" class="mt-2 bg-[#fff8ee] border-l-2 border-[#a32626] pl-3 py-1.5 text-[11px] italic max-w-[420px]" :style="{ fontFamily: "'Crimson Pro', serif" }">
                           Field note: Queue + pending state solved race. Never trust gateway timing.
                         </div>
                       </div>
@@ -603,7 +603,7 @@
               </section>
 
               <section v-else-if="activeFile === '06_CONTACT'" class="max-w-[680px]">
-                <h2 class="text-[20px]" :style="{ fontFamily: \"'Special Elite', serif\" }">CONTACT — FILE 06 — REQUEST FOR COLLABORATION</h2>
+                <h2 class="text-[20px]" :style="{ fontFamily: "'Special Elite', serif" }">CONTACT — FILE 06 — REQUEST FOR COLLABORATION</h2>
                 <div class="mt-1 text-[10px] tracking-[0.16em] opacity-60">FORM BT-C — OFFICIAL REQUEST — FILE NO. BT-001</div>
 
                 <div class="mt-6 bg-white border border-[#d6a66f] p-6 shadow-sm">
@@ -633,7 +633,7 @@
                     <button
                       @click="submitContact"
                       class="px-5 py-2 bg-black text-white text-[11px] tracking-[0.16em] hover:bg-[#a32626] transition-colors"
-                      :style="{ fontFamily: \"'Special Elite', serif\" }"
+                      :style="{ fontFamily: "'Special Elite', serif" }"
                       :disabled="contactStatus !== 'idle'"
                     >
                       {{ contactStatus === 'idle' ? '→ SUBMIT REQUEST' : contactStatus === 'sending' ? '→ FILING…' : '→ FILED ✓' }}
@@ -652,13 +652,13 @@
               </section>
 
               <section v-else>
-                <h2 class="text-[20px]" :style="{ fontFamily: \"'Special Elite', serif\" }">NOTES — FILE 07 — PERSONAL</h2>
+                <h2 class="text-[20px]" :style="{ fontFamily: "'Special Elite', serif" }">NOTES — FILE 07 — PERSONAL</h2>
                 <div class="text-[10px] tracking-[0.16em] opacity-50 mt-1">UNFILTERED — NOT FOR CLIENT REVIEW</div>
 
                 <div class="mt-6 grid sm:grid-cols-[1.1fr_0.9fr] gap-6">
                   <div class="space-y-4">
                     <div class="bg-[#fff88a] p-4 shadow-sm rotate-[-1.2deg] border border-black/5 max-w-[340px]">
-                      <div class="text-[12px] leading-[1.5]" :style="{ fontFamily: \"'Crimson Pro', serif\" }">
+                      <div class="text-[12px] leading-[1.5]" :style="{ fontFamily: "'Crimson Pro', serif" }">
                         I used to think portfolio = gallery. Now I think portfolio = proof you can think in systems.<br /><br />
                         Folder rule helped: everything inside file. No escape hatches.
                       </div>
@@ -691,7 +691,7 @@
 
                     <div class="bg-[#11100e] text-[#eee6d7] p-4">
                       <div class="text-[10px] tracking-[0.2em] text-[#d6a66f]">MANIFESTO — BT-001</div>
-                      <p class="mt-2 text-[12px] leading-[1.6] italic" :style="{ fontFamily: \"'Crimson Pro', serif\" }">
+                      <p class="mt-2 text-[12px] leading-[1.6] italic" :style="{ fontFamily: "'Crimson Pro', serif" }">
                         "Make the folder. Put everything inside. If someone opens it and stays, you did it right."
                       </p>
                     </div>
