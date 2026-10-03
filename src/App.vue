@@ -26,7 +26,7 @@
     >
       <div class="relative" :class="opening? 'animate-open-folder' : ''">
         <div
-          class="relative w- max-w- h- rounded- overflow-hidden flex flex-col"
+          class="relative w-[86vw] sm:w-[92vw] max-w-[520px] h-[680px] sm:h-[700px] rounded-[6px] overflow-hidden flex flex-col"
           :style="{
             backgroundColor: colors.leather,
             boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.5)',
@@ -34,41 +34,41 @@
         >
           <!-- top meta -->
           <div class="px-8 pt-8">
-            <div class="text- tracking-[0.22em]" :style="{ color: colors.tan }">PERSONAL PORTFOLIO — FILE NO. BT-001 — CASE 001</div>
-            <div class="mt-3 h- w-full" :style="{ background: `linear-gradient(90deg, transparent, ${colors.tan} 80%, transparent)` }"></div>
+            <div class="text-[10px] tracking-[0.22em]" :style="{ color: colors.tan }">PERSONAL PORTFOLIO — FILE NO. BT-001 — CASE 001</div>
+            <div class="mt-3 h-[1px] w-full" :style="{ background: `linear-gradient(90deg, transparent, ${colors.tan} 80%, transparent)` }"></div>
           </div>
 
           <!-- center -->
           <div class="flex-1 flex flex-col items-center justify-center gap-6 px-8 text-center">
-            <h1 class="text- leading-[0.9] tracking-[0.04em]" :style="{ fontFamily: '\'Special Elite\', serif', color: colors.paper }">
+            <h1 class="text-[38px] sm:text-[42px] leading-[0.9] tracking-[0.04em]" :style="{ fontFamily: '\'Special Elite\', serif', color: colors.paper }">
               BUTSHA<br />TENGWA
             </h1>
 
             <div class="relative">
-              <div class="w- h- flex items-center justify-center text- font-bold tracking-widest bg-[#e8ddd0]" style="border:3px solid white; transform:rotate(-1.2deg); box-shadow:0 4px 12px rgba(0,0,0,0.3)">BT</div>
-              <div class="absolute -top-2 -right-3 w- h- bg-[#c0c0c0] rotate-[-12deg] rounded-full opacity-80"></div>
-              <div class="mt-2 text- tracking-widest opacity-60" :style="{ color: colors.paper }">ATTACHED PHOTOGRAPH — FILE PHOTO</div>
+              <div class="w-[160px] h-[200px] flex items-center justify-center text-[36px] font-bold tracking-widest bg-[#e8ddd0]" style="border:3px solid white; transform:rotate(-1.2deg); box-shadow:0 4px 12px rgba(0,0,0,0.3)">BT</div>
+              <div class="absolute -top-2 -right-3 w-4 h-6 bg-[#c0c0c0] rotate-[-12deg] rounded-full opacity-80"></div>
+              <div class="mt-2 text-[9px] tracking-widest opacity-60" :style="{ color: colors.paper }">ATTACHED PHOTOGRAPH — FILE PHOTO</div>
             </div>
 
-            <div class="w- text-left space-y-3 mt-2">
-              <div v-for="row in coverDetails" :key="row[0]" class="flex gap-4 text-">
-                <div class="w- shrink-0 tracking-widest opacity-70" :style="{ color: colors.tan }">{{ row[0] }}</div>
+            <div class="w-[260px] text-left space-y-3 mt-2">
+              <div v-for="row in coverDetails" :key="row[0]" class="flex gap-4 text-[11px]">
+                <div class="w-[110px] shrink-0 tracking-widest opacity-70" :style="{ color: colors.tan }">{{ row[0] }}</div>
                 <div class="font-bold tracking-wide" :style="{ color: colors.paper }">{{ row[1] }}</div>
               </div>
             </div>
 
-            <div class="mt-2 text- border- px-4 py-1 tracking-widest" :style="{ borderColor: colors.red, color: colors.red, fontFamily: '\'Special Elite\'', transform:'rotate(-2deg)' }">
+            <div class="mt-2 text-[11px] border-[2px] px-4 py-1 tracking-widest" :style="{ borderColor: colors.red, color: colors.red, fontFamily: '\'Special Elite\'', transform:'rotate(-2deg)' }">
               CLASSIFIED — OPEN ON REQUEST
             </div>
           </div>
 
           <div class="px-8 pb-8 flex justify-between items-end">
-            <div class="text- opacity-40" :style="{ color: colors.paper }">WALNUT DESK — FILE BT-001</div>
-            <div class="text- opacity-40" :style="{ color: colors.paper }">HANDLE WITH CARE</div>
+            <div class="text-[9px] opacity-40" :style="{ color: colors.paper }">WALNUT DESK — FILE BT-001</div>
+            <div class="text-[9px] opacity-40" :style="{ color: colors.paper }">HANDLE WITH CARE</div>
           </div>
 
           <!-- FIXED TAB: no window.innerWidth in template, CSS handles it -->
-          <button @click="openFolder" class="open-file-tab group absolute top-[38%] right-0 flex items-center gap-2 pl-5 pr-6 py-3 text- tracking-widest bg-[#f5efe0] border shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-all" :style="{ borderColor: colors.tan, color: colors.ink }">
+          <button @click="openFolder" class="open-file-tab group absolute top-[38%] right-0 flex items-center gap-2 pl-5 pr-6 py-3 text-[13px] tracking-widest bg-[#f5efe0] border shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-all" :style="{ borderColor: colors.tan, color: colors.ink }">
             OPEN FILE <span class="text-[#a32626] group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
@@ -84,7 +84,7 @@
     <!-- OPEN - 14px border never goes away -->
     <div v-else class="relative z-10 min-h-screen flex items-start justify-center p-3 sm:p-10">
       <div
-        class="w- max-w- min-h- relative"
+        class="w-[96vw] max-w-[1100px] min-h-[82vh] relative"
         :class="closing? 'animate-folder-close' : 'animate-folder-open'"
         :style="{
           backgroundColor: colors.paperLight,
@@ -94,7 +94,7 @@
         }"
       >
         <!-- topbar -->
-        <div class="flex flex-wrap justify-between items-center px-6 py-4 border-b text-" :style="{ borderColor: colors.tan }">
+        <div class="flex flex-wrap justify-between items-center px-6 py-4 border-b text-[11px]" :style="{ borderColor: colors.tan }">
           <div style="font-family:'Special Elite'">BUTSHA TENGWA — FILE: {{ activeFileIndexDisplay }} — {{ activeFileObj?.label }}</div>
           <div class="flex items-center gap-3">
             <span class="opacity-60">PERSONAL FILE — BT-001</span>
@@ -104,12 +104,12 @@
         </div>
 
         <!-- file tabs -->
-        <div class="flex flex-wrap gap- px-6 pt-4">
+        <div class="flex flex-wrap gap-[2px] px-6 pt-4">
           <button
             v-for="file in files"
             :key="file.id"
             @click="selectFile(file.id)"
-            class="px-4 py-2 text- tracking-widest border-b-2 transition-all"
+            class="px-4 py-2 text-[10px] tracking-widest border-b-2 transition-all"
             :style="{
               background: activeFile===file.id? colors.paperInner : colors.paperDark,
               borderColor: activeFile===file.id? colors.red : 'transparent',
@@ -121,7 +121,7 @@
         </div>
 
         <!-- inner paper with punch holes -->
-        <div class="relative m-3 sm:m-6 p-6 sm:p-10 bg-[#fffdf7] border min-h-" :style="{ borderColor: colors.tan, boxShadow: 'inset 0 1px 0 rgba(0,0,0,0.05)' }">
+        <div class="relative m-3 sm:m-6 p-6 sm:p-10 bg-[#fffdf7] border min-h-[560px]" :style="{ borderColor: colors.tan, boxShadow: 'inset 0 1px 0 rgba(0,0,0,0.05)' }">
           <div class="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-around items-center opacity-20">
             <div v-for="i in 4" :key="i" class="w-3 h-3 rounded-full border bg-white" :style="{ borderColor: colors.tan }"></div>
           </div>
@@ -131,20 +131,20 @@
             <section v-if="activeFile==='01_PROFILE'">
               <div class="flex gap-8">
                 <div class="flex-1">
-                  <h2 class="text- leading-tight" style="font-family:'Special Elite'">I build products<br/>people pay for.</h2>
-                  <p class="mt-4 text- leading-relaxed opacity-80 max-w-">Vue ecosystem, payment integrations, product-driven development. Based in SA, shipping real e-commerce flows.</p>
-                  <div class="mt-8 grid grid-cols-2 gap-4 text-">
+                  <h2 class="text-[30px] leading-tight" style="font-family:'Special Elite'">I build products<br/>people pay for.</h2>
+                  <p class="mt-4 text-[13px] leading-relaxed opacity-80 max-w-[380px]">Vue ecosystem, payment integrations, product-driven development. Based in SA, shipping real e-commerce flows.</p>
+                  <div class="mt-8 grid grid-cols-2 gap-4 text-[11px]">
                     <div><div class="opacity-40 tracking-widest">ROLE</div><div class="font-bold mt-1">{{ portfolio.person.role }}</div></div>
                     <div><div class="opacity-40 tracking-widest">LOCATION</div><div class="font-bold mt-1">{{ portfolio.person.location }}</div></div>
                     <div><div class="opacity-40 tracking-widest">SPECIALIZATION</div><div class="font-bold mt-1">{{ portfolio.person.specialization }}</div></div>
                     <div><div class="opacity-40 tracking-widest">STATUS</div><div class="font-bold mt-1 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#a32626]"></span>{{ portfolio.person.status }}</div></div>
                   </div>
-                  <button @click="selectFile('02_STOCKWELL')" class="mt-8 px-5 py-2 bg-black text-white text- tracking-widest">OPEN FILE 02 → STOCKWELL</button>
+                  <button @click="selectFile('02_STOCKWELL')" class="mt-8 px-5 py-2 bg-black text-white text-[11px] tracking-widest">OPEN FILE 02 → STOCKWELL</button>
                 </div>
-                <div class="w- hidden sm:block">
+                <div class="w-[260px] hidden sm:block">
                   <div v-for="item in profileTimeline" :key="item.year" class="border-l pl-4 py-3 ml-2" :style="{ borderColor: colors.tan }">
-                    <div class="text- opacity-40">{{ item.year }}</div>
-                    <div class="text- font-bold mt-1">{{ item.title }}</div>
+                    <div class="text-[9px] opacity-40">{{ item.year }}</div>
+                    <div class="text-[11px] font-bold mt-1">{{ item.title }}</div>
                   </div>
                 </div>
               </div>
@@ -152,30 +152,30 @@
 
             <!-- STOCKWELL -->
             <section v-else-if="activeFile==='02_STOCKWELL'">
-              <div class="flex justify-between"><h2 style="font-family:'Special Elite'" class="text-">STOCKWELL — FILE 02 — E-COMMERCE PLATFORM</h2><span class="text- border px-2 py-1 bg-[#f5efe0]">Vue • JS • Node • PayFast</span></div>
-              <div class="mt-6 border-2 rounded- overflow-hidden" :style="{ borderColor: colors.ink }">
-                <div class="h-9 bg-black text-white flex items-center px-4 text- tracking-widest">
+              <div class="flex justify-between"><h2 style="font-family:'Special Elite'" class="text-[20px]">STOCKWELL — FILE 02 — E-COMMERCE PLATFORM</h2><span class="text-[10px] border px-2 py-1 bg-[#f5efe0]">Vue • JS • Node • PayFast</span></div>
+              <div class="mt-6 border-2 rounded-[4px] overflow-hidden" :style="{ borderColor: colors.ink }">
+                <div class="h-9 bg-black text-white flex items-center px-4 text-[11px] tracking-widest">
                   <div class="flex gap-1 mr-4"><span class="w-2 h-2 rounded-full bg-[#ff5f56]"></span><span class="w-2 h-2 rounded-full bg-[#ffbd2e]"></span><span class="w-2 h-2 rounded-full bg-[#27c93f]"></span></div>
                   <div class="opacity-60">stockwell.market — Live preview — inside file</div>
                   <div class="ml-auto flex items-center gap-3">
                     <span>Wallet: R 1,240.00</span>
-                    <span class="bg-white text-black px-2 py-0.5 rounded-full font-bold text- transition-transform" :class="{ 'cart-pop': cartAnim }">🛒 {{ cartCount }}</span>
+                    <span class="bg-white text-black px-2 py-0.5 rounded-full font-bold text-[11px] transition-transform" :class="{ 'cart-pop': cartAnim }">🛒 {{ cartCount }}</span>
                   </div>
                 </div>
                 <div class="p-4 grid grid-cols-3 gap-3 bg-[#fffdf7]">
                   <div v-for="p in stockProducts" :key="p.id" class="border p-3 bg-white hover:shadow-md transition">
-                    <div class="text-">{{ p.img }}</div>
-                    <div class="text- font-bold mt-2">{{ p.name }}</div>
-                    <div class="text- opacity-60">R {{ p.price }} • {{ p.tag }}</div>
-                    <button @click="addToCart" class="mt-3 w-full py-1 bg-black text-white text- tracking-widest hover:bg-[#a32626] transition">ADD TO CART +</button>
+                    <div class="text-[20px]">{{ p.img }}</div>
+                    <div class="text-[11px] font-bold mt-2">{{ p.name }}</div>
+                    <div class="text-[13px] opacity-60">R {{ p.price }} • {{ p.tag }}</div>
+                    <button @click="addToCart" class="mt-3 w-full py-1 bg-black text-white text-[10px] tracking-widest hover:bg-[#a32626] transition">ADD TO CART +</button>
                   </div>
                 </div>
-                <div class="h-10 bg-[#111] text-white flex items-center justify-center gap-6 text-">
+                <div class="h-10 bg-[#111] text-white flex items-center justify-center gap-6 text-[10px]">
                   <span>Customer ↓</span><span>Checkout ↓</span><span>PayFast ↓</span><span>Wallet ✓</span>
                 </div>
               </div>
-              <div class="mt-4 flex gap-2"><button v-for="t in stockTabs" :key="t" @click="stockTab=t" class="px-3 py-1 text- border" :style="{ background: stockTab===t? colors.ink : 'white', color: stockTab===t? 'white' : colors.ink }">[ {{ t }} ]</button></div>
-              <pre v-if="stockTab==='CHALLENGE'" class="mt-3 p-4 bg-[#0a0a0b] text-[#e8ddd0] text- leading-relaxed whitespace-pre-wrap border-l-4 border-[#a32626]">CAUSE: PayFast ITN handler expected x-www-form-urlencoded but received JSON. Logs 200 OK but wallet never updated. Signature mismatch due to param ordering.
+              <div class="mt-4 flex gap-2"><button v-for="t in stockTabs" :key="t" @click="stockTab=t" class="px-3 py-1 text-[10px] border" :style="{ background: stockTab===t? colors.ink : 'white', color: stockTab===t? 'white' : colors.ink }">[ {{ t }} ]</button></div>
+              <pre v-if="stockTab==='CHALLENGE'" class="mt-3 p-4 bg-[#0a0a0b] text-[#e8ddd0] text-[10px] leading-relaxed whitespace-pre-wrap border-l-4 border-[#a32626]">CAUSE: PayFast ITN handler expected x-www-form-urlencoded but received JSON. Logs 200 OK but wallet never updated. Signature mismatch due to param ordering.
 
 INVESTIGATION: Replay webhooks, log raw body, compare sorted params.
 
@@ -186,9 +186,9 @@ LESSON: Never trust happy path.</pre>
 
             <!-- other files placeholder -->
             <section v-else>
-              <h2 style="font-family:'Special Elite'" class="text-">{{ activeFile }} — FILE {{ activeFileIndexDisplay }}</h2>
-              <p class="mt-4 text- opacity-70">Everything belongs inside the file. Content for {{ activeFile }} lives here — add your real copy in src/data/portfolio.js</p>
-              <div class="mt-6 text- tracking-widest opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — SORTING THROUGH FILES</div>
+              <h2 style="font-family:'Special Elite'" class="text-[20px]">{{ activeFile }} — FILE {{ activeFileIndexDisplay }}</h2>
+              <p class="mt-4 text-[13px] opacity-70">Everything belongs inside the file. Content for {{ activeFile }} lives here — add your real copy in src/data/portfolio.js</p>
+              <div class="mt-6 text-[10px] tracking-widest opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — SORTING THROUGH FILES</div>
             </section>
           </div>
         </div>
@@ -198,7 +198,7 @@ LESSON: Never trust happy path.</pre>
             <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-20"></div>
             <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-10 rotate-[-1deg] translate-y-"></div>
           </div>
-          <div class="text- opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — {{ activeFileObj?.label }} — SORTING THROUGH FILES</div>
+          <div class="text-[9px] opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — {{ activeFileObj?.label }} — SORTING THROUGH FILES</div>
           <div class="flex gap-1"><button v-for="f in files" :key="f.id" @click="selectFile(f.id)" class="w-6 h-1 rounded-full transition-all" :style="{ background: activeFile===f.id? colors.red : colors.tan, width: activeFile===f.id? '20px' : '12px' }"></button></div>
         </div>
       </div>
