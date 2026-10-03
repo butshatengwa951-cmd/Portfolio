@@ -1,7 +1,8 @@
 <template>
   <div
     class="min-h-screen w-full relative overflow-x-hidden select-none"
-    :style="{ backgroundColor: colors.walnut, fontFamily: '\'JetBrains Mono\', monospace' }"
+    :style="{ backgroundColor: colors.walnut }"
+    style="font-family:'JetBrains Mono', monospace"
   >
     <!-- walnut + vignette -->
     <div
@@ -36,12 +37,12 @@
           <!-- top meta -->
           <div class="px-8 pt-8">
             <div class="text-[10px] tracking-[0.22em]" :style="{ color: colors.tan }">PERSONAL PORTFOLIO — FILE NO. BT-001</div>
-            <div class="mt-3 h-[1px] w-full" :style="{ background: `linear-gradient(90deg, transparent, ${colors.tan} 80%, transparent)` }"></div>
+            <div class="mt-3 h-[1px] w-full" :style="{ background: 'linear-gradient(90deg, transparent, ' + colors.tan + ' 80%, transparent)' }"></div>
           </div>
 
           <!-- center -->
           <div class="flex-1 flex flex-col items-center justify-between px-8 py-10 text-center relative z-10">
-            <h1 class="text-[38px] sm:text-[42px] leading-[0.9] tracking-[-0.02em]" :style="{ fontFamily: '\'Special Elite\', serif', color: colors.paper }">
+            <h1 class="text-[38px] sm:text-[42px] leading-[0.9] tracking-[-0.02em]" style="font-family:'Special Elite', serif">
               BUTSHA<br />TENGWA
             </h1>
 
@@ -59,12 +60,13 @@
             </div>
 
             <div class="w-full flex flex-col items-center gap-4">
-              <div class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold" :style="{ borderColor: colors.red, color: colors.red, fontFamily: '\'Special Elite\'', transform:'rotate(-2deg)' }">
+              <div class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold" :style="{ borderColor: colors.red, color: colors.red, transform:'rotate(-2deg)' }"
+              style="font-family:'Special Elite', serif">
               CLASSIFIED — OPEN ON REQUEST
             </div>
           </div>
 
-          <!-- FIXED TAB: no window.innerWidth in template, CSS handles it -->
+          
           <button @click="openFolder" class="open-file-tab group absolute top-[38%] right-0 flex items-center gap-2 pl-5 pr-6 py-3 text-[13px] tracking-widest bg-[#f5efe0] border shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-all" :style="{ borderColor: colors.tan, color: colors.ink }">
             OPEN FILE <span class="text-[#a32626] group-hover:translate-x-1 transition-transform">→</span>
           </button>
@@ -93,7 +95,7 @@
       >
         <!-- topbar -->
         <div class="flex flex-wrap items-center justify-between gap-2 px-6 sm:px-9 py-4 border-b" :style="{ borderColor: colors.tan, background: 'linear-gradient(180deg, ' + colors.paper + ' 0%, ' + colors.paperLight + ' 100%)' }">
-          <div style="font-family:'Special Elite'">BUTSHA TENGWA — FILE: {{ activeFileIndexDisplay }} — {{ activeFileObj?.label }}</div>
+          <div style="font-family:'Special Elite'">BUTSHA TENGWA — FILE: {{ activeFileIndexDisplay }} — {{ activeFileObj.label }}</div>
           <div class="flex items-center gap-3">
             <span class="opacity-60">PERSONAL FILE — BT-001</span>
             <span class="w-2 h-2 rounded-full bg-[#a32626] inline-block"></span>
@@ -197,7 +199,7 @@ LESSON: Never trust happy path.</pre>
             <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-20"></div>
             <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-10 rotate-[-1deg]"></div>
           </div>
-          <div class="text-[9px] opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — {{ activeFileObj?.label }} — SORTING THROUGH FILES</div>
+          <div class="text-[9px] opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — {{ activeFileObj.label }} — SORTING THROUGH FILES</div>
           <div class="flex gap-1"><button v-for="f in files" :key="f.id" @click="selectFile(f.id)" class="w-6 h-1 rounded-full transition-all" :style="{ background: activeFile===f.id? colors.red : colors.tan, width: activeFile===f.id? '20px' : '12px' }"></button></div>
         </div>
       </div>
