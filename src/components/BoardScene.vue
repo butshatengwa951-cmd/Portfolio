@@ -3,182 +3,681 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
-const props = defineProps({ discovered: Set, portfolio: Object })
-const emit = defineEmits(['select','discover'])
+const props = defineProps({
+  discovered: { type: Set, required: true },
+  verifiedClues: { type: Set, required: true },
+  portfolio: { type: Object, required: true }
+})
+
+const emit = defineEmits(['select', 'discover'])
 const container = ref(null)
 
-let scene, camera, renderer, controls, raycaster, mouse
-let objects = [] // {mesh, id}
-let strings = []
+let scene
+let camera
+let renderer
+let controls
+let raycaster
+let mouse
 let animationId
+let clock
+let resizeHandler
+let pointerMoveHandler
+let pointerDownHandler
+let pointerUpHandler
+let clickHandler
 
-function makePaperTexture(bg='#f4efe6', textLines=[]){
-  const c = document.createElement('canvas'); c.width=512; c.height=700
-  const ctx = c.getContext('2d')
-  ctx.fillStyle=bg; ctx.fillRect(0,0,c.width,c.height)
-  // noise
-  for(let i=0;i<8000;i++){ ctx.fillStyle=`rgba(0,0,0,${Math.random()*0.04})`; ctx.fillRect(Math.random()*c.width, Math.random()*c.height,2,2) }
-  ctx.fillStyle='#1a1a1a'; ctx.font='bold 28px JetBrains Mono'; ctx.textAlign='left'
-  textLines.forEach((l,i)=>{ ctx.fillText(l, 30, 50+i*38) })
-  const tex = new THREE.CanvasTexture(c); tex.colorSpace=THREE.SRGBColorSpace; return tex
+const objects = []
+const strings = []
+const portrait = { mesh: null, pin: null, texture: null, state: -1 }
+let pointerDownAt = 0
+
+function textureFromCanvas(draw, width = 700, height = 700) {
+  const canvas = document.createElement('canvas')
+  canvas.width = width
+  canvas.height = height
+  const ctx = canvas.getContext('2d')
+  draw(ctx, canvas)
+  const texture = new THREE.CanvasTexture(canvas)
+  texture.colorSpace = THREE.SRGBColorSpace
+  texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
+  return texture
 }
 
-function makePolaroidTexture(title, subtitle){
-  const c=document.createElement('canvas'); c.width=400; c.height=500
-  const ctx=c.getContext('2d')
-  ctx.fillStyle='#faf6ef'; ctx.fillRect(0,0,c.width,c.height)
-  // photo area
-  ctx.fillStyle='#111'; ctx.fillRect(20,20,c.width-40,300)
-  ctx.fillStyle='#333'; ctx.font='12px JetBrains Mono'; ctx.fillText('IMG_'+title+'.JPG',30,40)
-  // handwritten label
-  ctx.fillStyle='#111'; ctx.font='22px Special Elite'; ctx.textAlign='center'
-  ctx.fillText(title, c.width/2, 380)
-  ctx.font='12px JetBrains Mono'; ctx.fillStyle='#555'; ctx.fillText(subtitle, c.width/2, 410)
-  const tex=new THREE.CanvasTexture(c); tex.colorSpace=THREE.SRGBColorSpace; return tex
+function makePaperTexture(title, lines = [], tone = '#eee6d7') {
+  return textureFromCanvas((ctx, canvas) => {
+    ctx.fillStyle = tone
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    for (let i = 0; i < 15000; i++) {
+      const alpha = Math.random() * 0.035
+      ctx.fillStyle = 'rgba(30,25,18,' + alpha + ')'
+      ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 1.5, 1.5)
+    }
+
+    ctx.fillStyle = '#151411'
+    ctx.font = '700 34px JetBrains Mono'
+    ctx.fillText(title, 46, 68)
+
+    ctx.fillStyle = '#5f584e'
+    ctx.font = '17px JetBrains Mono'
+    lines.forEach((line, index) => {
+      ctx.fillText(line, 46, 116 + index * 32)
+    })
+
+    ctx.strokeStyle = 'rgba(30,25,18,.16)'
+    ctx.beginPath()
+    ctx.moveTo(46, 88)
+    ctx.lineTo(canvas.width - 46, 88)
+    ctx.stroke()
+  })
 }
 
-onMounted(()=>{
+function makePolaroidTexture(name, subtitle) {
+  return textureFromCanvas((ctx, canvas) => {
+    ctx.fillStyle = '#f7f0e6'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    ctx.fillStyle = '#161616'
+    ctx.fillRect(34, 34, 632, 438)
+
+    ctx.fillStyle = '#414141'
+    ctx.font = '14px JetBrains Mono'
+    ctx.fillText('EVIDENCE PHOTO // ' + name, 52, 64)
+
+    ctx.fillStyle = '#111'
+    ctx.textAlign = 'center'
+    ctx.font = '700 34px Special Elite'
+    ctx.fillText(name, 350, 542)
+
+    ctx.font = '16px JetBrains Mono'
+    ctx.fillStyle = '#6f675d'
+    ctx.fillText(subtitle, 350, 578)
+    ctx.textAlign = 'left'
+  })
+}
+
+function makePortraitTexture(src, state) {
+  return new Promise(resolve => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 700
+    canvas.height = 860
+    const ctx = canvas.getContext('2d')
+
+    const drawFallback = () => {
+      ctx.fillStyle = '#242321'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.textAlign = 'center'
+      ctx.fillStyle = '#9d978e'
+      ctx.font = '700 130px Special Elite'
+      ctx.fillText('BT', 350, 450)
+      ctx.fillStyle = '#c5bcae'
+      ctx.font = '16px JetBrains Mono'
+      ctx.fillText(state >= 2 ? 'IDENTITY: BUTSHA TENGWA' : 'IDENTITY UNCONFIRMED', 350, 790)
+      ctx.textAlign = 'left'
+      finish()
+    }
+
+    const finish = () => {
+      const texture = new THREE.CanvasTexture(canvas)
+      texture.colorSpace = THREE.SRGBColorSpace
+      texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
+      resolve(texture)
+    }
+
+    const image = new Image()
+    image.crossOrigin = 'anonymous'
+    image.onload = () => {
+      ctx.fillStyle = '#171615'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      ctx.save()
+
+      if (state === 0) {
+        ctx.filter = 'grayscale(1) blur(5px) brightness(.64) contrast(.86)'
+      } else if (state === 1) {
+        ctx.filter = 'grayscale(1) blur(2.4px) brightness(.7) contrast(.96)'
+      } else {
+        ctx.filter = 'grayscale(.88) contrast(1.08) brightness(.78)'
+      }
+
+      const scale = Math.max(canvas.width / image.width, canvas.height / image.height)
+      const w = image.width * scale
+      const h = image.height * scale
+      ctx.drawImage(image, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h)
+      ctx.restore()
+
+      ctx.fillStyle = state < 2 ? 'rgba(8,8,8,.26)' : 'rgba(8,8,8,.08)'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      if (state < 2) {
+        ctx.fillStyle = 'rgba(10,10,10,.38)'
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+        ctx.textAlign = 'center'
+        ctx.strokeStyle = '#eee4d6'
+        ctx.lineWidth = 5
+        ctx.font = '700 118px Special Elite'
+        ctx.strokeText('?', 350, 430)
+        ctx.fillStyle = '#f1e8dc'
+        ctx.fillText('?', 350, 430)
+
+        ctx.font = '15px JetBrains Mono'
+        ctx.fillStyle = '#c8bcab'
+        ctx.fillText('IDENTITY UNCONFIRMED', 350, 792)
+        ctx.textAlign = 'left'
+      } else {
+        ctx.fillStyle = '#e4d9c8'
+        ctx.font = '15px JetBrains Mono'
+        ctx.fillText('IDENTITY: BUTSHA TENGWA', 40, 810)
+      }
+
+      finish()
+    }
+
+    image.onerror = drawFallback
+
+    if (src) {
+      image.src = src
+    } else {
+      drawFallback()
+    }
+  })
+}
+
+function createPushPin(color = '#b32626', scale = 1) {
+  const group = new THREE.Group()
+
+  const base = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.12 * scale, 0.1 * scale, 0.035 * scale, 18),
+    new THREE.MeshStandardMaterial({
+      color: '#732020',
+      metalness: .38,
+      roughness: .32
+    })
+  )
+  base.position.z = .075 * scale
+  base.castShadow = true
+
+  const stem = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.028 * scale, 0.035 * scale, 0.16 * scale, 12),
+    new THREE.MeshStandardMaterial({
+      color: '#b7b0a7',
+      metalness: .72,
+      roughness: .2
+    })
+  )
+  stem.position.z = .15 * scale
+  stem.castShadow = true
+
+  const head = new THREE.Mesh(
+    new THREE.SphereGeometry(0.09 * scale, 18, 14),
+    new THREE.MeshStandardMaterial({
+      color,
+      metalness: .18,
+      roughness: .28
+    })
+  )
+  head.scale.set(1, 1, .78)
+  head.position.z = .25 * scale
+  head.castShadow = true
+
+  group.add(base, stem, head)
+  return group
+}
+
+function addEvidence({ id, pos, size, texture, rotation = 0, pinColor = '#b32626', pinScale = 1, type = 'evidence', opacity = 1 }) {
+  const geometry = new THREE.PlaneGeometry(size[0], size[1])
+  const material = new THREE.MeshStandardMaterial({
+    map: texture,
+    transparent: true,
+    opacity,
+    roughness: .9,
+    metalness: .02,
+    side: THREE.DoubleSide
+  })
+
+  const mesh = new THREE.Mesh(geometry, material)
+  mesh.position.set(pos[0], pos[1], pos[2] ?? .08)
+  mesh.rotation.z = rotation
+  mesh.castShadow = true
+  mesh.userData = { id, type }
+  scene.add(mesh)
+
+  const pin = createPushPin(pinColor, pinScale)
+  pin.position.set(
+    pos[0] - size[0] * .23,
+    pos[1] + size[1] / 2 - .055,
+    (pos[2] ?? .08) + .01
+  )
+  scene.add(pin)
+
+  objects.push({ mesh, id, baseScale: 1, pin })
+  return { mesh, pin }
+}
+
+function getObject(id) {
+  return objects.find(item => item.id === id)?.mesh
+}
+
+function addString(fromId, toId, color = '#9f2424') {
+  const material = new THREE.LineBasicMaterial({
+    color,
+    transparent: true,
+    opacity: 0
+  })
+
+  const geometry = new THREE.BufferGeometry().setFromPoints([
+    new THREE.Vector3(),
+    new THREE.Vector3()
+  ])
+
+  const line = new THREE.Line(geometry, material)
+  line.userData = {
+    fromId,
+    toId,
+    progress: 0,
+    color
+  }
+
+  scene.add(line)
+  strings.push(line)
+}
+
+function updateString(line, target) {
+  const from = getObject(line.userData.fromId)
+  const to = getObject(line.userData.toId)
+  if (!from || !to) return
+
+  const p = line.userData.progress
+  let next = p
+
+  if (target > p) {
+    next = Math.min(1, p + .085)
+  } else if (target < p) {
+    next = Math.max(0, p - .16)
+  }
+
+  line.userData.progress = next
+
+  const start = from.position.clone()
+  const end = to.position.clone()
+
+  start.z += .055
+  end.z += .055
+
+  const eased = 1 - Math.pow(1 - next, 3)
+  const current = start.clone().lerp(end, eased)
+
+  line.geometry.setFromPoints([start, current])
+  line.geometry.attributes.position.needsUpdate = true
+  line.material.opacity = Math.min(.92, eased * .92)
+}
+
+async function refreshPortrait(state) {
+  if (!portrait.mesh || portrait.state === state) return
+  portrait.state = state
+
+  const nextTexture = await makePortraitTexture(props.portfolio.person.portrait, state)
+
+  if (portrait.texture) portrait.texture.dispose()
+  portrait.texture = nextTexture
+  portrait.mesh.material.map = nextTexture
+  portrait.mesh.material.needsUpdate = true
+}
+
+onMounted(async () => {
   scene = new THREE.Scene()
-  scene.background = new THREE.Color('#0a0a0b')
+  scene.background = new THREE.Color('#080807')
 
-  camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 100)
-  camera.position.set(0,0.6,5.2)
+  camera = new THREE.PerspectiveCamera(
+    43,
+    window.innerWidth / window.innerHeight,
+    .1,
+    100
+  )
+  camera.position.set(0, 1.2, 8.4)
 
-  renderer = new THREE.WebGLRenderer({ antialias:true, alpha:false })
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   renderer.setSize(window.innerWidth, window.innerHeight)
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
-  renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap
+  renderer.shadowMap.enabled = true
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap
+  renderer.outputColorSpace = THREE.SRGBColorSpace
+  renderer.toneMapping = THREE.ACESFilmicToneMapping
+  renderer.toneMappingExposure = 1.06
   container.value.appendChild(renderer.domElement)
 
   controls = new OrbitControls(camera, renderer.domElement)
-  controls.enableDamping=true; controls.dampingFactor=0.08
-  controls.minDistance=2; controls.maxDistance=9
-  controls.maxPolarAngle=Math.PI/2.2; controls.target.set(0,0,0)
+  controls.enableDamping = true
+  controls.dampingFactor = .075
+  controls.enablePan = false
+  controls.minDistance = 5.6
+  controls.maxDistance = 11
+  controls.minPolarAngle = 1.15
+  controls.maxPolarAngle = 1.72
+  controls.target.set(0, 0, 0)
 
-  raycaster=new THREE.Raycaster(); mouse=new THREE.Vector2()
+  raycaster = new THREE.Raycaster()
+  mouse = new THREE.Vector2()
+  clock = new THREE.Clock()
 
-  // lights
-  scene.add(new THREE.AmbientLight('#222233',0.7))
-  const warm = new THREE.PointLight('#ffcc88',1.8,12); warm.position.set(-2.5,3.5,3); warm.castShadow=true; scene.add(warm)
-  const dir = new THREE.DirectionalLight('#ffffff',0.4); dir.position.set(2,3,2); scene.add(dir)
+  scene.add(new THREE.HemisphereLight('#d8d0c5', '#070707', .72))
 
-  // board
-  const boardGeo=new THREE.PlaneGeometry(12,8)
-  const boardMat=new THREE.MeshStandardMaterial({ color:'#2a211c', roughness:0.9, metalness:0.05 })
-  const board=new THREE.Mesh(boardGeo, boardMat); board.receiveShadow=true; scene.add(board)
-  // frame
-  const frameGeo=new THREE.BoxGeometry(12.4,8.4,0.25); const frameMat=new THREE.MeshStandardMaterial({color:'#1c1814', roughness:0.8}); const frame=new THREE.Mesh(frameGeo, frameMat); frame.position.z=-0.16; frame.receiveShadow=true; scene.add(frame)
+  const lamp = new THREE.PointLight('#ffcd92', 3.0, 18)
+  lamp.position.set(-2.5, 4.2, 4)
+  lamp.castShadow = true
+  lamp.shadow.mapSize.set(1024, 1024)
+  scene.add(lamp)
 
-  // helper to add object
-  function addEvidence({id, pos, size=[1.2,0.8], tex, rot=0, pinColor='#c0392b'}){
-    const geo=new THREE.PlaneGeometry(size[0], size[1])
-    const mat=new THREE.MeshStandardMaterial({ map:tex, transparent:true, roughness:0.8, side:THREE.DoubleSide })
-    const mesh=new THREE.Mesh(geo, mat); mesh.position.set(pos[0], pos[1], 0.02+Math.random()*0.02); mesh.rotation.z=rot; mesh.castShadow=true; mesh.userData.id=id
-    scene.add(mesh); objects.push({mesh,id})
-    // pin
-    const pinGeo=new THREE.SphereGeometry(0.06,16,16); const pinMat=new THREE.MeshStandardMaterial({color:pinColor, metalness:0.3, roughness:0.4})
-    const pin=new THREE.Mesh(pinGeo, pinMat); pin.position.set(pos[0], pos[1]+size[1]/2-0.08, 0.12); pin.castShadow=true; scene.add(pin)
-    return mesh
-  }
+  const fill = new THREE.DirectionalLight('#ffffff', .5)
+  fill.position.set(4, 5, 3)
+  scene.add(fill)
 
-  // CASE FILE central
-  const caseTex=makePaperTexture('#e8e0d0',['CASE FILE','────────','BUTSHA TENGWA','STATUS: OPEN','TYPE: DEVELOPER','REF: 001'])
-  addEvidence({id:'casefile', pos:[0,0.4], size:[1.6,1.0], tex:caseTex, rot:0.02})
-
-  // PROJECTS
-  const stockTex=makePolaroidTexture('STOCKWELL','Vue • PayFast • E-commerce')
-  addEvidence({id:'stockwell', pos:[-3.2,1.0], size:[1.3,1.5], tex:stockTex, rot:-0.08})
-  const voyaTex=makePolaroidTexture('VOYA BITE','Vue • Firebase • Food')
-  addEvidence({id:'voyabite', pos:[-3.0,-1.4], size:[1.2,1.4], tex:voyaTex, rot:0.07})
-
-  // SKILLS
-  props.portfolio.skills.slice(0,4).forEach((s,i)=>{
-    const tex=makePaperTexture('#f7e6b5',[`EVIDENCE TAG`,`────────`,`${s.name}`,`Found in:`,...s.foundIn.slice(0,2)])
-    addEvidence({id:s.id, pos:[2.8 + (i%2)*1.2, 1.5 - Math.floor(i/2)*1.1], size:[0.9,0.55], tex, rot:(Math.random()-0.5)*0.15, pinColor:'#888'})
-  })
-
-  // PERSON OF INTEREST
-  const poiTex=makePaperTexture('#d6e4f0',['PERSON OF INTEREST','────────','BUTSHA TENGWA','ROLE: Developer','OBJ: Build better','LOCATION: SA'])
-  addEvidence({id:'person', pos:[2.5,-1.2], size:[1.4,0.9], tex:poiTex, rot:-0.04})
-
-  // CLASSIFIED
-  const classTex=makePaperTexture('#111',['██ CLASSIFIED ██','────────','CASE NOTE #07','ACCESS: RESTRICTED','🔒'])
-  const classifiedMesh=addEvidence({id:'classified', pos:[0,-2.1], size:[1.1,0.6], tex:classTex, rot:0.03, pinColor:'#111'})
-  classifiedMesh.material.opacity=0.4 // hidden initially
-
-  // strings
-  function addString(fromId, toId, visible=false){
-    const a=objects.find(o=>o.id===fromId)?.mesh; const b=objects.find(o=>o.id===toId)?.mesh
-    if(!a||!b) return
-    const pts=[a.position.clone(), b.position.clone()]; pts[0].z+=0.05; pts[1].z+=0.05
-    const geo=new THREE.BufferGeometry().setFromPoints(pts)
-    const mat=new THREE.LineBasicMaterial({color:'#a41d1d', transparent:true, opacity: visible?0.9:0})
-    const line=new THREE.Line(geo, mat); line.userData={fromId,toId}; scene.add(line); strings.push(line)
-  }
-  addString('casefile','stockwell', true)
-  addString('stockwell','payfast', false)
-  addString('stockwell','vue', false)
-  addString('casefile','person', true)
-  addString('voyabite','vue', false)
-  addString('stockwell','classified', false)
-
-  // interaction
-  function onMouseMove(e){
-    mouse.x=(e.clientX/window.innerWidth)*2-1; mouse.y=-(e.clientY/window.innerHeight)*2+1
-    raycaster.setFromCamera(mouse,camera)
-    const intersects=raycaster.intersectObjects(objects.map(o=>o.mesh))
-    document.body.style.cursor = intersects.length ? 'pointer' : 'default'
-    objects.forEach(o=>{ o.mesh.scale.set(1,1,1) })
-    if(intersects[0]){ intersects[0].object.scale.set(1.06,1.06,1) }
-  }
-  function onClick(e){
-    mouse.x=(e.clientX/window.innerWidth)*2-1; mouse.y=-(e.clientY/window.innerHeight)*2+1
-    raycaster.setFromCamera(mouse,camera)
-    const intersects=raycaster.intersectObjects(objects.map(o=>o.mesh))
-    if(intersects[0]){ emit('select', intersects[0].object.userData.id); emit('discover', intersects[0].object.userData.id) }
-  }
-  window.addEventListener('mousemove', onMouseMove)
-  window.addEventListener('click', onClick)
-  window.addEventListener('resize', ()=>{ camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight) })
-
-  // animate
-  const clock=new THREE.Clock()
-  function animate(){
-    animationId=requestAnimationFrame(animate)
-    const t=clock.getElapsedTime()
-    // subtle float
-    objects.forEach((o,i)=>{ o.mesh.position.z = 0.02 + Math.sin(t*0.6 + i)*0.02 })
-    // update strings visibility based on discovered
-    strings.forEach(s=>{
-      const shouldShow = props.discovered.has(s.userData.fromId) && props.discovered.has(s.userData.toId)
-      s.material.opacity = THREE.MathUtils.lerp(s.material.opacity, shouldShow?0.9:0, 0.05)
-      // update positions (follow meshes)
-      const a=objects.find(o=>o.id===s.userData.fromId)?.mesh; const b=objects.find(o=>o.id===s.userData.toId)?.mesh
-      if(a&&b){ s.geometry.setFromPoints([a.position.clone().add(new THREE.Vector3(0,0,0.05)), b.position.clone().add(new THREE.Vector3(0,0,0.05))]); s.geometry.attributes.position.needsUpdate=true }
+  const board = new THREE.Mesh(
+    new THREE.PlaneGeometry(13.4, 8.6),
+    new THREE.MeshStandardMaterial({
+      color: '#2b211b',
+      roughness: .96,
+      metalness: .01
     })
-    // reveal classified when 3 discovered
-    const cm=objects.find(o=>o.id==='classified')?.mesh
-    if(cm){ const target = props.discovered.size>=3 ? 1 : 0.35; cm.material.opacity = THREE.MathUtils.lerp(cm.material.opacity, target, 0.06) }
-    controls.update(); renderer.render(scene,camera)
-  }
-  animate()
+  )
+  board.receiveShadow = true
+  scene.add(board)
 
-  // cleanup ref
-  onBeforeUnmount(()=>{
-    cancelAnimationFrame(animationId)
-    window.removeEventListener('mousemove', onMouseMove)
-    window.removeEventListener('click', onClick)
-    renderer.dispose()
+  const boardFrame = new THREE.Mesh(
+    new THREE.BoxGeometry(13.8, 9.0, .24),
+    new THREE.MeshStandardMaterial({
+      color: '#17130f',
+      roughness: .84
+    })
+  )
+  boardFrame.position.z = -.18
+  boardFrame.receiveShadow = true
+  scene.add(boardFrame)
+
+  const caseFile = makePaperTexture(
+    'CASE FILE 001',
+    [
+      'BUTSHA TENGWA',
+      'SUBJECT: DEVELOPER',
+      'STATUS: OPEN',
+      'EVIDENCE: INCOMPLETE'
+    ]
+  )
+
+  addEvidence({
+    id: 'casefile',
+    pos: [0, .85, .11],
+    size: [1.8, 1.25],
+    texture: caseFile,
+    rotation: -.018,
+    pinScale: 1.08
   })
+
+  const stock = makePolaroidTexture('STOCKWELL', 'Vue • PayFast • Node')
+  addEvidence({
+    id: 'stockwell',
+    pos: [-3.1, 1.25, .13],
+    size: [1.58, 1.88],
+    texture: stock,
+    rotation: -.07,
+    pinScale: 1.06
+  })
+
+  const voya = makePolaroidTexture('VOYA BITE', 'Travel • Booking • Web')
+  addEvidence({
+    id: 'voyabite',
+    pos: [-3.25, -1.35, .13],
+    size: [1.5, 1.72],
+    texture: voya,
+    rotation: .065,
+    pinScale: 1.02
+  })
+
+  const person = makePaperTexture(
+    'PERSON OF INTEREST',
+    [
+      'BUTSHA TENGWA',
+      'ROLE: DEVELOPER / STUDENT',
+      'LOCATION: SOUTH AFRICA',
+      'OBJECTIVE: BUILD BETTER'
+    ],
+    '#dce6ee'
+  )
+  addEvidence({
+    id: 'person',
+    pos: [2.85, 1.22, .13],
+    size: [1.72, 1.12],
+    texture: person,
+    rotation: -.035,
+    pinColor: '#68635e'
+  })
+
+  const skills = [
+    ['vue', [2.72, -.05], '#f1dfaa'],
+    ['js', [4.02, -.2], '#f1dfaa'],
+    ['payfast', [2.65, -1.22], '#e7c6a4'],
+    ['node', [3.93, -1.34], '#e7c6a4'],
+    ['three', [1.42, -1.95], '#f1dfaa']
+  ]
+
+  for (const [id, pos, tone] of skills) {
+    const skill = props.portfolio.skills.find(item => item.id === id)
+    if (!skill) continue
+
+    addEvidence({
+      id: skill.id,
+      pos: [pos[0], pos[1], .12],
+      size: [.94, .62],
+      texture: makePaperTexture(
+        'EVIDENCE TAG',
+        [skill.name, 'LEVEL: ' + skill.level, 'LINKS: ' + skill.foundIn.length + ' PROJECTS'],
+        tone
+      ),
+      rotation: (Math.random() - .5) * .10,
+      pinColor: '#77716b',
+      pinScale: .78
+    })
+  }
+
+  const portraitTexture = await makePortraitTexture(
+    props.portfolio.person.portrait,
+    0
+  )
+
+  const portraitResult = addEvidence({
+    id: 'portrait',
+    pos: [.05, -1.65, .15],
+    size: [1.85, 2.18],
+    texture: portraitTexture,
+    rotation: .018,
+    pinColor: '#b32626',
+    pinScale: 1.15
+  })
+
+  portrait.mesh = portraitResult.mesh
+  portrait.pin = portraitResult.pin
+  portrait.texture = portraitTexture
+  portrait.state = 0
+
+  const classified = makePaperTexture(
+    'CLASSIFIED',
+    [
+      'CASE NOTE #07',
+      'PAYMENT FLOW',
+      'ACCESS: RESTRICTED',
+      'UNLOCK: 3 CLUES'
+    ],
+    '#242322'
+  )
+
+  addEvidence({
+    id: 'classified',
+    pos: [-.55, -2.78, .11],
+    size: [1.35, .9],
+    texture: classified,
+    rotation: -.025,
+    pinColor: '#161616',
+    opacity: .38
+  })
+
+  addString('casefile', 'stockwell')
+  addString('casefile', 'person')
+  addString('casefile', 'portrait')
+  addString('stockwell', 'payfast')
+  addString('stockwell', 'vue')
+  addString('stockwell', 'classified')
+  addString('voyabite', 'vue')
+  addString('person', 'portrait')
+
+  pointerMoveHandler = event => {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+
+    raycaster.setFromCamera(mouse, camera)
+    const hit = raycaster.intersectObjects(objects.map(item => item.mesh), false)[0]
+
+    document.body.style.cursor = hit ? 'pointer' : 'grab'
+
+    objects.forEach(item => {
+      const target = hit && hit.object === item.mesh ? 1.045 : 1
+      item.mesh.scale.x += (target - item.mesh.scale.x) * .18
+      item.mesh.scale.y += (target - item.mesh.scale.y) * .18
+    })
+  }
+
+  pointerDownHandler = () => {
+    pointerDownAt = performance.now()
+  }
+
+  pointerUpHandler = () => {
+    if (performance.now() - pointerDownAt > 240) return
+  }
+
+  clickHandler = event => {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1
+
+    raycaster.setFromCamera(mouse, camera)
+    const hit = raycaster.intersectObjects(objects.map(item => item.mesh), false)[0]
+
+    if (!hit) return
+
+    const id = hit.object.userData.id
+    emit('select', id)
+    emit('discover', id)
+  }
+
+  resizeHandler = () => {
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize(window.innerWidth, window.innerHeight)
+  }
+
+  window.addEventListener('mousemove', pointerMoveHandler)
+  renderer.domElement.addEventListener('pointerdown', pointerDownHandler)
+  renderer.domElement.addEventListener('pointerup', pointerUpHandler)
+  renderer.domElement.addEventListener('click', clickHandler)
+  window.addEventListener('resize', resizeHandler)
+
+  function animate() {
+    animationId = requestAnimationFrame(animate)
+    const t = clock.getElapsedTime()
+
+    objects.forEach((item, index) => {
+      const baseZ = item.id === 'portrait' ? .15 : .10 + (index % 3) * .006
+      item.mesh.position.z = baseZ + Math.sin(t * .55 + index * .6) * .008
+    })
+
+    const showClassified = props.discovered.size >= 3
+    const classifiedItem = objects.find(item => item.id === 'classified')
+
+    if (classifiedItem) {
+      const targetOpacity = showClassified ? .95 : .38
+      classifiedItem.mesh.material.opacity += (targetOpacity - classifiedItem.mesh.material.opacity) * .1
+    }
+
+    strings.forEach(line => {
+      const endpointsFound =
+        props.discovered.has(line.userData.fromId) &&
+        props.discovered.has(line.userData.toId)
+
+      updateString(line, endpointsFound ? 1 : 0)
+    })
+
+    controls.update()
+    renderer.render(scene, camera)
+  }
+
+  animate()
 })
 
-watch(()=>props.discovered, ()=>{}, {deep:true})
+watch(
+  () => props.verifiedClues.size,
+  value => {
+    const state = value >= 3 ? 2 : value >= 1 ? 1 : 0
+    refreshPortrait(state)
+  }
+)
+
+watch(
+  () => props.discovered.size,
+  value => {
+    if (value >= 2) {
+      const state = props.verifiedClues.size >= 3 ? 2 : 1
+      refreshPortrait(state)
+    }
+  }
+)
+
+onBeforeUnmount(() => {
+  cancelAnimationFrame(animationId)
+
+  if (pointerMoveHandler) window.removeEventListener('mousemove', pointerMoveHandler)
+  if (resizeHandler) window.removeEventListener('resize', resizeHandler)
+
+  if (renderer?.domElement) {
+    renderer.domElement.removeEventListener('pointerdown', pointerDownHandler)
+    renderer.domElement.removeEventListener('pointerup', pointerUpHandler)
+    renderer.domElement.removeEventListener('click', clickHandler)
+  }
+
+  objects.forEach(item => {
+    item.mesh.geometry.dispose()
+    item.mesh.material.dispose()
+    item.pin?.children?.forEach(child => {
+      child.geometry?.dispose()
+      child.material?.dispose()
+    })
+  })
+
+  strings.forEach(line => {
+    line.geometry.dispose()
+    line.material.dispose()
+  })
+
+  portrait.texture?.dispose()
+  controls?.dispose()
+  renderer?.dispose()
+})
 </script>
 
 <style scoped>
-.scene-container{width:100%;height:100%}
+.scene-container{
+  width:100%;
+  height:100%;
+  cursor:grab;
+}
+.scene-container:active{
+  cursor:grabbing;
+}
+.scene-container canvas{
+  display:block;
+  width:100%;
+  height:100%;
+}
 </style>
