@@ -9,7 +9,6 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 const props = defineProps({
   discovered: { type: Set, required: true },
-  verifiedClues: { type: Set, required: true },
   portfolio: { type: Object, required: true }
 })
 
@@ -296,9 +295,9 @@ function updateString(line, target) {
   let next = p
 
   if (target > p) {
-    next = Math.min(1, p + .085)
+    next = Math.min(1, p + .22)
   } else if (target < p) {
-    next = Math.max(0, p - .16)
+    next = Math.max(0, p - .24)
   }
 
   line.userData.progress = next
@@ -306,8 +305,8 @@ function updateString(line, target) {
   const start = from.position.clone()
   const end = to.position.clone()
 
-  start.z += .055
-  end.z += .055
+  start.z = .045
+  end.z = .045
 
   const eased = 1 - Math.pow(1 - next, 3)
   const current = start.clone().lerp(end, eased)
@@ -525,14 +524,27 @@ onMounted(async () => {
     opacity: .38
   })
 
+  // Permanent investigation web: every evidence item is physically connected.
   addString('casefile', 'stockwell')
+  addString('casefile', 'voyabite')
   addString('casefile', 'person')
   addString('casefile', 'portrait')
-  addString('stockwell', 'payfast')
+  addString('casefile', 'classified')
+
   addString('stockwell', 'vue')
+  addString('stockwell', 'js')
+  addString('stockwell', 'payfast')
+  addString('stockwell', 'node')
   addString('stockwell', 'classified')
+
   addString('voyabite', 'vue')
+  addString('voyabite', 'js')
+
   addString('person', 'portrait')
+  addString('person', 'vue')
+
+  addString('portfolio', 'vue')
+  addString('portfolio', 'three')
 
   pointerMoveHandler = event => {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1
@@ -602,11 +614,8 @@ onMounted(async () => {
     }
 
     strings.forEach(line => {
-      const endpointsFound =
-        props.discovered.has(line.userData.fromId) &&
-        props.discovered.has(line.userData.toId)
-
-      updateString(line, endpointsFound ? 1 : 0)
+      // The investigation web is always visible; discovery only affects the evidence log.
+      updateString(line, 1)
     })
 
     controls.update()
@@ -617,20 +626,10 @@ onMounted(async () => {
 })
 
 watch(
-  () => props.verifiedClues.size,
-  value => {
-    const state = value >= 3 ? 2 : value >= 1 ? 1 : 0
-    refreshPortrait(state)
-  }
-)
-
-watch(
   () => props.discovered.size,
   value => {
-    if (value >= 2) {
-      const state = props.verifiedClues.size >= 3 ? 2 : 1
-      refreshPortrait(state)
-    }
+    const state = value >= 8 ? 2 : value >= 3 ? 1 : 0
+    refreshPortrait(state)
   }
 )
 
