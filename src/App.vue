@@ -60,14 +60,21 @@
             </div>
 
             <div class="w-full flex flex-col items-center gap-4">
-              <div class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold" :style="{ borderColor: colors.red, color: colors.red, transform:'rotate(-2deg)' }"
-              style="font-family:'Special Elite', serif">
-              CLASSIFIED — OPEN ON REQUEST
+              <div
+                class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold"
+                :style="{ borderColor: colors.red, color: colors.red, transform:'rotate(-2deg)' }"
+                style="font-family:'Special Elite', serif"
+              >
+                CLASSIFIED — OPEN ON REQUEST
+              </div>
             </div>
           </div>
 
-          
-          <button @click="openFolder" class="open-file-tab group absolute top-[38%] right-0 flex items-center gap-2 pl-5 pr-6 py-3 text-[13px] tracking-widest bg-[#f5efe0] border shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-all" :style="{ borderColor: colors.tan, color: colors.ink }">
+          <button
+            @click="openFolder"
+            class="open-file-tab group absolute top-[38%] right-0 flex items-center gap-2 pl-5 pr-6 py-3 text-[13px] tracking-widest bg-[#f5efe0] border shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-all"
+            :style="{ borderColor: colors.tan, color: colors.ink }"
+          >
             OPEN FILE <span class="text-[#a32626] group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
@@ -84,12 +91,12 @@
     <div v-else class="relative z-10 min-h-screen flex items-start justify-center p-3 sm:p-6 md:p-10">
       <div
         class="w-[96vw] max-w-[1100px] min-h-[82vh] relative"
-        :class="closing? 'animate-folder-close' : 'animate-folder-open'"
+        :class="closing ? 'animate-folder-close' : 'animate-folder-open'"
         :style="{
           backgroundColor: colors.paperLight,
           border: '14px solid ' + colors.leather,
           boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
-            backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 20%), radial-gradient(600px 400px at 30% 20%, rgba(214,166,111,0.08) 0%, transparent 60%)',
+          backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 20%), radial-gradient(600px 400px at 30% 20%, rgba(214,166,111,0.08) 0%, transparent 60%)',
           borderRadius: '4px'
         }"
       >
@@ -111,9 +118,9 @@
             @click="selectFile(file.id)"
             class="relative px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] tracking-[0.12em] border-t border-l border-r transition-all"
             :style="{
-              background: activeFile===file.id? colors.paperInner : colors.paperDark,
-              borderColor: activeFile===file.id? colors.red : 'transparent',
-              color: activeFile===file.id? colors.ink : '#6b5d52'
+              background: activeFile===file.id ? colors.paperInner : colors.paperDark,
+              borderColor: activeFile===file.id ? colors.red : 'transparent',
+              color: activeFile===file.id ? colors.ink : '#6b5d52'
             }"
           >
             <span class="opacity-60 mr-1">{{ file.num }}</span> {{ file.label }}
@@ -129,7 +136,7 @@
 
           <div :key="activeFile" class="animate-file-in ml-6">
             <!-- PROFILE -->
-            <section v-if="activeFile==='01_PROFILE'">
+            <section v-if="activeFile === '01_PROFILE'">
               <div class="flex gap-8">
                 <div class="flex-1">
                   <h2 class="text-[30px] leading-tight" style="font-family:'Special Elite'">I build products<br/>people pay for.</h2>
@@ -152,7 +159,7 @@
             </section>
 
             <!-- STOCKWELL -->
-            <section v-else-if="activeFile==='02_STOCKWELL'">
+            <section v-else-if="activeFile === '02_STOCKWELL'">
               <div class="flex justify-between"><h2 style="font-family:'Special Elite'" class="text-[20px]">STOCKWELL — FILE 02 — E-COMMERCE PLATFORM</h2><span class="text-[10px] border px-2 py-1 bg-[#f5efe0]">Vue • JS • Node • PayFast</span></div>
               <div class="mt-6 border-2 rounded-[4px] overflow-hidden" :style="{ borderColor: colors.ink }">
                 <div class="h-9 bg-black text-white flex items-center px-4 text-[11px] tracking-widest">
@@ -175,8 +182,8 @@
                   <span>Customer ↓</span><span>Checkout ↓</span><span>PayFast ↓</span><span>Wallet ✓</span>
                 </div>
               </div>
-              <div class="mt-4 flex gap-2"><button v-for="t in stockTabs" :key="t" @click="stockTab=t" class="px-3 py-1 text-[10px] border" :style="{ background: stockTab===t? colors.ink : 'white', color: stockTab===t? 'white' : colors.ink }">[ {{ t }} ]</button></div>
-              <pre v-if="stockTab==='CHALLENGE'" class="mt-3 p-4 bg-[#0a0a0b] text-[#e8ddd0] text-[10px] leading-relaxed whitespace-pre-wrap border-l-4 border-[#a32626]">CAUSE: PayFast ITN handler expected x-www-form-urlencoded but received JSON. Logs 200 OK but wallet never updated. Signature mismatch due to param ordering.
+              <div class="mt-4 flex gap-2"><button v-for="t in stockTabs" :key="t" @click="stockTab=t" class="px-3 py-1 text-[10px] border" :style="{ background: stockTab===t ? colors.ink : 'white', color: stockTab===t ? 'white' : colors.ink }">[ {{ t }} ]</button></div>
+              <pre v-if="stockTab === 'CHALLENGE'" class="mt-3 p-4 bg-[#0a0a0b] text-[#e8ddd0] text-[10px] leading-relaxed whitespace-pre-wrap border-l-4 border-[#a32626]">CAUSE: PayFast ITN handler expected x-www-form-urlencoded but received JSON. Logs 200 OK but wallet never updated. Signature mismatch due to param ordering.
 
 INVESTIGATION: Replay webhooks, log raw body, compare sorted params.
 
@@ -200,7 +207,7 @@ LESSON: Never trust happy path.</pre>
             <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-10 rotate-[-1deg]"></div>
           </div>
           <div class="text-[9px] opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — {{ activeFileObj.label }} — SORTING THROUGH FILES</div>
-          <div class="flex gap-1"><button v-for="f in files" :key="f.id" @click="selectFile(f.id)" class="w-6 h-1 rounded-full transition-all" :style="{ background: activeFile===f.id? colors.red : colors.tan, width: activeFile===f.id? '20px' : '12px' }"></button></div>
+          <div class="flex gap-1"><button v-for="f in files" :key="f.id" @click="selectFile(f.id)" class="w-6 h-1 rounded-full transition-all" :style="{ background: activeFile===f.id ? colors.red : colors.tan, width: activeFile===f.id ? '20px' : '12px' }"></button></div>
         </div>
       </div>
     </div>
