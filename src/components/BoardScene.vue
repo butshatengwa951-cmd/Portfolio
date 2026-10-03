@@ -262,58 +262,58 @@ function getObject(id) {
   return objects.find(item => item.id === id)?.mesh
 }
 
-function addString(fromId, toId, color = '#9f2424') {
-  const material = new THREE.LineBasicMaterial({
-    color,
-    transparent: true,
-    opacity: 0
-  })
+function makeStringCurve(from, to) {
+  const start = from.position.clone()
+  const end = to.position.clone()
 
-  const geometry = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(),
-    new THREE.Vector3()
-  ])
+  start.z = .055
+  end.z = .055
 
-  const line = new THREE.Line(geometry, material)
-  line.userData = {
-    fromId,
-    toId,
-    progress: 0,
-    color
-  }
+  const direction = end.clone().sub(start)
+  const length = Math.max(.1, Math.hypot(direction.x, direction.y))
+  const normal = new THREE.Vector3(-direction.y, direction.x, 0).normalize()
 
-  scene.add(line)
-  strings.push(line)
+  const bend = Math.min(.18, length * .035)
+  const middle = start.clone().lerp(end, .5).add(normal.multiplyScalar(bend))
+  middle.z = .06
+
+  return new THREE.CatmullRomCurve3(
+    [start, middle, end],
+    false,
+    'centripetal'
+  )
 }
 
-function updateString(line, target) {
+function addString(fromId, toId, color = '#9f2424') {
+  const from = getObject(fromId)
+  const to = getObject(toId)
+  if (!from || !to) return
+
+  const line = new THREE.Line(
+    new THREE.BufferGeometry(),
+    new THREE.LineBasicMaterial({
+      color,
+      transparent: true,
+      opacity: .78
+    })
+  )
+
+  line.userData = { fromId, toId }
+  scene.add(line)
+  strings.push(line)
+
+  updateString(line)
+}
+
+function updateString(line) {
   const from = getObject(line.userData.fromId)
   const to = getObject(line.userData.toId)
   if (!from || !to) return
 
-  const p = line.userData.progress
-  let next = p
-
-  if (target > p) {
-    next = Math.min(1, p + .22)
-  } else if (target < p) {
-    next = Math.max(0, p - .24)
-  }
-
-  line.userData.progress = next
-
-  const start = from.position.clone()
-  const end = to.position.clone()
-
-  start.z = .045
-  end.z = .045
-
-  const eased = 1 - Math.pow(1 - next, 3)
-  const current = start.clone().lerp(end, eased)
-
-  line.geometry.setFromPoints([start, current])
+  line.geometry.setFromPoints(
+    makeStringCurve(from, to).getPoints(12)
+  )
   line.geometry.attributes.position.needsUpdate = true
-  line.material.opacity = Math.min(.92, eased * .92)
 }
 
 async function refreshPortrait(state) {
@@ -332,13 +332,18 @@ onMounted(async () => {
   scene = new THREE.Scene()
   scene.background = new THREE.Color('#080807')
 
-  camera = new THREE.PerspectiveCamera(
-    43,
-    window.innerWidth / window.innerHeight,
+  const aspect = window.innerWidth / window.innerHeight
+  const frustum = window.innerWidth < 800 ? 11.5 : 9.9
+
+  camera = new THREE.OrthographicCamera(
+    -(frustum * aspect) / 2,
+    (frustum * aspect) / 2,
+    frustum / 2,
+    -frustum / 2,
     .1,
     100
   )
-  camera.position.set(0, 1.2, 8.4)
+  camera.position.set(0, .55, 8.5)
 
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false })
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -377,7 +382,7 @@ onMounted(async () => {
   scene.add(fill)
 
   const board = new THREE.Mesh(
-    new THREE.PlaneGeometry(13.4, 8.6),
+    new THREE.PlaneGeometry(15.2, 9.35),
     new THREE.MeshStandardMaterial({
       color: '#2b211b',
       roughness: .96,
@@ -388,7 +393,7 @@ onMounted(async () => {
   scene.add(board)
 
   const boardFrame = new THREE.Mesh(
-    new THREE.BoxGeometry(13.8, 9.0, .24),
+    new THREE.BoxGeometry(15.65, 9.8, .24),
     new THREE.MeshStandardMaterial({
       color: '#17130f',
       roughness: .84
@@ -410,8 +415,8 @@ onMounted(async () => {
 
   addEvidence({
     id: 'casefile',
-    pos: [0, .85, .11],
-    size: [1.8, 1.25],
+    pos: [0, 2.55, .11],
+    size: [1.95, 1.34],
     texture: caseFile,
     rotation: -.018,
     pinScale: 1.08
@@ -420,8 +425,8 @@ onMounted(async () => {
   const stock = makePolaroidTexture('STOCKWELL', 'Vue • PayFast • Node')
   addEvidence({
     id: 'stockwell',
-    pos: [-3.1, 1.25, .13],
-    size: [1.58, 1.88],
+    pos: [-4.15, 1.55, .13],
+    size: [1.78, 2.12],
     texture: stock,
     rotation: -.07,
     pinScale: 1.06
@@ -430,8 +435,8 @@ onMounted(async () => {
   const voya = makePolaroidTexture('VOYA BITE', 'Travel • Booking • Web')
   addEvidence({
     id: 'voyabite',
-    pos: [-3.25, -1.35, .13],
-    size: [1.5, 1.72],
+    pos: [-3.85, -1.85, .13],
+    size: [1.7, 1.96],
     texture: voya,
     rotation: .065,
     pinScale: 1.02
@@ -449,19 +454,19 @@ onMounted(async () => {
   )
   addEvidence({
     id: 'person',
-    pos: [2.85, 1.22, .13],
-    size: [1.72, 1.12],
+    pos: [3.75, 1.55, .13],
+    size: [1.86, 1.2],
     texture: person,
     rotation: -.035,
     pinColor: '#68635e'
   })
 
   const skills = [
-    ['vue', [2.72, -.05], '#f1dfaa'],
-    ['js', [4.02, -.2], '#f1dfaa'],
-    ['payfast', [2.65, -1.22], '#e7c6a4'],
-    ['node', [3.93, -1.34], '#e7c6a4'],
-    ['three', [1.42, -1.95], '#f1dfaa']
+    ['vue', [-1.95, .25], '#f1dfaa'],
+    ['js', [-1.9, -.65], '#f1dfaa'],
+    ['payfast', [-2.05, -1.68], '#e7c6a4'],
+    ['node', [2.05, -.9], '#e7c6a4'],
+    ['three', [1.9, 2.55], '#f1dfaa']
   ]
 
   for (const [id, pos, tone] of skills) {
@@ -490,8 +495,8 @@ onMounted(async () => {
 
   const portraitResult = addEvidence({
     id: 'portrait',
-    pos: [.05, -1.65, .15],
-    size: [1.85, 2.18],
+    pos: [0, -.2, .15],
+    size: [2.25, 2.72],
     texture: portraitTexture,
     rotation: .018,
     pinColor: '#b32626',
@@ -524,27 +529,26 @@ onMounted(async () => {
     opacity: .38
   })
 
-  // Permanent investigation web: every evidence item is physically connected.
-  addString('casefile', 'stockwell')
-  addString('casefile', 'voyabite')
-  addString('casefile', 'person')
-  addString('casefile', 'portrait')
-  addString('casefile', 'classified')
+  // Every thread represents a real relationship on the board.
+  addString('casefile', 'portrait')    // the case is the identity investigation
+  addString('casefile', 'stockwell')   // project under investigation
+  addString('casefile', 'voyabite')    // project under investigation
+  addString('casefile', 'person')      // subject of the case
+  addString('casefile', 'three')       // this portfolio uses Three.js
 
-  addString('stockwell', 'vue')
-  addString('stockwell', 'js')
-  addString('stockwell', 'payfast')
-  addString('stockwell', 'node')
-  addString('stockwell', 'classified')
+  addString('portrait', 'person')      // portrait identifies the subject
+  addString('portrait', 'stockwell')   // subject built StockWell
+  addString('portrait', 'voyabite')    // subject built Voya Bite
+  addString('portrait', 'classified')  // personal development note
 
-  addString('voyabite', 'vue')
-  addString('voyabite', 'js')
+  addString('stockwell', 'vue')        // StockWell uses Vue
+  addString('stockwell', 'js')         // StockWell uses JavaScript
+  addString('stockwell', 'payfast')    // StockWell uses PayFast
+  addString('stockwell', 'node')       // StockWell uses Node.js
+  addString('stockwell', 'classified') // classified note documents the payment issue
 
-  addString('person', 'portrait')
-  addString('person', 'vue')
-
-  addString('portfolio', 'vue')
-  addString('portfolio', 'three')
+  addString('voyabite', 'vue')         // Voya Bite uses Vue
+  addString('voyabite', 'js')          // Voya Bite uses JavaScript
 
   pointerMoveHandler = event => {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1
@@ -585,7 +589,13 @@ onMounted(async () => {
   }
 
   resizeHandler = () => {
-    camera.aspect = window.innerWidth / window.innerHeight
+    const nextAspect = window.innerWidth / window.innerHeight
+    const nextFrustum = window.innerWidth < 800 ? 11.5 : 9.9
+
+    camera.left = -(nextFrustum * nextAspect) / 2
+    camera.right = (nextFrustum * nextAspect) / 2
+    camera.top = nextFrustum / 2
+    camera.bottom = -nextFrustum / 2
     camera.updateProjectionMatrix()
     renderer.setSize(window.innerWidth, window.innerHeight)
   }
@@ -614,8 +624,7 @@ onMounted(async () => {
     }
 
     strings.forEach(line => {
-      // The investigation web is always visible; discovery only affects the evidence log.
-      updateString(line, 1)
+      updateString(line)
     })
 
     controls.update()
