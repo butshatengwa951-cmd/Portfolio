@@ -1,206 +1,68 @@
 export const portfolio = {
-  links: {
-    email: 'butsha.tengwa@gmail.com',
-    github: 'https://github.com/butshatengwa951-cmd',
-    linkedin: 'https://www.linkedin.com/'
-  },
-
   person: {
-    name: 'BUTSHA TENGWA',
-    role: 'Developer / Student',
-    objective: 'Building better things',
-    location: 'South Africa',
-
-    // Replace this URL with /assets/profile.jpg when you add your own local portrait.
-    // The current fallback is the GitHub profile avatar so the board is not empty.
-    portrait: 'https://avatars.githubusercontent.com/u/274642102?v=4',
-
-    background:
-      'Focused on building polished web experiences, learning through real projects, and turning difficult implementation problems into working systems.',
-
-    interests: [
-      'Vue.js',
-      'Product Design',
-      'Interactive Interfaces',
-      'Payment Systems'
-    ],
-
-    learning: [
-      'Advanced Three.js',
-      'System Design',
-      'Better UX',
-      'Full-stack architecture'
-    ],
-
-    goals: [
-      'Build products people actually use',
-      'Become a stronger full-stack developer'
-    ],
-
-    lessons:
-      'The difficult parts of development are usually where the useful lessons are.'
+    name: "BUTSHA TENGWA",
+    fileNo: "BT-001",
+    role: "DEVELOPER / CREATIVE",
+    location: "SOUTH AFRICA",
+    specialization: "WEB DEVELOPMENT",
+    status: "OPEN TO OPPORTUNITIES",
+    tagline: "I build products people pay for. Vue ecosystem, payment integrations, product-driven development.",
+    background: "Developer and student based in South Africa. Focused on Vue, payment systems, and shipping real products. Self-taught with a bias for building over theorizing.",
+    interests: ["Vue.js", "Product Design", "Payment Systems", "Indie Hacking", "Three.js"],
+    learning: ["Advanced Three.js / R3F", "System Design", "Rust for tooling"],
+    goals: ["Build products people pay for", "Master full-stack architecture", "Open source PayFast toolkit"],
+    lessons: "PayFast taught me docs lie and webhooks never arrive when you expect them to."
   },
-
-  projects: [
-    {
-      id: 'stockwell',
-      label: 'EVIDENCE 04',
-      name: 'STOCKWELL',
-      type: 'E-commerce platform',
-      stack: ['Vue', 'JavaScript', 'PayFast', 'Node.js'],
-      status: 'COMPLETE',
-      progress: 100,
-      description:
-        'A full e-commerce platform with shopping, supplier comparison, cart, proposals, voting, wallet and delivery flows.',
-
-      subEvidence: [
-        {
-          id: 'payment',
-          label: 'PAYMENT',
-          title: 'PAYFAST INTEGRATION',
-          flow: ['Customer', 'Checkout', 'PayFast', 'Payment response', 'Backend', 'Wallet'],
-          note:
-            'The payment flow was one of the hardest parts of the project because the sandbox response and wallet state had to remain consistent.'
-        },
-        {
-          id: 'cart',
-          label: 'CART',
-          title: 'CART SYSTEM',
-          flow: ['Browse', 'Add to cart', 'Persist', 'Checkout']
-        },
-        {
-          id: 'proposals',
-          label: 'PROPOSALS',
-          title: 'GROUP PROPOSAL FLOW',
-          flow: ['Create proposal', 'Community votes', 'Majority reached', 'Approval']
-        },
-        {
-          id: 'database',
-          label: 'DATA',
-          title: 'DATA MODEL',
-          flow: ['Users', 'Products', 'Orders', 'Wallets', 'Transactions']
-        }
-      ],
-
-      links: {
-        live: 'https://stockwell-hl1e.onrender.com/'
-      }
-    },
-
-    {
-      id: 'voyabite',
-      label: 'EVIDENCE 06',
-      name: 'VOYA BITE',
-      type: 'Travel / booking web project',
-      stack: ['HTML', 'CSS', 'JavaScript'],
-      status: 'ARCHIVED',
-      progress: 90,
-      description:
-        'A travel experience interface with services, booking interactions, filtering and a live booking ledger concept.',
-
-      subEvidence: [
-        {
-          id: 'booking',
-          label: 'BOOKING',
-          title: 'BOOKING FLOW',
-          flow: ['Browse experience', 'Filter', 'Book', 'Ledger update']
-        }
-      ],
-
-      links: {}
-    },
-
-    {
-      id: 'portfolio',
-      label: 'EVIDENCE 01',
-      name: 'CASE 001 — THE DEVELOPER',
-      type: 'This portfolio',
-      stack: ['Vue', 'Three.js', 'Vite'],
-      status: 'IN PROGRESS',
-      progress: 90,
-      description:
-        'A 3D investigative board that turns the portfolio into an interactive case file.',
-
-      subEvidence: [
-        {
-          id: 'scene',
-          label: 'SCENE',
-          title: 'THREE.JS BOARD',
-          flow: ['Scene', 'Camera', 'Evidence', 'Raycasting', 'Interaction']
-        }
-      ],
-
-      links: {
-        github: 'https://github.com/butshatengwa951-cmd/Portfolio'
-      }
-    }
+  files: [
+    { id: "profile", label: "01_PROFILE", title: "PROFILE", file: "FILE 01" },
+    { id: "stockwell", label: "02_STOCKWELL", title: "STOCKWELL", file: "FILE 02" },
+    { id: "voyabite", label: "03_VOYA_BITE", title: "VOYA BITE", file: "FILE 03" },
+    { id: "skills", label: "04_SKILLS", title: "SKILLS", file: "FILE 04" },
+    { id: "journey", label: "05_JOURNEY", title: "JOURNEY", file: "FILE 05" },
+    { id: "contact", label: "06_CONTACT", title: "CONTACT", file: "FILE 06" },
+    { id: "notes", label: "07_NOTES", title: "NOTES", file: "FILE 07" },
   ],
-
+  projects: {
+    stockwell: {
+      name: "STOCKWELL",
+      type: "E-commerce platform",
+      stack: ["Vue", "JavaScript", "Node", "PayFast"],
+      file: "FILE 02",
+      description: "Full e-commerce with proposals, voting, cart and wallet system. Built to handle real payments.",
+      problem: "Existing community proposals were fragmented across chats and sheets. No voting, no wallet, no payment traceability.",
+      build: "Vue frontend, Node API, PayFast ITN integration, wallet ledger with idempotency keys, cart persistence, proposal engine with vote weighting.",
+      challenge: "CAUSE: PayFast ITN handler expected x-www-form-urlencoded but received JSON. Logs showed 200 OK but wallet never updated. Signature mismatch due to param ordering.\n\nINVESTIGATION: Replay webhooks, log raw body, compare sorted params.\n\nRESOLUTION: Parse raw body, verify signature with sorted params, implement transaction lock + idempotency.\n\nLESSON: Never trust happy path.",
+      products: [
+        { id:1, name:"Community Stock Pack", price: 249, tag:"BESTSELLER" },
+        { id:2, name:"Proposal Boost", price: 89, tag:"NEW" },
+        { id:3, name:"Voting Power +10", price: 45, tag:"" },
+      ]
+    },
+    voyabite: {
+      name: "VOYA BITE",
+      type: "Food delivery prototype",
+      stack: ["Vue", "Firebase", "Tailwind"],
+      file: "FILE 03",
+      description: "Hyperlocal food delivery UI with real-time menu and order tracking.",
+      menu: [
+        { id:1, name:"Beef Bunny Chow", price: 65, time:"18m" },
+        { id:2, name:"Chicken Curry + Rice", price: 78, time:"22m" },
+        { id:3, name:"Veg Samosa Box (6)", price: 48, time:"14m" },
+      ]
+    }
+  },
   skills: [
-    {
-      id: 'vue',
-      name: 'VUE.JS',
-      level: 'Primary',
-      foundIn: ['stockwell', 'voyabite', 'portfolio'],
-      related: ['COMPONENTS', 'STATE', 'ROUTING']
-    },
-    {
-      id: 'js',
-      name: 'JAVASCRIPT',
-      level: 'Core',
-      foundIn: ['stockwell', 'voyabite', 'portfolio'],
-      related: ['ES6+', 'ASYNC', 'DOM']
-    },
-    {
-      id: 'payfast',
-      name: 'PAYFAST',
-      level: 'Integration',
-      foundIn: ['stockwell'],
-      related: ['WEBHOOKS', 'PAYMENTS']
-    },
-    {
-      id: 'node',
-      name: 'NODE.JS',
-      level: 'Backend',
-      foundIn: ['stockwell'],
-      related: ['API', 'AUTH']
-    },
-    {
-      id: 'three',
-      name: 'THREE.JS',
-      level: 'Creative',
-      foundIn: ['portfolio'],
-      related: ['SCENE', 'CAMERA', 'RAYCASTING']
-    }
+    { id:"vue", name:"VUE.JS", level:"Primary", files:["02","03","01"], related:["Components","State","Routing","Composition"] },
+    { id:"js", name:"JAVASCRIPT", level:"Core", files:["02","01"], related:["ES6+","Async","DOM"] },
+    { id:"payfast", name:"PAYFAST", level:"Integration", files:["02"], related:["Webhooks","ITN","Signatures"] },
+    { id:"node", name:"NODE.JS", level:"Backend", files:["02"], related:["API","Auth","Ledger"] },
+    { id:"firebase", name:"FIREBASE", level:"Realtime", files:["03"], related:["Firestore","Auth"] },
+    { id:"three", name:"THREE.JS", level:"Creative", files:["01"], related:["Scenes","Shaders"] },
   ],
-
-  clues: [
-    {
-      id: 1,
-      text: 'Find the project involving payments.',
-      check: discovered => discovered.has('stockwell'),
-      reward: 'PAYFAST CONNECTION REVEALED'
-    },
-    {
-      id: 2,
-      text: 'Which technology appears across the project evidence?',
-      check: discovered => discovered.has('vue'),
-      reward: 'VUE CONNECTIONS REVEALED'
-    },
-    {
-      id: 3,
-      text: 'Uncover the classified development struggle.',
-      check: discovered => discovered.has('classified'),
-      reward: 'CASE NOTE #07 DECLASSIFIED'
-    }
-  ],
-
-  classified: {
-    id: 'classified',
-    label: 'EVIDENCE [CLASSIFIED]',
-    title: 'CASE NOTE #07',
-    subtitle: 'INITIAL PAYMENT FLOW FAILED',
-    body:
-      'INVESTIGATION LOG\\n\\nThe PayFast flow looked successful on the happy path, but the wallet state did not update as expected.\\n\\nThe investigation focused on the callback data, verification flow, persistence and the gap between a payment response and the application state.\\n\\nRESOLUTION\\n\\nTreat payment notifications as their own backend workflow, validate the incoming data, log every transition, and keep the update idempotent.\\n\\nLESSON\\n\\nNever trust the happy path. Log everything.'
-  }
+  journey: [
+    { year:"2023", title:"Started Vue", note:"First component, first bug, first love. Built portfolio v1." },
+    { year:"2024", title:"PayFast integration hell", note:"The month webhooks broke me and then taught me everything about idempotency." },
+    { year:"2024", title:"StockWell shipped", note:"Proposals, voting, cart, wallet — first real e-commerce flow live." },
+    { year:"2025", title:"Folder concept", note:"Stopped making pretty pages. Started making containers with meaning." },
+  ]
 }

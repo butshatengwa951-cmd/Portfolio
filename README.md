@@ -1,53 +1,47 @@
-# CASE 001 — THE DEVELOPER
-3D Investigative Board Portfolio — Butsha Tengwa
-
-> Don't make a portfolio that *looks* like a detective board. Make the portfolio *itself* a mystery.
+# BUTSHA TENGWA — PERSONAL FILE BT-001
+Physical folder portfolio. Everything belongs inside the file.
 
 ## Concept
-Visitor investigates: Evidence → Clues → Connections → Discovery. Projects become photographs, skills become evidence tags, red string connects everything.
+Landing = closed folder on walnut desk (#2b211b). Click OPEN FILE → folder opens with animation. Inner border 14px walnut never goes away. Navigation = sorting through files inside same container.
 
 ## Stack
-- Vue 3 + Vite
-- Three.js (OrbitControls, CanvasTexture for papers)
-- No heavy deps — Vue handles portfolio state, Three.js handles scene.
+Vue 3 + Vite — no Three.js, pure CSS physicality (shadows, paper texture, grain, perspective).
 
-## Quick Start
+## Run
 ```bash
 npm install
 npm run dev
-# → http://localhost:3000
+# http://localhost:3000
 ```
 
-## How to customize
+## Customize
 Edit `src/data/portfolio.js`:
-- `person` — your bio, interests, goals
-- `projects` — each becomes a Polaroid. Add `subEvidence` for inspectable flows.
-- `skills` — evidence tags that highlight projects
-- `clues` — verification logic
-- `classified` — hidden struggle story
+- person — name, role, tagline
+- projects.stockwell / voyabite — products, menu, challenge text
+- skills — tags that connect to files
+- journey — timeline log
 
-Add your real links in `links: { live, github }`
+Replace preview content in:
+- `StockwellFile.vue` — recreate your real StockWell UI or embed screenshot
+- `VoyaFile.vue` — menu + tracking
+- `ProfileFile.vue` — photo: replace .clip-photo BT with <img src="/your-photo.jpg" />
+
+## Design System
+- Walnut: #2b211b desk, #231b16 folder
+- Paper: #eee6d7, #f5efe0, #fffdf7
+- Red: #a32626 for status, stamps, active
+- Tan: #d6a66f accents
+- Fonts: Special Elite (headings/file labels), JetBrains Mono (body/typewriter)
 
 ## Structure
-```
-src/
-  components/
-    BoardScene.vue — 3D board, pins, strings, raycasting
-    EvidenceInspector.vue — clean modern inspector UI
-  data/portfolio.js — all content (edit this)
-  App.vue — HUD, log, clue system, solved overlay
-```
+Closed folder → Open animation (rotateX) → File tabs [01_PROFILE] ... [07_NOTES] → Current file document → Stacked papers indicator FILE X OF 7
 
-## Deployment
+Key interaction: StockWell preview — Add to Cart works INSIDE folder, proving "project lives inside portfolio, no new tab".
+
+## Deploy
 ```bash
 npm run build
-# deploy dist/ to Vercel / Netlify
+# dist/ → Vercel / Netlify
 ```
 
-## Design Notes
-- Colors: dark walnut #1c1814, cork #2a211c, paper #e8e0d0, red string #a41d1d, lamp #ffcc88
-- Typography: Special Elite for headings, JetBrains Mono for body
-- Language: Use Case / Evidence / Clue / Connection / Verified / Classified — not murder tropes
-- Board evolves: starts sparse, reveals strings + classified as you investigate
-
-Built with purpose — Three.js is the investigation, Vue is the portfolio.
+Rule: Everything belongs inside the file.
