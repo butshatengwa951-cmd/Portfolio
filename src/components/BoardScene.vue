@@ -99,6 +99,65 @@ function makePolaroidTexture(name, subtitle) {
   })
 }
 
+function makeWoodTexture() {
+  return textureFromCanvas((ctx, canvas) => {
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
+    gradient.addColorStop(0, '#5a3a28')
+    gradient.addColorStop(.5, '#432a1f')
+    gradient.addColorStop(1, '#2e1c15')
+    ctx.fillStyle = gradient
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    // Broad wood grain.
+    for (let band = 0; band < 34; band++) {
+      const y = (band / 34) * canvas.height
+      ctx.strokeStyle = `rgba(18, 9, 6, ${0.18 + Math.random() * 0.12})`
+      ctx.lineWidth = 3 + Math.random() * 9
+      ctx.beginPath()
+      ctx.moveTo(0, y)
+
+      for (let x = 0; x <= canvas.width; x += 90) {
+        const wave = Math.sin((x / canvas.width) * Math.PI * (1.2 + Math.random())) * 18
+        ctx.quadraticCurveTo(
+          x + 45,
+          y + wave,
+          x + 90,
+          y + Math.sin(x * .018 + band) * 9
+        )
+      }
+
+      ctx.stroke()
+    }
+
+    // Fine scratches and pores.
+    for (let i = 0; i < 1400; i++) {
+      const x = Math.random() * canvas.width
+      const y = Math.random() * canvas.height
+      const len = 8 + Math.random() * 35
+      ctx.strokeStyle = `rgba(240, 202, 165, ${Math.random() * 0.055})`
+      ctx.lineWidth = .5 + Math.random() * 1.2
+      ctx.beginPath()
+      ctx.moveTo(x, y)
+      ctx.lineTo(x + len, y + (Math.random() - .5) * 2)
+      ctx.stroke()
+    }
+
+    // Soft vignette so the board feels lit from the centre.
+    const vignette = ctx.createRadialGradient(
+      canvas.width / 2,
+      canvas.height / 2,
+      canvas.height * .12,
+      canvas.width / 2,
+      canvas.height / 2,
+      canvas.height * .7
+    )
+    vignette.addColorStop(0, 'rgba(255, 218, 175, .08)')
+    vignette.addColorStop(1, 'rgba(0, 0, 0, .34)')
+    ctx.fillStyle = vignette
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+  }, 1200, 900)
+}
+
 function makePortraitTexture(src, state) {
   return new Promise(resolve => {
     const canvas = document.createElement('canvas')
@@ -371,21 +430,24 @@ onMounted(async () => {
 
   scene.add(new THREE.HemisphereLight('#d8d0c5', '#070707', .72))
 
-  const lamp = new THREE.PointLight('#ffcd92', 3.0, 18)
-  lamp.position.set(-2.5, 4.2, 4)
+  const lamp = new THREE.PointLight('#ffc27d', 3.4, 20)
+  lamp.position.set(-3.6, 4.8, 4.8)
   lamp.castShadow = true
   lamp.shadow.mapSize.set(1024, 1024)
   scene.add(lamp)
 
-  const fill = new THREE.DirectionalLight('#ffffff', .5)
+  const fill = new THREE.DirectionalLight('#f5e7d6', .34)
   fill.position.set(4, 5, 3)
   scene.add(fill)
+
+  const woodTexture = makeWoodTexture()
 
   const board = new THREE.Mesh(
     new THREE.PlaneGeometry(15.2, 9.35),
     new THREE.MeshStandardMaterial({
-      color: '#2b211b',
-      roughness: .96,
+      map: woodTexture,
+      color: '#7a5137',
+      roughness: .82,
       metalness: .01
     })
   )
@@ -393,15 +455,41 @@ onMounted(async () => {
   scene.add(board)
 
   const boardFrame = new THREE.Mesh(
-    new THREE.BoxGeometry(15.65, 9.8, .24),
+    new THREE.BoxGeometry(15.68, 9.84, .30),
     new THREE.MeshStandardMaterial({
-      color: '#17130f',
-      roughness: .84
+      color: '#24150f',
+      roughness: .78,
+      metalness: .02
     })
   )
   boardFrame.position.z = -.18
   boardFrame.receiveShadow = true
   scene.add(boardFrame)
+
+  const innerFrameMaterial = new THREE.MeshStandardMaterial({
+    color: '#6a432c',
+    roughness: .72
+  })
+
+  const topRail = new THREE.Mesh(
+    new THREE.BoxGeometry(15.35, .16, .11),
+    innerFrameMaterial
+  )
+  topRail.position.set(0, 4.53, .055)
+
+  const bottomRail = topRail.clone()
+  bottomRail.position.y = -4.53
+
+  const leftRail = new THREE.Mesh(
+    new THREE.BoxGeometry(.16, 9.04, .11),
+    innerFrameMaterial
+  )
+  leftRail.position.set(-7.60, 0, .055)
+
+  const rightRail = leftRail.clone()
+  rightRail.position.x = 7.60
+
+  scene.add(topRail, bottomRail, leftRail, rightRail)
 
   const caseFile = makePaperTexture(
     'CASE FILE 001',
@@ -669,6 +757,7 @@ onBeforeUnmount(() => {
   })
 
   portrait.texture?.dispose()
+  woodTexture?.dispose()
   controls?.dispose()
   renderer?.dispose()
 })
