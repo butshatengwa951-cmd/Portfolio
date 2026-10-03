@@ -58,7 +58,8 @@
               </div>
             </div>
 
-            <div class="w-full flex flex-col items-center gap-4">\n              <div class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold" :style="{ borderColor: colors.red, color: colors.red, fontFamily: '\'Special Elite\'', transform:'rotate(-2deg)' }">
+            <div class="w-full flex flex-col items-center gap-4">
+              <div class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold" :style="{ borderColor: colors.red, color: colors.red, fontFamily: '\'Special Elite\'', transform:'rotate(-2deg)' }">
               CLASSIFIED — OPEN ON REQUEST
             </div>
           </div>
@@ -113,7 +114,8 @@
               color: activeFile===file.id? colors.ink : '#6b5d52'
             }"
           >
-            <span class="opacity-60 mr-1">{{ file.num }}</span> {{ file.label }}\n            <span v-if="activeFile === file.id" class="absolute left-2 right-2 bottom-0 h-[2px] bg-[#a32626]"></span>
+            <span class="opacity-60 mr-1">{{ file.num }}</span> {{ file.label }}
+            <span v-if="activeFile === file.id" class="absolute left-2 right-2 bottom-0 h-[2px] bg-[#a32626]"></span>
           </button>
         </div>
 
