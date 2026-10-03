@@ -24,23 +24,24 @@
       class="relative z-10 min-h-screen flex items-center justify-center p-4"
       style="perspective:1200px"
     >
-      <div class="relative" :class="opening? 'animate-open-folder' : ''">
+      <div class="relative" :class="opening ? 'animate-open-folder' : closing ? 'animate-close-folder' : ''">
         <div
           class="relative w-[86vw] sm:w-[92vw] max-w-[520px] h-[680px] sm:h-[700px] rounded-[6px] overflow-hidden flex flex-col"
           :style="{
             backgroundColor: colors.leather,
-            boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.5)',
+            boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
+            backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 20%), radial-gradient(600px 400px at 30% 20%, rgba(214,166,111,0.08) 0%, transparent 60%)',
           }"
         >
           <!-- top meta -->
           <div class="px-8 pt-8">
-            <div class="text-[10px] tracking-[0.22em]" :style="{ color: colors.tan }">PERSONAL PORTFOLIO — FILE NO. BT-001 — CASE 001</div>
+            <div class="text-[10px] tracking-[0.22em]" :style="{ color: colors.tan }">PERSONAL PORTFOLIO — FILE NO. BT-001</div>
             <div class="mt-3 h-[1px] w-full" :style="{ background: `linear-gradient(90deg, transparent, ${colors.tan} 80%, transparent)` }"></div>
           </div>
 
           <!-- center -->
-          <div class="flex-1 flex flex-col items-center justify-center gap-6 px-8 text-center">
-            <h1 class="text-[38px] sm:text-[42px] leading-[0.9] tracking-[0.04em]" :style="{ fontFamily: '\'Special Elite\', serif', color: colors.paper }">
+          <div class="flex-1 flex flex-col items-center justify-between px-8 py-10 text-center relative z-10">
+            <h1 class="text-[38px] sm:text-[42px] leading-[0.9] tracking-[-0.02em]" :style="{ fontFamily: '\'Special Elite\', serif', color: colors.paper }">
               BUTSHA<br />TENGWA
             </h1>
 
@@ -57,14 +58,9 @@
               </div>
             </div>
 
-            <div class="mt-2 text-[11px] border-[2px] px-4 py-1 tracking-widest" :style="{ borderColor: colors.red, color: colors.red, fontFamily: '\'Special Elite\'', transform:'rotate(-2deg)' }">
+            <div class="w-full flex flex-col items-center gap-4">\n              <div class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold" :style="{ borderColor: colors.red, color: colors.red, fontFamily: '\'Special Elite\'', transform:'rotate(-2deg)' }">
               CLASSIFIED — OPEN ON REQUEST
             </div>
-          </div>
-
-          <div class="px-8 pb-8 flex justify-between items-end">
-            <div class="text-[9px] opacity-40" :style="{ color: colors.paper }">WALNUT DESK — FILE BT-001</div>
-            <div class="text-[9px] opacity-40" :style="{ color: colors.paper }">HANDLE WITH CARE</div>
           </div>
 
           <!-- FIXED TAB: no window.innerWidth in template, CSS handles it -->
@@ -82,19 +78,20 @@
     </div>
 
     <!-- OPEN - 14px border never goes away -->
-    <div v-else class="relative z-10 min-h-screen flex items-start justify-center p-3 sm:p-10">
+    <div v-else class="relative z-10 min-h-screen flex items-start justify-center p-3 sm:p-6 md:p-10">
       <div
         class="w-[96vw] max-w-[1100px] min-h-[82vh] relative"
         :class="closing? 'animate-folder-close' : 'animate-folder-open'"
         :style="{
           backgroundColor: colors.paperLight,
           border: '14px solid ' + colors.leather,
-          boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.5)',
+          boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
+            backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 20%), radial-gradient(600px 400px at 30% 20%, rgba(214,166,111,0.08) 0%, transparent 60%)',
           borderRadius: '4px'
         }"
       >
         <!-- topbar -->
-        <div class="flex flex-wrap justify-between items-center px-6 py-4 border-b text-[11px]" :style="{ borderColor: colors.tan }">
+        <div class="flex flex-wrap items-center justify-between gap-2 px-6 sm:px-9 py-4 border-b" :style="{ borderColor: colors.tan, background: 'linear-gradient(180deg, ' + colors.paper + ' 0%, ' + colors.paperLight + ' 100%)' }">
           <div style="font-family:'Special Elite'">BUTSHA TENGWA — FILE: {{ activeFileIndexDisplay }} — {{ activeFileObj?.label }}</div>
           <div class="flex items-center gap-3">
             <span class="opacity-60">PERSONAL FILE — BT-001</span>
@@ -104,19 +101,19 @@
         </div>
 
         <!-- file tabs -->
-        <div class="flex flex-wrap gap-[2px] px-6 pt-4">
+        <div class="px-3 sm:px-6 pt-4 pb-0 flex flex-wrap gap-[2px] items-end overflow-x-auto">
           <button
             v-for="file in files"
             :key="file.id"
             @click="selectFile(file.id)"
-            class="px-4 py-2 text-[10px] tracking-widest border-b-2 transition-all"
+            class="relative px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] tracking-[0.12em] border-t border-l border-r transition-all"
             :style="{
               background: activeFile===file.id? colors.paperInner : colors.paperDark,
               borderColor: activeFile===file.id? colors.red : 'transparent',
               color: activeFile===file.id? colors.ink : '#6b5d52'
             }"
           >
-            <span class="opacity-50 mr-1">{{ file.num }}</span>{{ file.label }}
+            <span class="opacity-60 mr-1">{{ file.num }}</span> {{ file.label }}\n            <span v-if="activeFile === file.id" class="absolute left-2 right-2 bottom-0 h-[2px] bg-[#a32626]"></span>
           </button>
         </div>
 
@@ -196,7 +193,7 @@ LESSON: Never trust happy path.</pre>
         <div class="px-6 pb-6 flex justify-between items-center">
           <div class="flex gap-1">
             <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-20"></div>
-            <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-10 rotate-[-1deg] translate-y-"></div>
+            <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-10 rotate-[-1deg]"></div>
           </div>
           <div class="text-[9px] opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — {{ activeFileObj?.label }} — SORTING THROUGH FILES</div>
           <div class="flex gap-1"><button v-for="f in files" :key="f.id" @click="selectFile(f.id)" class="w-6 h-1 rounded-full transition-all" :style="{ background: activeFile===f.id? colors.red : colors.tan, width: activeFile===f.id? '20px' : '12px' }"></button></div>
@@ -229,7 +226,7 @@ const files = [
   { id: '06_CONTACT', label: 'CONTACT', num: '06' },
   { id: '07_NOTES', label: 'NOTES', num: '07' },
 ]
-const coverDetails = [['ROLE','DEVELOPER / CREATIVE'],['LOCATION','SOUTH AFRICA'],['SPECIALIZATION','WEB DEVELOPMENT'],['STATUS','OPEN TO OPPORTUNITIES']]
+const coverDetails = [['ROLE','DEVELOPER / CREATIVE'],['LOCATION','SOUTH AFRICA'],['SPECIALIZATION','WEB DEVELOPMENT']]
 const stockProducts = [{ id:1, name:'Community Pack', price:249, img:'📦', tag:'BESTSELLER' }, { id:2, name:'Proposal Boost', price:89, img:'🚀', tag:'NEW' }, { id:3, name:'Voting +10', price:45, img:'🗳️', tag:'POWER' }]
 const stockTabs = ['PROBLEM','BUILD','CHALLENGE','LIVE']
 const profileTimeline = [{ year:'2023', title:'Started Vue' }, { year:'2024', title:'PayFast hell' }, { year:'2024', title:'StockWell shipped' }]
