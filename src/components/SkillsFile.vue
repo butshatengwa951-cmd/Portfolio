@@ -100,18 +100,18 @@ const skillLayout = {
   js: { x: 35, y: 42 },
   htmlcss: { x: 65, y: 42 },
 
-  vue: { x: 18, y: 155 },
-  render: { x: 48, y: 155 },
-  python: { x: 73, y: 155 },
-  flask: { x: 89, y: 155 },
+  vue: { x: 12, y: 155 },
+  mysql: { x: 31, y: 155 },
+  render: { x: 50, y: 155 },
+  python: { x: 69, y: 155 },
+  flask: { x: 87, y: 155 },
 
   node: { x: 8, y: 290 },
-  mysql: { x: 22, y: 290 },
-  payfast: { x: 36, y: 290 },
-  chartjs: { x: 50, y: 290 },
-  postgresql: { x: 68, y: 290 },
-  scraping: { x: 88, y: 290 },
-  threejs: { x: 10, y: 405 }
+  payfast: { x: 26, y: 290 },
+  chartjs: { x: 43, y: 290 },
+  postgresql: { x: 60, y: 290 },
+  scraping: { x: 76, y: 290 },
+  threejs: { x: 89, y: 290 }
 }
 
 const projectFiles = computed(() =>
