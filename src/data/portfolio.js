@@ -9,7 +9,7 @@ export const portfolio = {
     tagline: "I develop full-stack web applications with a focus on intuitive user experiences, combining strong frontend experiences with robust backend architecture and data-driven systems.",
     background: "Developer trained through the Life Choices Academy YouthCode programme/project. My development journey has grown from HTML, CSS and JavaScript into full-stack web development with Vue, Node/Express, MySQL, PostgreSQL, Python, Flask, REST APIs, web scraping, payment integrations and cloud deployment. I learn by building, researching difficult concepts and turning what I learn into working projects.",
     currentObjective: "Explore new and creative ways for users to interact with web applications while developing a distinctive approach, perspective and identity as a developer.",
-    interests: ["Backend Development", "Backend Architecture", "APIs & Integrations", "Databases & Data Systems", "Full-Stack Development", "Interactive Web Experiences", "Creative UI/UX", "Cloud Deployment"],
+    interests: ["Backend Development", "Backend Architecture", "APIs & Integrations", "Databases & Data Systems", "Full-Stack Development", "Interactive Web Experiences", "Creative UI/UX"],
     learning: ["Advanced Three.js / R3F", "Interaction Design", "Web Animation & Motion", "Creative Frontend Architecture", "System Design", "Backend Architecture"],
     goals: ["Build products people can actually use", "Master full-stack architecture", "Build reliable payment integrations", "Create more advanced interactive web experiences"],
     lessons: "Real projects taught me that development is as much about researching, debugging and connecting systems as it is about writing code."
