@@ -20,7 +20,7 @@
 
       <div class="typewritten"><p>LIGHTNING NEWS: Web scraping and Three.js were new concepts for our team. We overcame that gap through in-depth research, then applied what we learned with Python, Flask, Requests, BeautifulSoup and lxml. The lesson: when a concept is unfamiliar, research becomes part of the development process.</p></div>
 
-      <div class="sticky s2"><div class="pin"></div><p>STOCKWELL: PayFast was the reminder that integrations can fail even when the request appears successful. Logging the raw request, checking signatures, understanding ITN behaviour and adding transaction protection taught me to debug the full system instead of trusting a 200 response.</p><span>LESSON — PAYMENTS</span></div>
+      <div class="sticky s3"><div class="pin"></div><p>BUDGET TRACKER: Rebuilding the original Python toolkit into a deployed Vue + Flask application taught me how frontend, API and database layers have to work together. PostgreSQL persistence, budget-period rollover, timezone handling and Render deployment turned a local tool into a real full-stack product.</p><span>LESSON — FULL-STACK DEPLOYMENT</span></div>\n\n      <div class="sticky s2"><div class="pin"></div><p>STOCKWELL: PayFast was the reminder that integrations can fail even when the request appears successful. Logging the raw request, checking signatures, understanding ITN behaviour and adding transaction protection taught me to debug the full system instead of trusting a 200 response.</p><span>LESSON — PAYMENTS</span></div>
     </div>
   </div>
 </template>
