@@ -1,303 +1,1074 @@
 <template>
-  <div
-    class="min-h-screen w-full relative overflow-x-hidden select-none"
-    :style="{ backgroundColor: colors.walnut }"
-    style="font-family:'JetBrains Mono', monospace"
-  >
-    <!-- walnut + vignette -->
-    <div
-      class="pointer-events-none fixed inset-0 z-0"
-      :style="{
-        background:
-          'radial-gradient(120% 90% at 50% 20%, rgba(214,166,111,0.08) 0%, transparent 50%),' +
-          'radial-gradient(80% 60% at 20% 80%, rgba(0,0,0,0.4) 0%, transparent 70%),' +
-          'radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.55) 100%)'
-      }"
-    ></div>
-    <div
-      class="pointer-events-none fixed inset-0 z-[100]"
-      style="opacity:0.04; background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')"
-    ></div>
+  <div class="portfolio-root">
+    <div class="desk-vignette"></div>
+    <div class="film-noise" aria-hidden="true"></div>
 
-    <!-- CLOSED -->
-    <div
-      v-if="!folderOpen"
-      class="relative z-10 min-h-screen flex items-center justify-center p-4"
-      style="perspective:1200px"
+    <transition name="folder-cover">
+      <section v-if="!folderOpen" class="closed-stage">
+        <div class="folder-scene">
+          <div class="folder-shadow"></div>
+
+          <div
+            class="folder-cover"
+            :class="{ 'is-opening': opening }"
+          >
+            <div class="cover-inner-border"></div>
+            <div class="cover-top-strip"></div>
+
+            <div class="cover-content">
+              <div class="cover-meta">
+                <span>PERSONAL PORTFOLIO — FILE NO. BT-001</span>
+                <span class="cover-rule"></span>
+              </div>
+
+              <div class="cover-center">
+                <h1>BUTSHA<br />TENGWA</h1>
+
+                <div class="cover-photo-wrap">
+                  <div class="cover-photo">
+                    <img
+                      v-if="profilePhoto"
+                      :src="profilePhoto"
+                      alt="Butsha Tengwa"
+                    />
+                    <div v-else class="cover-photo-placeholder">
+                      <span>BT</span>
+                      <small>FILE PHOTO — 2024</small>
+                    </div>
+                  </div>
+
+                  <div class="cover-photo-caption">
+                    ATTACHED PHOTOGRAPH — FILE PHOTO
+                  </div>
+                </div>
+
+                <div class="cover-details">
+                  <div
+                    v-for="row in coverDetails"
+                    :key="row[0]"
+                    class="cover-detail-row"
+                  >
+                    <span>{{ row[0] }}</span>
+                    <strong>{{ row[1] }}</strong>
+                  </div>
+
+                  <div class="cover-detail-row cover-status">
+                    <span>STATUS</span>
+                    <strong>
+                      <i></i>
+                      OPEN TO OPPORTUNITIES
+                    </strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cover-bottom">
+                <div class="classified-stamp">CLASSIFIED — OPEN ON REQUEST</div>
+                <div class="cover-est">CASE 001 — EST. 2023</div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="open-file-tab"
+              :disabled="opening"
+              @click.stop.prevent="openFolder"
+            >
+              <span>OPEN FILE</span>
+              <b>→</b>
+            </button>
+
+            <div v-if="opening" class="paper-fan" aria-hidden="true">
+              <div class="fan fan-one"></div>
+              <div class="fan fan-two"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="closed-hint">
+          CLICK TAB TO OPEN <span>•</span> EVERYTHING LIVES INSIDE
+        </div>
+      </section>
+    </transition>
+
+    <section
+      v-if="folderOpen"
+      class="open-stage"
+      :class="{ 'is-closing': closing }"
     >
-      <div class="relative" :class="opening ? 'animate-open-folder' : closing ? 'animate-close-folder' : ''">
-        <div
-          class="relative w-[86vw] sm:w-[92vw] max-w-[520px] h-[680px] sm:h-[700px] rounded-[6px] overflow-hidden flex flex-col"
-          :style="{
-            backgroundColor: colors.leather,
-            boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
-            backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 20%), radial-gradient(600px 400px at 30% 20%, rgba(214,166,111,0.08) 0%, transparent 60%)',
-          }"
-        >
-          <!-- top meta -->
-          <div class="px-8 pt-8">
-            <div class="text-[10px] tracking-[0.22em]" :style="{ color: colors.tan }">PERSONAL PORTFOLIO — FILE NO. BT-001</div>
-            <div class="mt-3 h-[1px] w-full" :style="{ background: 'linear-gradient(90deg, transparent, ' + colors.tan + ' 80%, transparent)' }"></div>
-          </div>
-
-          <!-- center -->
-          <div class="flex-1 flex flex-col items-center justify-between px-8 py-10 text-center relative z-10">
-            <h1 class="text-[38px] sm:text-[42px] leading-[0.9] tracking-[-0.02em]" style="font-family:'Special Elite', serif">
-              BUTSHA<br />TENGWA
-            </h1>
-
-            <div class="relative">
-              <div class="w-[160px] h-[200px] flex items-center justify-center text-[36px] font-bold tracking-widest bg-[#e8ddd0]" style="border:3px solid white; transform:rotate(-1.2deg); box-shadow:0 4px 12px rgba(0,0,0,0.3)">BT</div>
-              <div class="absolute -top-2 -right-3 w-4 h-6 bg-[#c0c0c0] rotate-[-12deg] rounded-full opacity-80"></div>
-              <div class="mt-2 text-[9px] tracking-widest opacity-60" :style="{ color: colors.paper }">ATTACHED PHOTOGRAPH — FILE PHOTO</div>
+      <div class="open-folder-shell">
+        <header class="folder-header">
+          <div class="folder-header-left">
+            <div class="folder-file-title">
+              BUTSHA TENGWA — FILE: {{ activeFileNumber }}
             </div>
-
-            <div class="w-[260px] text-left space-y-3 mt-2">
-              <div v-for="row in coverDetails" :key="row[0]" class="flex gap-4 text-[11px]">
-                <div class="w-[110px] shrink-0 tracking-widest opacity-70" :style="{ color: colors.tan }">{{ row[0] }}</div>
-                <div class="font-bold tracking-wide" :style="{ color: colors.paper }">{{ row[1] }}</div>
-              </div>
-            </div>
-
-            <div class="w-full flex flex-col items-center gap-4">
-              <div
-                class="border-[2px] border-[#a32626] text-[#a32626] px-4 py-1 text-[11px] tracking-[0.18em] font-bold"
-                :style="{ borderColor: colors.red, color: colors.red, transform:'rotate(-2deg)' }"
-                style="font-family:'Special Elite', serif"
-              >
-                CLASSIFIED — OPEN ON REQUEST
-              </div>
+            <div class="active-file-indicator">
+              <span></span>
+              ACTIVE FILE
             </div>
           </div>
 
+          <div class="folder-header-right">
+            <span>PERSONAL FILE — BT-001</span>
+            <button type="button" @click="closeFolder">
+              CLOSE FILE ×
+            </button>
+          </div>
+        </header>
+
+        <nav class="file-tabs" aria-label="Portfolio files">
           <button
-            @click="openFolder"
-            class="open-file-tab group absolute top-[38%] right-0 flex items-center gap-2 pl-5 pr-6 py-3 text-[13px] tracking-widest bg-[#f5efe0] border shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.3)] transition-all"
-            :style="{ borderColor: colors.tan, color: colors.ink }"
-          >
-            OPEN FILE <span class="text-[#a32626] group-hover:translate-x-1 transition-transform">→</span>
-          </button>
-        </div>
-
-        <!-- back papers fan -->
-        <div v-if="opening" class="absolute inset-0 -z-10">
-          <div class="absolute inset-0 bg-[#f5efe0] animate-fan-1" style="transform:rotate(-2deg)"></div>
-          <div class="absolute inset-0 bg-[#e8ddd0] animate-fan-2" style="transform:rotate(1.5deg)"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OPEN - 14px border never goes away -->
-    <div v-else class="relative z-10 min-h-screen flex items-start justify-center p-3 sm:p-6 md:p-10">
-      <div
-        class="w-[96vw] max-w-[1100px] min-h-[82vh] relative"
-        :class="closing ? 'animate-folder-close' : 'animate-folder-open'"
-        :style="{
-          backgroundColor: colors.paperLight,
-          border: '14px solid ' + colors.leather,
-          boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 5px 15px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)',
-          backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 20%), radial-gradient(600px 400px at 30% 20%, rgba(214,166,111,0.08) 0%, transparent 60%)',
-          borderRadius: '4px'
-        }"
-      >
-        <!-- topbar -->
-        <div class="flex flex-wrap items-center justify-between gap-2 px-6 sm:px-9 py-4 border-b" :style="{ borderColor: colors.tan, background: 'linear-gradient(180deg, ' + colors.paper + ' 0%, ' + colors.paperLight + ' 100%)' }">
-          <div style="font-family:'Special Elite'">BUTSHA TENGWA — FILE: {{ activeFileIndexDisplay }} — {{ activeFileObj.label }}</div>
-          <div class="flex items-center gap-3">
-            <span class="opacity-60">PERSONAL FILE — BT-001</span>
-            <span class="w-2 h-2 rounded-full bg-[#a32626] inline-block"></span>
-            <button @click="closeFolder" class="ml-3 px-3 py-1 border bg-white hover:bg-black hover:text-white transition">CLOSE ×</button>
-          </div>
-        </div>
-
-        <!-- file tabs -->
-        <div class="px-3 sm:px-6 pt-4 pb-0 flex flex-wrap gap-[2px] items-end overflow-x-auto">
-          <button
-            v-for="file in files"
+            v-for="file in portfolio.files"
             :key="file.id"
+            type="button"
+            :class="{ active: activeFile === file.id }"
             @click="selectFile(file.id)"
-            class="relative px-3 sm:px-4 py-2 text-[10px] sm:text-[11px] tracking-[0.12em] border-t border-l border-r transition-all"
-            :style="{
-              background: activeFile===file.id ? colors.paperInner : colors.paperDark,
-              borderColor: activeFile===file.id ? colors.red : 'transparent',
-              color: activeFile===file.id ? colors.ink : '#6b5d52'
-            }"
           >
-            <span class="opacity-60 mr-1">{{ file.num }}</span> {{ file.label }}
-            <span v-if="activeFile === file.id" class="absolute left-2 right-2 bottom-0 h-[2px] bg-[#a32626]"></span>
+            <span>{{ file.label.slice(0, 2) }}</span>
+            {{ file.label.slice(3) }}
           </button>
-        </div>
+        </nav>
 
-        <!-- inner paper with punch holes -->
-        <div class="relative m-3 sm:m-6 p-6 sm:p-10 bg-[#fffdf7] border min-h-[560px]" :style="{ borderColor: colors.tan, boxShadow: 'inset 0 1px 0 rgba(0,0,0,0.05)' }">
-          <div class="absolute left-0 top-0 bottom-0 w-10 flex flex-col justify-around items-center opacity-20">
-            <div v-for="i in 4" :key="i" class="w-3 h-3 rounded-full border bg-white" :style="{ borderColor: colors.tan }"></div>
+        <main class="paper-page">
+          <div class="punched-holes" aria-hidden="true">
+            <span v-for="n in 3" :key="n"></span>
           </div>
 
-          <div :key="activeFile" class="animate-file-in ml-6">
-            <!-- PROFILE -->
-            <section v-if="activeFile === '01_PROFILE'">
-              <div class="flex gap-8">
-                <div class="flex-1">
-                  <h2 class="text-[30px] leading-tight" style="font-family:'Special Elite'">I build products<br/>people pay for.</h2>
-                  <p class="mt-4 text-[13px] leading-relaxed opacity-80 max-w-[380px]">Vue ecosystem, payment integrations, product-driven development. Based in SA, shipping real e-commerce flows.</p>
-                  <div class="mt-8 grid grid-cols-2 gap-4 text-[11px]">
-                    <div><div class="opacity-40 tracking-widest">ROLE</div><div class="font-bold mt-1">{{ portfolio.person.role }}</div></div>
-                    <div><div class="opacity-40 tracking-widest">LOCATION</div><div class="font-bold mt-1">{{ portfolio.person.location }}</div></div>
-                    <div><div class="opacity-40 tracking-widest">SPECIALIZATION</div><div class="font-bold mt-1">{{ portfolio.person.specialization }}</div></div>
-                    <div><div class="opacity-40 tracking-widest">STATUS</div><div class="font-bold mt-1 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#a32626]"></span>{{ portfolio.person.status }}</div></div>
-                  </div>
-                  <button @click="selectFile('02_STOCKWELL')" class="mt-8 px-5 py-2 bg-black text-white text-[11px] tracking-widest">OPEN FILE 02 → STOCKWELL</button>
-                </div>
-                <div class="w-[260px] hidden sm:block">
-                  <div v-for="item in profileTimeline" :key="item.year" class="border-l pl-4 py-3 ml-2" :style="{ borderColor: colors.tan }">
-                    <div class="text-[9px] opacity-40">{{ item.year }}</div>
-                    <div class="text-[11px] font-bold mt-1">{{ item.title }}</div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- STOCKWELL -->
-            <section v-else-if="activeFile === '02_STOCKWELL'">
-              <div class="flex justify-between"><h2 style="font-family:'Special Elite'" class="text-[20px]">STOCKWELL — FILE 02 — E-COMMERCE PLATFORM</h2><span class="text-[10px] border px-2 py-1 bg-[#f5efe0]">Vue • JS • Node • PayFast</span></div>
-              <div class="mt-6 border-2 rounded-[4px] overflow-hidden" :style="{ borderColor: colors.ink }">
-                <div class="h-9 bg-black text-white flex items-center px-4 text-[11px] tracking-widest">
-                  <div class="flex gap-1 mr-4"><span class="w-2 h-2 rounded-full bg-[#ff5f56]"></span><span class="w-2 h-2 rounded-full bg-[#ffbd2e]"></span><span class="w-2 h-2 rounded-full bg-[#27c93f]"></span></div>
-                  <div class="opacity-60">stockwell.market — Live preview — inside file</div>
-                  <div class="ml-auto flex items-center gap-3">
-                    <span>Wallet: R 1,240.00</span>
-                    <span class="bg-white text-black px-2 py-0.5 rounded-full font-bold text-[11px] transition-transform" :class="{ 'cart-pop': cartAnim }">🛒 {{ cartCount }}</span>
-                  </div>
-                </div>
-                <div class="p-4 grid grid-cols-3 gap-3 bg-[#fffdf7]">
-                  <div v-for="p in stockProducts" :key="p.id" class="border p-3 bg-white hover:shadow-md transition">
-                    <div class="text-[20px]">{{ p.img }}</div>
-                    <div class="text-[11px] font-bold mt-2">{{ p.name }}</div>
-                    <div class="text-[13px] opacity-60">R {{ p.price }} • {{ p.tag }}</div>
-                    <button @click="addToCart" class="mt-3 w-full py-1 bg-black text-white text-[10px] tracking-widest hover:bg-[#a32626] transition">ADD TO CART +</button>
-                  </div>
-                </div>
-                <div class="h-10 bg-[#111] text-white flex items-center justify-center gap-6 text-[10px]">
-                  <span>Customer ↓</span><span>Checkout ↓</span><span>PayFast ↓</span><span>Wallet ✓</span>
-                </div>
-              </div>
-              <div class="mt-4 flex gap-2"><button v-for="t in stockTabs" :key="t" @click="stockTab=t" class="px-3 py-1 text-[10px] border" :style="{ background: stockTab===t ? colors.ink : 'white', color: stockTab===t ? 'white' : colors.ink }">[ {{ t }} ]</button></div>
-              <pre v-if="stockTab === 'CHALLENGE'" class="mt-3 p-4 bg-[#0a0a0b] text-[#e8ddd0] text-[10px] leading-relaxed whitespace-pre-wrap border-l-4 border-[#a32626]">CAUSE: PayFast ITN handler expected x-www-form-urlencoded but received JSON. Logs 200 OK but wallet never updated. Signature mismatch due to param ordering.
-
-INVESTIGATION: Replay webhooks, log raw body, compare sorted params.
-
-RESOLUTION: Parse raw body, verify signature with sorted params, transaction lock + idempotency key.
-
-LESSON: Never trust happy path.</pre>
-            </section>
-
-            <!-- other files placeholder -->
-            <section v-else>
-              <h2 style="font-family:'Special Elite'" class="text-[20px]">{{ activeFile }} — FILE {{ activeFileIndexDisplay }}</h2>
-              <p class="mt-4 text-[13px] opacity-70">Everything belongs inside the file. Content for {{ activeFile }} lives here — add your real copy in src/data/portfolio.js</p>
-              <div class="mt-6 text-[10px] tracking-widest opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — SORTING THROUGH FILES</div>
-            </section>
+          <div class="paper-content">
+            <Transition name="file-swap" mode="out-in">
+              <ProfileFile
+                v-if="activeFile === 'profile'"
+                key="profile"
+                :portfolio="portfolio"
+                @go="selectFile"
+              />
+              <StockwellFile
+                v-else-if="activeFile === 'stockwell'"
+                key="stockwell"
+                :project="portfolio.projects.stockwell"
+              />
+              <VoyaFile
+                v-else-if="activeFile === 'voyabite'"
+                key="voyabite"
+                :project="portfolio.projects.voyabite"
+              />
+              <SkillsFile
+                v-else-if="activeFile === 'skills'"
+                key="skills"
+                :skills="portfolio.skills"
+                :files="portfolio.files"
+                @go="selectFile"
+              />
+              <JourneyFile
+                v-else-if="activeFile === 'journey'"
+                key="journey"
+                :journey="portfolio.journey"
+              />
+              <ContactFile
+                v-else-if="activeFile === 'contact'"
+                key="contact"
+                :person="portfolio.person"
+              />
+              <NotesFile
+                v-else
+                key="notes"
+              />
+            </Transition>
           </div>
-        </div>
+        </main>
 
-        <div class="px-6 pb-6 flex justify-between items-center">
-          <div class="flex gap-1">
-            <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-20"></div>
-            <div class="w-10 h-1 bg-[#231b16] rounded-full opacity-10 rotate-[-1deg]"></div>
+        <footer class="folder-footer">
+          <div class="file-stack">
+            <span></span>
+            <span></span>
+            <strong>FILE STACK</strong>
           </div>
-          <div class="text-[9px] opacity-40">FILE {{ activeFileIndexDisplay }} OF 07 — {{ activeFileObj.label }} — SORTING THROUGH FILES</div>
-          <div class="flex gap-1"><button v-for="f in files" :key="f.id" @click="selectFile(f.id)" class="w-6 h-1 rounded-full transition-all" :style="{ background: activeFile===f.id ? colors.red : colors.tan, width: activeFile===f.id ? '20px' : '12px' }"></button></div>
-        </div>
+
+          <div class="footer-label">
+            FILE {{ activeFileNumber }} OF {{ portfolio.files.length }}
+            — {{ activeFileObject.label }}
+          </div>
+
+          <div class="footer-dots">
+            <button
+              v-for="file in portfolio.files"
+              :key="file.id"
+              type="button"
+              :class="{ active: activeFile === file.id }"
+              @click="selectFile(file.id)"
+              :aria-label="'Open ' + file.title"
+            ></button>
+          </div>
+        </footer>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
+import { computed, ref } from 'vue'
+import ProfileFile from './components/ProfileFile.vue'
+import StockwellFile from './components/StockwellFile.vue'
+import VoyaFile from './components/VoyaFile.vue'
+import SkillsFile from './components/SkillsFile.vue'
+import JourneyFile from './components/JourneyFile.vue'
+import ContactFile from './components/ContactFile.vue'
+import NotesFile from './components/NotesFile.vue'
+import { portfolio } from './data/portfolio.js'
 
-const colors = { walnut: '#2b211b', leather: '#231b16', ink: '#11100e', paper: '#eee6d7', paperLight: '#f5efe0', paperInner: '#fffdf7', paperDark: '#e8ddd0', tan: '#d6a66f', red: '#a32626' }
+const profilePhoto = ''
+
+const coverDetails = [
+  ['ROLE', 'DEVELOPER / CREATIVE'],
+  ['LOCATION', 'SOUTH AFRICA'],
+  ['SPECIALIZATION', 'WEB DEVELOPMENT']
+]
 
 const folderOpen = ref(false)
 const opening = ref(false)
 const closing = ref(false)
-const activeFile = ref('01_PROFILE')
-const cartCount = ref(2)
-const cartAnim = ref(false)
-const stockTab = ref('PROBLEM')
-const isMobile = ref(false)
+const activeFile = ref('profile')
 
-const files = [
-  { id: '01_PROFILE', label: 'PROFILE', num: '01' },
-  { id: '02_STOCKWELL', label: 'STOCKWELL', num: '02' },
-  { id: '03_VOYA_BITE', label: 'VOYA_BITE', num: '03' },
-  { id: '04_SKILLS', label: 'SKILLS', num: '04' },
-  { id: '05_JOURNEY', label: 'JOURNEY', num: '05' },
-  { id: '06_CONTACT', label: 'CONTACT', num: '06' },
-  { id: '07_NOTES', label: 'NOTES', num: '07' },
-]
-const coverDetails = [['ROLE','DEVELOPER / CREATIVE'],['LOCATION','SOUTH AFRICA'],['SPECIALIZATION','WEB DEVELOPMENT']]
-const stockProducts = [{ id:1, name:'Community Pack', price:249, img:'📦', tag:'BESTSELLER' }, { id:2, name:'Proposal Boost', price:89, img:'🚀', tag:'NEW' }, { id:3, name:'Voting +10', price:45, img:'🗳️', tag:'POWER' }]
-const stockTabs = ['PROBLEM','BUILD','CHALLENGE','LIVE']
-const profileTimeline = [{ year:'2023', title:'Started Vue' }, { year:'2024', title:'PayFast hell' }, { year:'2024', title:'StockWell shipped' }]
+const activeIndex = computed(() =>
+  portfolio.files.findIndex((file) => file.id === activeFile.value)
+)
 
-const portfolio = { person: { role:'DEVELOPER / CREATIVE', location:'SOUTH AFRICA', specialization:'WEB DEVELOPMENT', status:'OPEN TO OPPORTUNITIES' } }
+const activeFileObject = computed(() =>
+  portfolio.files[activeIndex.value] || portfolio.files[0]
+)
 
-const activeIndex = computed(() => files.findIndex(f => f.id === activeFile.value))
-const activeFileIndexDisplay = computed(() => String(activeIndex.value + 1).padStart(2, '0'))
-const activeFileObj = computed(() => files[activeIndex.value])
+const activeFileNumber = computed(() =>
+  String(activeIndex.value + 1).padStart(2, '0')
+)
 
-function checkMobile(){ isMobile.value = window.innerWidth < 640 }
+function openFolder() {
+  if (opening.value || folderOpen.value) return
 
-onMounted(() => {
-  checkMobile()
-  window.addEventListener('resize', checkMobile)
-})
-onBeforeUnmount(() => window.removeEventListener('resize', checkMobile))
-
-function openFolder(){
-  if (opening.value) return
   opening.value = true
-  setTimeout(() => { folderOpen.value = true; opening.value = false }, 900)
+
+  window.setTimeout(() => {
+    folderOpen.value = true
+    opening.value = false
+  }, 900)
 }
-function closeFolder(){
+
+function closeFolder() {
+  if (closing.value || !folderOpen.value) return
+
   closing.value = true
-  setTimeout(() => { folderOpen.value = false; closing.value = false }, 700)
+
+  window.setTimeout(() => {
+    closing.value = false
+    folderOpen.value = false
+  }, 600)
 }
-function selectFile(id){ activeFile.value = id }
-function addToCart(){
-  cartCount.value++
-  cartAnim.value = false
-  requestAnimationFrame(() => {
-    cartAnim.value = true
-    setTimeout(() => cartAnim.value = false, 300)
-  })
+
+function selectFile(id) {
+  if (!portfolio.files.some((file) => file.id === id)) return
+  activeFile.value = id
 }
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=JetBrains+Mono:wght@400;700&display=swap');
+:root {
+  --walnut: #2b211b;
+  --leather: #231b16;
+  --ink: #11100e;
+  --paper: #eee6d7;
+  --paper-light: #f5efe0;
+  --paper-inner: #fffdf7;
+  --paper-dark: #e8ddd0;
+  --tan: #d6a66f;
+  --red: #a32626;
+}
 
-/* FIXED: responsive tab uses CSS, not window.innerWidth in template */
-.open-file-tab{ transform: translateX(68%); transition: transform 200ms ease, box-shadow 200ms ease; }
-@media(min-width:640px){.open-file-tab{ transform: translateX(calc(100% - 14px)); } }
-.open-file-tab:hover{ transform: translateX(62%) translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.35); }
-@media(min-width:640px){.open-file-tab:hover{ transform: translateX(calc(100% - 8px)) translateY(-2px); } }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-.animate-open-folder{ animation: openFolderAnim 0.9s cubic-bezier(0.76,0,0.24,1) forwards; }
-.animate-folder-open{ animation: folderOpenIn 0.8s cubic-bezier(0.16,1,0.3,1); }
-.animate-folder-close{ animation: folderCloseOut 0.6s cubic-bezier(0.76,0,0.24,1) forwards; }
-.animate-file-in{ animation: fileIn 0.4s ease; }
-.animate-fan-1{ animation: fan1 0.9s ease forwards; }
-.animate-fan-2{ animation: fan2 0.9s 0.05s ease forwards; }
-.cart-pop{ animation: cartPop 0.3s ease; }
+html,
+body,
+#app {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
 
-@keyframes openFolderAnim{ 0%{ transform: translateY(0) rotateX(0deg); } 40%{ transform: translateY(-30%) rotateX(25deg) scale(0.98); } 100%{ transform: translateY(-110%) rotateX(35deg) scale(0.9); opacity:0; } }
-@keyframes folderOpenIn{ from{ opacity:0; transform: translateY(30px) scale(0.96); } to{ opacity:1; transform: translateY(0) scale(1); } }
-@keyframes folderCloseOut{ from{ opacity:1; transform: scale(1); } to{ opacity:0; transform: scale(0.96); } }
-@keyframes fileIn{ from{ opacity:0; transform: translateX(12px); } to{ opacity:1; transform: translateX(0); } }
-@keyframes fan1{ from{ transform: rotate(0deg) translateY(0); } to{ transform: rotate(-2deg) translateY(-8px); } }
-@keyframes fan2{ from{ transform: rotate(0deg) translateY(0); } to{ transform: rotate(1.5deg) translateY(-4px); } }
-@keyframes cartPop{ 0%{ transform: scale(1); } 50%{ transform: scale(1.3); } 100%{ transform: scale(1); } }
+body {
+  background: var(--walnut);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.portfolio-root {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--walnut);
+}
+
+.desk-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 90% at 50% 20%, rgba(214, 166, 111, .08) 0%, transparent 50%),
+    radial-gradient(80% 60% at 20% 80%, rgba(0, 0, 0, .4) 0%, transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .015) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, .55) 100%);
+}
+
+.film-noise {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.closed-stage {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  perspective: 1200px;
+}
+
+.folder-scene {
+  position: relative;
+}
+
+.folder-shadow {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: -42px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,0,0,.8) 0%, transparent 70%);
+  filter: blur(18px);
+  opacity: .7;
+}
+
+.folder-cover {
+  position: relative;
+  width: min(520px, 86vw);
+  height: min(700px, 88vh);
+  min-height: 620px;
+  overflow: visible;
+  border: 1px solid #1a1410;
+  border-width: 1px 1px 2px;
+  border-radius: 6px;
+  background-color: var(--leather);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.7),
+    0 5px 15px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.08);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,.04), transparent 20%),
+    radial-gradient(600px 400px at 30% 20%, rgba(214,166,111,.08), transparent 60%);
+  transition: transform .2s ease;
+}
+
+.cover-inner-border {
+  position: absolute;
+  inset: 8px;
+  z-index: 0;
+  pointer-events: none;
+  border: 1px solid var(--paper);
+  border-radius: 3px;
+  opacity: .15;
+}
+
+.cover-top-strip {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  right: 32px;
+  height: 14px;
+  z-index: 1;
+  border-radius: 0 0 2px 2px;
+  background: var(--paper-dark);
+  opacity: .9;
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+.cover-content {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.cover-meta {
+  width: 100%;
+  color: var(--tan);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .22em;
+}
+
+.cover-rule {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 12px;
+  background: linear-gradient(90deg, transparent, var(--tan) 20%, var(--tan) 80%, transparent);
+}
+
+.cover-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.cover-center h1 {
+  margin: 0;
+  color: var(--paper);
+  font-family: 'Special Elite', serif;
+  font-size: 42px;
+  line-height: .9;
+  letter-spacing: -.02em;
+}
+
+.cover-photo-wrap {
+  position: relative;
+}
+
+.cover-photo {
+  position: relative;
+  width: 160px;
+  height: 200px;
+  overflow: hidden;
+  border: 3px solid #fff;
+  background: #e8ddd0;
+  box-shadow: 0 4px 18px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.3);
+  transform: rotate(-1.2deg);
+}
+
+.cover-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1);
+}
+
+.cover-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: linear-gradient(180deg, #ddd 0%, #c8b8a0 100%);
+  filter: grayscale(1) contrast(1.1);
+}
+
+.cover-photo-placeholder span {
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 50%;
+  background: var(--paper-inner);
+  font-family: 'Special Elite', serif;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.cover-photo-placeholder small {
+  margin-top: 12px;
+  color: rgba(0,0,0,.6);
+  font-size: 9px;
+  letter-spacing: .2em;
+}
+
+.cover-photo-caption {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  padding: 2px 8px;
+  color: rgba(0,0,0,.7);
+  background: #fff;
+  font-size: 8px;
+  letter-spacing: .12em;
+  transform: rotate(1deg);
+  white-space: nowrap;
+}
+
+.cover-details {
+  width: 260px;
+  margin-top: 4px;
+  text-align: left;
+}
+
+.cover-detail-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+  color: var(--paper);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.cover-detail-row > span {
+  flex: 0 0 110px;
+  color: var(--tan);
+  letter-spacing: .12em;
+}
+
+.cover-detail-row strong {
+  color: var(--paper);
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.cover-status strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cover-status i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 8px rgba(163,38,38,.55);
+  animation: pulse-dot 1.7s ease-in-out infinite;
+}
+
+.cover-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.classified-stamp {
+  padding: 4px 16px;
+  color: var(--red);
+  border: 2px solid var(--red);
+  font-family: 'Special Elite', serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  transform: rotate(-2deg);
+}
+
+.cover-est {
+  color: rgba(214,166,111,.6);
+  font-size: 9px;
+  letter-spacing: .2em;
+}
+
+.open-file-tab {
+  position: absolute;
+  z-index: 30;
+  top: 38%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px 12px 20px;
+  border: 1px solid var(--tan);
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+  color: var(--ink);
+  background: var(--paper-light);
+  box-shadow: 4px 4px 12px rgba(0,0,0,.3), 0 1px 3px rgba(0,0,0,.2);
+  font-family: 'Special Elite', serif;
+  font-size: 13px;
+  letter-spacing: .18em;
+  cursor: pointer;
+  transform: translateX(calc(100% - 14px));
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.open-file-tab:hover:not(:disabled) {
+  transform: translateX(calc(100% - 8px)) translateY(-2px);
+  box-shadow: 6px 8px 18px rgba(0,0,0,.4);
+}
+
+.open-file-tab:disabled {
+  cursor: wait;
+  opacity: .75;
+}
+
+.open-file-tab b {
+  color: var(--red);
+  font-size: 14px;
+  transition: transform .2s ease;
+}
+
+.open-file-tab:hover b {
+  transform: translateX(4px);
+}
+
+.paper-fan {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.fan {
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+}
+
+.fan-one {
+  background: var(--paper-light);
+  transform: rotate(-2deg) translateY(12px);
+  animation: fan-one .6s ease forwards;
+}
+
+.fan-two {
+  background: var(--paper);
+  transform: rotate(1.5deg) translateY(8px);
+  animation: fan-two .7s ease forwards;
+}
+
+.closed-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  z-index: 10;
+  transform: translateX(-50%);
+  color: rgba(214,166,111,.5);
+  font-size: 10px;
+  letter-spacing: .18em;
+  white-space: nowrap;
+}
+
+.closed-hint span {
+  margin: 0 6px;
+}
+
+.open-stage {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+}
+
+.open-folder-shell {
+  width: min(1100px, 96vw);
+  min-height: 82vh;
+  position: relative;
+  border: 14px solid var(--leather);
+  border-radius: 4px;
+  background: var(--paper-light);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,.7),
+    0 5px 15px rgba(0,0,0,.5),
+    inset 0 0 0 1px rgba(0,0,0,.1);
+  background-image:
+    radial-gradient(900px 500px at 20% 0%, rgba(214,166,111,.08), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.6), transparent 12%);
+  animation: folder-open-in .7s cubic-bezier(.16,1,.3,1);
+}
+
+.open-stage.is-closing .open-folder-shell {
+  animation: folder-close-out .6s cubic-bezier(.76,0,.24,1) forwards;
+}
+
+.folder-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 62px;
+  padding: 16px 36px;
+  border-bottom: 1px solid var(--tan);
+  background: linear-gradient(180deg, var(--paper) 0%, var(--paper-light) 100%);
+}
+
+.folder-header-left,
+.folder-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.folder-file-title {
+  font-family: 'Special Elite', serif;
+  font-size: 11px;
+  letter-spacing: .2em;
+}
+
+.active-file-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(17,16,14,.6);
+  font-size: 9px;
+  letter-spacing: .15em;
+}
+
+.active-file-indicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.folder-header-right > span {
+  color: rgba(17,16,14,.5);
+  font-size: 9px;
+  letter-spacing: .2em;
+}
+
+.folder-header-right button {
+  padding: 6px 12px;
+  border: 1px solid var(--tan);
+  background: #fff;
+  color: var(--ink);
+  font-family: 'Special Elite', serif;
+  font-size: 10px;
+  letter-spacing: .16em;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+
+.folder-header-right button:hover {
+  background: #fffdf7;
+}
+
+.file-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  align-items: flex-end;
+  padding: 16px 24px 0;
+  overflow-x: auto;
+}
+
+.file-tabs button {
+  position: relative;
+  padding: 8px 14px;
+  border: 1px solid var(--tan);
+  border-bottom: 1px solid var(--tan);
+  color: #5a4a3a;
+  background: var(--paper-dark);
+  font-family: 'Special Elite', serif;
+  font-size: 10px;
+  letter-spacing: .12em;
+  white-space: nowrap;
+  cursor: pointer;
+  transform: translateY(4px);
+  transition: .15s ease;
+}
+
+.file-tabs button span {
+  margin-right: 4px;
+  opacity: .6;
+}
+
+.file-tabs button:hover {
+  opacity: 1;
+  transform: translateY(1px);
+}
+
+.file-tabs button.active {
+  z-index: 2;
+  color: var(--ink);
+  background: var(--paper-inner);
+  border-bottom-color: var(--paper-inner);
+  box-shadow: 0 -2px 10px rgba(0,0,0,.08), 0 2px 0 #fffdf7;
+  transform: translateY(1px);
+}
+
+.file-tabs button.active::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -1px;
+  height: 2px;
+  background: var(--red);
+}
+
+.paper-page {
+  position: relative;
+  margin: 0 24px 24px;
+  min-height: 560px;
+  border: 1px solid var(--tan);
+  background: var(--paper-inner);
+  box-shadow: inset 0 2px 12px rgba(0,0,0,.06), 0 2px 10px rgba(0,0,0,.08);
+}
+
+.punched-holes {
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 64px 0;
+  opacity: .3;
+  pointer-events: none;
+}
+
+.punched-holes span {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #c8b8a0;
+  border-radius: 50%;
+  background: #e8ddd0;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.15);
+}
+
+.paper-content {
+  position: relative;
+  padding: 28px 32px 36px 56px;
+}
+
+.folder-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 36px 24px;
+}
+
+.file-stack {
+  position: relative;
+  flex: 0 0 110px;
+  height: 38px;
+}
+
+.file-stack span,
+.file-stack strong {
+  position: absolute;
+  left: 0;
+  width: 100px;
+  height: 28px;
+  border: 1px solid #c8b8a0;
+  border-radius: 2px;
+}
+
+.file-stack span:nth-child(1) {
+  top: 8px;
+  background: #e8ddd0;
+  transform: rotate(-2deg);
+}
+
+.file-stack span:nth-child(2) {
+  top: 4px;
+  left: 4px;
+  background: #f0e6d3;
+  transform: rotate(1deg);
+}
+
+.file-stack strong {
+  top: 0;
+  left: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+  font-size: 8px;
+  letter-spacing: .12em;
+  font-weight: 500;
+}
+
+.footer-label {
+  flex: 1;
+  color: rgba(17,16,14,.6);
+  font-size: 10px;
+  letter-spacing: .18em;
+}
+
+.footer-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-dots button {
+  width: 24px;
+  height: 4px;
+  border: 0;
+  border-radius: 99px;
+  background: var(--tan);
+  opacity: .35;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.footer-dots button.active {
+  background: var(--red);
+  opacity: 1;
+  transform: scaleX(1.8);
+}
+
+.file-swap-enter-active,
+.file-swap-leave-active {
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.file-swap-enter-from,
+.file-swap-leave-to {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 rgba(163,38,38,0); }
+  50% { box-shadow: 0 0 10px rgba(163,38,38,.65); }
+}
+
+@keyframes fan-one {
+  from { transform: rotate(-2deg) translateY(4px); opacity: .4; }
+  to { transform: rotate(-3deg) translateY(18px) translateX(-10px); opacity: 1; }
+}
+
+@keyframes fan-two {
+  from { transform: rotate(1deg) translateY(4px); opacity: .3; }
+  to { transform: rotate(2deg) translateY(12px) translateX(8px); opacity: 1; }
+}
+
+@keyframes folder-open-in {
+  from { opacity: 0; transform: translateY(40px) scale(.96) rotateX(8deg); }
+  to { opacity: 1; transform: translateY(0) scale(1) rotateX(0); }
+}
+
+@keyframes folder-close-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(30px) scale(.98); }
+}
+
+.folder-cover.is-opening {
+  animation: cover-open-out .9s cubic-bezier(.76,0,.24,1) forwards;
+}
+
+@keyframes cover-open-out {
+  0% { transform: translateY(0) rotateX(0) scale(1); }
+  40% { transform: translateY(-30%) rotateX(25deg) scale(.98); }
+  100% { transform: translateY(-110%) rotateX(35deg) scale(.9); opacity: 0; }
+}
+
+.folder-cover-enter-active,
+.folder-cover-leave-active {
+  transition: opacity .18s ease;
+}
+
+.folder-cover-enter-from,
+.folder-cover-leave-to {
+  opacity: 0;
+}
+
+@media (max-width: 700px) {
+  .closed-stage {
+    padding: 12px;
+  }
+
+  .folder-cover {
+    width: min(92vw, 520px);
+    min-height: 590px;
+    height: 84vh;
+  }
+
+  .cover-content {
+    padding: 30px 22px;
+  }
+
+  .cover-center h1 {
+    font-size: 34px;
+  }
+
+  .open-file-tab {
+    right: -2px;
+    transform: translateX(66%);
+    padding-right: 18px;
+  }
+
+  .open-file-tab:hover:not(:disabled) {
+    transform: translateX(62%) translateY(-2px);
+  }
+
+  .closed-hint {
+    display: none;
+  }
+
+  .open-stage {
+    padding: 12px 8px;
+  }
+
+  .open-folder-shell {
+    width: 98vw;
+    border-width: 9px;
+  }
+
+  .folder-header {
+    padding: 13px 14px;
+  }
+
+  .folder-header-right > span {
+    display: none;
+  }
+
+  .file-tabs {
+    padding: 12px 10px 0;
+  }
+
+  .paper-page {
+    margin: 0 10px 14px;
+  }
+
+  .paper-content {
+    padding: 24px 14px 28px 38px;
+  }
+
+  .folder-footer {
+    padding: 0 14px 14px;
+  }
+
+  .footer-label {
+    font-size: 8px;
+  }
+
+  .footer-dots {
+    display: none;
+  }
+
+  .cover-photo-caption {
+    right: -4px;
+    font-size: 7px;
+  }
+}
 </style>
