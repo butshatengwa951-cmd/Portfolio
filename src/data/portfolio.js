@@ -57,7 +57,10 @@ export const portfolio = {
       stack: ["Python", "Flask", "BeautifulSoup", "Requests"],
       file: "FILE 04",
       liveUrl: "https://lightning-news.netlify.app/",
-      description: "Live news platform powered by Python web scraping, RSS/XML parsing, data cleaning and a Flask API."
+      description: "Live news platform powered by Python web scraping, RSS/XML parsing, data cleaning and a Flask API.",
+      problem: "The project focus was to explore how a news platform could automatically collect and organise information from multiple online sources instead of relying on manually entered content.",
+      build: "Built the platform around a Python scraping backend using Requests, BeautifulSoup and lxml, with Flask providing API routes between the scraper and frontend. We worked with RSS/XML feeds as well as webpage content, created source-specific and generic scrapers, extracted article metadata, stored raw JSON data, cleaned the results and exposed scraping, search and statistics functionality through the API.",
+      challenge: "One challenge our team overcame was learning webscraping and three.js due to it being a new concept for us which we solved by doing in depth research."
     }
   },
 
