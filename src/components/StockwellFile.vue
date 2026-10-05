@@ -29,6 +29,10 @@
         <div class="preview-loading">LIVE PREVIEW</div>
       </div>
     </div>
+    <div v-if="project.access" class="access-panel">
+      <div class="access-title">{{ project.access.title }}</div>
+      <div class="access-detail">{{ project.access.detail }}</div>
+    </div>
     <div class="doc-tabs">
       <button v-for="tab in tabs" :key="tab.id" type="button" class="dtab" :class="{ active: activeTab === tab.id }" @click="activeTab = tab.id">[ {{ tab.label }} ]</button>
     </div>
@@ -77,7 +81,7 @@ const activeTab = ref('problem')
 .iframe-shell{position:relative;height:560px;background:#fff}
 .iframe-shell iframe{display:block;width:100%;height:100%;border:0;background:#fff}
 .preview-loading{position:absolute;left:12px;bottom:12px;padding:5px 8px;background:rgba(17,17,17,.88);color:#d6a66f;font-size:8px;letter-spacing:1.5px;pointer-events:none}
-.doc-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.access-panel{margin:0 0 14px;padding:14px 16px;background:#f5efe0;border:1px solid #d6c9b8}.access-title{font-size:9px;letter-spacing:2px;color:#a32626;font-weight:700;margin-bottom:6px}.access-detail{font-size:12px;line-height:1.6}.doc-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
 .dtab{background:#f5efe0;border:1px solid #d6c9b8;padding:8px 12px;font-family:inherit;font-size:11px;cursor:pointer}
 .dtab.active{background:#231b16;color:#eee6d7;border-color:#231b16}
 .doc-content{background:#fffdf7;border:1px solid #e8ddd0;padding:18px;min-height:90px}
