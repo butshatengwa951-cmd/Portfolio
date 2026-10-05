@@ -40,7 +40,13 @@
       <p v-if="activeTab === 'problem'">{{ project.problem }}</p>
       <p v-else-if="activeTab === 'build'">{{ project.build }}</p>
       <pre v-else-if="activeTab === 'challenge'" class="challenge">{{ project.challenge }}</pre>
-      <p v-else-if="activeTab === 'access'" class="project-description">{{ project.access?.detail || 'No login is required to use this project.' }}</p>
+      <div v-else-if="activeTab === 'access'" class="access-panel">
+        <div class="access-heading">
+          <span class="access-kicker">AUTHENTICATED PROJECT</span>
+          <span class="access-note">USE THE DEMO ACCOUNT TO TEST ADMIN FEATURES</span>
+        </div>
+        <pre class="access-details">{{ project.access?.detail || 'No login is required to use this project.' }}</pre>
+      </div>
       <p v-else class="project-description">{{ project.description }}</p>
     </div>
 
@@ -99,6 +105,12 @@ const activeTab = ref('problem')
 .doc-content p{font-size:13px;line-height:1.7;margin:0}
 .challenge{white-space:pre-wrap;font-family:inherit;font-size:12px;line-height:1.7;margin:0}
 .project-description{margin:0}
+.access-panel{background:#f7f0e4;border:1px solid #d8c8b5;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)}
+.access-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 12px;border-bottom:1px solid #d8c8b5;background:#231b16;color:#eee6d7}
+.access-kicker{font-size:9px;letter-spacing:1.8px;color:#d6a66f}
+.access-note{font-size:8px;letter-spacing:1px;opacity:.75}
+.access-details{margin:0;padding:15px 16px;font-family:inherit;font-size:12px;line-height:1.8;white-space:pre-wrap;color:#2d241e}
+.access-details::first-line{font-weight:700}
 .flow-mini{margin-top:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:9px;letter-spacing:1px;background:#f5efe0;border:1px solid #e8ddd0;padding:10px}
 .flow-mini i{color:#a32626;font-style:normal}
 @media(max-width:700px){.iframe-shell{height:460px}.doc-header h2{font-size:25px;letter-spacing:2px}}
