@@ -47,14 +47,14 @@
 
 <script setup>
 import { ref } from 'vue'
-defineProps({ project: { type: Object, required: true } })
+const props = defineProps({ project: { type: Object, required: true } })
 const tabs = [
   { id: 'problem', label: 'PROBLEM' },
   { id: 'build', label: 'BUILD' },
   { id: 'challenge', label: 'CHALLENGE' },
   { id: 'description', label: 'DESCRIPTION' },
   { id: 'access', label: 'LOGIN DETAILS' }
-].filter(tab => tab.id !== 'access' || project?.access)
+].filter(tab => tab.id !== 'access' || props.project?.access)
 const activeTab = ref('problem')
 </script>
 
