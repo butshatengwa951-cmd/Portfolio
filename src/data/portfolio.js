@@ -86,13 +86,13 @@ Password: password123`
       type: "Human resources platform",
       stack: ["JavaScript", "HTML/CSS", "MySQL", "Chart.js"],
       file: "FILE 03",
-      access: {
+     access: {
   requiresLogin: true,
   title: "MODERNTECHHR DEMO ACCOUNT",
-detail: `ADMIN ACCOUNT
+  detail: `ADMIN ACCOUNT
 Username: admin
 Password: password123`
-},    liveUrl: "https://module1-project-hr.onrender.com/",
+},  liveUrl: "https://module1-project-hr.onrender.com/",
       description: "ModernTechHR is an HR management platform designed to bring employee records, attendance, payroll, leave management and reporting into one organised interface. JavaScript drives the dynamic workflows, including employee data updates, searching, filtering, payroll calculations and modal interactions, while Chart.js turns the underlying HR information into visual reports. The project also introduced the practical challenge of connecting separately deployed frontend and backend services to a cloud-hosted MySQL database, making it a useful step toward more complete full-stack development.",
       problem: "The project objective was to build an interactive HR management system that could bring employee information, payroll, searching, filtering and reporting features together in one organised platform.",
       build: "Built the frontend around HTML/CSS and JavaScript with dynamic employee data, DOM manipulation, search and filtering, modal workflows and payroll calculations. Chart.js was used to turn HR and payroll data into visual reports, while the application was structured so the frontend and backend could be developed, deployed and connected as separate parts of the system.",
