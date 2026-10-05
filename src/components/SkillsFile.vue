@@ -1,10 +1,17 @@
 <template>
   <div class="skills-file">
     <div class="doc-header"><span class="file-no">FILE 05 — EVIDENCE TAGS</span><h2>SKILLS / TECHNOLOGY MAP</h2></div>
+
     <div class="map-wrap">
       <svg class="lines" viewBox="0 0 800 400">
-        <path v-for="l in lines" :key="l.id" :d="l.d" :class="{active: highlightedSkill===l.skill}" />
+        <path
+          v-for="l in lines"
+          :key="l.id"
+          :d="l.d"
+          :class="{active: highlightedSkill===l.skill}"
+        />
       </svg>
+
       <div class="tags-layer">
         <div
           v-for="s in skills"
@@ -28,13 +35,13 @@
         </div>
       </div>
     </div>
+
     <div class="related" v-if="selectedSkill && activeSkill">
       <div class="rel-label">RELATED EVIDENCE FOR {{ activeSkill.name }}</div>
       <div class="rel-tags">
         <span v-for="r in activeSkill.related" :key="r" class="rel-tag">[ {{ r }} ]</span>
       </div>
     </div>
-  </div>
 
     <section v-if="otherSkills?.length" class="other-skills">
       <div class="other-header">
