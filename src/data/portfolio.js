@@ -2,16 +2,17 @@ export const portfolio = {
   person: {
     name: "BUTSHA TENGWA",
     fileNo: "BT-002",
-    role: "DEVELOPER / CREATIVE",
+    role: "FULL-STACK DEVELOPER / CREATIVE",
     location: "SOUTH AFRICA",
     specialization: "WEB DEVELOPMENT",
     status: "OPEN TO OPPORTUNITIES",
-    tagline: "I build products people pay for. Vue ecosystem, payment integrations, product-driven development.",
-    background: "Developer and student based in South Africa. Focused on Vue, payment systems, and shipping real products. Self-taught with a bias for building over theorizing.",
-    interests: ["Vue.js", "Product Design", "Payment Systems", "Indie Hacking", "Three.js"],
-    learning: ["Advanced Three.js / R3F", "System Design", "Rust for tooling"],
-    goals: ["Build products people pay for", "Master full-stack architecture", "Open source PayFast toolkit"],
-    lessons: "PayFast taught me docs lie and webhooks never arrive when you expect them to."
+    tagline: "I build interactive web applications, real product workflows and systems that connect the frontend, backend and database.",
+    background: "Developer trained through the Life Choices Academy YouthCode programme/project. My development journey has grown from HTML, CSS and JavaScript into full-stack web development with Vue, Node/Express, MySQL, Python, Flask, web scraping, REST APIs and payment integrations. I learn by building, researching difficult concepts and turning what I learn into working projects.",
+    currentObjective: "Build polished, practical products while continuing to strengthen my full-stack architecture, cloud deployment and interactive web development skills.",
+    interests: ["Full-Stack Development", "Vue.js", "Product Design", "Payment Systems", "Interactive Web", "Three.js"],
+    learning: ["Advanced Three.js / R3F", "System Design", "Cloud Deployment", "Backend Architecture"],
+    goals: ["Build products people can actually use", "Master full-stack architecture", "Build reliable payment integrations", "Create more advanced interactive web experiences"],
+    lessons: "Real projects taught me that development is as much about researching, debugging and connecting systems as it is about writing code."
   },
 
   files: [
