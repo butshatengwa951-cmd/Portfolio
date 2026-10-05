@@ -35,11 +35,25 @@
       </div>
     </div>
   </div>
+
+    <section v-if="otherSkills?.length" class="other-skills">
+      <div class="other-header">
+        <span>OTHER SKILLS</span>
+        <small>ADDITIONAL TECHNOLOGY</small>
+      </div>
+      <div class="other-list">
+        <article v-for="skill in otherSkills" :key="skill.id" class="other-card">
+          <div class="other-name">{{ skill.name }}</div>
+          <p>{{ skill.description }}</p>
+        </article>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-const props = defineProps({ skills: Array, files: Array })
+const props = defineProps({ skills: Array, files: Array, otherSkills: Array })
 
 const selectedSkill = ref(null)
 
@@ -54,8 +68,9 @@ const positions = {
   node:{left:'14%',top:'42%'},
   mysql:{left:'43%',top:'40%'},
   payfast:{left:'72%',top:'42%'},
-  chartjs:{left:'28%',top:'69%'},
-  scraping:{left:'63%',top:'69%'}
+  chartjs:{left:'24%',top:'69%'},
+  scraping:{left:'55%',top:'69%'},
+  python:{left:'76%',top:'69%'}
 }
 
 const filePos = {
@@ -122,4 +137,13 @@ const lines = computed(() => {
 .rel-label{font-size:9px;letter-spacing:1.5px;color:#a32626;margin-bottom:8px}
 .rel-tags{display:flex;gap:6px;flex-wrap:wrap}
 .rel-tag{font-size:10px;background:#f5efe0;border:1px solid #d6c9b8;padding:4px 8px}
+.other-skills{margin-top:18px;padding-top:16px;border-top:1px solid #e8ddd0}
+.other-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.other-header span{font-family:'Special Elite';font-size:16px;letter-spacing:1.5px}
+.other-header small{font-size:8px;letter-spacing:1.5px;color:#a32626}
+.other-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.other-card{background:#f5efe0;border:1px solid #d6c9b8;padding:12px}
+.other-name{font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:6px}
+.other-card p{margin:0;font-size:10px;line-height:1.65;opacity:.72}
+@media(max-width:600px){.other-list{grid-template-columns:1fr}.other-header{align-items:flex-start;flex-direction:column;gap:4px}}
 </style>
