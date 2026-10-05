@@ -1,6 +1,6 @@
 <template>
   <div class="notes-file">
-    <div class="doc-header"><span class="file-no">FILE 08 — PERSONAL NOTES</span><h2>NOTES / SCRAPS</h2></div>
+    <div class="doc-header"><span class="file-no">FILE 09 — PERSONAL NOTES</span><h2>NOTES / SCRAPS</h2></div>
     <div class="notes-grid">
       <div class="sticky s1"><div class="pin"></div><p>Early JavaScript taught me that getting the happy path working is not enough. I struggled with validation and edge cases. I improved by checking inputs before calculating and testing more than one outcome.</p><span>LESSON — JAVASCRIPT</span></div>
 
