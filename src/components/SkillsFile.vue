@@ -2,12 +2,31 @@
   <div class="skills-file">
     <div class="doc-header"><span class="file-no">FILE 05 — EVIDENCE TAGS</span><h2>SKILLS / TECHNOLOGY MAP</h2></div>
     <div class="map-wrap">
-      <svg class="lines" viewBox="0 0 800 400"><path v-for="l in lines" :key="l.id" :d="l.d" :class="{active: hoverSkill===l.skill}" /></svg>
+      <svg class="lines" viewBox="0 0 800 400">
+        <path v-for="l in lines" :key="l.id" :d="l.d" :class="{active: highlightedSkill===l.skill}" />
+      </svg>
       <div class="tags-layer">
-        <div v-for="s in skills" :key="s.id" class="skill-tag" :style="positions[s.id]" @mouseenter="hoverSkill=s.id" @mouseleave="hoverSkill=null" @click="$emit('go', s.files[0]==='01'?'profile': s.files[0]==='02'?'stockwell': s.files[0]==='03'?'moderntechhr': s.files[0]==='04'?'lightningnews':'skills')">
-          <div class="tag-top">{{ s.name }}</div><div class="tag-bottom">{{ s.level }} • FILES: {{ s.files.join(', ') }}</div>
+        <div
+          v-for="s in skills"
+          :key="s.id"
+          class="skill-tag"
+          :style="positions[s.id]"
+          @mouseenter="hoverSkill=s.id"
+          @mouseleave="hoverSkill=null"
+          @click="selectedSkill=s.id"
+        >
+          <div class="tag-top">{{ s.name }}</div>
+          <div class="tag-bottom">{{ s.level }} • FILES: {{ s.files.join(', ') }}</div>
         </div>
-        <div v-for="f in files" :key="f.id" class="file-node" :style="filePos[f.id]">[ {{ f.label }} ]</div>
+
+        <div
+          v-for="f in projectFiles"
+          :key="f.id"
+          class="file-node"
+          :style="filePos[f.id]"
+        >
+          [ {{ f.label }} ]
+        </div>
       </div>
     </div>
     <div class="related" v-if="hoverSkill">
@@ -20,28 +39,62 @@
 <script setup>
 import { ref, computed } from 'vue'
 const props = defineProps({ skills: Array, files: Array })
-defineEmits(['go'])
+
 const hoverSkill = ref(null)
+const selectedSkill = ref(null)
+
 const positions = {
-  js:{left:'8%',top:'12%'}, htmlcss:{left:'35%',top:'7%'}, vue:{left:'66%',top:'13%'},
-  node:{left:'16%',top:'43%'}, mysql:{left:'43%',top:'38%'}, payfast:{left:'70%',top:'43%'},
-  chartjs:{left:'28%',top:'69%'}, scraping:{left:'63%',top:'68%'}
+  js:{left:'8%',top:'12%'},
+  htmlcss:{left:'34%',top:'8%'},
+  vue:{left:'66%',top:'12%'},
+  node:{left:'14%',top:'42%'},
+  mysql:{left:'43%',top:'40%'},
+  payfast:{left:'72%',top:'42%'},
+  chartjs:{left:'28%',top:'69%'},
+  scraping:{left:'63%',top:'69%'}
 }
+
 const filePos = {
-  profile:{left:'8%',top:'88%'}, stockwell:{left:'32%',top:'88%'},
-  moderntechhr:{left:'58%',top:'88%'}, lightningnews:{left:'84%',top:'88%'}
+  stockwell:{left:'28%',top:'88%'},
+  moderntechhr:{left:'58%',top:'88%'},
+  lightningnews:{left:'88%',top:'88%'}
 }
-const activeSkill = computed(()=> props.skills.find(s=>s.id===hoverSkill.value))
-const lines = computed(()=>{
-  const arr=[]
-  props.skills.forEach(s=>{
-    s.files.forEach(f=>{
-      const map={ "01":"profile", "02":"stockwell", "03":"voyabite", "04":"skills" }
-      const fid = map[f] || "profile"
-      // dummy paths, visual only
-      arr.push({ id: s.id+f, skill: s.id, d: `M ${positions[s.id]?.left.replace('%','')*8} ${positions[s.id]?.top.replace('%','')*4} L ${filePos[fid]?.left.replace('%','')*8} 360` })
+
+const projectFiles = computed(() =>
+  (props.files || []).filter(f => ['stockwell', 'moderntechhr', 'lightningnews'].includes(f.id))
+)
+
+const activeSkill = computed(() =>
+  props.skills?.find(s => s.id === (selectedSkill.value || hoverSkill.value))
+)
+
+const highlightedSkill = computed(() => selectedSkill.value || hoverSkill.value)
+
+const lines = computed(() => {
+  const arr = []
+  const fileMap = {
+    '02': 'stockwell',
+    '03': 'moderntechhr',
+    '04': 'lightningnews'
+  }
+
+  ;(props.skills || []).forEach(skill => {
+    skill.files.forEach(fileNumber => {
+      const projectId = fileMap[fileNumber]
+      const skillPos = positions[skill.id]
+      const projectPos = filePos[projectId]
+
+      if (!skillPos || !projectPos) return
+
+      arr.push({
+        id: skill.id + fileNumber,
+        skill: skill.id,
+        d: `M ${skillPos.left.replace('%','') * 8} ${skillPos.top.replace('%','') * 4}
+            L ${projectPos.left.replace('%','') * 8} 360`
+      })
     })
   })
+
   return arr
 })
 </script>
