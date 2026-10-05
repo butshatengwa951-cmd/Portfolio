@@ -281,5 +281,3 @@ It is an attempt to turn the development process itself into an interactive expe
 **CASE 002 — EST. 2026**
 
 **BUTSHA TENGWA**
-
-*Everything belongs inside the file.*
