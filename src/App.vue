@@ -69,7 +69,7 @@
 
               <div class="cover-bottom">
                 <div class="classified-stamp">CLASSIFIED — OPEN ON REQUEST</div>
-                <div class="cover-est">CASE 002 — EST. 2023</div>
+                <div class="cover-est">CASE 002 — EST. 2026</div>
               </div>
             </div>
 
