@@ -163,6 +163,7 @@
                 key="skills"
                 :skills="portfolio.skills"
                 :files="portfolio.files"
+                :other-skills="portfolio.otherSkills"
                 @go="selectFile"
               />
               <JourneyFile
