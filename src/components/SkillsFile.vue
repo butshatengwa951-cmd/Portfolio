@@ -110,7 +110,8 @@ const skillLayout = {
   payfast: { x: 36, y: 290 },
   chartjs: { x: 50, y: 290 },
   postgresql: { x: 68, y: 290 },
-  scraping: { x: 88, y: 290 }
+  scraping: { x: 88, y: 290 },
+  threejs: { x: 10, y: 405 }
 }
 
 const projectFiles = computed(() =>
