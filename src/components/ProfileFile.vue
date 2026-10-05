@@ -46,11 +46,7 @@
           <div class="tags"><span v-for="l in portfolio.person.learning" :key="l" class="tag muted">{{ l }}</span></div>
         </div>
 
-        <div class="cta-box">
-          <div class="cta-label">NEXT FILE →</div>
-          <button class="cta" @click="$emit('go','stockwell')">OPEN FILE 02 — STOCKWELL</button>
-          <div class="cta-sub">Contains live interactive preview</div>
-        </div>
+
       </div>
     </div>
   </div>
@@ -64,7 +60,7 @@ defineProps({
     default: ''
   }
 })
-defineEmits(['go'])
+
 </script>
 
 <style scoped>
