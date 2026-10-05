@@ -36,7 +36,7 @@
           @click="toggleSkill(s.id)"
         >
           <div class="tag-top">{{ s.name }}</div>
-          <div class="tag-bottom">{{ s.level }} • FILES: {{ s.files.join(', ') }}</div>
+          <div class="tag-bottom">{{ s.level }} • FILES: {{ skillFiles(s).join(', ') }}</div>
         </div>
 
         <div
@@ -152,7 +152,7 @@ const activeProject = computed(() =>
 const activeProjectSkills = computed(() => {
   if (!activeProject.value) return []
   const fileNumber = activeProject.value.label.slice(0, 2)
-  return (props.skills || []).filter(skill => skill.files.includes(fileNumber))
+  return (props.skills || []).filter(skill => skillFiles(skill).includes(fileNumber))
 })
 
 const projectSkillIds = computed(() =>
@@ -161,6 +161,15 @@ const projectSkillIds = computed(() =>
 
 const highlightedSkill = computed(() => selectedSkill.value)
 const highlightedProject = computed(() => selectedProject.value)
+
+function skillFiles(skill) {
+  // Lightning News also uses Vue, so keep the map accurate even if older
+  // project metadata has not yet been updated.
+  if (skill.id === 'vue' && !skill.files.includes('04')) {
+    return [...skill.files, '04']
+  }
+  return skill.files
+}
 
 function skillStyle(id) {
   const pos = skillLayout[id]
@@ -193,7 +202,7 @@ const lines = computed(() => {
     const pos = skillLayout[skill.id]
     if (!pos) return
 
-    skill.files.forEach(fileNumber => {
+    skillFiles(skill).forEach(fileNumber => {
       const projectId = fileMap[fileNumber]
       const targetX = projectCenters[projectId]
       if (targetX == null) return
