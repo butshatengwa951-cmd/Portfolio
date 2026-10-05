@@ -222,7 +222,7 @@ import ContactFile from './components/ContactFile.vue'
 import NotesFile from './components/NotesFile.vue'
 import { portfolio } from './data/portfolio.js'
 
-const profilePhoto = ''
+const profilePhoto = 'https://i.ibb.co/zWLg2Br8/ME.jpg'
 
 const coverDetails = [
   ['ROLE', 'DEVELOPER / CREATIVE'],
