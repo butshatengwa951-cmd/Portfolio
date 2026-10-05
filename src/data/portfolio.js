@@ -71,9 +71,44 @@ export const portfolio = {
     { id:"php", name:"PHP", description:"Server-side scripting for building dynamic web applications, handling backend logic, forms, sessions, and database-driven features." }
   ],
   journey: [
-    { year:"2023", title:"Started Vue", note:"First component, first bug, first love. Built portfolio v1." },
-    { year:"2024", title:"PayFast integration hell", note:"The month webhooks broke me and then taught me everything about idempotency." },
-    { year:"2024", title:"StockWell shipped", note:"Proposals, voting, cart, wallet — first real e-commerce flow live." },
-    { year:"2025", title:"Folder concept", note:"Stopped making pretty pages. Started making containers with meaning." },
-  ]
-}
+    {
+      year:"MAY 2026",
+      title:"HTML + JavaScript foundations",
+      note:"05 May — started the JavaScript exercise track. 08–28 May — built out HTML/CSS work and progressively more JavaScript exercises, moving from basic syntax and functions into interactive browser projects."
+    },
+    {
+      year:"MAY–JUN 2026",
+      title:"First Python + browser projects",
+      note:"19 May — built the Budget Tracker Python mini-toolkit. 08–23 June — developed projects such as Randomizer, Recipe Finder, Cooking Masterclass, the catalogue, and the Food Fest landing page."
+    },
+    {
+      year:"JUL 2026",
+      title:"Databases + PHP",
+      note:"17 July — worked through the MySQL exercise track. 24–27 July — continued side-project work. 30 July–11 August — moved into the PHP Week 3 exercise series."
+    },
+    {
+      year:"AUG 2026",
+      title:"Backend + full-stack direction",
+      note:"25 August — started the Module 3 e-commerce project. 27 August–01 September — progressed through the Node.js exercise series, building the backend skills needed for larger applications."
+    },
+    {
+      year:"SEP 2026",
+      title:"Vue becomes the framework",
+      note:"01 September — started the Vue-3 project. This marked the shift from individual exercises toward component-based application development and the stack that would power the larger projects."
+    },
+    {
+      year:"SEP 2026",
+      title:"StockWell shipped",
+      note:"17 September — StockWell-demo appeared, followed by the full StockWell e-commerce implementation and project documentation through 18 September. Built a governed e-commerce flow with Vue, Node/Express, MySQL and PayFast."
+    },
+    {
+      year:"SEP–OCT 2026",
+      title:"Interactive portfolio experiments",
+      note:"21 September — started the interactive-3d-portfolio. Through 01 October, explored the isometric/3D portfolio concept, interaction patterns, previews and project presentation."
+    },
+    {
+      year:"OCT 2026",
+      title:"Portfolio / the file system",
+      note:"03 October — started the new Portfolio repository. By 05 October, rebuilt it around the detective-folder concept, added live project previews, the Technology Map and the development Journey."
+    },
+  ]}
