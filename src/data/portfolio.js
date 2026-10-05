@@ -20,10 +20,11 @@ export const portfolio = {
     { id: "stockwell", label: "02_STOCKWELL", title: "STOCKWELL", file: "FILE 02" },
     { id: "moderntechhr", label: "03_MODERNTECHHR", title: "MODERNTECHHR", file: "FILE 03" },
     { id: "lightningnews", label: "04_LIGHTNING_NEWS", title: "LIGHTNING NEWS", file: "FILE 04" },
-    { id: "skills", label: "05_SKILLS", title: "SKILLS", file: "FILE 05" },
-    { id: "journey", label: "06_JOURNEY", title: "JOURNEY", file: "FILE 06" },
-    { id: "contact", label: "07_CONTACT", title: "CONTACT", file: "FILE 07" },
-    { id: "notes", label: "08_NOTES", title: "NOTES", file: "FILE 08" }
+    { id: "budgettracker", label: "05_BUDGET_TRACKER", title: "BUDGET TRACKER", file: "FILE 05" },
+    { id: "skills", label: "06_SKILLS", title: "SKILLS", file: "FILE 06" },
+    { id: "journey", label: "07_JOURNEY", title: "JOURNEY", file: "FILE 07" },
+    { id: "contact", label: "08_CONTACT", title: "CONTACT", file: "FILE 08" },
+    { id: "notes", label: "09_NOTES", title: "NOTES", file: "FILE 09" }
   ],
 
   projects: {
@@ -41,6 +42,19 @@ export const portfolio = {
         { id: 2, name: "Proposal Boost", price: 89, tag: "NEW" },
         { id: 3, name: "Voting Power +10", price: 45, tag: "" }
       ]
+    },
+
+    budgettracker: {
+      name: "BUDGET TRACKER",
+      type: "Full-stack productivity and budget application",
+      stack: ["Vue 3", "Flask", "PostgreSQL", "Render"],
+      file: "FILE 05",
+      liveUrl: "https://budget-tracker-frontend-jf66.onrender.com",
+      displayUrl: "budget-tracker-frontend-jf66.onrender.com",
+      description: "Full-stack productivity suite combining budget tracking, tasks and study planning with persistent database storage, configurable budget cycles and a responsive dashboard.",
+      problem: "The original project started as a Python command-line productivity suite. The challenge was turning those separate budget, task and study tools into a practical web application with persistent data, clear workflows and a deployable full-stack architecture.",
+      build: "Rebuilt the experience as a Vue 3 + Vite frontend backed by a Flask REST API and PostgreSQL database. Added persistent transactions, configurable daily/weekly/monthly/yearly budget periods, budget history, task management, study planning with seconds/minutes/hours, South African local date handling and production deployment through Render.",
+      challenge: "One of the biggest challenges was moving from local development to a real cloud deployment while keeping data persistent and dates accurate. The project required debugging the database layer, timezone handling, production dependencies and Render deployment configuration. The final result connects the Vue frontend to a Flask API and PostgreSQL database hosted in the cloud, with the database separated from the frontend so user data can persist independently of the interface."
     },
 
     moderntechhr: {
