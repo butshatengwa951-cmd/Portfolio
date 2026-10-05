@@ -152,6 +152,11 @@
                 key="moderntechhr"
                 :project="portfolio.projects.moderntechhr"
               />
+              <LightningNewsFile
+                v-else-if="activeFile === 'lightningnews'"
+                key="lightningnews"
+                :project="portfolio.projects.lightningnews"
+              />
               <SkillsFile
                 v-else-if="activeFile === 'skills'"
                 key="skills"
@@ -210,6 +215,7 @@ import { computed, ref } from 'vue'
 import ProfileFile from './components/ProfileFile.vue'
 import StockwellFile from './components/StockwellFile.vue'
 import ModerntechHRFile from './components/ModerntechHRFile.vue'
+import LightningNewsFile from './components/LightningNewsFile.vue'
 import SkillsFile from './components/SkillsFile.vue'
 import JourneyFile from './components/JourneyFile.vue'
 import ContactFile from './components/ContactFile.vue'
