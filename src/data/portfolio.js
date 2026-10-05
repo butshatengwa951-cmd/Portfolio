@@ -33,10 +33,11 @@ export const portfolio = {
       type: "E-commerce platform",
       stack: ["Vue", "JavaScript", "Node", "PayFast"],
       file: "FILE 02",
-      description: "Full e-commerce with proposals, voting, cart and wallet system. Built to handle real payments.",
+      access: { requiresLogin: true, title: "ACCOUNT ACCESS", detail: "Login is required for member features. The live project provides a Sign Up flow for creating an account; no shared demo credentials are published in the project source." },
+      description: "StockWell is a full e-commerce platform built around community purchasing, supplier comparison and shared decision-making. It combines a Vue frontend with Node/Express backend services, MySQL persistence and PayFast payments to support authentication, cart management, proposals, majority voting, wallet transactions, orders and delivery workflows. The project was designed as a complete product flow rather than a collection of isolated pages, with the frontend, business rules, database operations and payment processing working together.",
       problem: "Existing community proposals were fragmented across chats and sheets. No voting, no wallet, no payment traceability.",
       build: "Vue frontend, Node API, PayFast ITN integration, wallet ledger with idempotency keys, cart persistence, proposal engine with vote weighting.",
-      challenge: "CAUSE: PayFast ITN handler expected x-www-form-urlencoded but received JSON. Logs showed 200 OK but wallet never updated. Signature mismatch due to param ordering.\n\nINVESTIGATION: Replay webhooks, log raw body, compare sorted params.\n\nRESOLUTION: Parse raw body, verify signature with sorted params, implement transaction lock + idempotency.\n\nLESSON: Never trust happy path.",
+      challenge: "The main challenge was making the PayFast payment flow reliable all the way from checkout to the wallet ledger. An early version appeared to succeed because the webhook returned a 200 response, but the wallet was not being updated correctly and the PayFast signature could fail when parameters were handled in the wrong order. I worked through the issue by logging and replaying the raw ITN request, checking how the payload was encoded and signed, validating the parameters in the correct order, and then adding transaction protection and idempotency so a payment could not be processed twice. The experience reinforced the importance of tracing an integration across the entire system instead of assuming a successful HTTP response means the business operation succeeded.",
       products: [
         { id: 1, name: "Community Stock Pack", price: 249, tag: "BESTSELLER" },
         { id: 2, name: "Proposal Boost", price: 89, tag: "NEW" },
@@ -51,10 +52,10 @@ export const portfolio = {
       file: "FILE 05",
       liveUrl: "https://budget-tracker-frontend-jf66.onrender.com",
       displayUrl: "budget-tracker-frontend-jf66.onrender.com",
-      description: "Full-stack productivity suite combining budget tracking, tasks and study planning with persistent database storage, configurable budget cycles and a responsive dashboard.",
+      description: "Budget Tracker is a full-stack productivity application that brings personal budgeting, task management and study planning into one responsive dashboard. The application supports persistent transactions, configurable daily, weekly, monthly and yearly budget cycles, budget history, task workflows and study sessions while keeping the underlying data in PostgreSQL. It grew from a Python command-line toolkit into a deployed Vue 3 and Flask application, giving the project a clear separation between the user interface, API layer and database.",
       problem: "The original project started as a Python command-line productivity suite. The challenge was turning those separate budget, task and study tools into a practical web application with persistent data, clear workflows and a deployable full-stack architecture.",
       build: "Rebuilt the experience as a Vue 3 + Vite frontend backed by a Flask REST API and PostgreSQL database. Added persistent transactions, configurable daily/weekly/monthly/yearly budget periods, budget history, task management, study planning with seconds/minutes/hours, South African local date handling and production deployment through Render.",
-      challenge: "One of the biggest challenges was moving from local development to a real cloud deployment while keeping data persistent and dates accurate. The project required debugging the database layer, timezone handling, production dependencies and Render deployment configuration. The final result connects the Vue frontend to a Flask API and PostgreSQL database hosted in the cloud, with the database separated from the frontend so user data can persist independently of the interface."
+      challenge: "The biggest challenge was moving the original local Python toolkit into a real full-stack application without losing data integrity or introducing inconsistent dates and state. I had to work through the database layer, API communication, South African local date handling, production dependencies and Render configuration while keeping the budget-cycle logic predictable when periods rolled over. Solving those issues meant testing the application across the frontend, Flask API and PostgreSQL layers rather than treating deployment as a separate final step, and it gave me a much clearer understanding of how a production application behaves outside a local development environment."
     },
 
     moderntechhr: {
@@ -62,11 +63,12 @@ export const portfolio = {
       type: "Human resources platform",
       stack: ["JavaScript", "HTML/CSS", "MySQL", "Chart.js"],
       file: "FILE 03",
+      access: { requiresLogin: true, title: "LOGIN DETAILS", detail: "The live application requires a username and password. The project repository does not publish a working demo account, so the portfolio does not display unverified credentials." },
       liveUrl: "https://module1-project-hr.onrender.com/",
-      description: "HR management platform with employee records, payroll calculations, filtering, modal workflows and data visualisation.",
+      description: "ModernTechHR is an HR management platform designed to bring employee records, attendance, payroll, leave management and reporting into one organised interface. JavaScript drives the dynamic workflows, including employee data updates, searching, filtering, payroll calculations and modal interactions, while Chart.js turns the underlying HR information into visual reports. The project also introduced the practical challenge of connecting separately deployed frontend and backend services to a cloud-hosted MySQL database, making it a useful step toward more complete full-stack development.",
       problem: "The project objective was to build an interactive HR management system that could bring employee information, payroll, searching, filtering and reporting features together in one organised platform.",
       build: "Built the frontend around HTML/CSS and JavaScript with dynamic employee data, DOM manipulation, search and filtering, modal workflows and payroll calculations. Chart.js was used to turn HR and payroll data into visual reports, while the application was structured so the frontend and backend could be developed, deployed and connected as separate parts of the system.",
-      challenge: "One challenge we overcame was figuring out how to deploy a backend repository and frontend repository separately while still developing and connecting both repos as one application. This was also our first time deploying a MySQL database and deploying an application in general to a cloud server outside of GitHub. We solved this by researching deployment workflows, configuring the separate services and database connection, and learning how the frontend, backend and cloud-hosted database communicate in a deployed environment."
+      challenge: "The main challenge was understanding how separate frontend and backend repositories could be developed, deployed and connected as one application. This was also our first experience deploying an application outside GitHub and working with a cloud-hosted MySQL database, so several parts of the workflow were new to us at once. We overcame it through research, testing the communication between services, configuring the deployment correctly and learning how the frontend, backend and database each fit into the final system."
     },
 
     lightningnews: {
@@ -75,10 +77,10 @@ export const portfolio = {
       stack: ["Python", "Flask", "BeautifulSoup", "Requests", "Three.js"],
       file: "FILE 04",
       liveUrl: "https://lightning-news.netlify.app/",
-      description: "Live news platform powered by Python web scraping, RSS/XML parsing, data cleaning and a Flask API.",
+      description: "Lightning News is a news aggregation platform built around automated data collection rather than manually entered articles. Python handles web scraping and feed processing with Requests, BeautifulSoup and lxml, while Flask exposes the collected and cleaned information through API routes for the frontend. The project explores the full path from external sources to structured data, including source-specific and generic scrapers, RSS/XML parsing, metadata extraction, raw JSON storage, cleaning, searching and statistics.",
       problem: "The project focus was to explore how a news platform could automatically collect and organise information from multiple online sources instead of relying on manually entered content.",
       build: "Built the platform around a Python scraping backend using Requests, BeautifulSoup and lxml, with Flask providing API routes between the scraper and frontend. We worked with RSS/XML feeds as well as webpage content, created source-specific and generic scrapers, extracted article metadata, stored raw JSON data, cleaned the results and exposed scraping, search and statistics functionality through the API.",
-      challenge: "One challenge our team overcame was learning webscraping and three.js due to it being a new concept for us which we solved by doing in depth research."
+      challenge: "The main challenge was learning two unfamiliar areas at the same time: web scraping and Three.js. We had to understand how different news sources expose information, how to parse inconsistent HTML and RSS/XML structures, and how to approach interactive 3D work without an established workflow to rely on. We overcame that gap through in-depth research, experimentation and repeated testing, then applied what we learned to the scraping pipeline, Flask API and interactive presentation. The project taught us that researching an unfamiliar technology is part of the development process, not something that happens separately from it."
     }
   },
 
