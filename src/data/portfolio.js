@@ -7,9 +7,9 @@ export const portfolio = {
     specialization: "WEB DEVELOPMENT",
     status: "OPEN TO OPPORTUNITIES",
     tagline: "I build interactive web applications, real product workflows and systems that connect the frontend, backend and database.",
-    background: "Developer trained through the Life Choices Academy YouthCode programme/project. My development journey has grown from HTML, CSS and JavaScript into full-stack web development with Vue, Node/Express, MySQL, Python, Flask, web scraping, REST APIs and payment integrations. I learn by building, researching difficult concepts and turning what I learn into working projects.",
+    background: "Developer trained through the Life Choices Academy YouthCode programme/project. My development journey has grown from HTML, CSS and JavaScript into full-stack web development with Vue, Node/Express, MySQL, PostgreSQL, Python, Flask, REST APIs, web scraping, payment integrations and cloud deployment. I learn by building, researching difficult concepts and turning what I learn into working projects.",
     currentObjective: "Build polished, practical products while continuing to strengthen my full-stack architecture, cloud deployment and interactive web development skills.",
-    interests: ["Full-Stack Development", "Vue.js", "Product Design", "Payment Systems", "Interactive Web", "Three.js"],
+    interests: ["Full-Stack Development", "Vue.js", "Product Design", "Payment Systems", "Cloud Deployment", "Interactive Web", "Three.js"],
     learning: ["Advanced Three.js / R3F", "System Design", "Cloud Deployment", "Backend Architecture"],
     goals: ["Build products people can actually use", "Master full-stack architecture", "Build reliable payment integrations", "Create more advanced interactive web experiences"],
     lessons: "Real projects taught me that development is as much about researching, debugging and connecting systems as it is about writing code."
@@ -83,15 +83,18 @@ export const portfolio = {
   },
 
   skills: [
-    { id: "js", name: "JAVASCRIPT", level: "Core", files: ["02", "03", "04"], related: ["ES6+", "DOM", "Async", "Event Handling"] },
-    { id: "htmlcss", name: "HTML / CSS", level: "Frontend", files: ["02", "03", "04"], related: ["Semantic HTML", "Responsive UI", "Layouts", "Styling"] },
-    { id: "vue", name: "VUE.JS", level: "Framework", files: ["02"], related: ["Components", "State", "Router", "Composition"] },
+    { id: "js", name: "JAVASCRIPT", level: "Core", files: ["02", "03", "04", "05"], related: ["ES6+", "DOM", "Async", "Event Handling"] },
+    { id: "htmlcss", name: "HTML / CSS", level: "Frontend", files: ["02", "03", "04", "05"], related: ["Semantic HTML", "Responsive UI", "Layouts", "Styling"] },
+    { id: "vue", name: "VUE.JS", level: "Framework", files: ["02", "05"], related: ["Components", "State", "Router", "Composition"] },
     { id: "node", name: "NODE / EXPRESS", level: "Backend", files: ["02"], related: ["REST API", "Auth", "Middleware", "Server Logic"] },
     { id: "mysql", name: "MYSQL", level: "Database", files: ["02"], related: ["Relational Data", "Transactions", "Queries", "Locks"] },
     { id: "payfast", name: "PAYFAST", level: "Payments", files: ["02"], related: ["ITN", "Webhooks", "Signatures", "Payment Validation"] },
     { id: "chartjs", name: "CHART.JS", level: "Data UI", files: ["03"], related: ["Payroll Charts", "Analytics", "Visualisation"] },
     { id: "scraping", name: "WEB SCRAPING", level: "Data", files: ["04"], related: ["Data Extraction", "News Aggregation", "Parsing", "Automation"] },
-    { id: "python", name: "PYTHON", level: "Backend", files: ["04"], related: ["Flask", "Requests", "BeautifulSoup", "lxml"] }
+    { id: "python", name: "PYTHON", level: "Backend", files: ["04", "05"], related: ["Flask", "Requests", "BeautifulSoup", "lxml"] },
+    { id: "flask", name: "FLASK", level: "Backend", files: ["04", "05"], related: ["REST API", "Routes", "JSON", "CORS"] },
+    { id: "postgresql", name: "POSTGRESQL", level: "Database", files: ["05"], related: ["Relational Data", "Migrations", "Queries", "Persistence"] },
+    { id: "render", name: "RENDER", level: "Deployment", files: ["03", "05"], related: ["Web Services", "Static Sites", "Environment Variables", "Production"] }
   ],
 
   otherSkills: [
@@ -147,6 +150,11 @@ export const portfolio = {
       year: "SEP–OCT 2026",
       title: "Interactive portfolio experiments",
       note: "21 September–01 October — explored the interactive 3D portfolio, isometric interfaces, animation, interaction patterns and embedded project previews before evolving the presentation into the current portfolio system."
+    },
+    {
+      year: "OCT 2026",
+      title: "Budget Tracker — full-stack persistence + deployment",
+      note: "02–05 October — rebuilt the original Python budget/productivity toolkit as a Vue 3 + Flask application backed by PostgreSQL. Added persistent transactions, configurable budget cycles, budget history, task management and study planning, then deployed the frontend and API through Render with a cloud-hosted database.",
     },
     {
       year: "OCT 2026",
