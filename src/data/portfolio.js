@@ -33,7 +33,27 @@ export const portfolio = {
       type: "E-commerce platform",
       stack: ["Vue", "JavaScript", "Node", "PayFast"],
       file: "FILE 02",
-      access: { requiresLogin: true, title: "ACCOUNT ACCESS", detail: "Login is required for member features. The live project provides a Sign Up flow for creating an account; no shared demo credentials are published in the project source." },
+      access: {
+  requiresLogin: true,
+  title: "STOCKWELL DEMO ACCOUNTS",
+  detail: `ADMIN ACCOUNT
+Email: butshatengwa951@gmail.com
+Password: Butsha06#
+
+KHAYELITSHA STOKVEL — CHAIRPERSON
+Email: chantel@gmail.com
+Password: password123
+Responsibility: authorizes the order after a majority of members have voted.
+
+KHAYELITSHA STOKVEL — TREASURER
+Email: thabisa@gmail.com
+Password: password123
+Responsibility: approves the funds taken from the group wallet after the chairperson has authorized the order.
+
+KHAYELITSHA STOKVEL — NORMAL MEMBER
+Email: nosipho@gmail.com
+Password: password123
+},
       description: "StockWell is a full e-commerce platform built around community purchasing, supplier comparison and shared decision-making. It combines a Vue frontend with Node/Express backend services, MySQL persistence and PayFast payments to support authentication, cart management, proposals, majority voting, wallet transactions, orders and delivery workflows. The project was designed as a complete product flow rather than a collection of isolated pages, with the frontend, business rules, database operations and payment processing working together.",
       problem: "Existing community proposals were fragmented across chats and sheets. No voting, no wallet, no payment traceability.",
       build: "Vue frontend, Node API, PayFast ITN integration, wallet ledger with idempotency keys, cart persistence, proposal engine with vote weighting.",
@@ -63,7 +83,13 @@ export const portfolio = {
       type: "Human resources platform",
       stack: ["JavaScript", "HTML/CSS", "MySQL", "Chart.js"],
       file: "FILE 03",
-      access: { requiresLogin: true, title: "LOGIN DETAILS", detail: "The live application requires a username and password. The project repository does not publish a working demo account, so the portfolio does not display unverified credentials." },
+      access: {
+  requiresLogin: true,
+  title: "MODERNTECHHR DEMO ACCOUNT",
+  detail: `ADMIN ACCOUNT
+Username: admin
+Password: password123
+},
       liveUrl: "https://module1-project-hr.onrender.com/",
       description: "ModernTechHR is an HR management platform designed to bring employee records, attendance, payroll, leave management and reporting into one organised interface. JavaScript drives the dynamic workflows, including employee data updates, searching, filtering, payroll calculations and modal interactions, while Chart.js turns the underlying HR information into visual reports. The project also introduced the practical challenge of connecting separately deployed frontend and backend services to a cloud-hosted MySQL database, making it a useful step toward more complete full-stack development.",
       problem: "The project objective was to build an interactive HR management system that could bring employee information, payroll, searching, filtering and reporting features together in one organised platform.",
