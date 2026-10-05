@@ -48,7 +48,10 @@ export const portfolio = {
       stack: ["JavaScript", "HTML/CSS", "Chart.js"],
       file: "FILE 03",
       liveUrl: "https://module1-project-hr.onrender.com/",
-      description: "HR management platform with employee records, payroll calculations, filtering, modal workflows and data visualisation."
+      description: "HR management platform with employee records, payroll calculations, filtering, modal workflows and data visualisation.",
+      problem: "The project objective was to build an interactive HR management system that could bring employee information, payroll, searching, filtering and reporting features together in one organised platform.",
+      build: "Built the frontend around HTML/CSS and JavaScript with dynamic employee data, DOM manipulation, search and filtering, modal workflows and payroll calculations. Chart.js was used to turn HR and payroll data into visual reports, while the application was structured so the frontend and backend could be developed, deployed and connected as separate parts of the system.",
+      challenge: "One challenge we overcame was figuring out how to deploy a backend repository and frontend repository separately while still developing and connecting both repos as one application. This was also our first time deploying a MySQL database and deploying an application in general to a cloud server outside of GitHub. We solved this by researching deployment workflows, configuring the separate services and database connection, and learning how the frontend, backend and cloud-hosted database communicate in a deployed environment."
     },
 
     lightningnews: {
