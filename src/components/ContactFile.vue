@@ -1,15 +1,19 @@
 <template>
   <div class="contact-file">
-    <div class="doc-header"><span class="file-no">FILE 06 — REQUEST FORM BT-C</span><h2>CONTACT / COLLABORATION REQUEST</h2></div>
+    <div class="doc-header"><span class="file-no">FILE 07 — REQUEST FORM BT-C</span><h2>CONTACT / COLLABORATION REQUEST</h2></div>
     <div class="form-paper">
       <div class="form-row"><label>REQUEST TYPE</label><span>COLLABORATION • FREELANCE • FULL-TIME</span></div>
-      <div class="form-row"><label>FILE REF</label><span>BT-001 — RESPONSE REQUIRED</span></div>
+      <div class="form-row"><label>FILE REF</label><span>BT-002 — RESPONSE REQUIRED</span></div>
       <div class="form-row editable"><label>YOUR NAME</label><input placeholder="Type your name..." /></div>
       <div class="form-row editable"><label>YOUR EMAIL</label><input placeholder="email@company.com" /></div>
       <div class="form-row editable"><label>MESSAGE / BRIEF</label><textarea rows="4" placeholder="What are we building?"></textarea></div>
       <div class="form-actions">
         <button class="submit" @click="sent=true">{{ sent ? '✓ REQUEST FILED' : 'SUBMIT REQUEST →' }}</button>
-        <div class="alt-contacts"><a href="#">GitHub ↗</a><a href="#">LinkedIn ↗</a><a href="mailto:butsha@example.com">Email ↗</a></div>
+        <div class="alt-contacts">
+          <a href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/butsha-tengwa-66378a313/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a href="mailto:butshatengwa951@gmail.com">Email ↗</a>
+        </div>
       </div>
       <div v-if="sent" class="sent-note">Request filed to personal file. Expected response: 24h. File will remain open.</div>
     </div>
