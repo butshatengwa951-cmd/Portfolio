@@ -58,13 +58,18 @@ export const portfolio = {
   },
   skills: [
     { id:"js", name:"JAVASCRIPT", level:"Core", files:["02","03","04"], related:["ES6+","DOM","Async","Event Handling"] },
-    { id:"htmlcss", name:"HTML / CSS", level:"Frontend", files:["03","04"], related:["Semantic HTML","Responsive UI","Layouts","Styling"] },
+    { id:"htmlcss", name:"HTML / CSS", level:"Frontend", files:["02","03","04"], related:["Semantic HTML","Responsive UI","Layouts","Styling"] },
     { id:"vue", name:"VUE.JS", level:"Framework", files:["02"], related:["Components","State","Router","Composition"] },
     { id:"node", name:"NODE / EXPRESS", level:"Backend", files:["02"], related:["REST API","Auth","Middleware","Server Logic"] },
     { id:"mysql", name:"MYSQL", level:"Database", files:["02"], related:["Relational Data","Transactions","Queries","Locks"] },
     { id:"payfast", name:"PAYFAST", level:"Payments", files:["02"], related:["ITN","Webhooks","Signatures","Payment Validation"] },
     { id:"chartjs", name:"CHART.JS", level:"Data UI", files:["03"], related:["Payroll Charts","Analytics","Visualisation"] },
     { id:"scraping", name:"WEB SCRAPING", level:"Data", files:["04"], related:["Data Extraction","News Aggregation","Parsing","Automation"] },
+    { id:"python", name:"PYTHON", level:"Backend", files:["04"], related:["Flask","Requests","BeautifulSoup","lxml"] },
+  ],
+  otherSkills: [
+    { id:"php", name:"PHP", description:"Server-side scripting for building dynamic web applications, handling backend logic, forms, sessions, and database-driven features." }
+  ],
   ],
   journey: [
     { year:"2023", title:"Started Vue", note:"First component, first bug, first love. Built portfolio v1." },
