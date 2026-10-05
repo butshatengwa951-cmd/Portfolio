@@ -43,7 +43,7 @@
 
         <div class="section">
           <div class="sec-label">LEARNING LOG</div>
-          <div class="tags"><span v-for="l in portfolio.person.learning" :key="l" class="tag muted">{{ l }}</span></div>
+          <div class="tags"><span v-for="l in portfolio.person.learning" :key="l" class="tag">{{ l }}</span></div>
         </div>
 
 
@@ -86,7 +86,6 @@ defineProps({
 .section p{font-size:13px;line-height:1.6}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{font-size:10px;padding:5px 8px;background:#f5efe0;border:1px solid #d6c9b8;letter-spacing:.6px}
-.tag.muted{opacity:.7}
 .cta-box{margin-top:18px;background:#231b16;color:#eee6d7;padding:18px;border:1px solid #231b16}
 .cta-label{font-size:8px;letter-spacing:2px;opacity:.5;margin-bottom:10px}
 .cta{background:#eee6d7;color:#11100e;border:none;padding:12px 16px;width:100%;font-family:inherit;font-weight:700;letter-spacing:1px;cursor:pointer;transition:.15s}
