@@ -36,6 +36,9 @@ export const portfolio = {
       access: {
   requiresLogin: true,
   title: "STOCKWELL DEMO ACCOUNTS",
+access: {
+  requiresLogin: true,
+  title: "STOCKWELL DEMO ACCOUNTS",
   detail: `ADMIN ACCOUNT
 Email: butshatengwa951@gmail.com
 Password: Butsha06#
@@ -52,7 +55,7 @@ Responsibility: approves the funds taken from the group wallet after the chairpe
 
 KHAYELITSHA STOKVEL — NORMAL MEMBER
 Email: nosipho@gmail.com
-Password: password123
+Password: password123`
 },
       description: "StockWell is a full e-commerce platform built around community purchasing, supplier comparison and shared decision-making. It combines a Vue frontend with Node/Express backend services, MySQL persistence and PayFast payments to support authentication, cart management, proposals, majority voting, wallet transactions, orders and delivery workflows. The project was designed as a complete product flow rather than a collection of isolated pages, with the frontend, business rules, database operations and payment processing working together.",
       problem: "Existing community proposals were fragmented across chats and sheets. No voting, no wallet, no payment traceability.",
@@ -86,11 +89,10 @@ Password: password123
       access: {
   requiresLogin: true,
   title: "MODERNTECHHR DEMO ACCOUNT",
-  detail: `ADMIN ACCOUNT
+detail: `ADMIN ACCOUNT
 Username: admin
-Password: password123
-},
-      liveUrl: "https://module1-project-hr.onrender.com/",
+Password: password123`
+},    liveUrl: "https://module1-project-hr.onrender.com/",
       description: "ModernTechHR is an HR management platform designed to bring employee records, attendance, payroll, leave management and reporting into one organised interface. JavaScript drives the dynamic workflows, including employee data updates, searching, filtering, payroll calculations and modal interactions, while Chart.js turns the underlying HR information into visual reports. The project also introduced the practical challenge of connecting separately deployed frontend and backend services to a cloud-hosted MySQL database, making it a useful step toward more complete full-stack development.",
       problem: "The project objective was to build an interactive HR management system that could bring employee information, payroll, searching, filtering and reporting features together in one organised platform.",
       build: "Built the frontend around HTML/CSS and JavaScript with dynamic employee data, DOM manipulation, search and filtering, modal workflows and payroll calculations. Chart.js was used to turn HR and payroll data into visual reports, while the application was structured so the frontend and backend could be developed, deployed and connected as separate parts of the system.",
