@@ -36,10 +36,7 @@
       <p v-if="activeTab === 'problem'">{{ project.problem }}</p>
       <p v-else-if="activeTab === 'build'">{{ project.build }}</p>
       <pre v-else-if="activeTab === 'challenge'" class="challenge">{{ project.challenge }}</pre>
-      <div v-else class="live-links">
-        <a href="https://stockwell-hl1e.onrender.com/" target="_blank" rel="noopener noreferrer" class="live-link primary">→ OPEN FULL STOCKWELL PROJECT</a>
-        <span class="note">The live site above is embedded directly inside this portfolio file.</span>
-      </div>
+      <p v-else class="project-description">{{ project.description }}</p>
     </div>
     <div class="flow-mini">
       <span>Customer</span><i>↓</i><span>Checkout</span><i>↓</i><span>PayFast</span><i>↓</i><span>Response</span><i>↓</i><span>Backend</span><i>↓</i><span>Wallet</span>
@@ -54,7 +51,7 @@ const tabs = [
   { id: 'problem', label: 'PROBLEM' },
   { id: 'build', label: 'BUILD' },
   { id: 'challenge', label: 'CHALLENGE' },
-  { id: 'live', label: 'LIVE' }
+  { id: 'description', label: 'DESCRIPTION' }
 ]
 const activeTab = ref('problem')
 </script>
@@ -85,11 +82,8 @@ const activeTab = ref('problem')
 .dtab.active{background:#231b16;color:#eee6d7;border-color:#231b16}
 .doc-content{background:#fffdf7;border:1px solid #e8ddd0;padding:18px;min-height:90px}
 .doc-content p{font-size:13px;line-height:1.7}
+.project-description{margin:0}
 .challenge{white-space:pre-wrap;font-family:inherit;font-size:12px;line-height:1.7}
-.live-links{display:flex;flex-direction:column;gap:10px}
-.live-link{color:#a32626;text-decoration:none;border-bottom:1px solid #e8ddd0;font-size:12px;width:fit-content}
-.live-link.primary{font-weight:700;border-bottom:0;border:1px solid #a32626;padding:8px 10px}
-.note{font-size:10px;opacity:.5;margin-top:2px}
 .flow-mini{margin-top:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:9px;letter-spacing:1px;background:#f5efe0;border:1px solid #e8ddd0;padding:10px}
 .flow-mini i{color:#a32626;font-style:normal}
 @media(max-width:700px){.iframe-shell{height:460px}.doc-header h2{font-size:25px;letter-spacing:2px}}
