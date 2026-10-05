@@ -16,7 +16,7 @@ export const portfolio = {
   files: [
     { id: "profile", label: "01_PROFILE", title: "PROFILE", file: "FILE 01" },
     { id: "stockwell", label: "02_STOCKWELL", title: "STOCKWELL", file: "FILE 02" },
-    { id: "voyabite", label: "03_VOYA_BITE", title: "VOYA BITE", file: "FILE 03" },
+    { id: "moderntechhr", label: "03_MODERNTECHHR", title: "MODERNTECHHR", file: "FILE 03" },
     { id: "skills", label: "04_SKILLS", title: "SKILLS", file: "FILE 04" },
     { id: "journey", label: "05_JOURNEY", title: "JOURNEY", file: "FILE 05" },
     { id: "contact", label: "06_CONTACT", title: "CONTACT", file: "FILE 06" },
@@ -38,17 +38,13 @@ export const portfolio = {
         { id:3, name:"Voting Power +10", price: 45, tag:"" },
       ]
     },
-    voyabite: {
-      name: "VOYA BITE",
-      type: "Food delivery prototype",
-      stack: ["Vue", "Firebase", "Tailwind"],
+    moderntechhr: {
+      name: "MODERNTECHHR",
+      type: "Human resources platform",
+      stack: [],
       file: "FILE 03",
-      description: "Hyperlocal food delivery UI with real-time menu and order tracking.",
-      menu: [
-        { id:1, name:"Beef Bunny Chow", price: 65, time:"18m" },
-        { id:2, name:"Chicken Curry + Rice", price: 78, time:"22m" },
-        { id:3, name:"Veg Samosa Box (6)", price: 48, time:"14m" },
-      ]
+      liveUrl: "https://module1-project-hr.onrender.com/",
+      description: "Live ModerntechHR project preview embedded directly inside the portfolio folder."
     }
   },
   skills: [
