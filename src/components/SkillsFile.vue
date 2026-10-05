@@ -1,6 +1,6 @@
 <template>
   <div class="skills-file">
-    <div class="doc-header"><span class="file-no">FILE 05 — EVIDENCE TAGS</span><h2>SKILLS / TECHNOLOGY MAP</h2></div>
+    <div class="doc-header"><span class="file-no">FILE 06 — EVIDENCE TAGS</span><h2>SKILLS / TECHNOLOGY MAP</h2></div>
 
     <div class="map-wrap">
       <svg class="lines" viewBox="0 0 800 400">
