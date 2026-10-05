@@ -33,7 +33,7 @@
       <div class="right">
         <div class="section">
           <div class="sec-label">CURRENT OBJECTIVE</div>
-          <p>Building better things — products with real payment flows, not demo carts.</p>
+          <p>{{ portfolio.person.currentObjective }}</p>
         </div>
 
         <div class="section">
