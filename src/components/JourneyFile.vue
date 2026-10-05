@@ -1,6 +1,6 @@
 <template>
   <div class="journey-file">
-    <div class="doc-header"><span class="file-no">FILE 05 — DEVELOPMENT LOG</span><h2>JOURNEY</h2></div>
+    <div class="doc-header"><span class="file-no">FILE 06 — DEVELOPMENT LOG</span><h2>JOURNEY</h2></div>
     <div class="timeline">
       <div v-for="(j,i) in journey" :key="i" class="entry">
         <div class="year">{{ j.year }}</div>
