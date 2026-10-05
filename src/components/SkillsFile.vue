@@ -288,19 +288,38 @@ const lines = computed(() => {
 .other-card p{margin:0;font-size:10px;line-height:1.65;opacity:.72}
 
 @media(max-width:900px){
-  .map-wrap{height:640px;overflow-x:auto}
-  .map-wrap > .lines{min-width:900px}
-  .tags-layer{min-width:900px}
-  .skill-tag{min-width:108px}
-  .file-node{min-width:140px}
+  .map-wrap{height:600px;overflow:hidden}
+  .skill-tag{min-width:92px;padding:7px 7px}
+  .tag-top{font-size:9px}
+  .tag-bottom{font-size:6px;margin-top:3px}
+  .file-node{min-width:112px;min-height:46px;padding:8px 8px}
+  .file-node span{font-size:8px}
+  .row-caption{font-size:6px}
 }
 
 @media(max-width:600px){
-  .map-intro small{width:100%;margin-left:0}
-  .map-wrap{height:650px;overflow-x:auto}
-  .map-wrap > .lines{min-width:900px}
-  .tags-layer{min-width:900px}
+  .doc-header h2{font-size:22px;line-height:1.15;letter-spacing:1.2px}
+  .map-intro{gap:5px;font-size:7px;line-height:1.5}
+  .map-intro small{width:100%;margin-left:0;font-size:6px}
+  .map-wrap{height:610px}
+  .skill-tag{min-width:0;width:19%;padding:6px 4px}
+  .tag-top{font-size:7px;letter-spacing:.4px}
+  .tag-bottom{font-size:5px;letter-spacing:.2px;white-space:normal;line-height:1.25}
+  .file-node{min-width:0;width:21%;min-height:42px;padding:7px 4px}
+  .file-node span{font-size:6.5px;letter-spacing:.6px}
+  .file-node::before{top:-7px;left:5px;font-size:5px;padding:1px 3px}
+  .row-caption{left:6px;padding:2px 4px;font-size:5px;letter-spacing:.8px}
+  .row-core{top:7px}
+  .row-shared{top:118px}
+  .row-specific{top:248px}
+  .lines path{stroke-width:1.1}
+  .lines path.active{stroke-width:2}
+  .related{padding:10px}
+  .rel-label{font-size:7px;line-height:1.4}
+  .rel-tag{font-size:8px;padding:3px 6px}
   .other-list{grid-template-columns:1fr}
   .other-header{align-items:flex-start;flex-direction:column;gap:4px}
+  .other-name{font-size:10px}
+  .other-card p{font-size:9px}
 }
 </style>
