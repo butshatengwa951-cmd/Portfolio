@@ -299,7 +299,7 @@ function selectFile(id) {
 html,body,#app{width:100%;min-height:100%;margin:0}
 body{background:var(--walnut);color:var(--ink);font-family:'JetBrains Mono',monospace;overflow-x:hidden}
 button{font:inherit}
-.portfolio-root{position:relative;min-height:100vh;overflow:hidden;background:var(--walnut)}
+.portfolio-root{position:relative;min-height:100vh;background:var(--walnut)}
 .desk-vignette{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 20%,rgba(214,166,111,.08) 0%,transparent 50%),radial-gradient(80% 60% at 20% 80%,rgba(0,0,0,.4) 0%,transparent 70%),repeating-linear-gradient(90deg,rgba(255,255,255,.015) 0 1px,transparent 1px 3px),radial-gradient(ellipse at center,transparent 60%,rgba(0,0,0,.55) 100%)}
 .film-noise{position:fixed;inset:0;z-index:100;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:overlay}
 .closed-stage{position:relative;z-index:10;min-height:100vh;display:grid;place-items:center;padding:16px;perspective:1200px}
@@ -321,9 +321,7 @@ button{font:inherit}
 .paper-fan{position:absolute;inset:0;z-index:-1;pointer-events:none}.fan{position:absolute;inset:0;border-radius:6px}.fan-one{background:var(--paper-light);transform:rotate(-2deg) translateY(12px);animation:fan-one .6s ease forwards}.fan-two{background:var(--paper);transform:rotate(1.5deg) translateY(8px);animation:fan-two .7s ease forwards}
 .closed-hint{position:absolute;bottom:30px;left:50%;z-index:10;transform:translateX(-50%);color:rgba(214,166,111,.5);font-size:10px;letter-spacing:.18em;white-space:nowrap}.closed-hint span{margin:0 6px}
 .open-stage{position:relative;z-index:10;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:40px 16px}
-html{scrollbar-color:var(--red) var(--walnut)}
-html::-webkit-scrollbar-thumb{background:var(--red)}
-html::-webkit-scrollbar-thumb:hover{background:#7f1d1d}
+html,body{scrollbar-color:var(--red) var(--walnut)}
 .open-folder-shell{width:min(1100px,96vw);min-height:82vh;position:relative;border:14px solid var(--leather);border-radius:4px;background:var(--paper-light);box-shadow:0 30px 80px rgba(0,0,0,.7),0 5px 15px rgba(0,0,0,.5),inset 0 0 0 1px rgba(0,0,0,.1);background-image:radial-gradient(900px 500px at 20% 0%,rgba(214,166,111,.08),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.6),transparent 12%);animation:folder-open-in .7s cubic-bezier(.16,1,.3,1)}
 .open-stage.is-closing .open-folder-shell{animation:folder-close-out .6s cubic-bezier(.76,0,.24,1) forwards}
 .folder-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;min-height:62px;padding:16px 36px;border-bottom:1px solid var(--tan);background:linear-gradient(180deg,var(--paper) 0%,var(--paper-light) 100%)}.folder-header-left,.folder-header-right{display:flex;align-items:center;gap:16px}.folder-file-title{font-family:'Special Elite',serif;font-size:11px;letter-spacing:.2em}.active-file-indicator{display:flex;align-items:center;gap:8px;color:rgba(17,16,14,.6);font-size:9px;letter-spacing:.15em}.active-file-indicator span{width:8px;height:8px;border-radius:50%;background:var(--red)}.folder-header-right>span{color:rgba(17,16,14,.5);font-size:9px;letter-spacing:.2em}.folder-header-right button{padding:6px 12px;border:1px solid var(--tan);background:#fff;color:var(--ink);font-family:'Special Elite',serif;font-size:10px;letter-spacing:.16em;cursor:pointer;transition:background .15s ease}.folder-header-right button:hover{background:#fffdf7}
