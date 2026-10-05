@@ -1,13 +1,26 @@
 <template>
   <div class="notes-file">
-    <div class="doc-header"><span class="file-no">FILE 07 — PERSONAL NOTES</span><h2>NOTES / SCRAPS</h2></div>
+    <div class="doc-header"><span class="file-no">FILE 08 — PERSONAL NOTES</span><h2>NOTES / SCRAPS</h2></div>
     <div class="notes-grid">
-      <div class="sticky s1"><div class="pin"></div><p>Don't make portfolio that looks like detective board. Make portfolio itself a mystery. — The best advice I got.</p><span>BT</span></div>
-      <div class="typewritten"><p>CASE NOTE: The folder is the website's container. Everything else happens inside it. That one rule makes it cohesive.</p></div>
-      <div class="sticky s2"><div class="pin"></div><p>PayFast will break. Log raw body first. Always.</p><span>Lesson #07</span></div>
-      <div class="scrap"><p>TODO: Build better things. Ship fast. Fix in prod (kinda).</p><div class="tape"></div></div>
-      <div class="typewritten"><p>Personal file concept = professional website + personal physical object + interactive navigation. Not a gimmick if the structure is real.</p></div>
-      <div class="sticky s3"><div class="pin"></div><p>Photo matters. Keep face part of identity without taking over every page.</p><span>BT-001</span></div>
+      <div class="sticky s1"><div class="pin"></div><p>Early JavaScript taught me that getting the happy path working is not enough. I struggled with validation and edge cases, especially in Week 4. I improved by checking inputs before calculating and testing more than one outcome.</p><span>LESSON — JAVASCRIPT</span></div>
+
+      <div class="typewritten"><p>EXERCISE NOTE: JavaScript Week 4 showed me specific weak spots: my <strong>isPrime</strong> logic was incomplete, my <strong>sum</strong> function did not properly enforce the integer requirement, and my loop/sorting solutions did not always follow the full brief. I improved by breaking problems into smaller checks, reading the requirement carefully, and testing edge cases instead of only testing one successful example.</p></div>
+
+      <div class="sticky s2"><div class="pin"></div><p>Scope was a real lesson. In the scopes and objects exercise, I tried to use a local variable outside the function where it was created. Now I think about where data lives, who can access it and how state should move between functions.</p><span>LESSON — SCOPE</span></div>
+
+      <div class="scrap"><p>ERROR HANDLING: My early validation and error-handling code worked in places but also exposed mistakes in how I checked arrays, types and exceptions. Projects later forced me to think about invalid input and failure states before they became bugs.</p><div class="tape"></div></div>
+
+      <div class="typewritten"><p>GIT NOTE: Recipe Finder was where Git stopped being just commands and became part of development. Remote history, branch naming, upstream branches and merge conflicts showed me that version control problems need to be understood, not ignored. I became more comfortable reading the error, identifying what Git was asking for and then fixing the workflow.</p></div>
+
+      <div class="sticky s3"><div class="pin"></div><p>DOM + INTERACTION: I moved from simple console exercises into buttons, prompts, event listeners, dynamic cards and timed UI behaviour. That progression helped me understand that JavaScript is not only about calculations — it is about controlling an interface.</p><span>LESSON — FRONTEND</span></div>
+
+      <div class="typewritten"><p>DATABASE NOTE: MySQL started with tables, keys, relationships and queries. The bigger lesson came later with real applications: a database is not just somewhere to store data. It has to connect correctly to backend logic, respect relationships and support the application's workflows.</p></div>
+
+      <div class="sticky s1"><div class="pin"></div><p>MODERNTECHHR: The hardest part was not only building features. It was learning how separate frontend and backend repositories could be developed together, deployed separately and still communicate with a MySQL database in the cloud.</p><span>LESSON — DEPLOYMENT</span></div>
+
+      <div class="typewritten"><p>LIGHTNING NEWS: Web scraping and Three.js were new concepts for our team. We overcame that gap through in-depth research, then applied what we learned with Python, Flask, Requests, BeautifulSoup and lxml. The lesson: when a concept is unfamiliar, research becomes part of the development process.</p></div>
+
+      <div class="sticky s2"><div class="pin"></div><p>STOCKWELL: PayFast was the reminder that integrations can fail even when the request appears successful. Logging the raw request, checking signatures, understanding ITN behaviour and adding transaction protection taught me to debug the full system instead of trusting a 200 response.</p><span>LESSON — PAYMENTS</span></div>
     </div>
   </div>
 </template>
