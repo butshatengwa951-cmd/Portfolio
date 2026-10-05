@@ -17,7 +17,7 @@
 
             <div class="cover-content">
               <div class="cover-meta">
-                <span>PERSONAL PORTFOLIO — FILE NO. BT-001</span>
+                <span>PERSONAL PORTFOLIO — FILE NO. BT-002</span>
                 <span class="cover-rule"></span>
               </div>
 
@@ -109,7 +109,7 @@
           </div>
 
           <div class="folder-header-right">
-            <span>PERSONAL FILE — BT-001</span>
+            <span>PERSONAL FILE — BT-002</span>
             <button type="button" @click="closeFolder">
               CLOSE FILE ×
             </button>
