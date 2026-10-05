@@ -18,7 +18,7 @@
           v-for="l in lines"
           :key="l.id"
           :d="l.d"
-          :class="{ active: highlightedSkill === l.skill }"
+          :class="{ active: highlightedSkill === l.skill || highlightedProject === l.project }"
         />
       </svg>
 
@@ -32,7 +32,7 @@
           :key="s.id"
           class="skill-tag"
           :style="skillStyle(s.id)"
-          :class="{ selected: selectedSkill === s.id }"
+          :class="{ selected: selectedSkill === s.id, connected: selectedProject && projectSkillIds.includes(s.id) }"
           @click="toggleSkill(s.id)"
         >
           <div class="tag-top">{{ s.name }}</div>
@@ -44,6 +44,13 @@
           :key="f.id"
           class="file-node"
           :style="projectStyle(f.id)"
+          :class="{ selected: selectedProject === f.id }"
+          role="button"
+          tabindex="0"
+          :aria-label="'Highlight technologies used in ' + f.title"
+          @click="toggleProject(f.id)"
+          @keydown.enter.prevent="toggleProject(f.id)"
+          @keydown.space.prevent="toggleProject(f.id)"
         >
           <span>{{ f.label }}</span>
         </div>
@@ -54,6 +61,13 @@
       <div class="rel-label">RELATED EVIDENCE FOR {{ activeSkill.name }}</div>
       <div class="rel-tags">
         <span v-for="r in activeSkill.related" :key="r" class="rel-tag">[ {{ r }} ]</span>
+      </div>
+    </div>
+
+    <div class="related project-related" v-else-if="selectedProject && activeProject">
+      <div class="rel-label">CONNECTED TECHNOLOGIES FOR {{ activeProject.title }}</div>
+      <div class="rel-tags">
+        <span v-for="skill in activeProjectSkills" :key="skill.id" class="rel-tag">[ {{ skill.name }} ]</span>
       </div>
     </div>
 
@@ -82,9 +96,16 @@ const props = defineProps({
 })
 
 const selectedSkill = ref(null)
+const selectedProject = ref(null)
 
 function toggleSkill(id) {
   selectedSkill.value = selectedSkill.value === id ? null : id
+  selectedProject.value = null
+}
+
+function toggleProject(id) {
+  selectedProject.value = selectedProject.value === id ? null : id
+  selectedSkill.value = null
 }
 
 const projectOrder = ['stockwell', 'moderntechhr', 'budgettracker', 'lightningnews']
@@ -124,7 +145,22 @@ const activeSkill = computed(() =>
   props.skills?.find(s => s.id === selectedSkill.value)
 )
 
+const activeProject = computed(() =>
+  projectFiles.value.find(file => file.id === selectedProject.value)
+)
+
+const activeProjectSkills = computed(() => {
+  if (!activeProject.value) return []
+  const fileNumber = activeProject.value.label.slice(0, 2)
+  return (props.skills || []).filter(skill => skill.files.includes(fileNumber))
+})
+
+const projectSkillIds = computed(() =>
+  activeProjectSkills.value.map(skill => skill.id)
+)
+
 const highlightedSkill = computed(() => selectedSkill.value)
+const highlightedProject = computed(() => selectedProject.value)
 
 function skillStyle(id) {
   const pos = skillLayout[id]
@@ -181,6 +217,7 @@ const lines = computed(() => {
       arr.push({
         id: skill.id + '-' + fileNumber,
         skill: skill.id,
+        project: projectId,
         d
       })
     })
@@ -216,10 +253,14 @@ const lines = computed(() => {
 .skill-tag{position:absolute;transform:translateX(-50%);min-width:118px;padding:9px 10px;background:#f5efe0;border:1px solid #231b16;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.07);transition:.15s;white-space:nowrap}
 .skill-tag:hover{transform:translate(-50%,-2px)}
 .skill-tag.selected{background:#231b16;color:#eee6d7;box-shadow:0 7px 16px rgba(0,0,0,.14);border-color:#a32626}
+.skill-tag.connected{border-color:#a32626;box-shadow:0 5px 14px rgba(163,38,38,.14)}
 .tag-top{font-weight:700;font-size:11px;letter-spacing:.9px}
 .tag-bottom{font-size:7px;opacity:.6;margin-top:4px;letter-spacing:.4px}
 
-.file-node{position:absolute;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;min-width:150px;min-height:54px;padding:10px 12px;background:#231b16;color:#eee6d7;border:1px solid #a32626;box-shadow:0 8px 18px rgba(0,0,0,.16)}
+.file-node{position:absolute;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;min-width:150px;min-height:54px;padding:10px 12px;background:#231b16;color:#eee6d7;border:1px solid #a32626;box-shadow:0 8px 18px rgba(0,0,0,.16);cursor:pointer;transition:.15s}
+.file-node:hover{transform:translate(-50%,-2px);box-shadow:0 10px 22px rgba(0,0,0,.2)}
+.file-node.selected{background:#f5efe0;color:#231b16;border-color:#a32626;box-shadow:0 8px 18px rgba(163,38,38,.18)}
+.file-node.selected::before{background:#231b16}
 .file-node::before{content:'PROJECT';position:absolute;top:-9px;left:10px;padding:2px 5px;background:#a32626;color:#fff;font-size:6px;letter-spacing:1.2px}
 .file-node span{font-family:'Special Elite';font-size:10px;letter-spacing:1.2px;text-align:center}
 
