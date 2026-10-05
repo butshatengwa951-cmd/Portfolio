@@ -70,7 +70,6 @@ export const portfolio = {
   otherSkills: [
     { id:"php", name:"PHP", description:"Server-side scripting for building dynamic web applications, handling backend logic, forms, sessions, and database-driven features." }
   ],
-  ],
   journey: [
     { year:"2023", title:"Started Vue", note:"First component, first bug, first love. Built portfolio v1." },
     { year:"2024", title:"PayFast integration hell", note:"The month webhooks broke me and then taught me everything about idempotency." },
