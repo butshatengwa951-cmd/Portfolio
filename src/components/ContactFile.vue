@@ -1,31 +1,105 @@
 <template>
   <div class="contact-file">
     <div class="doc-header"><span class="file-no">FILE 07 — REQUEST FORM BT-C</span><h2>CONTACT / COLLABORATION REQUEST</h2></div>
-    <div class="form-paper">
+    <form class="form-paper" @submit.prevent="submitRequest">
       <div class="form-row"><label>REQUEST TYPE</label><span>COLLABORATION • FREELANCE • FULL-TIME</span></div>
       <div class="form-row"><label>FILE REF</label><span>BT-002 — RESPONSE REQUIRED</span></div>
-      <div class="form-row editable"><label>YOUR NAME</label><input placeholder="Type your name..." /></div>
-      <div class="form-row editable"><label>YOUR EMAIL</label><input placeholder="email@company.com" /></div>
-      <div class="form-row editable"><label>MESSAGE / BRIEF</label><textarea rows="4" placeholder="What are we building?"></textarea></div>
+
+      <div class="form-row editable">
+        <label for="contact-name">YOUR NAME</label>
+        <input id="contact-name" v-model.trim="form.name" name="name" placeholder="Type your name..." required />
+      </div>
+
+      <div class="form-row editable">
+        <label for="contact-email">YOUR EMAIL</label>
+        <input id="contact-email" v-model.trim="form.email" name="email" type="email" placeholder="email@company.com" required />
+      </div>
+
+      <div class="form-row editable">
+        <label for="contact-message">MESSAGE / BRIEF</label>
+        <textarea id="contact-message" v-model.trim="form.message" name="message" rows="4" placeholder="What are we building?" required></textarea>
+      </div>
+
+      <input type="hidden" name="_subject" value="New portfolio contact request — Butsha Tengwa" />
+
       <div class="form-actions">
-        <button class="submit" @click="sent=true">{{ sent ? '✓ REQUEST FILED' : 'SUBMIT REQUEST →' }}</button>
+        <button class="submit" type="submit" :disabled="sending || sent">
+          {{ sending ? 'SENDING...' : sent ? '✓ REQUEST FILED' : 'SUBMIT REQUEST →' }}
+        </button>
         <div class="alt-contacts">
           <a href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/butsha-tengwa-66378a313/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
           <a href="mailto:butshatengwa951@gmail.com">Email ↗</a>
         </div>
       </div>
-      <div v-if="sent" class="sent-note">Request filed to personal file. Expected response: 24h. File will remain open.</div>
-    </div>
+
+      <div v-if="sent" class="sent-note">Request successfully sent. Expected response: 24h. File will remain open.</div>
+      <div v-else-if="errorMessage" class="error-note">{{ errorMessage }}</div>
+    </form>
   </div>
 </template>
-
 <script setup>
-import { ref } from 'vue'
-defineProps({ person: Object })
-const sent = ref(false)
-</script>
+import { reactive, ref } from 'vue'
 
+defineProps({ person: Object })
+
+const form = reactive({
+  name: '',
+  email: '',
+  message: ''
+})
+
+const sending = ref(false)
+const sent = ref(false)
+const errorMessage = ref('')
+
+async function submitRequest() {
+  if (sending.value || sent.value) return
+
+  sending.value = true
+  errorMessage.value = ''
+
+  try {
+    const response = await fetch('https://formspree.io/f/mgaowjbe', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        message: form.message,
+        _subject: 'New portfolio contact request — Butsha Tengwa'
+      })
+    })
+
+    if (!response.ok) {
+      let detail = ''
+      try {
+        const data = await response.json()
+        if (data?.errors?.length) {
+          detail = data.errors.map((item) => item.message).join(' ')
+        }
+      } catch {
+        // Keep the user-facing message generic if Formspree does not return JSON.
+      }
+      throw new Error(detail || 'The request could not be sent. Please try again or email me directly.')
+    }
+
+    sent.value = true
+    form.name = ''
+    form.email = ''
+    form.message = ''
+  } catch (error) {
+    errorMessage.value = error instanceof Error
+      ? error.message
+      : 'The request could not be sent. Please try again or email me directly.'
+  } finally {
+    sending.value = false
+  }
+}
+</script>
 <style scoped>
 .file-no{font-size:9px;letter-spacing:2px;color:#a32626}
 .doc-header h2{font-family:'Special Elite';font-size:22px;letter-spacing:1.5px;margin-bottom:18px}
