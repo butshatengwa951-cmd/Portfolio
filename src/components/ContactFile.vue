@@ -113,4 +113,18 @@ async function submitRequest() {
 .alt-contacts{display:flex;gap:12px}
 .alt-contacts a{font-size:11px;color:#a32626;text-decoration:none;border-bottom:1px solid #e8ddd0}
 .sent-note{margin-top:14px;background:#f5efe0;border-left:3px solid #a32626;padding:10px 12px;font-size:11px}
+@media(max-width:700px){
+  .doc-header h2{font-size:18px;line-height:1.15;letter-spacing:1px}
+  .form-paper{padding:14px}
+  .form-row{display:flex;flex-direction:column;align-items:stretch;gap:7px;padding:12px 0}
+  .form-row label{min-width:0;font-size:8px}
+  .form-row>span{font-size:10px;line-height:1.5;overflow-wrap:anywhere}
+  .form-row.editable input,
+  .form-row.editable textarea{width:100%;min-width:0;flex:none}
+  .form-row.editable textarea{resize:vertical}
+  .form-actions{display:flex;flex-direction:column;align-items:stretch;gap:12px}
+  .submit{width:100%}
+  .alt-contacts{display:flex;flex-wrap:wrap;gap:10px}
+  .alt-contacts a{font-size:10px}
+}
 </style>
