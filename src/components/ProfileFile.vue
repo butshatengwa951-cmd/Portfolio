@@ -10,7 +10,10 @@
         <p class="tagline">{{ portfolio.person.tagline }}</p>
 
         <div class="photo-clip">
-          <div class="clip-photo">BT</div>
+          <div class="clip-photo">
+            <img v-if="profilePhoto" :src="profilePhoto" alt="Butsha Tengwa" />
+            <span v-else>BT</span>
+          </div>
           <div class="clip"></div>
           <span>FILE PHOTO — CLIPPED</span>
         </div>
@@ -54,7 +57,13 @@
 </template>
 
 <script setup>
-defineProps({ portfolio: Object })
+defineProps({
+  portfolio: Object,
+  profilePhoto: {
+    type: String,
+    default: ''
+  }
+})
 defineEmits(['go'])
 </script>
 
@@ -66,7 +75,8 @@ defineEmits(['go'])
 @media(max-width:800px){.profile-grid{grid-template-columns:1fr}.file-header h1{text-align:left;font-size:32px}}
 .tagline{font-family:'Special Elite',cursive;font-size:20px;line-height:1.3;margin-bottom:22px;color:#2b211b}
 .photo-clip{position:relative;display:inline-block;margin-bottom:20px}
-.clip-photo{width:120px;height:140px;background:#111;color:#eee6d7;display:flex;align-items:center;justify-content:center;font-family:'Special Elite';font-size:40px;letter-spacing:4px;border:4px solid #fff;box-shadow:0 6px 14px rgba(0,0,0,.2);transform:rotate(-2deg)}
+.clip-photo{width:120px;height:140px;background:#111;color:#eee6d7;display:flex;align-items:center;justify-content:center;font-family:'Special Elite';font-size:40px;letter-spacing:4px;border:4px solid #fff;box-shadow:0 6px 14px rgba(0,0,0,.2);transform:rotate(-2deg);overflow:hidden}
+.clip-photo img{width:100%;height:100%;object-fit:cover;display:block}
 .clip{position:absolute;top:-12px;right:-12px;width:28px;height:46px;border:2px solid #888;border-left:none;border-bottom:none;border-radius:0 10px 0 0;transform:rotate(10deg)}
 .photo-clip span{font-size:7px;letter-spacing:1px;display:block;margin-top:8px;opacity:.5}
 .details-list{border-top:1px solid #e8ddd0;margin-bottom:18px}
