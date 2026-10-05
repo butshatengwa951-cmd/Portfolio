@@ -140,6 +140,7 @@
                 v-if="activeFile === 'profile'"
                 key="profile"
                 :portfolio="portfolio"
+                :profile-photo="profilePhoto"
                 @go="selectFile"
               />
               <StockwellFile
@@ -303,7 +304,7 @@ button{font:inherit}
 .cover-meta{width:100%;color:var(--tan);font-size:10px;font-weight:500;letter-spacing:.22em}.cover-rule{display:block;width:100%;height:1px;margin-top:12px;background:linear-gradient(90deg,transparent,var(--tan) 20%,var(--tan) 80%,transparent)}
 .cover-center{display:flex;flex-direction:column;align-items:center;gap:20px;margin-top:8px}.cover-center h1{margin:0;color:var(--paper);font-family:'Special Elite',serif;font-size:42px;line-height:.9;letter-spacing:-.02em}
 .cover-photo-wrap{position:relative}.cover-photo{position:relative;width:160px;height:200px;overflow:hidden;border:3px solid #fff;background:#e8ddd0;box-shadow:0 4px 18px rgba(0,0,0,.4),0 1px 3px rgba(0,0,0,.3);transform:rotate(-1.2deg)}
-.cover-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1)}.cover-photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);background:linear-gradient(180deg,#ddd 0%,#c8b8a0 100%);filter:grayscale(1) contrast(1.1)}
+.cover-photo img{width:100%;height:100%;object-fit:cover}.cover-photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);background:linear-gradient(180deg,#ddd 0%,#c8b8a0 100%);filter:grayscale(1) contrast(1.1)}
 .cover-photo-placeholder span{width:86px;height:86px;display:grid;place-items:center;border:1px solid rgba(0,0,0,.1);border-radius:50%;background:var(--paper-inner);font-family:'Special Elite',serif;font-size:36px;font-weight:700}.cover-photo-placeholder small{margin-top:12px;color:rgba(0,0,0,.6);font-size:9px;letter-spacing:.2em}
 .cover-photo-caption{position:absolute;right:-8px;bottom:-8px;padding:2px 8px;color:rgba(0,0,0,.7);background:#fff;font-size:8px;letter-spacing:.12em;transform:rotate(1deg);white-space:nowrap}
 .cover-details{width:260px;margin-top:4px;text-align:left}.cover-detail-row{display:flex;gap:16px;align-items:center;margin-bottom:12px;color:var(--paper);font-size:11px;line-height:1.2}.cover-detail-row>span{flex:0 0 110px;color:var(--tan);letter-spacing:.12em}.cover-detail-row strong{color:var(--paper);font-weight:700;letter-spacing:.04em}.cover-status strong{display:flex;align-items:center;gap:8px}.cover-status i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px rgba(163,38,38,.55);animation:pulse-dot 1.7s ease-in-out infinite}
