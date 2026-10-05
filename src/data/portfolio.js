@@ -17,10 +17,11 @@ export const portfolio = {
     { id: "profile", label: "01_PROFILE", title: "PROFILE", file: "FILE 01" },
     { id: "stockwell", label: "02_STOCKWELL", title: "STOCKWELL", file: "FILE 02" },
     { id: "moderntechhr", label: "03_MODERNTECHHR", title: "MODERNTECHHR", file: "FILE 03" },
-    { id: "skills", label: "04_SKILLS", title: "SKILLS", file: "FILE 04" },
-    { id: "journey", label: "05_JOURNEY", title: "JOURNEY", file: "FILE 05" },
-    { id: "contact", label: "06_CONTACT", title: "CONTACT", file: "FILE 06" },
-    { id: "notes", label: "07_NOTES", title: "NOTES", file: "FILE 07" },
+    { id: "lightningnews", label: "04_LIGHTNING_NEWS", title: "LIGHTNING NEWS", file: "FILE 04" },
+    { id: "skills", label: "05_SKILLS", title: "SKILLS", file: "FILE 05" },
+    { id: "journey", label: "06_JOURNEY", title: "JOURNEY", file: "FILE 06" },
+    { id: "contact", label: "07_CONTACT", title: "CONTACT", file: "FILE 07" },
+    { id: "notes", label: "08_NOTES", title: "NOTES", file: "FILE 08" },
   ],
   projects: {
     stockwell: {
@@ -45,6 +46,14 @@ export const portfolio = {
       file: "FILE 03",
       liveUrl: "https://module1-project-hr.onrender.com/",
       description: "Live ModerntechHR project preview embedded directly inside the portfolio folder."
+    },
+    lightningnews: {
+      name: "LIGHTNING NEWS",
+      type: "Web scraping news platform",
+      stack: [],
+      file: "FILE 04",
+      liveUrl: "https://lightning-news.netlify.app/",
+      description: "Live news platform built around web scraping and presented as an embedded portfolio preview."
     }
   },
   skills: [
