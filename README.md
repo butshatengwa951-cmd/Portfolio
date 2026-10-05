@@ -4,7 +4,6 @@
 
 An interactive developer portfolio presented as a physical case file. Instead of a traditional portfolio website, the entire experience is designed to feel like opening and investigating a personal developer file.
 
-> **Rule: Everything belongs inside the file.**
 
 ## Concept
 
