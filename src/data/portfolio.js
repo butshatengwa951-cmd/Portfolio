@@ -9,8 +9,8 @@ export const portfolio = {
     tagline: "I develop full-stack web applications with a focus on intuitive user experiences, combining strong frontend experiences with robust backend architecture and data-driven systems.",
     background: "Developer trained through the Life Choices Academy YouthCode programme/project. My development journey has grown from HTML, CSS and JavaScript into full-stack web development with Vue, Node/Express, MySQL, PostgreSQL, Python, Flask, REST APIs, web scraping, payment integrations and cloud deployment. I learn by building, researching difficult concepts and turning what I learn into working projects.",
     currentObjective: "Explore new and creative ways for users to interact with web applications while developing a distinctive approach, perspective and identity as a developer.",
-    interests: ["Full-Stack Development", "Vue.js", "Product Design", "Payment Systems", "Cloud Deployment", "Interactive Web", "Three.js"],
-    learning: ["Advanced Three.js / R3F", "System Design", "Cloud Deployment", "Backend Architecture"],
+    interests: ["Backend Development", "Backend Architecture", "APIs & Integrations", "Databases & Data Systems", "Full-Stack Development", "Interactive Web Experiences", "Creative UI/UX", "Cloud Deployment"],
+    learning: ["Advanced Three.js / R3F", "Interaction Design", "Web Animation & Motion", "Creative Frontend Architecture", "System Design", "Backend Architecture"],
     goals: ["Build products people can actually use", "Master full-stack architecture", "Build reliable payment integrations", "Create more advanced interactive web experiences"],
     lessons: "Real projects taught me that development is as much about researching, debugging and connecting systems as it is about writing code."
   },
@@ -159,8 +159,14 @@ export const portfolio = {
     },
     {
       year: "OCT 2026",
+      title: "Exploring identity through interactive web development",
+      note: "As my technical foundation has grown, my focus has started shifting beyond simply learning new technologies. I am exploring new and creative ways for users to interact with web applications, experimenting with motion, 3D, interface design and unconventional presentation. The goal is not only to build functional applications, but to develop a distinct perspective and identity as a developer."
+    },
+    {
+      year: "OCT 2026",
       title: "Portfolio — turning the work into a case file",
       note: "03–05 October — rebuilt the portfolio around the detective-folder concept, bringing the projects together with live previews, a technology-to-project map, persistent evidence selection and a chronological development journey."
     }
+
   ]
 };
