@@ -1,10 +1,10 @@
 <template>
   <div class="skills-file">
-    <div class="doc-header"><span class="file-no">FILE 04 — EVIDENCE TAGS</span><h2>SKILLS / TECHNOLOGY MAP</h2></div>
+    <div class="doc-header"><span class="file-no">FILE 05 — EVIDENCE TAGS</span><h2>SKILLS / TECHNOLOGY MAP</h2></div>
     <div class="map-wrap">
       <svg class="lines" viewBox="0 0 800 400"><path v-for="l in lines" :key="l.id" :d="l.d" :class="{active: hoverSkill===l.skill}" /></svg>
       <div class="tags-layer">
-        <div v-for="s in skills" :key="s.id" class="skill-tag" :style="positions[s.id]" @mouseenter="hoverSkill=s.id" @mouseleave="hoverSkill=null" @click="$emit('go', s.files[0]==='01'?'profile': s.files[0]==='02'?'stockwell':'voyabite')">
+        <div v-for="s in skills" :key="s.id" class="skill-tag" :style="positions[s.id]" @mouseenter="hoverSkill=s.id" @mouseleave="hoverSkill=null" @click="$emit('go', s.files[0]==='01'?'profile': s.files[0]==='02'?'stockwell': s.files[0]==='03'?'moderntechhr': s.files[0]==='04'?'lightningnews':'skills')">
           <div class="tag-top">{{ s.name }}</div><div class="tag-bottom">{{ s.level }} • FILES: {{ s.files.join(', ') }}</div>
         </div>
         <div v-for="f in files" :key="f.id" class="file-node" :style="filePos[f.id]">[ {{ f.label }} ]</div>
@@ -23,10 +23,13 @@ const props = defineProps({ skills: Array, files: Array })
 defineEmits(['go'])
 const hoverSkill = ref(null)
 const positions = {
-  vue:{left:'10%',top:'18%'}, js:{left:'42%',top:'8%'}, payfast:{left:'68%',top:'20%'}, node:{left:'18%',top:'58%'}, firebase:{left:'50%',top:'62%'}, three:{left:'75%',top:'58%'}
+  js:{left:'8%',top:'12%'}, htmlcss:{left:'35%',top:'7%'}, vue:{left:'66%',top:'13%'},
+  node:{left:'16%',top:'43%'}, mysql:{left:'43%',top:'38%'}, payfast:{left:'70%',top:'43%'},
+  chartjs:{left:'28%',top:'69%'}, scraping:{left:'63%',top:'68%'}
 }
 const filePos = {
-  profile:{left:'5%',top:'88%'}, stockwell:{left:'35%',top:'88%'}, voyabite:{left:'62%',top:'88%'}, skills:{left:'85%',top:'88%'}
+  profile:{left:'8%',top:'88%'}, stockwell:{left:'32%',top:'88%'},
+  moderntechhr:{left:'58%',top:'88%'}, lightningnews:{left:'84%',top:'88%'}
 }
 const activeSkill = computed(()=> props.skills.find(s=>s.id===hoverSkill.value))
 const lines = computed(()=>{
