@@ -77,17 +77,21 @@ const positions = {
   payfast:{left:'72%',top:'42%'},
   chartjs:{left:'24%',top:'69%'},
   scraping:{left:'55%',top:'69%'},
-  python:{left:'76%',top:'69%'}
+  python:{left:'76%',top:'58%'},
+  flask:{left:'8%',top:'78%'},
+  postgresql:{left:'36%',top:'78%'},
+  render:{left:'66%',top:'78%'}
 }
 
 const filePos = {
   stockwell:{left:'28%',top:'88%'},
   moderntechhr:{left:'58%',top:'88%'},
-  lightningnews:{left:'88%',top:'88%'}
+  lightningnews:{left:'88%',top:'94%'},
+  budgettracker:{left:'43%',top:'94%'}
 }
 
 const projectFiles = computed(() =>
-  (props.files || []).filter(f => ['stockwell', 'moderntechhr', 'lightningnews'].includes(f.id))
+  (props.files || []).filter(f => ['stockwell', 'moderntechhr', 'lightningnews', 'budgettracker'].includes(f.id))
 )
 
 const activeSkill = computed(() =>
@@ -101,7 +105,8 @@ const lines = computed(() => {
   const fileMap = {
     '02': 'stockwell',
     '03': 'moderntechhr',
-    '04': 'lightningnews'
+    '04': 'lightningnews',
+    '05': 'budgettracker'
   }
 
   ;(props.skills || []).forEach(skill => {
