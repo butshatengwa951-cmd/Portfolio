@@ -1,6 +1,6 @@
 <template>
   <div class="contact-file">
-    <div class="doc-header"><span class="file-no">FILE 07 — REQUEST FORM BT-C</span><h2>CONTACT / COLLABORATION REQUEST</h2></div>
+    <div class="doc-header"><span class="file-no">FILE 08 — REQUEST FORM BT-C</span><h2>CONTACT / COLLABORATION REQUEST</h2></div>
     <form class="form-paper" @submit.prevent="submitRequest">
       <div class="form-row"><label>REQUEST TYPE</label><span>COLLABORATION • FREELANCE • FULL-TIME</span></div>
       <div class="form-row"><label>FILE REF</label><span>BT-002 — RESPONSE REQUIRED</span></div>
