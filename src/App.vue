@@ -158,6 +158,11 @@
                 key="lightningnews"
                 :project="portfolio.projects.lightningnews"
               />
+              <BudgetTrackerFile
+                v-else-if="activeFile === 'budgettracker'"
+                key="budgettracker"
+                :project="portfolio.projects.budgettracker"
+              />
               <SkillsFile
                 v-else-if="activeFile === 'skills'"
                 key="skills"
@@ -218,6 +223,7 @@ import ProfileFile from './components/ProfileFile.vue'
 import StockwellFile from './components/StockwellFile.vue'
 import ModerntechHRFile from './components/ModerntechHRFile.vue'
 import LightningNewsFile from './components/LightningNewsFile.vue'
+import BudgetTrackerFile from './components/BudgetTrackerFile.vue'
 import SkillsFile from './components/SkillsFile.vue'
 import JourneyFile from './components/JourneyFile.vue'
 import ContactFile from './components/ContactFile.vue'
