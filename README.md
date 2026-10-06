@@ -277,7 +277,3 @@ The generated `dist/` directory can be deployed to a static hosting provider suc
 This portfolio is intentionally more than a list of projects.
 
 It is an attempt to turn the development process itself into an interactive experience — combining software development, interface design, storytelling and experimentation.
-
-**CASE 002 — EST. 2026**
-
-**BUTSHA TENGWA**
