@@ -73,8 +73,6 @@ Key areas:
 - PostgreSQL persistence
 - Render deployment
 
-Live project: https://budget-tracker-frontend-jf66.onrender.com
-
 ## Technology
 
 The portfolio itself uses:
