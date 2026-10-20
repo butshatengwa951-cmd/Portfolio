@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { ArrowUpRight, X } from 'lucide-vue-next'
 
 type ProjectId = 'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker'
 type SkillId = 'js' | 'htmlcss' | 'vue' | 'node' | 'mysql' | 'payfast' | 'chartjs' | 'scraping' | 'threejs' | 'python' | 'flask' | 'postgresql' | 'render'
 interface ProjectItem { id: ProjectId; file: string; name: string; description: string }
 interface SkillItem { id: SkillId; name: string; category: string; projects: ProjectId[]; related: string[]; x: number; y: number }
+
+const props = defineProps<{ focusProject: ProjectId | null; focusVersion: number }>()
 
 const technologies: SkillItem[] = [
   { id:'js', name:'JAVASCRIPT', category:'LANGUAGE', projects:['stockwell','moderntechhr','lightningnews','budgettracker'], related:['ES6+','DOM','Async','Event handling'], x:350,y:43 },
@@ -33,6 +35,12 @@ const positions: Record<ProjectId,{x:number;y:number}> = {
 }
 const selectedSkill = ref<SkillId|null>(null)
 const selectedProject = ref<ProjectId|null>(null)
+watch(() => props.focusVersion, () => {
+  if (props.focusProject) {
+    selectedProject.value = props.focusProject
+    selectedSkill.value = null
+  }
+})
 const activeSkill = computed(()=>technologies.find(item=>item.id===selectedSkill.value) ?? null)
 const activeProject = computed(()=>projectItems.find(item=>item.id===selectedProject.value) ?? null)
 const activeProjectSkills = computed(()=>selectedProject.value ? technologies.filter(item=>item.projects.includes(selectedProject.value as ProjectId)) : [])

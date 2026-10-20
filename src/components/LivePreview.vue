@@ -13,7 +13,7 @@ defineProps<{ title: string; url: string; number: string }>()
       <iframe :src="url" :title="title + ' live website preview'" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="clipboard-read; clipboard-write"></iframe>
     </div>
     <div class="preview-foot">
-      <span>LIVE EMBED · INTERACT DIRECTLY</span>
+      <span>EMBED PREVIEW · OPEN IF BLOCKED</span>
       <a :href="url" target="_blank" rel="noreferrer">OPEN SITE ↗</a>
     </div>
     <span class="preview-edge-number">{{ number }} / LIVE</span>

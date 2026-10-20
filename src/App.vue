@@ -7,6 +7,8 @@ import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight,
 const mobileMenuOpen = ref(false)
 const activeSection = ref('home')
 const reducedMotion = ref(false)
+const skillsMapProject = ref<'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker' | null>(null)
+const skillsMapFocusVersion = ref(0)
 const year = new Date().getFullYear()
 
 const projects = [
@@ -87,7 +89,10 @@ function closeMenu() {
   mobileMenuOpen.value = false
 }
 
-function traceSkills() {
+function traceSkills(projectVisual: string) {
+  const idByVisual: Record<string, 'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker'> = { stockwell: 'stockwell', hr: 'moderntechhr', news: 'lightningnews', budget: 'budgettracker' }
+  skillsMapProject.value = idByVisual[projectVisual] ?? null
+  skillsMapFocusVersion.value += 1
   document.getElementById('skills')?.scrollIntoView({ behavior: reducedMotion.value ? 'auto' : 'smooth' })
 }
 </script>
@@ -191,14 +196,14 @@ function traceSkills() {
               <div class="project-links">
                 <a v-if="project.link" :href="project.link" target="_blank" rel="noreferrer">Live project <MoveUpRight :size="14" /></a>
                 <a v-if="project.repo" :href="project.repo" target="_blank" rel="noreferrer">Source & docs <Github :size="14" /></a>
-                <button class="map-project-link" type="button" @click="traceSkills">Trace its stack <ArrowRight :size="14" /></button>
+                <button class="map-project-link" type="button" @click="traceSkills(project.visual)">Trace its stack <ArrowRight :size="14" /></button>
               </div>
             </div>
           </article>
         </div>
       </section>
 
-      <SkillsConstellation />
+      <SkillsConstellation :focus-project="skillsMapProject" :focus-version="skillsMapFocusVersion" />
 
       <section id="approach" class="approach-section section-wrap">
         <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>UNDER THE SURFACE</span><span class="kicker-tail">HOW THE PIECES CONNECT</span></div>
