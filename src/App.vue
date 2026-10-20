@@ -20,80 +20,8 @@ const profile = {
   goals: ["Build products people can actually use","Master full-stack architecture","Build reliable payment integrations","Create more advanced interactive web experiences"],
   lessons: "Real projects taught me that development is as much about researching, debugging and connecting systems as it is about writing code."
 }
-const notes = [
-  { label:"LESSON — JAVASCRIPT", title:"The happy path is not enough", text:"Early JavaScript taught me that getting the happy path working is not enough. I struggled with validation and edge cases. I improved by checking inputs before calculating and testing more than one outcome." },
-  { label:"LESSON — SCOPE", title:"Where data lives", text:"Scope was a real lesson. I learned that a variable can only be used where it is actually available. Now I think about where data lives, who can access it and how information should move between functions." },
-  { label:"GIT NOTE", title:"Version control is a workflow", text:"Recipe Finder was where Git stopped being just commands and became part of development. Remote history, branch naming, upstream branches and merge conflicts showed me that version control problems need to be understood, not ignored." },
-  { label:"LESSON — FRONTEND", title:"DOM + interaction", text:"I moved from simple console exercises into buttons, prompts, event listeners, dynamic cards and timed UI behaviour. That progression helped me understand that JavaScript is not only about calculations — it is about controlling an interface." },
-  { label:"DATABASE NOTE", title:"Data supports the workflow", text:"MySQL started with tables, keys, relationships and queries. A database is not just somewhere to store data. It has to connect correctly to backend logic, respect relationships and support the application's workflows." },
-  { label:"LESSON — DEPLOYMENT", title:"ModernTechHR", text:"The hardest part was learning how separate frontend and backend repositories could be developed together, deployed separately and still communicate with a MySQL database in the cloud." },
-  { label:"LIGHTNING NEWS", title:"Research is part of the process", text:"Web scraping and Three.js were new concepts for our team. We overcame that gap through in-depth research, then applied what we learned with Python, Flask, Requests, BeautifulSoup and lxml." },
-  { label:"LESSON — FULL-STACK DEPLOYMENT", title:"Budget Tracker", text:"Rebuilding the original Python toolkit into a deployed Vue + Flask application taught me how frontend, API and database layers have to work together. PostgreSQL persistence, budget-period rollover, timezone handling and Render deployment turned a local tool into a real full-stack product." },
-  { label:"LESSON — PAYMENTS", title:"StockWell", text:"PayFast was the reminder that integrations can fail even when the request appears successful. Logging the raw request, checking signatures, understanding ITN behaviour and adding transaction protection taught me to debug the full system instead of trusting a 200 response." }
-]
 const year = new Date().getFullYear()
-const journey = [
-  {
-    "date": "MAY 2026",
-    "title": "HTML, CSS + JavaScript foundations",
-    "note": "05–28 May — started with HTML/CSS structure and styling, then moved into JavaScript fundamentals, functions, DOM manipulation and event-driven browser behaviour through the Week 3–4 exercise work."
-  },
-  {
-    "date": "MAY–JUN 2026",
-    "title": "Interactive browser projects",
-    "note": "19 May–23 June — applied the fundamentals to practical projects including the Python Budget Tracker, Randomizer, Recipe Finder, Cooking Masterclass, catalogue work and a Food Fest landing page. Learned to turn isolated exercises into complete user-facing experiences."
-  },
-  {
-    "date": "JUL 2026",
-    "title": "ModerntechHR — building a real front-end system",
-    "note": "July — developed the ModerntechHR HR platform and learned to structure multi-page interfaces around real workflows: employee management, payroll calculations, search/filtering, modal interactions, responsive layouts, dynamic DOM updates and Chart.js data visualisation."
-  },
-  {
-    "date": "JUL–AUG 2026",
-    "title": "PHP + backend foundations",
-    "note": "30 July–11 August — progressed through the PHP exercise series while strengthening server-side thinking, form handling and application logic. This built the bridge from browser-only JavaScript work toward backend development."
-  },
-  {
-    "date": "AUG 2026",
-    "title": "Lightning News — Python web scraping",
-    "note": "20 July–07 August — with Team Charlie, learned Python web scraping and backend API development using Flask, Requests, BeautifulSoup, lxml and RSS/XML parsing. Built source-specific and generic scrapers, extracted article metadata, saved raw JSON, cleaned datasets and exposed scraping/search/statistics functionality through API routes and tests."
-  },
-  {
-    "date": "AUG–SEP 2026",
-    "title": "Node.js + full-stack architecture",
-    "note": "25 August–01 September — started the Module 3 e-commerce work and progressed through the Node.js exercise series. Learned how frontend applications communicate with REST APIs, how backend logic is structured, and how databases, authentication and server-side business rules fit together."
-  },
-  {
-    "date": "SEP 2026",
-    "title": "Vue becomes the framework",
-    "note": "01 September — moved into Vue and component-based application development, learning reactive state, reusable components, routing and structured frontend architecture."
-  },
-  {
-    "date": "SEP 2026",
-    "title": "StockWell — first serious full-stack build",
-    "note": "17–18 September — turned the accumulated skills into StockWell: Vue 3 + Node/Express + MySQL + PayFast, with authentication, supplier comparison, cart, proposals, majority voting, governed wallet payments, orders and delivery tracking. Learned transactional thinking, role-based authorization and payment/webhook handling."
-  },
-  {
-    "date": "SEP–OCT 2026",
-    "title": "Interactive portfolio experiments",
-    "note": "21 September–01 October — explored the interactive 3D portfolio, isometric interfaces, animation, interaction patterns and embedded project previews before evolving the presentation into the current portfolio system."
-  },
-  {
-    "date": "OCT 2026",
-    "title": "Budget Tracker — full-stack persistence + deployment",
-    "note": "02–05 October — rebuilt the original Python budget/productivity toolkit as a Vue 3 + Flask application backed by PostgreSQL. Added persistent transactions, configurable budget cycles, budget history, task management and study planning, then deployed the frontend and API through Render with a cloud-hosted database."
-  },
-  {
-    "date": "OCT 2026",
-    "title": "Exploring identity through interactive web development",
-    "note": "As my technical foundation has grown, my focus has started shifting beyond simply learning new technologies. I am exploring new and creative ways for users to interact with web applications, experimenting with motion, 3D, interface design and unconventional presentation. The goal is not only to build functional applications, but to develop a distinct perspective and identity as a developer."
-  },
-  {
-    "date": "OCT 2026",
-    "title": "Portfolio — turning the work into a case file",
-    "note": "03–05 October — rebuilt the portfolio around the detective-folder concept, bringing the projects together with live previews, a technology-to-project map, persistent evidence selection and a chronological development journey."
-  }
-]
+const journey = [{"date":"MAY 2026","title":"HTML, CSS + JavaScript foundations","note":"05–28 May — started with HTML/CSS structure and styling, then moved into JavaScript fundamentals, functions, DOM manipulation and event-driven browser behaviour through the Week 3–4 exercise work."},{"date":"MAY–JUN 2026","title":"Interactive browser projects","note":"19 May–23 June — applied the fundamentals to practical projects including the Python Budget Tracker, Randomizer, Recipe Finder, Cooking Masterclass, catalogue work and a Food Fest landing page. Learned to turn isolated exercises into complete user-facing experiences."},{"date":"JUL 2026","title":"ModerntechHR — building a real front-end system","note":"July — developed the ModerntechHR HR platform and learned to structure multi-page interfaces around real workflows: employee management, payroll calculations, search/filtering, modal interactions, responsive layouts, dynamic DOM updates and Chart.js data visualisation."},{"date":"JUL–AUG 2026","title":"PHP + backend foundations","note":"30 July–11 August — progressed through the PHP exercise series while strengthening server-side thinking, form handling and application logic. This built the bridge from browser-only JavaScript work toward backend development."},{"date":"AUG 2026","title":"Lightning News — Python web scraping","note":"20 July–07 August — with Team Charlie, learned Python web scraping and backend API development using Flask, Requests, BeautifulSoup, lxml and RSS/XML parsing. Built source-specific and generic scrapers, extracted article metadata, saved raw JSON, cleaned datasets and exposed scraping/search/statistics functionality through API routes and tests."},{"date":"AUG–SEP 2026","title":"Node.js + full-stack architecture","note":"25 August–01 September — started the Module 3 e-commerce work and progressed through the Node.js exercise series. Learned how frontend applications communicate with REST APIs, how backend logic is structured, and how databases, authentication and server-side business rules fit together."},{"date":"SEP 2026","title":"Vue becomes the framework","note":"01 September — moved into Vue and component-based application development, learning reactive state, reusable components, routing and structured frontend architecture."},{"date":"SEP 2026","title":"StockWell — first serious full-stack build","note":"17–18 September — turned the accumulated skills into StockWell: Vue 3 + Node/Express + MySQL + PayFast, with authentication, supplier comparison, cart, proposals, majority voting, governed wallet payments, orders and delivery tracking. Learned transactional thinking, role-based authorization and payment/webhook handling."},{"date":"SEP–OCT 2026","title":"Interactive portfolio experiments","note":"21 September–01 October — explored the interactive 3D portfolio, isometric interfaces, animation, interaction patterns and embedded project previews before evolving the presentation into the current portfolio system."},{"date":"OCT 2026","title":"Budget Tracker — full-stack persistence + deployment","note":"02–05 October — rebuilt the original Python budget/productivity toolkit as a Vue 3 + Flask application backed by PostgreSQL. Added persistent transactions, configurable budget cycles, budget history, task management and study planning, then deployed the frontend and API through Render with a cloud-hosted database."},{"date":"OCT 2026","title":"Exploring identity through interactive web development","note":"As my technical foundation has grown, my focus has started shifting beyond simply learning new technologies. I am exploring new and creative ways for users to interact with web applications, experimenting with motion, 3D, interface design and unconventional presentation. The goal is not only to build functional applications, but to develop a distinct perspective and identity as a developer."},{"date":"OCT 2026","title":"Portfolio — turning the work into a case file","note":"03–05 October — rebuilt the portfolio around the detective-folder concept, bringing the projects together with live previews, a technology-to-project map, persistent evidence selection and a chronological development journey."}]
 
 const theme = ref<'dark' | 'light'>('dark')
 
