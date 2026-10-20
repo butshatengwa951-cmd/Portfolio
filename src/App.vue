@@ -350,6 +350,13 @@ function traceSkills(projectVisual: string) {
             <p>My focus is full-stack development, with particular interest in backend systems, databases and the decisions that make digital products dependable. I enjoy making the technical structure and the user experience feel like parts of the same whole.</p>
             <p>This portfolio is a record of that practice: projects built, lessons learned, and the next things I want to understand more deeply.</p>
             <div class="about-signature"><span class="signature-line"></span><span>BUTSHA TENGWA <small>DEVELOPER / CONTINUOUSLY LEARNING</small></span></div>
+            <div class="profile-extra">
+              <p>{{ profile.background }}</p>
+              <p><strong>OBJECTIVE</strong> {{ profile.objective }}</p>
+              <h3>INTERESTS / FOCUS</h3><div class="context-tags"><span v-for="item in profile.interests" :key="item">{{ item }}</span></div>
+              <h3>LEARNING LOG</h3><div class="context-tags"><span v-for="item in profile.learning" :key="item">{{ item }}</span></div>
+              <h3>GOALS</h3><ul><li v-for="item in profile.goals" :key="item">{{ item }}</li></ul>
+            </div>
           </div>
         </div>
       </section>
