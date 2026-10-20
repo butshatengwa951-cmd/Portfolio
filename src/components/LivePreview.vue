@@ -24,15 +24,15 @@ const previewLoaded = ref(false)
       <div v-else class="preview-placeholder">
         <span class="preview-placeholder-kicker">PROJECT FILE / {{ number }}</span>
         <strong>{{ title }}</strong>
-        <p>Load the live application here when you want to explore it.</p>
-        <button class="preview-load-button" type="button" @click="previewLoaded = true">
+        <p>{{ url ? "Load the live application here when you want to explore it." : "A public live URL is not currently available for this project." }}</p>
+        <button v-if="url" class="preview-load-button" type="button" @click="previewLoaded = true">
           LOAD LIVE PREVIEW <span aria-hidden="true">↗</span>
         </button>
       </div>
     </div>
     <div class="preview-foot">
-      <span>{{ previewLoaded ? 'LIVE PREVIEW · EXTERNAL SITE' : 'PREVIEW LOADS ON REQUEST' }}</span>
-      <a :href="url" target="_blank" rel="noreferrer">OPEN SITE ↗</a>
+      <span>{{ previewLoaded ? 'LIVE PREVIEW · EXTERNAL SITE' : (url ? 'PREVIEW LOADS ON REQUEST' : 'LIVE PREVIEW UNAVAILABLE') }}</span>
+      <a v-if="url" :href="url" target="_blank" rel="noreferrer">OPEN SITE ↗</a><span v-else>NO PUBLIC URL LISTED</span>
     </div>
     <span class="preview-edge-number">{{ number }} / LIVE</span>
   </div>
