@@ -10,6 +10,44 @@ const reducedMotion = ref(false)
 const skillsMapProject = ref<'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker' | null>(null)
 const skillsMapFocusVersion = ref(0)
 const year = new Date().getFullYear()
+const journey = [
+  {
+    "date": "JAN 2023",
+    "title": "Started Vue",
+    "note": "First component: it rendered. I celebrated too much.",
+    "margin": "docs → confusion → docs again"
+  },
+  {
+    "date": "JUN 2023",
+    "title": "Freelance store",
+    "note": "Client paid R2k for landing. I learned pricing.",
+    "margin": "charging for code"
+  },
+  {
+    "date": "NOV 2023",
+    "title": "PayFast integration hell",
+    "note": "ITN docs lie. Webhooks don't wait.",
+    "margin": "idempotency key!"
+  },
+  {
+    "date": "FEB 2024",
+    "title": "StockWell live",
+    "note": "First real money. R89 jacket sold at 2am.",
+    "margin": "it works!"
+  },
+  {
+    "date": "MAY 2024",
+    "title": "Voya Bite flow",
+    "note": "Real-time orders feel like magic when they work.",
+    "margin": "optimistic UI"
+  },
+  {
+    "date": "NOW",
+    "title": "File 001 open",
+    "note": "Portfolio as object, not gallery.",
+    "margin": "everything inside file →"
+  }
+]
 const theme = ref<'dark' | 'light'>('dark')
 
 const projects = [
@@ -118,6 +156,7 @@ function traceSkills(projectVisual: string) {
       <nav class="main-nav" :class="{ 'nav-open': mobileMenuOpen }" aria-label="Main navigation">
         <a href="#work" :class="{ active: activeSection === 'work' }" @click="closeMenu">Selected work</a>
         <a href="#skills" :class="{ active: activeSection === 'skills' }" @click="closeMenu">Skills map</a>
+        <a href="#journey" :class="{ active: activeSection === 'journey' }" @click="closeMenu">Journey</a>
         <a href="#about" :class="{ active: activeSection === 'about' }" @click="closeMenu">About</a>
         <a class="nav-contact" href="#contact" @click="closeMenu">Let's connect <ArrowUpRight :size="14" /></a>
         <button
@@ -207,8 +246,27 @@ function traceSkills(projectVisual: string) {
 
       <SkillsConstellation :focus-project="skillsMapProject" :focus-version="skillsMapFocusVersion" />
 
+      <section id="journey" class="journey-section section-wrap">
+        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>DEVELOPMENT JOURNEY</span><span class="kicker-tail">LESSONS IN MOTION</span></div>
+        <div class="section-intro journey-intro">
+          <h2>Every version<br/>leaves a <em>trace.</em></h2>
+          <p>A chronological record of the projects, problems and small breakthroughs that shaped the work.</p>
+        </div>
+        <div class="journey-timeline">
+          <div v-for="(item, index) in journey" :key="item.date" class="journey-entry">
+            <div class="journey-marker"><span>{{ String(index + 1).padStart(2, '0') }}</span></div>
+            <div class="journey-date">{{ item.date }}</div>
+            <div class="journey-entry-body">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.note }}</p>
+              <span class="journey-margin">{{ item.margin }}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="about" class="about-section section-wrap">
-        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
+        <div class="section-kicker"><span>04</span><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
         <div class="about-layout">
           <div class="about-heading"><h2>Progress isn't<br/>always <em>linear.</em></h2><div class="about-mark">BT<span>—</span>001</div></div>
           <div class="about-copy">
@@ -222,7 +280,7 @@ function traceSkills(projectVisual: string) {
 
       <section id="contact" class="contact-section section-wrap">
         <div class="contact-art" aria-hidden="true"><div class="contact-glow"></div><div class="contact-ripple ripple-one"></div><div class="contact-ripple ripple-two"></div><div class="contact-ripple ripple-three"></div></div>
-        <div class="section-kicker"><span>04</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
+        <div class="section-kicker"><span>05</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
         <div class="contact-content">
           <span class="contact-eyebrow"><Sparkles :size="14" /> THERE'S ALWAYS ANOTHER WAY FORWARD</span>
           <h2>Let's make<br/><em>something meaningful.</em></h2>
