@@ -82,7 +82,7 @@ function projectFile(id:ProjectId){return projectItems.find(item=>item.id===id)?
           <button v-for="item in projectItems" :key="item.id" type="button" class="project-node" :style="{left:(positions[item.id].x/10)+'%',top:(positions[item.id].y/6)+'%'}" :class="{'is-selected':selectedProject===item.id,'is-dimmed':projectDimmed(item.id)}" :aria-pressed="selectedProject===item.id" @click="toggleProject(item.id)">
             <span class="project-node-number">FILE {{item.file}}</span><span class="project-node-name">{{item.name}}</span><ArrowUpRight :size="13"/>
           </button>
-          <div class="map-core-mark" aria-hidden="true"><span>BT</span><i>∿</i></div>
+          <div class="map-core-mark" aria-hidden="true"><i>∿</i></div>
         </div>
       </div>
       <div class="map-bottom-line"><span>FIG. 02 — A MAP OF THE WORK</span><span>LINES INDICATE PROJECT USE, NOT PROFICIENCY</span></div>

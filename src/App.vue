@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import LivePreview from './components/LivePreview.vue'
 import SkillsConstellation from './components/SkillsConstellation.vue'
-import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Layers3, Database, GitBranch, Code2, Sparkles } from 'lucide-vue-next'
+import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles } from 'lucide-vue-next'
 
 const mobileMenuOpen = ref(false)
 const activeSection = ref('home')
@@ -64,13 +64,6 @@ const projects = [
     repo: '',
     visual: 'hr',
   },
-]
-
-const skills = [
-  { name: 'Backend & APIs', detail: 'Application logic, routing, validation and service workflows', icon: GitBranch },
-  { name: 'Databases', detail: 'Relational data, persistence and SQL-backed applications', icon: Database },
-  { name: 'Full-stack delivery', detail: 'Connecting usable interfaces to reliable application behaviour', icon: Layers3 },
-  { name: 'Data workflows', detail: 'Extraction, transformation and presenting useful information', icon: Code2 },
 ]
 
 let observer: IntersectionObserver | undefined
@@ -136,7 +129,6 @@ function traceSkills(projectVisual: string) {
       <nav class="main-nav" :class="{ 'nav-open': mobileMenuOpen }" aria-label="Main navigation">
         <a href="#work" :class="{ active: activeSection === 'work' }" @click="closeMenu">Selected work</a>
         <a href="#skills" :class="{ active: activeSection === 'skills' }" @click="closeMenu">Skills map</a>
-        <a href="#approach" :class="{ active: activeSection === 'approach' }" @click="closeMenu">Engineering</a>
         <a href="#about" :class="{ active: activeSection === 'about' }" @click="closeMenu">About</a>
         <a class="nav-contact" href="#contact" @click="closeMenu">Let's connect <ArrowUpRight :size="14" /></a>
       </nav>
@@ -155,8 +147,18 @@ function traceSkills(projectVisual: string) {
           </div>
           <div class="hero-footnote"><span>AN ONGOING PRACTICE</span><span class="footnote-line"></span><span>BUILT BY MAKING</span></div>
         </div>
-        <div class="hero-art" aria-label="Abstract layered violet current artwork">
+        <div class="hero-art" aria-label="Textured abstract artwork inspired by silk, shadow and pearl embroidery">
           <div class="art-halo"></div>
+          <svg class="embroidered-thread" viewBox="0 0 500 500" aria-hidden="true">
+            <path class="thread-shadow" d="M62 355 C108 286 100 206 169 182 S266 259 307 189 S360 113 438 139" />
+            <path class="thread-path" d="M62 355 C108 286 100 206 169 182 S266 259 307 189 S360 113 438 139" />
+            <path class="thread-detail" d="M74 370 C118 300 113 225 177 200 S271 275 318 205 S371 128 446 153" />
+            <g class="pearl-set">
+              <circle cx="62" cy="355" r="5" /><circle cx="169" cy="182" r="4" />
+              <circle cx="238" cy="226" r="3" /><circle cx="307" cy="189" r="5" />
+              <circle cx="371" cy="128" r="3.5" /><circle cx="438" cy="139" r="5.5" />
+            </g>
+          </svg>
           <div class="art-disc"></div>
           <div class="art-ribbon ribbon-one"></div>
           <div class="art-ribbon ribbon-two"></div>
@@ -169,17 +171,16 @@ function traceSkills(projectVisual: string) {
           <div class="art-node node-one"></div>
           <div class="art-node node-two"></div>
           <div class="art-node node-three"></div>
-          <span class="art-label label-top">FIG. 01 — CURRENT / CONTINUITY</span>
-          <span class="art-label label-bottom">LIGHT FINDS A WAY THROUGH</span>
+          <span class="art-label label-top">FIG. 01 — THREAD / TENSION</span>
+          <span class="art-label label-bottom">A SOFTER KIND OF SIGNAL</span>
           <span class="art-coord">STUDY / 001</span>
         </div>
         <div class="hero-side-note">CURIOUS BY NATURE<br/>BUILT THROUGH PRACTICE</div>
         <a class="scroll-cue" href="#work"><span class="scroll-line"></span><span>FOLLOW THE CURRENT</span><ArrowDownRight :size="13" /></a>
       </section>
-      <div class="marquee-band" aria-hidden="true"><div class="marquee-track"><span>BACKEND THINKING</span><i>✳</i><span>DATA WITH PURPOSE</span><i>✳</i><span>INTERFACES THAT INVITE</span><i>✳</i><span>SYSTEMS IN MOTION</span><i>✳</i><span>BACKEND THINKING</span><i>✳</i><span>DATA WITH PURPOSE</span><i>✳</i><span>INTERFACES THAT INVITE</span><i>✳</i><span>SYSTEMS IN MOTION</span><i>✳</i></div></div>
 
       <section id="work" class="work-section section-wrap">
-        <div class="section-kicker"><span>01</span><span class="kicker-rule"></span><span>SELECTED WORK</span><span class="kicker-tail">SYSTEMS IN MOTION</span></div>
+        <div class="section-kicker"><span>01</span><span class="kicker-rule"></span><span>SELECTED WORK</span><span class="kicker-tail">SELECTED PROJECTS</span></div>
         <div class="section-intro">
           <h2>Built with intent.<br/><em>Made to matter.</em></h2>
           <p>A selection of projects exploring how interfaces, application logic and structured data work together to solve real problems.</p>
@@ -205,34 +206,8 @@ function traceSkills(projectVisual: string) {
 
       <SkillsConstellation :focus-project="skillsMapProject" :focus-version="skillsMapFocusVersion" />
 
-      <section id="approach" class="approach-section section-wrap">
-        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>UNDER THE SURFACE</span><span class="kicker-tail">HOW THE PIECES CONNECT</span></div>
-        <div class="section-intro">
-          <h2>Under the surface,<br/><em>everything connects.</em></h2>
-          <p>I’m most interested in the decisions that make an application useful: how data is modelled, how rules are enforced and how separate parts become one coherent experience.</p>
-        </div>
-        <div class="system-panel">
-          <div class="system-panel-top"><span>CONCEPTUAL SYSTEM MAP</span><span>01 — REQUEST TO RESPONSE</span></div>
-          <div class="system-map">
-            <div class="system-node"><span class="node-symbol"><Code2 :size="19" /></span><small>01 / EXPERIENCE</small><b>Interface</b><span>Vue · TypeScript</span></div>
-            <div class="system-connector"><span></span><i></i><span></span></div>
-            <div class="system-node"><span class="node-symbol"><GitBranch :size="19" /></span><small>02 / LOGIC</small><b>Application</b><span>Routes · Rules · APIs</span></div>
-            <div class="system-connector"><span></span><i></i><span></span></div>
-            <div class="system-node"><span class="node-symbol"><Database :size="19" /></span><small>03 / PERSISTENCE</small><b>Data layer</b><span>Models · Queries</span></div>
-          </div>
-          <div class="system-panel-bottom"><span class="signal"></span>Illustrative architecture — individual project implementations vary.</div>
-        </div>
-        <div class="skill-grid">
-          <article v-for="(skill, index) in skills" :key="skill.name" class="skill-item">
-            <div class="skill-top"><component :is="skill.icon" :size="19" /><span>0{{ index + 1 }}</span></div>
-            <h3>{{ skill.name }}</h3>
-            <p>{{ skill.detail }}</p>
-          </article>
-        </div>
-      </section>
-
       <section id="about" class="about-section section-wrap">
-        <div class="section-kicker"><span>04</span><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
+        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
         <div class="about-layout">
           <div class="about-heading"><h2>Progress isn't<br/>always <em>linear.</em></h2><div class="about-mark">BT<span>—</span>001</div></div>
           <div class="about-copy">
@@ -246,7 +221,7 @@ function traceSkills(projectVisual: string) {
 
       <section id="contact" class="contact-section section-wrap">
         <div class="contact-art" aria-hidden="true"><div class="contact-glow"></div><div class="contact-ripple ripple-one"></div><div class="contact-ripple ripple-two"></div><div class="contact-ripple ripple-three"></div></div>
-        <div class="section-kicker"><span>05</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
+        <div class="section-kicker"><span>04</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
         <div class="contact-content">
           <span class="contact-eyebrow"><Sparkles :size="14" /> THERE'S ALWAYS ANOTHER WAY FORWARD</span>
           <h2>Let's make<br/><em>something meaningful.</em></h2>

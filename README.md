@@ -1,12 +1,12 @@
-# Eclipse — Butsha Tengwa Portfolio
+# Nocturne — Butsha Tengwa Portfolio
 
-A textured, atmospheric developer portfolio built with **Vue 3, TypeScript and Vite**. The visual identity uses layered aubergine and indigo, lavender light, fine grain, topographic contours and continuous flowing linework.
+A tactile, atmospheric developer portfolio built with **Vue 3, TypeScript and Vite**, drawing on the intimate tension of silk, shadow, embroidery and pearl. Blackberry ink, bruised wine, smoked mauve, old ivory and pearl-lilac light shape an art-directed space that feels whimsical yet grounded.
 
 ## Design principles
 
-- Dark and art-directed, with tactile grain and layered pigment-like gradients.
-- Continuous, restrained movement that connects the sections.
-- Backend, data and system thinking presented alongside real projects.
+- Dark and intimate, with fibre-like texture, grain, stitched linework and layered pigment-like colour.
+- Restrained organic movement, pearlescent details and softened, tactile controls.
+- Backend, data and system thinking presented through real projects and an interactive skills constellation.
 - Responsive layout, keyboard-accessible links, and reduced-motion support.
 - No portfolio backend or environment secrets required for the static site.
 
@@ -14,8 +14,8 @@ A textured, atmospheric developer portfolio built with **Vue 3, TypeScript and V
 
 - Vue 3 + TypeScript
 - Vite
-- Fraunces display typography, Outfit body text and IBM Plex Mono technical labels
-- CSS texture layers, flowing animation, live iframe previews and an interactive SVG skills constellation
+- Instrument Serif display typography, DM Sans body text and IBM Plex Mono technical labels
+- CSS textile textures and animation, an embroidered SVG hero illustration, live iframe previews and an interactive SVG skills constellation
 - Lucide icons
 
 ## Local development
@@ -54,7 +54,7 @@ Create a **Static Site** connected to this repository.
 - Keep live URLs and skills-map relationships aligned with the actual repositories.
 - Expand the ModernTechHR and Lightning News case studies with implementation details verified from code.
 
-Project visuals in this starter are original CSS illustrations, not screenshots of the actual applications. Architecture diagrams are explicitly conceptual and should be replaced or annotated per project when verified.
+Project previews embed the live applications when their hosts permit iframe embedding; use the direct-open links when a host blocks embeds. The hero artwork is an original CSS/SVG composition rather than a third-party image.
 
 ## Project links
 
