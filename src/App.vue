@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Menu, X, MoveUpRight, Layers3, Database, GitBranch, Code2, Sparkles } from 'lucide-vue-next'
+import LivePreview from './components/LivePreview.vue'
+import SkillsConstellation from './components/SkillsConstellation.vue'
+import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Layers3, Database, GitBranch, Code2, Sparkles } from 'lucide-vue-next'
 
 const mobileMenuOpen = ref(false)
 const activeSection = ref('home')
@@ -17,6 +19,7 @@ const projects = [
     detail: 'Engineering focus',
     outcome: 'Role-based workflows · Checkout and payment integration · Group decisions',
     link: 'https://stockwell-hl1e.onrender.com/',
+    preview: 'https://stockwell-hl1e.onrender.com/',
     repo: '',
     visual: 'stockwell',
   },
@@ -28,7 +31,8 @@ const projects = [
     stack: ['Python', 'Vue 3', 'Flask', 'PostgreSQL'],
     detail: 'Engineering focus',
     outcome: 'API-driven workflows · Data persistence · Finance and productivity tools',
-    link: '',
+    link: 'https://budget-tracker-frontend-jf66.onrender.com/',
+    preview: 'https://budget-tracker-frontend-jf66.onrender.com/',
     repo: 'https://github.com/butshatengwa951-cmd/Budget-Tracker-python-mini-toolkit/tree/main',
     visual: 'budget',
   },
@@ -40,7 +44,8 @@ const projects = [
     stack: ['Python', 'Flask', 'BeautifulSoup', 'Three.js'],
     detail: 'Engineering focus',
     outcome: 'Content extraction · Data processing · Search and statistics APIs',
-    link: '',
+    link: 'https://lightning-news.netlify.app/',
+    preview: 'https://lightning-news.netlify.app/',
     repo: '',
     visual: 'news',
   },
@@ -52,7 +57,8 @@ const projects = [
     stack: ['JavaScript', 'MySQL', 'Chart.js'],
     detail: 'Engineering focus',
     outcome: 'Structured records · Management workflows · Reporting',
-    link: '',
+    link: 'https://module1-project-hr.onrender.com/',
+    preview: 'https://module1-project-hr.onrender.com/',
     repo: '',
     visual: 'hr',
   },
@@ -80,11 +86,16 @@ onUnmounted(() => observer?.disconnect())
 function closeMenu() {
   mobileMenuOpen.value = false
 }
+
+function traceSkills() {
+  document.getElementById('skills')?.scrollIntoView({ behavior: reducedMotion.value ? 'auto' : 'smooth' })
+}
 </script>
 
 <template>
   <div class="site-shell" :class="{ 'reduce-motion': reducedMotion }">
     <div class="grain" aria-hidden="true"></div>
+    <div class="fibre-texture" aria-hidden="true"></div>
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
     <div class="topographic" aria-hidden="true"></div>
@@ -119,6 +130,7 @@ function closeMenu() {
       </button>
       <nav class="main-nav" :class="{ 'nav-open': mobileMenuOpen }" aria-label="Main navigation">
         <a href="#work" :class="{ active: activeSection === 'work' }" @click="closeMenu">Selected work</a>
+        <a href="#skills" :class="{ active: activeSection === 'skills' }" @click="closeMenu">Skills map</a>
         <a href="#approach" :class="{ active: activeSection === 'approach' }" @click="closeMenu">Engineering</a>
         <a href="#about" :class="{ active: activeSection === 'about' }" @click="closeMenu">About</a>
         <a class="nav-contact" href="#contact" @click="closeMenu">Let's connect <ArrowUpRight :size="14" /></a>
@@ -127,15 +139,16 @@ function closeMenu() {
 
     <main>
       <section id="home" class="hero section-wrap">
+        <div class="hero-index"><span>BT / FIELD NOTES</span><span>26°12′ S — 28°02′ E</span></div>
         <div class="hero-copy">
           <div class="eyebrow"><span class="status-light"></span> FULL-STACK DEVELOPMENT <span class="eyebrow-slash">/</span> BACKEND & DATA</div>
-          <h1>Built through<br/><em>persistence.</em><br/>Driven by possibility<span class="violet-period">.</span></h1>
+          <h1>Built through<br/><em>persistence.</em><br/><span class="hero-small-line">Driven by</span> possibility<span class="violet-period">.</span></h1>
           <p class="hero-intro">I develop full-stack applications with a focus on intuitive experiences, robust backend architecture and data-driven systems.</p>
           <div class="hero-actions">
             <a href="#work" class="button-primary">Explore the work <ArrowDownRight :size="17" /></a>
-            <a href="#approach" class="text-link">The engineering <span>↘</span></a>
+            <a href="#skills" class="text-link">Trace the connections <span>↘</span></a>
           </div>
-          <div class="hero-footnote"><span>01 / 04</span><span>AN ONGOING PRACTICE</span><span class="footnote-line"></span></div>
+          <div class="hero-footnote"><span>AN ONGOING PRACTICE</span><span class="footnote-line"></span><span>BUILT BY MAKING</span></div>
         </div>
         <div class="hero-art" aria-label="Abstract layered violet current artwork">
           <div class="art-halo"></div>
@@ -153,10 +166,12 @@ function closeMenu() {
           <div class="art-node node-three"></div>
           <span class="art-label label-top">FIG. 01 — CURRENT / CONTINUITY</span>
           <span class="art-label label-bottom">LIGHT FINDS A WAY THROUGH</span>
-          <span class="art-coord">27°S / 28°E</span>
+          <span class="art-coord">STUDY / 001</span>
         </div>
-        <a class="scroll-cue" href="#work"><span class="scroll-line"></span><span>SCROLL TO EXPLORE</span></a>
+        <div class="hero-side-note">CURIOUS BY NATURE<br/>BUILT THROUGH PRACTICE</div>
+        <a class="scroll-cue" href="#work"><span class="scroll-line"></span><span>FOLLOW THE CURRENT</span><ArrowDownRight :size="13" /></a>
       </section>
+      <div class="marquee-band" aria-hidden="true"><div class="marquee-track"><span>BACKEND THINKING</span><i>✳</i><span>DATA WITH PURPOSE</span><i>✳</i><span>INTERFACES THAT INVITE</span><i>✳</i><span>SYSTEMS IN MOTION</span><i>✳</i><span>BACKEND THINKING</span><i>✳</i><span>DATA WITH PURPOSE</span><i>✳</i><span>INTERFACES THAT INVITE</span><i>✳</i><span>SYSTEMS IN MOTION</span><i>✳</i></div></div>
 
       <section id="work" class="work-section section-wrap">
         <div class="section-kicker"><span>01</span><span class="kicker-rule"></span><span>SELECTED WORK</span><span class="kicker-tail">SYSTEMS IN MOTION</span></div>
@@ -166,31 +181,7 @@ function closeMenu() {
         </div>
         <div class="project-list">
           <article v-for="project in projects" :key="project.number" class="project-row">
-            <div class="project-visual" :class="'visual-' + project.visual">
-              <div class="visual-grain"></div>
-              <template v-if="project.visual === 'stockwell'">
-                <div class="visual-window">
-                  <div class="window-bar"><span></span><span></span><span></span><b>stockwell / overview</b></div>
-                  <div class="window-body">
-                    <div class="window-label">COMMUNITY COMMERCE</div>
-                    <div class="window-hero-line"></div><div class="window-hero-line short"></div>
-                    <div class="window-stats"><span><b>01</b><small>SUPPLIERS</small></span><span><b>02</b><small>PROPOSALS</small></span><span><b>03</b><small>ORDERS</small></span></div>
-                    <div class="window-curve"></div>
-                  </div>
-                </div>
-              </template>
-              <template v-else-if="project.visual === 'budget'">
-                <div class="budget-orbit"><div class="orbit-core">B<span>.</span></div><div class="orbit-label label-a">BUDGET</div><div class="orbit-label label-b">HISTORY</div><div class="orbit-label label-c">PLAN</div><div class="orbit-trace"></div></div>
-              </template>
-              <template v-else-if="project.visual === 'news'">
-                <div class="news-lines"><span>EXTRACT / 001</span><i></i><i></i><i class="short"></i><b>CONTENT → SIGNAL</b><i></i><i class="short"></i></div>
-                <div class="news-orb"></div>
-              </template>
-              <template v-else>
-                <div class="hr-grid"><span>PEOPLE</span><span>ATTENDANCE</span><span>REPORTS</span><div class="hr-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-              </template>
-              <span class="visual-index">{{ project.number }} / 04</span>
-            </div>
+            <LivePreview :title="project.name" :url="project.preview" :number="project.number" />
             <div class="project-copy">
               <div class="project-meta"><span>{{ project.kind }}</span><span class="project-number">{{ project.number }}</span></div>
               <h3>{{ project.name }}</h3>
@@ -200,15 +191,17 @@ function closeMenu() {
               <div class="project-links">
                 <a v-if="project.link" :href="project.link" target="_blank" rel="noreferrer">Live project <MoveUpRight :size="14" /></a>
                 <a v-if="project.repo" :href="project.repo" target="_blank" rel="noreferrer">Source & docs <Github :size="14" /></a>
-                <span v-if="!project.link && !project.repo" class="verification-note">CASE STUDY DETAILS TO BE VERIFIED</span>
+                <button class="map-project-link" type="button" @click="traceSkills">Trace its stack <ArrowRight :size="14" /></button>
               </div>
             </div>
           </article>
         </div>
       </section>
 
+      <SkillsConstellation />
+
       <section id="approach" class="approach-section section-wrap">
-        <div class="section-kicker"><span>02</span><span class="kicker-rule"></span><span>THE ENGINEERING</span><span class="kicker-tail">HOW THE PIECES CONNECT</span></div>
+        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>UNDER THE SURFACE</span><span class="kicker-tail">HOW THE PIECES CONNECT</span></div>
         <div class="section-intro">
           <h2>Under the surface,<br/><em>everything connects.</em></h2>
           <p>I’m most interested in the decisions that make an application useful: how data is modelled, how rules are enforced and how separate parts become one coherent experience.</p>
@@ -234,7 +227,7 @@ function closeMenu() {
       </section>
 
       <section id="about" class="about-section section-wrap">
-        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
+        <div class="section-kicker"><span>04</span><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
         <div class="about-layout">
           <div class="about-heading"><h2>Progress isn't<br/>always <em>linear.</em></h2><div class="about-mark">BT<span>—</span>001</div></div>
           <div class="about-copy">
@@ -248,7 +241,7 @@ function closeMenu() {
 
       <section id="contact" class="contact-section section-wrap">
         <div class="contact-art" aria-hidden="true"><div class="contact-glow"></div><div class="contact-ripple ripple-one"></div><div class="contact-ripple ripple-two"></div><div class="contact-ripple ripple-three"></div></div>
-        <div class="section-kicker"><span>04</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
+        <div class="section-kicker"><span>05</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
         <div class="contact-content">
           <span class="contact-eyebrow"><Sparkles :size="14" /> THERE'S ALWAYS ANOTHER WAY FORWARD</span>
           <h2>Let's make<br/><em>something meaningful.</em></h2>
@@ -257,7 +250,7 @@ function closeMenu() {
             <a class="button-primary" href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight :size="17" /></a>
             <a class="text-link" href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">GitHub <Github :size="15" /></a>
           </div>
-          <p class="email-note">Add a preferred professional email here when you are ready to publish.</p>
+          
         </div>
       </section>
     </main>
