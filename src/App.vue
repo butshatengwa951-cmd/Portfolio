@@ -12,42 +12,67 @@ const skillsMapFocusVersion = ref(0)
 const year = new Date().getFullYear()
 const journey = [
   {
-    "date": "JAN 2023",
-    "title": "Started Vue",
-    "note": "First component: it rendered. I celebrated too much.",
-    "margin": "docs → confusion → docs again"
+    "date": "MAY 2026",
+    "title": "HTML, CSS + JavaScript foundations",
+    "note": "05–28 May — started with HTML/CSS structure and styling, then moved into JavaScript fundamentals, functions, DOM manipulation and event-driven browser behaviour through the Week 3–4 exercise work."
   },
   {
-    "date": "JUN 2023",
-    "title": "Freelance store",
-    "note": "Client paid R2k for landing. I learned pricing.",
-    "margin": "charging for code"
+    "date": "MAY–JUN 2026",
+    "title": "Interactive browser projects",
+    "note": "19 May–23 June — applied the fundamentals to practical projects including the Python Budget Tracker, Randomizer, Recipe Finder, Cooking Masterclass, catalogue work and a Food Fest landing page. Learned to turn isolated exercises into complete user-facing experiences."
   },
   {
-    "date": "NOV 2023",
-    "title": "PayFast integration hell",
-    "note": "ITN docs lie. Webhooks don't wait.",
-    "margin": "idempotency key!"
+    "date": "JUL 2026",
+    "title": "ModerntechHR — building a real front-end system",
+    "note": "July — developed the ModerntechHR HR platform and learned to structure multi-page interfaces around real workflows: employee management, payroll calculations, search/filtering, modal interactions, responsive layouts, dynamic DOM updates and Chart.js data visualisation."
   },
   {
-    "date": "FEB 2024",
-    "title": "StockWell live",
-    "note": "First real money. R89 jacket sold at 2am.",
-    "margin": "it works!"
+    "date": "JUL–AUG 2026",
+    "title": "PHP + backend foundations",
+    "note": "30 July–11 August — progressed through the PHP exercise series while strengthening server-side thinking, form handling and application logic. This built the bridge from browser-only JavaScript work toward backend development."
   },
   {
-    "date": "MAY 2024",
-    "title": "Voya Bite flow",
-    "note": "Real-time orders feel like magic when they work.",
-    "margin": "optimistic UI"
+    "date": "AUG 2026",
+    "title": "Lightning News — Python web scraping",
+    "note": "20 July–07 August — with Team Charlie, learned Python web scraping and backend API development using Flask, Requests, BeautifulSoup, lxml and RSS/XML parsing. Built source-specific and generic scrapers, extracted article metadata, saved raw JSON, cleaned datasets and exposed scraping/search/statistics functionality through API routes and tests."
   },
   {
-    "date": "NOW",
-    "title": "File 001 open",
-    "note": "Portfolio as object, not gallery.",
-    "margin": "everything inside file →"
+    "date": "AUG–SEP 2026",
+    "title": "Node.js + full-stack architecture",
+    "note": "25 August–01 September — started the Module 3 e-commerce work and progressed through the Node.js exercise series. Learned how frontend applications communicate with REST APIs, how backend logic is structured, and how databases, authentication and server-side business rules fit together."
+  },
+  {
+    "date": "SEP 2026",
+    "title": "Vue becomes the framework",
+    "note": "01 September — moved into Vue and component-based application development, learning reactive state, reusable components, routing and structured frontend architecture."
+  },
+  {
+    "date": "SEP 2026",
+    "title": "StockWell — first serious full-stack build",
+    "note": "17–18 September — turned the accumulated skills into StockWell: Vue 3 + Node/Express + MySQL + PayFast, with authentication, supplier comparison, cart, proposals, majority voting, governed wallet payments, orders and delivery tracking. Learned transactional thinking, role-based authorization and payment/webhook handling."
+  },
+  {
+    "date": "SEP–OCT 2026",
+    "title": "Interactive portfolio experiments",
+    "note": "21 September–01 October — explored the interactive 3D portfolio, isometric interfaces, animation, interaction patterns and embedded project previews before evolving the presentation into the current portfolio system."
+  },
+  {
+    "date": "OCT 2026",
+    "title": "Budget Tracker — full-stack persistence + deployment",
+    "note": "02–05 October — rebuilt the original Python budget/productivity toolkit as a Vue 3 + Flask application backed by PostgreSQL. Added persistent transactions, configurable budget cycles, budget history, task management and study planning, then deployed the frontend and API through Render with a cloud-hosted database."
+  },
+  {
+    "date": "OCT 2026",
+    "title": "Exploring identity through interactive web development",
+    "note": "As my technical foundation has grown, my focus has started shifting beyond simply learning new technologies. I am exploring new and creative ways for users to interact with web applications, experimenting with motion, 3D, interface design and unconventional presentation. The goal is not only to build functional applications, but to develop a distinct perspective and identity as a developer."
+  },
+  {
+    "date": "OCT 2026",
+    "title": "Portfolio — turning the work into a case file",
+    "note": "03–05 October — rebuilt the portfolio around the detective-folder concept, bringing the projects together with live previews, a technology-to-project map, persistent evidence selection and a chronological development journey."
   }
 ]
+
 const theme = ref<'dark' | 'light'>('dark')
 
 const projects = [
@@ -247,19 +272,18 @@ function traceSkills(projectVisual: string) {
       <SkillsConstellation :focus-project="skillsMapProject" :focus-version="skillsMapFocusVersion" />
 
       <section id="journey" class="journey-section section-wrap">
-        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>DEVELOPMENT JOURNEY</span><span class="kicker-tail">LESSONS IN MOTION</span></div>
+        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>JOURNEY</span><span class="kicker-tail">DEVELOPMENT TIMELINE</span></div>
         <div class="section-intro journey-intro">
-          <h2>Every version<br/>leaves a <em>trace.</em></h2>
+          <h2>JOURNEY</h2>
           <p>A chronological record of the projects, problems and small breakthroughs that shaped the work.</p>
         </div>
         <div class="journey-timeline">
-          <div v-for="(item, index) in journey" :key="item.date" class="journey-entry">
+          <div v-for="(item, index) in journey" :key="`${item.date}-${index}`" class="journey-entry">
             <div class="journey-marker"><span>{{ String(index + 1).padStart(2, '0') }}</span></div>
             <div class="journey-date">{{ item.date }}</div>
             <div class="journey-entry-body">
               <h3>{{ item.title }}</h3>
               <p>{{ item.note }}</p>
-              <span class="journey-margin">{{ item.margin }}</span>
             </div>
           </div>
         </div>
