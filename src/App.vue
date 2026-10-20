@@ -101,13 +101,15 @@ function traceSkills(projectVisual: string) {
       <svg class="flow-svg" viewBox="0 0 1440 1200" preserveAspectRatio="xMidYMin slice">
         <defs>
           <linearGradient id="current" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#6d55bd" stop-opacity="0"/>
-            <stop offset=".42" stop-color="#a48cff" stop-opacity=".4"/>
-            <stop offset=".64" stop-color="#d4c5ff" stop-opacity=".9"/>
-            <stop offset="1" stop-color="#7255c5" stop-opacity="0"/>
+            <stop offset="0" stop-color="#51273d" stop-opacity="0"/>
+            <stop offset=".22" stop-color="#796176" stop-opacity=".24"/>
+            <stop offset=".44" stop-color="#b792a4" stop-opacity=".42"/>
+            <stop offset=".61" stop-color="#dfcadb" stop-opacity=".53"/>
+            <stop offset=".79" stop-color="#796176" stop-opacity=".25"/>
+            <stop offset="1" stop-color="#251321" stop-opacity="0"/>
           </linearGradient>
           <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="9"/>
+            <feGaussianBlur stdDeviation="4"/>
           </filter>
         </defs>
         <path class="flow-glow" d="M-80 310 C250 130 410 520 690 380 S1080 180 1510 330" />
@@ -136,6 +138,7 @@ function traceSkills(projectVisual: string) {
 
     <main>
       <section id="home" class="hero section-wrap">
+        <div class="hero-velvet" aria-hidden="true"></div>
         <div class="hero-index"><span>BT / FIELD NOTES</span><span>26°12′ S — 28°02′ E</span></div>
         <div class="hero-copy">
           <div class="eyebrow"><span class="status-light"></span> FULL-STACK DEVELOPMENT <span class="eyebrow-slash">/</span> BACKEND & DATA</div>

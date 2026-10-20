@@ -101,3 +101,84 @@ a:focus-visible,button:focus-visible{outline:2px solid #dfcadb;outline-offset:4p
 @media(max-width:900px){.hero{grid-template-columns:.96fr 1.04fr}.hero-art{transform:scale(.98);transform-origin:center}}
 @media(max-width:650px){.hero{padding-top:74px}.hero h1{font-size:clamp(53px,12.5vw,74px)}.hero-art{height:350px;width:100%;margin-top:18px;transform:scale(.94)}.main-nav{background:rgba(16,11,18,.97);border:1px solid rgba(205,188,231,.22);border-radius:4px 16px 4px 16px}.button-primary{min-height:46px}.project-links{gap:8px}.project-links a,.map-project-link{font-size:8px;padding-inline:10px}}
 @media(prefers-reduced-motion:reduce){.thread-path,.thread-detail,.art-disc,.art-ribbon,.art-halo,.art-node,.flow-line,.flow-glow,.status-light,.signal,.scroll-line{animation:none!important}html{scroll-behavior:auto}}
+
+
+/* THE VELVET STUDY — photographic depth, fibre, shadow and quiet stitchwork */
+.hero{isolation:isolate}
+.hero-velvet{
+  position:absolute;z-index:-1;pointer-events:none;
+  inset:-76px -11vw -42px;
+  background-image:
+    linear-gradient(90deg,rgba(16,11,18,.46) 0%,rgba(16,11,18,.19) 34%,rgba(16,11,18,.045) 68%,rgba(16,11,18,.22) 100%),
+    linear-gradient(180deg,rgba(16,11,18,.24) 0%,rgba(16,11,18,.02) 40%,rgba(16,11,18,.15) 70%,#100b12 100%),
+    url('/velvet-backdrop.svg');
+  background-size:cover;
+  background-position:center 46%;
+  background-repeat:no-repeat;
+  opacity:.95;
+  filter:saturate(.9) contrast(1.055);
+  mask-image:linear-gradient(to bottom,transparent 0%,black 7%,black 67%,rgba(0,0,0,.82) 82%,transparent 100%);
+}
+.hero-copy{position:relative;z-index:2}
+.hero-art{position:relative;z-index:1}
+.site-shell{
+  background:
+    radial-gradient(ellipse at 66% 6%,rgba(81,39,61,.33),transparent 29%),
+    radial-gradient(ellipse at 3% 35%,rgba(121,97,118,.1),transparent 25%),
+    radial-gradient(ellipse at 90% 64%,rgba(81,39,61,.18),transparent 35%),
+    linear-gradient(153deg,#100b12 0%,#1b111b 23%,#130d15 52%,#100b12 78%,#1b111b 100%);
+}
+.fibre-texture{
+  opacity:.21;
+  background:
+    repeating-linear-gradient(111deg,transparent 0 24px,rgba(240,232,222,.021) 25px,transparent 26px 51px),
+    repeating-linear-gradient(8deg,transparent 0 37px,rgba(205,188,231,.023) 38px,transparent 39px 72px),
+    radial-gradient(ellipse at 58% 13%,rgba(121,97,118,.09),transparent 51%);
+}
+.flow-field{opacity:.48}
+.flow-glow{stroke:#51273d;stroke-width:7;opacity:.14;filter:url(#blurGlow)}
+.flow-line{stroke-width:.72;stroke-dasharray:1.2 4.3;animation-duration:39s;filter:drop-shadow(0 1px 1px rgba(0,0,0,.85))}
+.flow-line-a{opacity:.45}
+.flow-line-b{opacity:.25;stroke-dasharray:1 5.5;animation-duration:46s}
+.flow-line-c{opacity:.22;stroke-width:.55;stroke-dasharray:3.5 6;animation-duration:52s}
+.flow-line-d{opacity:.2;stroke-dasharray:1.1 6;animation-duration:43s}
+.art-disc{
+  background:
+    radial-gradient(ellipse at 29% 17%,rgba(240,232,222,.3),transparent 14%),
+    radial-gradient(ellipse at 71% 66%,rgba(121,97,118,.78),transparent 42%),
+    radial-gradient(ellipse at 34% 60%,rgba(81,39,61,.86),transparent 58%),
+    repeating-linear-gradient(117deg,transparent 0 8px,rgba(240,232,222,.032) 9px,transparent 10px 15px),
+    linear-gradient(145deg,#493244 0%,#251321 46%,#100b12 83%);
+}
+.art-disc:before{background:repeating-radial-gradient(ellipse at 31% 32%,transparent 0 7px,rgba(205,188,231,.08) 8px,transparent 9px 13px)}
+.art-halo{background:radial-gradient(ellipse at 42% 37%,rgba(205,188,231,.14),rgba(81,39,61,.19) 35%,transparent 73%)}
+.thread-shadow{stroke:rgba(5,3,8,.9);stroke-width:4}
+.thread-path{stroke:rgba(240,232,222,.6);stroke-width:1;stroke-dasharray:1 5.5;animation-duration:37s;filter:drop-shadow(0 1px 1px rgba(0,0,0,.7))}
+.thread-detail{stroke:rgba(205,188,231,.32);stroke-width:.65;stroke-dasharray:2 8;animation-duration:46s}
+.pearl-set circle{fill:#dfcadb;stroke:rgba(240,232,222,.66);stroke-width:.8;filter:drop-shadow(0 1px 2px rgba(0,0,0,.75))}
+.work-section,.skills-section,.about-section,.contact-section{isolation:isolate}
+.work-section:before,.skills-section:before,.about-section:before,.contact-section:before{
+  content:"";position:absolute;z-index:-1;pointer-events:none;inset:0 -8vw;
+  background:radial-gradient(ellipse at 54% 17%,rgba(81,39,61,.13),transparent 49%);
+  opacity:.9;
+}
+.work-section:after,.skills-section:after,.about-section:after,.contact-section:after{
+  content:"";position:absolute;z-index:-1;inset:0 -8vw;pointer-events:none;
+  background-image:linear-gradient(180deg,rgba(16,11,18,.08),rgba(16,11,18,.5)),url('/velvet-backdrop.svg');
+  background-size:cover;background-position:center;
+  opacity:.095;
+  mask-image:linear-gradient(180deg,transparent,black 16%,black 80%,transparent);
+}
+.skills-section:after{opacity:.075;background-position:58% 42%}
+.about-section:after{opacity:.06;background-position:32% 48%}
+.contact-section:after{opacity:.11;background-position:65% 50%}
+@media(max-width:900px){
+  .hero-velvet{inset:-62px -9vw -30px;background-position:53% center;opacity:.88}
+}
+@media(max-width:650px){
+  .hero-velvet{inset:-45px -8vw -28px;background-position:54% center;opacity:.76}
+  .flow-field{opacity:.3}
+}
+@media(prefers-reduced-motion:reduce){
+  .flow-line,.flow-glow,.thread-path,.thread-detail{animation:none!important}
+}
