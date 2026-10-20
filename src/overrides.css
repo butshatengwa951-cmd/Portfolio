@@ -406,3 +406,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #dfcadb;outline-offset:4p
  .site-shell.theme-light .project-row{margin-left:0;margin-right:0}
 }
 @media(prefers-reduced-motion:reduce){.journey-entry-body{transition:none}.journey-entry-body:hover{transform:none}}
+
+.case-study{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.case-study h4{margin:17px 0 7px;color:var(--violet);font:9px var(--mono);letter-spacing:.14em}
+.case-study p{color:var(--muted);font-size:12px;line-height:1.85}
