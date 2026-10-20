@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import LivePreview from './components/LivePreview.vue'
 import SkillsConstellation from './components/SkillsConstellation.vue'
-import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles } from 'lucide-vue-next'
+import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, Sun, Moon } from 'lucide-vue-next'
 
 const mobileMenuOpen = ref(false)
 const activeSection = ref('home')
@@ -10,103 +10,7 @@ const reducedMotion = ref(false)
 const skillsMapProject = ref<'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker' | null>(null)
 const skillsMapFocusVersion = ref(0)
 const year = new Date().getFullYear()
-
-const weatherMode = ref<'tornado' | 'thunder'>('tornado')
-const goddessActive = ref(false)
-const lightningPath = ref('')
-const lightningDrawing = ref(false)
-const viewport = ref({ width: 1440, height: 900 })
-let lightningPoints: Array<{ x: number; y: number }> = []
-let boostTimer: number | undefined
-let lightningTimer: number | undefined
-let wheelBoostEnabled = false
-
-function handlePointerMove(event: PointerEvent) {
-  // Update the decorative cursor directly; avoid a Vue render on every pointer event.
-  const cursor = document.querySelector<HTMLElement>('.wind-cursor')
-  if (cursor) {
-    cursor.style.left = `${event.clientX}px`
-    cursor.style.top = `${event.clientY}px`
-  }
-  if (!lightningDrawing.value || weatherMode.value !== 'thunder' || !goddessActive.value) return
-  const last = lightningPoints[lightningPoints.length - 1]
-  if (last && Math.hypot(event.clientX - last.x, event.clientY - last.y) < 11) return
-  lightningPoints.push({ x: event.clientX, y: event.clientY })
-  lightningPath.value = buildLightningPath(lightningPoints)
-}
-
-function buildLightningPath(points: Array<{ x: number; y: number }>) {
-  if (!points.length) return ''
-  let path = `M ${points[0].x} ${points[0].y}`
-  for (let i = 1; i < points.length; i += 1) {
-    const previous = points[i - 1]
-    const point = points[i]
-    const dx = point.x - previous.x
-    const dy = point.y - previous.y
-    const jitter = (i % 2 === 0 ? 1 : -1) * (7 + (i % 4) * 3)
-    path += ` L ${previous.x + dx * 0.52 + jitter} ${previous.y + dy * 0.52 - jitter * 0.45} L ${point.x} ${point.y}`
-  }
-  return path
-}
-
-function beginLightning(event: PointerEvent) {
-  if (weatherMode.value !== 'thunder' || !goddessActive.value || reducedMotion.value) return
-  const target = event.target
-  if (target instanceof Element && target.closest('a, button, input, textarea, select, .storm-console')) return
-  lightningDrawing.value = true
-  lightningPoints = [{ x: event.clientX, y: event.clientY }]
-  lightningPath.value = `M ${event.clientX} ${event.clientY}`
-  if (lightningTimer !== undefined) window.clearTimeout(lightningTimer)
-}
-
-function endLightning() {
-  if (!lightningDrawing.value) return
-  lightningDrawing.value = false
-  lightningTimer = window.setTimeout(() => {
-    lightningPath.value = ''
-    lightningPoints = []
-  }, 720)
-}
-
-function handleWheel(event: WheelEvent) {
-  if (!wheelBoostEnabled || reducedMotion.value || weatherMode.value !== 'tornado' || !goddessActive.value) return
-  event.preventDefault()
-  // Normalize wheel units, then apply a strong multiplier without smooth-scroll queuing.
-  const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1
-  const deltaY = event.deltaY * unit
-  const deltaX = event.deltaX * unit
-  window.scrollBy(deltaX * 1.5, deltaY * 3.4)
-}
-
-function syncWheelBoost() {
-  const shouldEnable = goddessActive.value && weatherMode.value === 'tornado' && !reducedMotion.value
-  if (shouldEnable === wheelBoostEnabled) return
-  wheelBoostEnabled = shouldEnable
-  if (shouldEnable) window.addEventListener('wheel', handleWheel, { passive: false })
-  else window.removeEventListener('wheel', handleWheel)
-}
-
-function setWeather(mode: 'tornado' | 'thunder') {
-  weatherMode.value = mode
-  if (mode !== 'thunder') endLightning()
-  syncWheelBoost()
-}
-
-function activateGoddessBoost() {
-  if (reducedMotion.value) return
-  goddessActive.value = true
-  syncWheelBoost()
-  if (boostTimer !== undefined) window.clearTimeout(boostTimer)
-  boostTimer = window.setTimeout(() => {
-    goddessActive.value = false
-    syncWheelBoost()
-    endLightning()
-  }, 8000)
-}
-
-function updateViewport() {
-  viewport.value = { width: window.innerWidth, height: window.innerHeight }
-}
+const theme = ref<'dark' | 'light'>('dark')
 
 const projects = [
   {
@@ -166,26 +70,23 @@ const projects = [
 let observer: IntersectionObserver | undefined
 onMounted(() => {
   reducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const savedTheme = window.localStorage.getItem('butsha-portfolio-theme')
+  if (savedTheme === 'light' || savedTheme === 'dark') theme.value = savedTheme
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) activeSection.value = entry.target.id
     })
   }, { rootMargin: '-25% 0px -60% 0px' })
   document.querySelectorAll('main section[id]').forEach((section) => observer?.observe(section))
-  updateViewport()
-  window.addEventListener('resize', updateViewport)
-  window.addEventListener('pointerup', endLightning)
-  window.addEventListener('pointercancel', endLightning)
+  document.documentElement.dataset.theme = theme.value
 })
-onUnmounted(() => {
-  observer?.disconnect()
-  window.removeEventListener('resize', updateViewport)
-  window.removeEventListener('pointerup', endLightning)
-  window.removeEventListener('pointercancel', endLightning)
-  window.removeEventListener('wheel', handleWheel)
-  if (boostTimer !== undefined) window.clearTimeout(boostTimer)
-  if (lightningTimer !== undefined) window.clearTimeout(lightningTimer)
-})
+onUnmounted(() => observer?.disconnect())
+
+function toggleTheme() {
+  theme.value = theme.value === 'dark' ? 'light' : 'dark'
+  document.documentElement.dataset.theme = theme.value
+  window.localStorage.setItem('butsha-portfolio-theme', theme.value)
+}
 
 function closeMenu() {
   mobileMenuOpen.value = false
@@ -200,71 +101,12 @@ function traceSkills(projectVisual: string) {
 </script>
 
 <template>
-  <div
-    class="site-shell"
-    :class="{
-      'reduce-motion': reducedMotion,
-      'weather-tornado': weatherMode === 'tornado',
-      'weather-thunder': weatherMode === 'thunder',
-      'goddess-active': goddessActive,
-      'goddess-wind': goddessActive && weatherMode === 'tornado',
-      'goddess-thunder': goddessActive && weatherMode === 'thunder'
-    }"
-    @pointermove="handlePointerMove"
-    @pointerdown="beginLightning"
-  >
+  <div class="site-shell" :class="{ 'reduce-motion': reducedMotion, 'theme-light': theme === 'light' }">
     <div class="grain" aria-hidden="true"></div>
     <div class="fibre-texture" aria-hidden="true"></div>
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
     <div class="topographic" aria-hidden="true"></div>
-    <div class="wind-cursor" :class="{ visible: weatherMode === 'tornado', amplified: goddessActive && weatherMode === 'tornado' }" aria-hidden="true"></div>
-    <svg
-      class="lightning-overlay"
-      :class="{ active: Boolean(lightningPath) }"
-      :viewBox="`0 0 ${viewport.width} ${viewport.height}`"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-    >
-      <path class="lightning-halo" :d="lightningPath" />
-      <path class="lightning-bolt" :d="lightningPath" />
-    </svg>
-    <aside class="storm-console" aria-label="Storm controls">
-      <div class="storm-console-heading"><span class="storm-status-dot"></span><span>WEATHER CONTROL</span><span class="storm-console-divider"></span><span class="storm-state">{{ weatherMode === 'tornado' ? 'WIND' : 'THUNDER' }}</span></div>
-      <div class="storm-mode-switch" role="group" aria-label="Choose weather mode">
-        <button type="button" :class="{ selected: weatherMode === 'tornado' }" :aria-pressed="weatherMode === 'tornado'" @click="setWeather('tornado')"><span class="storm-icon">↝</span> TORNADO</button>
-        <button type="button" :class="{ selected: weatherMode === 'thunder' }" :aria-pressed="weatherMode === 'thunder'" @click="setWeather('thunder')"><span class="storm-icon">ϟ</span> THUNDER</button>
-      </div>
-      <button class="goddess-button" type="button" :disabled="reducedMotion" :class="{ powered: goddessActive }" @click="activateGoddessBoost">
-        <span class="goddess-button-icon">{{ goddessActive ? '✦' : '✧' }}</span>
-        <span>{{ goddessActive ? 'GODDESS BOOST ACTIVE' : 'GODDESS BOOST' }}</span>
-        <span class="goddess-timer">{{ goddessActive ? '8 SEC' : '↗' }}</span>
-      </button>
-      <p class="storm-hint">{{ reducedMotion ? 'Motion effects reduced by system preference' : goddessActive && weatherMode === 'thunder' ? 'HOLD + DRAG TO CAST LIGHTNING' : goddessActive && weatherMode === 'tornado' ? 'WIND SURGE · FASTER SCROLL' : 'SELECT A WEATHER STATE' }}</p>
-    </aside>
-    <div class="flow-field" aria-hidden="true">
-      <svg class="flow-svg" viewBox="0 0 1440 1200" preserveAspectRatio="xMidYMin slice">
-        <defs>
-          <linearGradient id="current" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#51273d" stop-opacity="0"/>
-            <stop offset=".22" stop-color="#796176" stop-opacity=".24"/>
-            <stop offset=".44" stop-color="#b792a4" stop-opacity=".42"/>
-            <stop offset=".61" stop-color="#dfcadb" stop-opacity=".53"/>
-            <stop offset=".79" stop-color="#796176" stop-opacity=".25"/>
-            <stop offset="1" stop-color="#251321" stop-opacity="0"/>
-          </linearGradient>
-          <filter id="blurGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="4"/>
-          </filter>
-        </defs>
-        <path class="flow-glow" d="M-80 310 C250 130 410 520 690 380 S1080 180 1510 330" />
-        <path class="flow-line flow-line-a" d="M-80 310 C250 130 410 520 690 380 S1080 180 1510 330" />
-        <path class="flow-line flow-line-b" d="M-100 350 C190 180 420 560 710 420 S1100 230 1510 370" />
-        <path class="flow-line flow-line-c" d="M-90 275 C210 100 430 460 670 340 S1100 145 1510 290" />
-        <path class="flow-line flow-line-d" d="M-60 770 C300 600 500 910 760 760 S1110 650 1500 820" />
-      </svg>
-    </div>
-
     <header class="site-header">
       <a class="wordmark" href="#home" @click="closeMenu" aria-label="Butsha Tengwa home">
         <span class="wordmark-mark">B<span>.</span></span>
@@ -278,6 +120,17 @@ function traceSkills(projectVisual: string) {
         <a href="#skills" :class="{ active: activeSection === 'skills' }" @click="closeMenu">Skills map</a>
         <a href="#about" :class="{ active: activeSection === 'about' }" @click="closeMenu">About</a>
         <a class="nav-contact" href="#contact" @click="closeMenu">Let's connect <ArrowUpRight :size="14" /></a>
+        <button
+          class="theme-toggle"
+          type="button"
+          :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+          :title="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+          @click="toggleTheme"
+        >
+          <Sun v-if="theme === 'dark'" :size="15" />
+          <Moon v-else :size="15" />
+          <span>{{ theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE' }}</span>
+        </button>
       </nav>
     </header>
 
