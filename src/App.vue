@@ -9,6 +9,28 @@ const activeSection = ref('home')
 const reducedMotion = ref(false)
 const skillsMapProject = ref<'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker' | null>(null)
 const skillsMapFocusVersion = ref(0)
+const profile = {
+  role: "FULL-STACK DEVELOPER / CREATIVE",
+  location: "SOUTH AFRICA",
+  status: "OPEN TO OPPORTUNITIES",
+  background: "Developer trained through the Life Choices Academy YouthCode programme/project. My development journey has grown from HTML, CSS and JavaScript into full-stack web development with Vue, Node/Express, MySQL, PostgreSQL, Python, Flask, REST APIs, web scraping, payment integrations and cloud deployment. I learn by building, researching difficult concepts and turning what I learn into working projects.",
+  objective: "Explore new and creative ways for users to interact with web applications while developing a distinctive approach, perspective and identity as a developer.",
+  interests: ["Backend Development","Backend Architecture","APIs & Integrations","Databases & Data Systems","Full-Stack Development","Interactive Web Experiences","Creative UI/UX"],
+  learning: ["Advanced Three.js / R3F","Interaction Design","Web Animation & Motion","Creative Frontend Architecture","System Design","Backend Architecture"],
+  goals: ["Build products people can actually use","Master full-stack architecture","Build reliable payment integrations","Create more advanced interactive web experiences"],
+  lessons: "Real projects taught me that development is as much about researching, debugging and connecting systems as it is about writing code."
+}
+const notes = [
+  { label:"LESSON — JAVASCRIPT", title:"The happy path is not enough", text:"Early JavaScript taught me that getting the happy path working is not enough. I struggled with validation and edge cases. I improved by checking inputs before calculating and testing more than one outcome." },
+  { label:"LESSON — SCOPE", title:"Where data lives", text:"Scope was a real lesson. I learned that a variable can only be used where it is actually available. Now I think about where data lives, who can access it and how information should move between functions." },
+  { label:"GIT NOTE", title:"Version control is a workflow", text:"Recipe Finder was where Git stopped being just commands and became part of development. Remote history, branch naming, upstream branches and merge conflicts showed me that version control problems need to be understood, not ignored." },
+  { label:"LESSON — FRONTEND", title:"DOM + interaction", text:"I moved from simple console exercises into buttons, prompts, event listeners, dynamic cards and timed UI behaviour. That progression helped me understand that JavaScript is not only about calculations — it is about controlling an interface." },
+  { label:"DATABASE NOTE", title:"Data supports the workflow", text:"MySQL started with tables, keys, relationships and queries. A database is not just somewhere to store data. It has to connect correctly to backend logic, respect relationships and support the application's workflows." },
+  { label:"LESSON — DEPLOYMENT", title:"ModernTechHR", text:"The hardest part was learning how separate frontend and backend repositories could be developed together, deployed separately and still communicate with a MySQL database in the cloud." },
+  { label:"LIGHTNING NEWS", title:"Research is part of the process", text:"Web scraping and Three.js were new concepts for our team. We overcame that gap through in-depth research, then applied what we learned with Python, Flask, Requests, BeautifulSoup and lxml." },
+  { label:"LESSON — FULL-STACK DEPLOYMENT", title:"Budget Tracker", text:"Rebuilding the original Python toolkit into a deployed Vue + Flask application taught me how frontend, API and database layers have to work together. PostgreSQL persistence, budget-period rollover, timezone handling and Render deployment turned a local tool into a real full-stack product." },
+  { label:"LESSON — PAYMENTS", title:"StockWell", text:"PayFast was the reminder that integrations can fail even when the request appears successful. Logging the raw request, checking signatures, understanding ITN behaviour and adding transaction protection taught me to debug the full system instead of trusting a 200 response." }
+]
 const year = new Date().getFullYear()
 const journey = [
   {
