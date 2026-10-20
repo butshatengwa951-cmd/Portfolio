@@ -25,85 +25,7 @@ const journey = [{"date":"MAY 2026","title":"HTML, CSS + JavaScript foundations"
 
 const theme = ref<'dark' | 'light'>('dark')
 
-const projects = [
-  {
-    number: '01',
-    name: 'StockWell',
-    kind: 'COMMUNITY COMMERCE PLATFORM',
-    description: 'StockWell is a full e-commerce platform built around community purchasing, supplier comparison and shared decision-making. It combines a Vue frontend with Node/Express backend services, MySQL persistence and PayFast payments to support authentication, cart management, proposals, majority voting, wallet transactions, orders and delivery workflows.',
-    caseStudy: { problem: 'Existing community proposals were fragmented across chats and sheets. No voting, no wallet, no payment traceability.', build: 'Vue frontend, Node API, PayFast ITN integration, wallet ledger with idempotency keys, cart persistence, proposal engine with vote weighting.', challenge: 'The main challenge was making the PayFast payment flow reliable from checkout to the wallet ledger. An early version appeared to succeed because the webhook returned a 200 response, but the wallet was not updated correctly and the PayFast signature could fail when parameters were handled in the wrong order. I logged and replayed the raw ITN request, checked payload encoding and signature validation, and added transaction protection and idempotency so a payment could not be processed twice.', features: ['Authentication and role-based workflows','Supplier comparison and cart management','Community proposals and majority voting','Governed group-wallet approvals','PayFast payment integration and transaction protection','Orders and delivery workflows'] },
-    stack: ['Vue', 'Node.js / Express', 'MySQL', 'PayFast'],
-    detail: 'Engineering focus',
-    outcome: 'Role-based workflows · Checkout and payment integration · Group decisions',
-    link: 'https://stockwell-hl1e.onrender.com/',
-    preview: 'https://stockwell-hl1e.onrender.com/',
-    repo: '',
-    visual: 'stockwell',
-  },
-  {
-    number: '02',
-    name: 'Budget Tracker',
-    kind: 'PERSONAL FINANCE & PRODUCTIVITY',
-    description: 'Budget Tracker is a full-stack productivity application that brings personal budgeting, task management and study planning into one responsive dashboard. It supports persistent transactions, configurable daily, weekly, monthly and yearly budget cycles, budget history and study sessions in PostgreSQL.',
-    caseStudy: { problem: 'The original project started as a Python command-line productivity suite. The challenge was turning separate budget, task and study tools into a practical web application with persistent data and a deployable full-stack architecture.', build: 'Rebuilt the experience as a Vue 3 + Vite frontend backed by a Flask REST API and PostgreSQL. Added persistent transactions, configurable budget periods, budget history, task management, study planning, South African local-date handling and Render deployment.', challenge: 'The biggest challenge was moving a local Python toolkit into a full-stack application without losing data integrity or introducing inconsistent dates and state. I tested across the frontend, Flask API and PostgreSQL layers and worked through period rollover, timezone handling, production dependencies and Render configuration.', features: ['Persistent transaction records','Daily, weekly, monthly and yearly budget cycles','Budget history and period rollover','Task management','Study planning and session tracking','South African local-date handling','Render deployment with a hosted database'] },
-    stack: ['Python', 'Vue 3', 'Flask', 'PostgreSQL'],
-    detail: 'Engineering focus',
-    outcome: 'API-driven workflows · Data persistence · Finance and productivity tools',
-    link: 'https://budget-tracker-frontend-jf66.onrender.com/',
-    preview: 'https://budget-tracker-frontend-jf66.onrender.com/',
-    repo: 'https://github.com/butshatengwa951-cmd/Budget-Tracker-python-mini-toolkit/tree/main',
-    visual: 'budget',
-  },
-  {
-    number: '03',
-    name: 'Lightning News',
-    kind: 'NEWS AGGREGATION & DATA EXTRACTION',
-    description: 'Lightning News is a news aggregation platform built around automated data collection rather than manually entered articles. Python handles web scraping and feed processing with Requests, BeautifulSoup and lxml, while Flask exposes collected and cleaned information through API routes.',
-    caseStudy: { problem: 'The project explored how a news platform could automatically collect and organise information from multiple online sources instead of relying on manually entered content.', build: 'Built a Python scraping backend using Requests, BeautifulSoup and lxml, with Flask API routes. Worked with RSS/XML feeds and webpage content, created source-specific and generic scrapers, extracted article metadata, stored raw JSON, cleaned results and exposed scraping, search and statistics functionality.', challenge: 'Web scraping and Three.js were both unfamiliar. We researched inconsistent HTML and RSS/XML structures, experimented with 3D work and applied repeated testing to the scraping pipeline, Flask API and interactive presentation.', features: ['Source-specific and generic web scrapers','RSS/XML feed parsing','Article metadata extraction','Raw JSON storage and data cleaning','Search and statistics API routes','Interactive visual presentation'] },
-    stack: ['Python', 'Flask', 'BeautifulSoup', 'Three.js'],
-    detail: 'Engineering focus',
-    outcome: 'Content extraction · Data processing · Search and statistics APIs',
-    link: 'https://lightning-news.netlify.app/',
-    preview: 'https://lightning-news.netlify.app/',
-    repo: '',
-    visual: 'news',
-  },
-  {
-    number: '04',
-    name: 'ModernTechHR',
-    kind: 'HUMAN RESOURCES MANAGEMENT',
-    description: 'ModernTechHR is an HR management platform designed to bring employee records, attendance, payroll, leave management and reporting into one organised interface. JavaScript drives employee updates, searching, filtering, payroll calculations and modal interactions, while Chart.js turns HR information into visual reports.',
-    caseStudy: { problem: 'The objective was to build an interactive HR management system bringing employee information, payroll, searching, filtering and reporting into one organised platform.', build: 'Built the frontend with HTML/CSS and JavaScript, dynamic employee data, DOM updates, search and filtering, modal workflows and payroll calculations. Chart.js turned HR and payroll data into visual reports, with frontend and backend services connected to a cloud-hosted MySQL database.', challenge: 'The main challenge was learning how separate frontend and backend repositories could be developed, deployed and connected as one application. Research, service-communication testing and deployment configuration helped connect the frontend, backend and cloud database.', features: ['Employee management and records','Attendance and leave workflows','Payroll calculations','Search and filtering','Modal interactions and responsive layouts','Chart.js dashboards and reporting','Separate frontend/backend deployment'] },
-    stack: ['JavaScript', 'MySQL', 'Chart.js'],
-    detail: 'Engineering focus',
-    outcome: 'Structured records · Management workflows · Reporting',
-    link: 'https://module1-project-hr.onrender.com/',
-    preview: 'https://module1-project-hr.onrender.com/',
-    repo: '',
-    visual: 'hr',
-  },
-
-  {
-    number: '05',
-    name: 'Voya Bite',
-    kind: 'TRAVEL EXPERIENCES & BOOKING INTERFACE',
-    description: 'Voya Bite explores a travel website experience for discovering activities, hotels and flights. The interface combines curated travel content with browsing, filtering and booking interactions.',
-    stack: ['HTML', 'CSS', 'JavaScript', 'Responsive UI'],
-    detail: 'Engineering focus',
-    outcome: 'Experience discovery · Filtering · Booking-modal flow',
-    caseStudy: {
-      problem: 'Travel discovery can feel fragmented when activities, destinations and booking actions are spread across disconnected interfaces.',
-      build: 'Created a responsive static-site experience with navigation, filtering, booking-modal interactions and travel-oriented content for Cape Town hiking, a Kruger safari day, shark-cage diving, a Table Mountain abseil and a wine-tram tour.',
-      challenge: 'The main design challenge was connecting browsing and booking interactions without making the page feel cluttered.',
-      features: ['Curated travel activities','Filtering and browsing','Booking modal flow','Responsive navigation']
-    },
-    link: '',
-    preview: '',
-    repo: '',
-    visual: '',
-  },
-]
-
+const projects = [ { number: '01', name: 'StockWell', kind: 'COMMUNITY COMMERCE PLATFORM', description: 'StockWell is a full e-commerce platform built around community purchasing, supplier comparison and shared decision-making. It combines a Vue frontend with Node/Express backend services, MySQL persistence and PayFast payments to support authentication, cart management, proposals, majority voting, wallet transactions, orders and delivery workflows.', caseStudy: { problem: 'Existing community proposals were fragmented across chats and sheets. No voting, no wallet, no payment traceability.', build: 'Vue frontend, Node API, PayFast ITN integration, wallet ledger with idempotency keys, cart persistence, proposal engine with vote weighting.', challenge: 'The main challenge was making the PayFast payment flow reliable from checkout to the wallet ledger. An early version appeared to succeed because the webhook returned a 200 response, but the wallet was not updated correctly and the PayFast signature could fail when parameters were handled in the wrong order. I logged and replayed the raw ITN request, checked payload encoding and signature validation, and added transaction protection and idempotency so a payment could not be processed twice.', features: ['Authentication and role-based workflows','Supplier comparison and cart management','Community proposals and majority voting','Governed group-wallet approvals','PayFast payment integration and transaction protection','Orders and delivery workflows'] }, stack: ['Vue', 'Node.js / Express', 'MySQL', 'PayFast'], detail: 'Engineering focus', outcome: 'Role-based workflows · Checkout and payment integration · Group decisions', link: 'https://stockwell-hl1e.onrender.com/', preview: 'https://stockwell-hl1e.onrender.com/', repo: '', visual: 'stockwell', }, { number: '02', name: 'Budget Tracker', kind: 'PERSONAL FINANCE & PRODUCTIVITY', description: 'Budget Tracker is a full-stack productivity application that brings personal budgeting, task management and study planning into one responsive dashboard. It supports persistent transactions, configurable daily, weekly, monthly and yearly budget cycles, budget history and study sessions in PostgreSQL.', caseStudy: { problem: 'The original project started as a Python command-line productivity suite. The challenge was turning separate budget, task and study tools into a practical web application with persistent data and a deployable full-stack architecture.', build: 'Rebuilt the experience as a Vue 3 + Vite frontend backed by a Flask REST API and PostgreSQL. Added persistent transactions, configurable budget periods, budget history, task management, study planning, South African local-date handling and Render deployment.', challenge: 'The biggest challenge was moving a local Python toolkit into a full-stack application without losing data integrity or introducing inconsistent dates and state. I tested across the frontend, Flask API and PostgreSQL layers and worked through period rollover, timezone handling, production dependencies and Render configuration.', features: ['Persistent transaction records','Daily, weekly, monthly and yearly budget cycles','Budget history and period rollover','Task management','Study planning and session tracking','South African local-date handling','Render deployment with a hosted database'] }, stack: ['Python', 'Vue 3', 'Flask', 'PostgreSQL'], detail: 'Engineering focus', outcome: 'API-driven workflows · Data persistence · Finance and productivity tools', link: 'https://budget-tracker-frontend-jf66.onrender.com/', preview: 'https://budget-tracker-frontend-jf66.onrender.com/', repo: 'https://github.com/butshatengwa951-cmd/Budget-Tracker-python-mini-toolkit/tree/main', visual: 'budget', }, { number: '03', name: 'Lightning News', kind: 'NEWS AGGREGATION & DATA EXTRACTION', description: 'Lightning News is a news aggregation platform built around automated data collection rather than manually entered articles. Python handles web scraping and feed processing with Requests, BeautifulSoup and lxml, while Flask exposes collected and cleaned information through API routes.', caseStudy: { problem: 'The project explored how a news platform could automatically collect and organise information from multiple online sources instead of relying on manually entered content.', build: 'Built a Python scraping backend using Requests, BeautifulSoup and lxml, with Flask API routes. Worked with RSS/XML feeds and webpage content, created source-specific and generic scrapers, extracted article metadata, stored raw JSON, cleaned results and exposed scraping, search and statistics functionality.', challenge: 'Web scraping and Three.js were both unfamiliar. We researched inconsistent HTML and RSS/XML structures, experimented with 3D work and applied repeated testing to the scraping pipeline, Flask API and interactive presentation.', features: ['Source-specific and generic web scrapers','RSS/XML feed parsing','Article metadata extraction','Raw JSON storage and data cleaning','Search and statistics API routes','Interactive visual presentation'] }, stack: ['Python', 'Flask', 'BeautifulSoup', 'Three.js'], detail: 'Engineering focus', outcome: 'Content extraction · Data processing · Search and statistics APIs', link: 'https://lightning-news.netlify.app/', preview: 'https://lightning-news.netlify.app/', repo: '', visual: 'news', }, { number: '04', name: 'ModernTechHR', kind: 'HUMAN RESOURCES MANAGEMENT', description: 'ModernTechHR is an HR management platform designed to bring employee records, attendance, payroll, leave management and reporting into one organised interface. JavaScript drives employee updates, searching, filtering, payroll calculations and modal interactions, while Chart.js turns HR information into visual reports.', caseStudy: { problem: 'The objective was to build an interactive HR management system bringing employee information, payroll, searching, filtering and reporting into one organised platform.', build: 'Built the frontend with HTML/CSS and JavaScript, dynamic employee data, DOM updates, search and filtering, modal workflows and payroll calculations. Chart.js turned HR and payroll data into visual reports, with frontend and backend services connected to a cloud-hosted MySQL database.', challenge: 'The main challenge was learning how separate frontend and backend repositories could be developed, deployed and connected as one application. Research, service-communication testing and deployment configuration helped connect the frontend, backend and cloud database.', features: ['Employee management and records','Attendance and leave workflows','Payroll calculations','Search and filtering','Modal interactions and responsive layouts','Chart.js dashboards and reporting','Separate frontend/backend deployment'] }, stack: ['JavaScript', 'MySQL', 'Chart.js'], detail: 'Engineering focus', outcome: 'Structured records · Management workflows · Reporting', link: 'https://module1-project-hr.onrender.com/', preview: 'https://module1-project-hr.onrender.com/', repo: '', visual: 'hr', }, { number: '05', name: 'Voya Bite', kind: 'TRAVEL EXPERIENCES & BOOKING INTERFACE', description: 'Voya Bite explores a travel website experience for discovering activities, hotels and flights. The interface combines curated travel content with browsing, filtering and booking interactions.', stack: ['HTML', 'CSS', 'JavaScript', 'Responsive UI'], detail: 'Engineering focus', outcome: 'Experience discovery · Filtering · Booking-modal flow', caseStudy: { problem: 'Travel discovery can feel fragmented when activities, destinations and booking actions are spread across disconnected interfaces.', build: 'Created a responsive static-site experience with navigation, filtering, booking-modal interactions and travel-oriented content for Cape Town hiking, a Kruger safari day, shark-cage diving, a Table Mountain abseil and a wine-tram tour.', challenge: 'The main design challenge was connecting browsing and booking interactions without making the page feel cluttered.', features: ['Curated travel activities','Filtering and browsing','Booking modal flow','Responsive navigation'] }, link: '', preview: '', repo: '', visual: '', }, ] 
 let observer: IntersectionObserver | undefined
 onMounted(() => {
   reducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -157,6 +79,7 @@ function traceSkills(projectVisual: string) {
         <a href="#skills" :class="{ active: activeSection === 'skills' }" @click="closeMenu">Skills map</a>
         <a href="#journey" :class="{ active: activeSection === 'journey' }" @click="closeMenu">Journey</a>
         <a href="#about" :class="{ active: activeSection === 'about' }" @click="closeMenu">About</a>
+        <a href="#field-notes" :class="{ active: activeSection === 'field-notes' }" @click="closeMenu">Field notes</a>
         <a class="nav-contact" href="#contact" @click="closeMenu">Let's connect <ArrowUpRight :size="14" /></a>
         <button
           class="theme-toggle"
@@ -289,9 +212,26 @@ function traceSkills(projectVisual: string) {
         </div>
       </section>
 
+      <section id="field-notes" class="section-wrap">
+        <div class="section-kicker"><span>05</span><span class="kicker-rule"></span><span>FIELD NOTES</span><span class="kicker-tail">LESSONS FROM THE WORK</span></div>
+        <div class="section-intro"><h2>What the work<br/><em>taught me.</em></h2><p>Lessons from the process of building, debugging and connecting systems.</p></div>
+        <div class="field-notes-grid">
+          <article class="field-note"><span class="field-note-label">LESSON — JAVASCRIPT</span><h3>The happy path is not enough</h3><p>Early JavaScript taught me to check inputs before calculating and to test more than one outcome. My isPrime logic, validation and edge cases improved when I broke problems into smaller checks and tested beyond a single successful example.</p></article>
+          <article class="field-note"><span class="field-note-label">LESSON — SCOPE</span><h3>Where data lives</h3><p>Scope taught me that a variable can only be used where it is available. I now think about where data lives, who can access it and how information should move between functions.</p></article>
+          <article class="field-note"><span class="field-note-label">GIT NOTE</span><h3>Version control is a workflow</h3><p>Recipe Finder was where Git stopped being just commands. Remote history, branch naming, upstream branches and merge conflicts taught me to understand the error and fix the workflow instead of ignoring it.</p></article>
+          <article class="field-note"><span class="field-note-label">LESSON — FRONTEND</span><h3>DOM + interaction</h3><p>Buttons, prompts, event listeners, dynamic cards and timed UI behaviour showed me that JavaScript is not only about calculations — it is also about controlling an interface.</p></article>
+          <article class="field-note"><span class="field-note-label">DATABASE NOTE</span><h3>Data supports the workflow</h3><p>A database is not just somewhere to store data. It has to connect correctly to backend logic, respect relationships and support the application's workflows.</p></article>
+          <article class="field-note"><span class="field-note-label">LIGHTNING NEWS</span><h3>Research is part of development</h3><p>Web scraping and Three.js were new concepts for our team. Research and experimentation helped us work with Python, Flask, Requests, BeautifulSoup and lxml.</p></article>
+          <article class="field-note"><span class="field-note-label">LESSON — DEPLOYMENT</span><h3>ModernTechHR</h3><p>Learning how separate frontend and backend repositories could be developed, deployed and connected to a cloud-hosted MySQL database introduced me to deployment as part of the application architecture.</p></article>
+          <article class="field-note"><span class="field-note-label">LESSON — FULL STACK</span><h3>Budget Tracker</h3><p>PostgreSQL persistence, budget-period rollover, timezone handling and Render deployment taught me how the frontend, API and database layers need to work together.</p></article>
+          <article class="field-note"><span class="field-note-label">LESSON — PAYMENTS</span><h3>StockWell</h3><p>PayFast taught me that integrations can fail even when a request appears successful. Logging the raw request, checking signatures and adding transaction protection taught me to debug the full system instead of trusting a 200 response.</p></article>
+        </div>
+        <p class="lessons-summary">{{ profile.lessons }}</p>
+      </section>
+
       <section id="contact" class="contact-section section-wrap">
         <div class="contact-art" aria-hidden="true"><div class="contact-glow"></div><div class="contact-ripple ripple-one"></div><div class="contact-ripple ripple-two"></div><div class="contact-ripple ripple-three"></div></div>
-        <div class="section-kicker"><span>05</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
+        <div class="section-kicker"><span>06</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
         <div class="contact-content">
           <span class="contact-eyebrow"><Sparkles :size="14" /> THERE'S ALWAYS ANOTHER WAY FORWARD</span>
           <h2>Let's make<br/><em>something meaningful.</em></h2>
