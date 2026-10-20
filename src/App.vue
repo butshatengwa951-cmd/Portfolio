@@ -13,7 +13,6 @@ const year = new Date().getFullYear()
 
 const weatherMode = ref<'tornado' | 'thunder'>('tornado')
 const goddessActive = ref(false)
-const pointerPosition = ref({ x: -200, y: -200 })
 const lightningPath = ref('')
 const lightningDrawing = ref(false)
 const viewport = ref({ width: 1440, height: 900 })
@@ -23,7 +22,12 @@ let lightningTimer: number | undefined
 let wheelBoostEnabled = false
 
 function handlePointerMove(event: PointerEvent) {
-  pointerPosition.value = { x: event.clientX, y: event.clientY }
+  // Update the decorative cursor directly; avoid a Vue render on every pointer event.
+  const cursor = document.querySelector<HTMLElement>('.wind-cursor')
+  if (cursor) {
+    cursor.style.left = `${event.clientX}px`
+    cursor.style.top = `${event.clientY}px`
+  }
   if (!lightningDrawing.value || weatherMode.value !== 'thunder' || !goddessActive.value) return
   const last = lightningPoints[lightningPoints.length - 1]
   if (last && Math.hypot(event.clientX - last.x, event.clientY - last.y) < 11) return
@@ -67,7 +71,11 @@ function endLightning() {
 function handleWheel(event: WheelEvent) {
   if (!wheelBoostEnabled || reducedMotion.value || weatherMode.value !== 'tornado' || !goddessActive.value) return
   event.preventDefault()
-  window.scrollBy({ top: event.deltaY * 1.55, left: event.deltaX, behavior: 'auto' })
+  // Normalize wheel units, then apply a strong multiplier without smooth-scroll queuing.
+  const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1
+  const deltaY = event.deltaY * unit
+  const deltaX = event.deltaX * unit
+  window.scrollBy(deltaX * 1.5, deltaY * 3.4)
 }
 
 function syncWheelBoost() {
@@ -210,7 +218,7 @@ function traceSkills(projectVisual: string) {
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
     <div class="topographic" aria-hidden="true"></div>
-    <div class="wind-cursor" :class="{ visible: weatherMode === 'tornado', amplified: goddessActive && weatherMode === 'tornado' }" :style="{ left: `${pointerPosition.x}px`, top: `${pointerPosition.y}px` }" aria-hidden="true"></div>
+    <div class="wind-cursor" :class="{ visible: weatherMode === 'tornado', amplified: goddessActive && weatherMode === 'tornado' }" aria-hidden="true"></div>
     <svg
       class="lightning-overlay"
       :class="{ active: Boolean(lightningPath) }"
