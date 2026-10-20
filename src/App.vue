@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import LivePreview from './components/LivePreview.vue'
+import './legacy-content.css'
 import SkillsConstellation from './components/SkillsConstellation.vue'
 import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, Sun, Moon } from 'lucide-vue-next'
 
