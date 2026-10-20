@@ -154,6 +154,26 @@ const projects = [
     repo: '',
     visual: 'hr',
   },
+
+  {
+    number: '05',
+    name: 'Voya Bite',
+    kind: 'TRAVEL EXPERIENCES & BOOKING INTERFACE',
+    description: 'Voya Bite explores a travel website experience for discovering activities, hotels and flights. The interface combines curated travel content with browsing, filtering and booking interactions.',
+    stack: ['HTML', 'CSS', 'JavaScript', 'Responsive UI'],
+    detail: 'Engineering focus',
+    outcome: 'Experience discovery · Filtering · Booking-modal flow',
+    caseStudy: {
+      problem: 'Travel discovery can feel fragmented when activities, destinations and booking actions are spread across disconnected interfaces.',
+      build: 'Created a responsive static-site experience with navigation, filtering, booking-modal interactions and travel-oriented content for Cape Town hiking, a Kruger safari day, shark-cage diving, a Table Mountain abseil and a wine-tram tour.',
+      challenge: 'The main design challenge was connecting browsing and booking interactions without making the page feel cluttered.',
+      features: ['Curated travel activities','Filtering and browsing','Booking modal flow','Responsive navigation']
+    },
+    link: '',
+    preview: '',
+    repo: '',
+    visual: '',
+  },
 ]
 
 let observer: IntersectionObserver | undefined
