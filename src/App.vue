@@ -241,6 +241,7 @@ function traceSkills(projectVisual: string) {
           <div class="contact-actions">
             <a class="button-primary" href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight :size="17" /></a>
             <a class="text-link" href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">GitHub <Github :size="15" /></a>
+            <a class="text-link" href="https://www.linkedin.com/in/butsha-tengwa-66378a313/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight :size="14" /></a>
           </div>
           
         </div>
