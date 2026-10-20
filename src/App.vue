@@ -17,7 +17,7 @@ const projects = [
     detail: 'Engineering focus',
     outcome: 'Role-based workflows · Checkout and payment integration · Group decisions',
     link: 'https://stockwell-hl1e.onrender.com/',
-    repo: 'https://github.com/butshatengwa951-cmd/Portfolio',
+    repo: '',
     visual: 'stockwell',
   },
   {
@@ -254,10 +254,10 @@ function closeMenu() {
           <h2>Let's make<br/><em>something meaningful.</em></h2>
           <p>Open to conversations about software, collaboration and opportunities to build thoughtful things.</p>
           <div class="contact-actions">
-            <a class="button-primary" href="mailto:butshatengwa@gmail.com">Start a conversation <ArrowUpRight :size="17" /></a>
+            <a class="button-primary" href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight :size="17" /></a>
             <a class="text-link" href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">GitHub <Github :size="15" /></a>
           </div>
-          <p class="email-note">Replace the email address with your preferred professional contact before launch if needed.</p>
+          <p class="email-note">Add a preferred professional email here when you are ready to publish.</p>
         </div>
       </section>
     </main>
