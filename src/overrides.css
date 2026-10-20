@@ -295,7 +295,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #dfcadb;outline-offset:4p
 .weather-thunder .button-primary{box-shadow:0 8px 32px rgba(160,35,71,.2)}
 .weather-thunder .project-row{border-bottom-color:rgba(223,202,219,.28)}
 .weather-thunder .storm-status-dot{background:#f0b7cc;box-shadow:0 0 12px rgba(240,183,204,.8)}
-.weather-thunder.goddess-thunder .site-shell:after{content:"";position:fixed;inset:0;z-index:4;pointer-events:none;background:linear-gradient(112deg,transparent 0 38%,rgba(240,183,204,.06) 48%,transparent 56%);animation:thunder-flash .8s ease-out both}
+.weather-thunder.goddess-thunder:after{content:"";position:fixed;inset:0;z-index:4;pointer-events:none;background:linear-gradient(112deg,transparent 0 38%,rgba(240,183,204,.06) 48%,transparent 56%);animation:thunder-flash .8s ease-out both}
 .weather-tornado .flow-field{opacity:.66}
 .weather-tornado .flow-line{stroke-dasharray:1.2 4.3}
 .weather-tornado.goddess-wind .flow-field{opacity:.95}
