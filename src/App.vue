@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useRoute } from 'vue-router'
 import LivePreview from './components/LivePreview.vue'
 import SkillsConstellation from './components/SkillsConstellation.vue'
 import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, Sun, Moon } from 'lucide-vue-next'
 
+const route = useRoute()
+const currentPage = computed(() => route.path === '/' ? 'home' : route.path.slice(1).replace(/\/$/, ''))
 const mobileMenuOpen = ref(false)
 const activeSection = ref('home')
 const reducedMotion = ref(false)
@@ -67,7 +70,7 @@ function traceSkills(projectVisual: string) {
     <div class="ambient ambient-two" aria-hidden="true"></div>
     <div class="topographic" aria-hidden="true"></div>
     <header class="site-header">
-      <a class="wordmark" href="#home" @click="closeMenu" aria-label="Butsha Tengwa home">
+      <a class="wordmark" href="#/" @click="closeMenu" aria-label="Butsha Tengwa home">
         <span class="wordmark-mark">B<span>.</span></span>
         <span class="wordmark-name">BUTSHA TENGWA<small>SOFTWARE DEVELOPER</small></span>
       </a>
@@ -75,12 +78,12 @@ function traceSkills(projectVisual: string) {
         <X v-if="mobileMenuOpen" :size="21" /><Menu v-else :size="21" />
       </button>
       <nav class="main-nav" :class="{ 'nav-open': mobileMenuOpen }" aria-label="Main navigation">
-        <a href="#work" :class="{ active: activeSection === 'work' }" @click="closeMenu">Selected work</a>
-        <a href="#skills" :class="{ active: activeSection === 'skills' }" @click="closeMenu">Skills map</a>
-        <a href="#journey" :class="{ active: activeSection === 'journey' }" @click="closeMenu">Journey</a>
-        <a href="#about" :class="{ active: activeSection === 'about' }" @click="closeMenu">About</a>
-        <a href="#field-notes" :class="{ active: activeSection === 'field-notes' }" @click="closeMenu">Field notes</a>
-        <a class="nav-contact" href="#contact" @click="closeMenu">Let's connect <ArrowUpRight :size="14" /></a>
+        <a href="#/work" :class="{ active: currentPage === 'work' }" @click="closeMenu">Selected work</a>
+        <a href="#/skills" :class="{ active: currentPage === 'skills' }" @click="closeMenu">Skills map</a>
+        <a href="#/journey" :class="{ active: currentPage === 'journey' }" @click="closeMenu">Journey</a>
+        <a href="#/about" :class="{ active: currentPage === 'about' }" @click="closeMenu">About</a>
+        <a href="#/field-notes" :class="{ active: currentPage === 'field-notes' }" @click="closeMenu">Field notes</a>
+        <a class="nav-contact" href="#/contact" @click="closeMenu">Let's connect <ArrowUpRight :size="14" /></a>
         <button
           class="theme-toggle"
           type="button"
@@ -96,7 +99,7 @@ function traceSkills(projectVisual: string) {
     </header>
 
     <main>
-      <section id="home" class="hero section-wrap">
+      <section v-if="currentPage === 'home'" id="home" class="hero section-wrap">
         <div class="hero-velvet" aria-hidden="true"></div>
         <div class="hero-index"><span>BT / FIELD NOTES</span><span>26°12′ S — 28°02′ E</span></div>
         <div class="hero-copy">
@@ -104,8 +107,8 @@ function traceSkills(projectVisual: string) {
           <h1>Built through<br/><em>persistence.</em><br/><span class="hero-small-line">Driven by</span> possibility<span class="violet-period">.</span></h1>
           <p class="hero-intro">I develop full-stack applications with a focus on intuitive experiences, robust backend architecture and data-driven systems.</p>
           <div class="hero-actions">
-            <a href="#work" class="button-primary">Explore the work <ArrowDownRight :size="17" /></a>
-            <a href="#skills" class="text-link">Trace the connections <span>↘</span></a>
+            <a href="#/work" class="button-primary">Explore the work <ArrowDownRight :size="17" /></a>
+            <a href="#/skills" class="text-link">Trace the connections <span>↘</span></a>
           </div>
           <div class="hero-footnote"><span>AN ONGOING PRACTICE</span><span class="footnote-line"></span><span>BUILT BY MAKING</span></div>
         </div>
@@ -138,10 +141,10 @@ function traceSkills(projectVisual: string) {
           <span class="art-coord">STUDY / 001</span>
         </div>
         <div class="hero-side-note">CURIOUS BY NATURE<br/>BUILT THROUGH PRACTICE</div>
-        <a class="scroll-cue" href="#work"><span class="scroll-line"></span><span>FOLLOW THE CURRENT</span><ArrowDownRight :size="13" /></a>
+        <a class="scroll-cue" href="#/work"><span class="scroll-line"></span><span>FOLLOW THE CURRENT</span><ArrowDownRight :size="13" /></a>
       </section>
 
-      <section id="work" class="work-section section-wrap">
+      <section v-if="currentPage === 'work'" id="work" class="work-section section-wrap">
         <div class="section-kicker"><span>01</span><span class="kicker-rule"></span><span>SELECTED WORK</span><span class="kicker-tail">SELECTED PROJECTS</span></div>
         <div class="section-intro">
           <h2>Built with intent.<br/><em>Made to matter.</em></h2>
@@ -172,9 +175,9 @@ function traceSkills(projectVisual: string) {
         </div>
       </section>
 
-      <SkillsConstellation :focus-project="skillsMapProject" :focus-version="skillsMapFocusVersion" />
+      <SkillsConstellation v-if="currentPage === 'skills'" :focus-project="skillsMapProject" :focus-version="skillsMapFocusVersion" />
 
-      <section id="journey" class="journey-section section-wrap">
+      <section v-if="currentPage === 'journey'" id="journey" class="journey-section section-wrap">
         <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>JOURNEY</span><span class="kicker-tail">DEVELOPMENT TIMELINE</span></div>
         <div class="section-intro journey-intro">
           <h2>JOURNEY</h2>
@@ -192,7 +195,7 @@ function traceSkills(projectVisual: string) {
         </div>
       </section>
 
-      <section id="about" class="about-section section-wrap">
+      <section v-if="currentPage === 'about'" id="about" class="about-section section-wrap">
         <div class="section-kicker"><span>04</span><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
         <div class="about-layout">
           <div class="about-heading"><h2>Progress isn't<br/>always <em>linear.</em></h2><div class="about-mark">BT<span>—</span>001</div></div>
@@ -213,7 +216,7 @@ function traceSkills(projectVisual: string) {
         </div>
       </section>
 
-      <section id="field-notes" class="section-wrap">
+      <section v-if="currentPage === 'field-notes'" id="field-notes" class="section-wrap">
         <div class="section-kicker"><span>05</span><span class="kicker-rule"></span><span>FIELD NOTES</span><span class="kicker-tail">LESSONS FROM THE WORK</span></div>
         <div class="section-intro"><h2>What the work<br/><em>taught me.</em></h2><p>Lessons from the process of building, debugging and connecting systems.</p></div>
         <div class="field-notes-grid">
@@ -231,7 +234,7 @@ function traceSkills(projectVisual: string) {
         <p class="lessons-summary">{{ profile.lessons }}</p>
       </section>
 
-      <section id="contact" class="contact-section section-wrap">
+      <section v-if="currentPage === 'contact'" id="contact" class="contact-section section-wrap">
         <div class="contact-art" aria-hidden="true"><div class="contact-glow"></div><div class="contact-ripple ripple-one"></div><div class="contact-ripple ripple-two"></div><div class="contact-ripple ripple-three"></div></div>
         <div class="section-kicker"><span>06</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
         <div class="contact-content">
@@ -249,10 +252,10 @@ function traceSkills(projectVisual: string) {
     </main>
 
     <footer class="site-footer">
-      <a class="footer-wordmark" href="#home">BT<span>.</span></a>
+      <a class="footer-wordmark" href="#/">BT<span>.</span></a>
       <span>DESIGNED WITH INTENTION. BUILT IN MOTION.</span>
       <span>© {{ year }} BUTSHA TENGWA</span>
-      <a href="#home" class="back-top">BACK TO TOP ↑</a>
+      <a href="#/" class="back-top">BACK TO TOP ↑</a>
     </footer>
   </div>
 </template>
