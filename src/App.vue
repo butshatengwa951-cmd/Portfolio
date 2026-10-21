@@ -58,7 +58,7 @@ function traceSkills(projectVisual: string) {
   const idByVisual: Record<string, 'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker'> = { stockwell: 'stockwell', hr: 'moderntechhr', news: 'lightningnews', budget: 'budgettracker' }
   skillsMapProject.value = idByVisual[projectVisual] ?? null
   skillsMapFocusVersion.value += 1
-  document.getElementById('skills')?.scrollIntoView({ behavior: reducedMotion.value ? 'auto' : 'smooth' })
+  window.location.hash = '/skills'
 }
 </script>
 
