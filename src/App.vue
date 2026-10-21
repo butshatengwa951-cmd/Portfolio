@@ -3,11 +3,12 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import LivePreview from './components/LivePreview.vue'
 import SkillsConstellation from './components/SkillsConstellation.vue'
-import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, Sun, Moon } from 'lucide-vue-next'
+import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, Sun, Moon, LayoutGrid, List as ListIcon } from 'lucide-vue-next'
 
 const route = useRoute()
 const currentPage = computed(() => route.path === '/' ? 'home' : route.path.slice(1).replace(/\/$/, ''))
 const mobileMenuOpen = ref(false)
+const projectLayout = ref<'list' | 'grid'>('list')
 const activeSection = ref('home')
 const reducedMotion = ref(false)
 const skillsMapProject = ref<'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker' | null>(null)
@@ -78,6 +79,7 @@ function traceSkills(projectVisual: string) {
         <X v-if="mobileMenuOpen" :size="21" /><Menu v-else :size="21" />
       </button>
       <nav class="main-nav" :class="{ 'nav-open': mobileMenuOpen }" aria-label="Main navigation">
+        <a href="#/" :class="{ active: currentPage === 'home' }" @click="closeMenu">Home</a>
         <a href="#/work" :class="{ active: currentPage === 'work' }" @click="closeMenu">Selected work</a>
         <a href="#/skills" :class="{ active: currentPage === 'skills' }" @click="closeMenu">Skills map</a>
         <a href="#/journey" :class="{ active: currentPage === 'journey' }" @click="closeMenu">Journey</a>
@@ -150,7 +152,32 @@ function traceSkills(projectVisual: string) {
           <h2>Built with intent.<br/><em>Made to matter.</em></h2>
           <p>A selection of projects exploring how interfaces, application logic and structured data work together to solve real problems.</p>
         </div>
-        <div class="project-list">
+        <div class="project-display-toolbar">
+          <p class="project-display-hint">GRID VIEW FOR QUICK BROWSING · LIST VIEW FOR FULL CASE FILES</p>
+          <div class="project-view-options" role="group" aria-label="Choose project display layout">
+            <button
+              class="project-view-button"
+              :class="{ active: projectLayout === 'list' }"
+              type="button"
+              :aria-pressed="projectLayout === 'list'"
+              @click="projectLayout = 'list'"
+            >
+              <ListIcon :size="15" />
+              <span>LIST</span>
+            </button>
+            <button
+              class="project-view-button"
+              :class="{ active: projectLayout === 'grid' }"
+              type="button"
+              :aria-pressed="projectLayout === 'grid'"
+              @click="projectLayout = 'grid'"
+            >
+              <LayoutGrid :size="15" />
+              <span>GRID</span>
+            </button>
+          </div>
+        </div>
+        <div class="project-list" :class="{ 'is-grid': projectLayout === 'grid' }">
           <article v-for="project in projects" :key="project.number" class="project-row">
             <LivePreview :title="project.name" :url="project.preview" :number="project.number" />
             <div class="project-copy">
