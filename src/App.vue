@@ -79,7 +79,7 @@ function traceSkills(projectVisual: string) {
         <X v-if="mobileMenuOpen" :size="21" /><Menu v-else :size="21" />
       </button>
       <nav class="main-nav" :class="{ 'nav-open': mobileMenuOpen }" aria-label="Main navigation">
-        <a href="#/" :class="{ active: currentPage === 'home' }" @click="closeMenu">Home</a>
+        <a class="home-nav-link" href="#/" :class="{ active: currentPage === 'home' }" @click="closeMenu">Home</a>
         <a href="#/work" :class="{ active: currentPage === 'work' }" @click="closeMenu">Selected work</a>
         <a href="#/skills" :class="{ active: currentPage === 'skills' }" @click="closeMenu">Skills map</a>
         <a href="#/journey" :class="{ active: currentPage === 'journey' }" @click="closeMenu">Journey</a>
