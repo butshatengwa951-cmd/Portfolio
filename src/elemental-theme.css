@@ -1092,23 +1092,28 @@
   animation: silk-current 26s linear infinite;
 }
 .site-shell[data-element] .ribbon-flow-secondary { opacity: .8; }
+.site-shell[data-element] .ribbon-flow-secondary.flow-ribbon-glint { animation-delay: -8s; }
 .site-shell[data-element] .ribbon-flow-tertiary { opacity: .68; }
+.site-shell[data-element] .ribbon-flow-tertiary.flow-ribbon-glint { animation-delay: -15s; }
 .site-shell[data-element] .art-contour {
   width: 345px;
   height: 185px;
   top: 160px;
+  left: calc(50% - 172.5px);
   opacity: .56;
 }
 .site-shell[data-element] .contour-two { top: 174px; }
 .site-shell[data-element] .contour-three { top: 192px; opacity: .4; }
 .site-shell[data-element] .art-orbit {
   top: 112px;
+  left: calc(50% - 162.5px);
   width: 325px;
   height: 280px;
   opacity: .48;
 }
 .site-shell[data-element] .orbit-two {
   top: 126px;
+  left: calc(50% - 185px);
   width: 370px;
   height: 230px;
   opacity: .36;
