@@ -376,7 +376,6 @@ function traceSkills(projectVisual: string) {
             <a href="#/work" class="button-primary">Explore the work <ArrowDownRight :size="17" /></a>
             <a href="#/skills" class="text-link">Trace the connections <span>↘</span></a>
           </div>
-          <div class="hero-footnote"><span>AN ONGOING PRACTICE</span><span class="footnote-line"></span><span>BUILT BY MAKING</span></div>
         </div>
         <div class="hero-art" aria-label="Textured abstract artwork inspired by silk, shadow and pearl embroidery">
           <div class="art-halo"></div>
@@ -402,12 +401,7 @@ function traceSkills(projectVisual: string) {
           <div class="art-node node-one"></div>
           <div class="art-node node-two"></div>
           <div class="art-node node-three"></div>
-          
-          <span class="art-label label-bottom">A SOFTER KIND OF SIGNAL</span>
-          <span class="art-coord">STUDY / 001</span>
         </div>
-        <div class="hero-side-note">CURIOUS BY NATURE<br/>BUILT THROUGH PRACTICE</div>
-        <a class="scroll-cue" href="#/work"><span class="scroll-line"></span><span>FOLLOW THE CURRENT</span><ArrowDownRight :size="13" /></a>
       </section>
 
       <section v-if="currentPage === 'work'" id="work" class="work-section section-wrap">
