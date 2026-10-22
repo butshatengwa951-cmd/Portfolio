@@ -11,8 +11,6 @@ const mobileMenuOpen = ref(false)
 const projectLayout = ref<'list' | 'grid'>('list')
 const activeSection = ref('home')
 const reducedMotion = ref(false)
-const appReady = ref(false)
-let loaderTimer: number | undefined
 const skillsMapProject = ref<'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker' | null>(null)
 const skillsMapFocusVersion = ref(0)
 const contactEmail = (import.meta.env.VITE_CONTACT_EMAIL ?? '').trim()
@@ -76,17 +74,12 @@ onMounted(() => {
   document.querySelectorAll('main section[id]').forEach((section) => observer?.observe(section))
   syncAppearance()
   document.addEventListener('pointerdown', handlePortalOutside)
-  loaderTimer = window.setTimeout(() => {
-    appReady.value = true
-    loaderTimer = undefined
-  }, reducedMotion.value ? 140 : 1100)
 })
 
 onUnmounted(() => {
   observer?.disconnect()
   document.removeEventListener('pointerdown', handlePortalOutside)
   if (elementTransitionTimer !== undefined) window.clearTimeout(elementTransitionTimer)
-  if (loaderTimer !== undefined) window.clearTimeout(loaderTimer)
 })
 
 function setElement(nextElement: ElementName) {
@@ -175,15 +168,6 @@ function traceSkills(projectVisual: string) {
 
 <template>
   <div class="site-shell" :class="{ 'reduce-motion': reducedMotion }" :data-element="element" data-theme="dark">
-    <div class="elemental-loader" :class="{ 'is-gone': appReady }" :data-element="element" aria-hidden="true">
-      <div class="elemental-loader-mark">
-        <img src="/elemental-emblem.jpg" alt="" />
-        <span class="elemental-loader-ring"></span>
-      </div>
-      <div class="elemental-loader-brand">NOCTURNE</div>
-      <div class="elemental-loader-caption">ENTERING THE ELEMENTS</div>
-      <div class="elemental-loader-progress"><span></span></div>
-    </div>
     <div class="elemental-landscape" :class="'landscape-' + element" aria-hidden="true">
       <svg class="landscape-art" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
         <g v-if="element === 'water'">
