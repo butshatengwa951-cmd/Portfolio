@@ -13,6 +13,10 @@ const activeSection = ref('home')
 const reducedMotion = ref(false)
 const skillsMapProject = ref<'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker' | null>(null)
 const skillsMapFocusVersion = ref(0)
+const contactEmail = (import.meta.env.VITE_CONTACT_EMAIL ?? '').trim()
+const contactForm = ref({ name: '', email: '', subject: '', message: '' })
+const contactStatus = ref<'idle' | 'sending' | 'success' | 'error'>('idle')
+const contactStatusMessage = ref('')
 const profile = {
   role: "FULL-STACK DEVELOPER / CREATIVE",
   location: "SOUTH AFRICA",
@@ -49,6 +53,51 @@ function toggleTheme() {
   theme.value = theme.value === 'dark' ? 'light' : 'dark'
   document.documentElement.dataset.theme = theme.value
   window.localStorage.setItem('butsha-portfolio-theme', theme.value)
+}
+
+async function submitContactForm() {
+  if (!contactEmail) {
+    contactStatus.value = 'error'
+    contactStatusMessage.value = 'Email delivery is not configured yet. Set VITE_CONTACT_EMAIL in the site build environment and redeploy.'
+    return
+  }
+
+  contactStatus.value = 'sending'
+  contactStatusMessage.value = ''
+
+  try {
+    const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(contactEmail)}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        name: contactForm.value.name.trim(),
+        email: contactForm.value.email.trim(),
+        _replyto: contactForm.value.email.trim(),
+        subject: contactForm.value.subject.trim(),
+        message: contactForm.value.message.trim(),
+        _subject: `Portfolio enquiry: ${contactForm.value.subject.trim()}`,
+        _template: 'table',
+        _honey: ''
+      })
+    })
+
+    const result = await response.json().catch(() => ({}))
+    if (!response.ok || result.success === false || result.success === 'false') {
+      throw new Error(typeof result.message === 'string' ? result.message : 'The email service could not accept your message.')
+    }
+
+    contactStatus.value = 'success'
+    contactStatusMessage.value = 'Message submitted. Thank you for getting in touch.'
+    contactForm.value = { name: '', email: '', subject: '', message: '' }
+  } catch (error) {
+    contactStatus.value = 'error'
+    contactStatusMessage.value = error instanceof Error
+      ? `Your message could not be sent. ${error.message}`
+      : 'Your message could not be sent. Please try again later.'
+  }
 }
 
 function closeMenu() {
@@ -262,18 +311,53 @@ function traceSkills(projectVisual: string) {
       </section>
 
       <section v-if="currentPage === 'contact'" id="contact" class="contact-section section-wrap">
-        <div class="contact-art" aria-hidden="true"><div class="contact-glow"></div><div class="contact-ripple ripple-one"></div><div class="contact-ripple ripple-two"></div><div class="contact-ripple ripple-three"></div></div>
-        <div class="section-kicker"><span>06</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">OPEN TO WHAT'S NEXT</span></div>
-        <div class="contact-content">
-          <span class="contact-eyebrow"><Sparkles :size="14" /> THERE'S ALWAYS ANOTHER WAY FORWARD</span>
-          <h2>Let's make<br/><em>something meaningful.</em></h2>
-          <p>Open to conversations about software, collaboration and opportunities to build thoughtful things.</p>
-          <div class="contact-actions">
-            <a class="button-primary" href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight :size="17" /></a>
-            <a class="text-link" href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">GitHub <Github :size="15" /></a>
-            <a class="text-link" href="https://www.linkedin.com/in/butsha-tengwa-66378a313/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight :size="14" /></a>
+        <div class="section-kicker"><span>06</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">CONTACT / OPEN CHANNEL</span></div>
+        <div class="contact-heading">
+          <div>
+            <span class="contact-eyebrow"><Sparkles :size="14" /> THERE'S ALWAYS ANOTHER WAY FORWARD</span>
+            <h2>Let's make<br/><em>something meaningful.</em></h2>
           </div>
-          
+          <p>Have a project in mind, a question about my work, or an opportunity to discuss? Send me a message using the form.</p>
+        </div>
+        <div class="contact-layout">
+          <aside class="contact-aside">
+            <span class="contact-aside-label">A NOTE BEFORE WE BEGIN</span>
+            <h3>Good work starts<br/>with a conversation.</h3>
+            <p>Share a little context, and I’ll get back to you by replying to the email address you provide.</p>
+            <div class="contact-aside-links">
+              <a href="https://github.com/butshatengwa951-cmd" target="_blank" rel="noreferrer">GitHub <Github :size="15" /></a>
+              <a href="https://www.linkedin.com/in/butsha-tengwa-66378a313/" target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight :size="14" /></a>
+            </div>
+          </aside>
+          <form class="contact-form" @submit.prevent="submitContactForm">
+            <div class="contact-form-grid">
+              <label class="contact-field">
+                <span>YOUR NAME</span>
+                <input v-model="contactForm.name" name="name" type="text" autocomplete="name" placeholder="How should I address you?" maxlength="100" required />
+              </label>
+              <label class="contact-field">
+                <span>YOUR EMAIL</span>
+                <input v-model="contactForm.email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required />
+              </label>
+            </div>
+            <label class="contact-field">
+              <span>SUBJECT</span>
+              <input v-model="contactForm.subject" name="subject" type="text" placeholder="What would you like to discuss?" maxlength="140" required />
+            </label>
+            <label class="contact-field">
+              <span>MESSAGE</span>
+              <textarea v-model="contactForm.message" name="message" rows="6" minlength="10" maxlength="5000" placeholder="Tell me a little about it..." required></textarea>
+            </label>
+            <input class="contact-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="contact-submit-row">
+              <p class="contact-form-note">Your email address is used so I can reply to your message.</p>
+              <button class="button-primary contact-submit" type="submit" :disabled="contactStatus === 'sending'">
+                {{ contactStatus === 'sending' ? 'Sending…' : 'Send message' }} <ArrowUpRight :size="16" />
+              </button>
+            </div>
+            <p v-if="contactStatusMessage" class="contact-feedback" :class="'is-' + contactStatus" role="status" aria-live="polite">{{ contactStatusMessage }}</p>
+            <p v-if="!contactEmail" class="contact-setup-note">Email delivery needs to be configured by setting <code>VITE_CONTACT_EMAIL</code> in the hosting build environment.</p>
+          </form>
         </div>
       </section>
     </main>
