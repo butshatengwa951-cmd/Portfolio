@@ -978,6 +978,16 @@ a:focus-visible,button:focus-visible{outline:2px solid #dfcadb;outline-offset:4p
   --ui-panel:rgba(255,255,255,.78);
   --line:rgba(36,79,124,.2);
 }
+.site-shell.theme-light .contact-section{border-top-color:rgba(36,79,124,.17);background:linear-gradient(145deg,rgba(249,252,255,.72),rgba(220,233,247,.48))}
+.site-shell.theme-light .contact-eyebrow{color:#244f7c}
+.site-shell.theme-light .contact-eyebrow svg{color:#3978b4}
+.site-shell.theme-light .contact-aside-links a:hover{color:#3978b4;border-color:#3978b4}
+.site-shell.theme-light .contact-form-note{color:#7188a0}
+.site-shell.theme-light .contact-submit:disabled{opacity:.65;cursor:wait}
+.site-shell.theme-light .contact-setup-note code{color:#244f7c}
+.site-shell.theme-light .contact-field input:disabled,.site-shell.theme-light .contact-field textarea:disabled{opacity:.7}
+.site-shell.theme-light .contact-submit:focus-visible{outline-color:#3978b4}
+.site-shell.theme-light .section-wrap{scroll-margin-top:90px}
 .site-shell.theme-light .contact-aside{background:rgba(249,252,255,.78)}
 .site-shell.theme-light .contact-aside:before{background:radial-gradient(ellipse at 100% 0%,rgba(57,120,180,.1),transparent 55%)}
 .site-shell.theme-light .contact-aside-label,.site-shell.theme-light .contact-field>span{color:#244f7c}
