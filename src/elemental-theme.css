@@ -185,7 +185,7 @@
 }.site-shell[data-element] .preview-load-button:focus-visible{
   outline:2px solid var(--landscape-highlight);
   outline-offset:4px;
-}.site-shell[data-element] .preview-window-controls i:first-child{ background:var(--violet); }.site-shell[data-element] .preview-window-controls i:nth-child(2){ background:var(--violet2); }.site-shell[data-element] .preview-window-controls i:nth-child(3){ background:var(--landscape-highlight); }.site-shell[data-element] .preview-edge-number{ color:var(--dim); }
+}.site-shell[data-element] .preview-window-controls i:first-child{ background:var(--violet); }.site-shell[data-element] .preview-window-controls i:nth-child(2){ background:var(--violet2); }.site-shell[data-element] .preview-window-controls i:nth-child(3){ background:var(--landscape-highlight); }
 
 
 /* Dark-only elemental palette base; light mode has been removed. */
@@ -275,9 +275,6 @@
 .site-shell[data-element] .contact-form-note,
 .site-shell[data-element] .contact-field input::placeholder,
 .site-shell[data-element] .contact-field textarea::placeholder,
-.site-shell[data-element] .preview-edge-number {
-  color: var(--text-subtle);
-}
 
 /* Every decorative or interactive accent takes its colour from the active element. */
 .site-shell[data-element] .wordmark-mark span,

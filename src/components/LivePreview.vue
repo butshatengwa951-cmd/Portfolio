@@ -34,6 +34,5 @@ const previewLoaded = ref(false)
       <span>{{ previewLoaded ? 'LIVE PREVIEW · EXTERNAL SITE' : (url ? 'PREVIEW LOADS ON REQUEST' : 'LIVE PREVIEW UNAVAILABLE') }}</span>
       <a v-if="url" :href="url" target="_blank" rel="noreferrer">OPEN SITE ↗</a><span v-else>NO PUBLIC URL LISTED</span>
     </div>
-    <span class="preview-edge-number">{{ number }} / LIVE</span>
   </div>
 </template>
