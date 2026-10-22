@@ -152,7 +152,7 @@
   background:radial-gradient(ellipse,color-mix(in srgb,var(--landscape-orb) 9%,transparent),color-mix(in srgb,var(--landscape-dark) 5%,transparent) 48%,transparent 76%);
 }.site-shell[data-element]::after{
   background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 3%,transparent) 0%,transparent 42%,color-mix(in srgb,var(--bg) 36%,transparent) 100%);
-}/* Air is storm grey and peach, not a blue palette. */
+}/* Air is monochrome: cool storm greys and silver, with no warm colour tint. */
 .site-shell[data-element="air"] .elemental-transition{ mix-blend-mode:normal; }.site-shell[data-element="air"] .landscape-art{ filter:grayscale(.82) contrast(1.04); }/* Live preview placeholders — match the currently selected element before loading an iframe. */
 .site-shell[data-element]{
   --preview-action:var(--violet);
