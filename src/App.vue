@@ -521,7 +521,13 @@ function traceSkills(projectVisual: string) {
       <section v-if="currentPage === 'about'" id="about" class="about-section section-wrap">
         <div class="section-kicker"><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
         <div class="about-layout">
-          <div class="about-heading"><h2>Progress isn't<br/>always <em>linear.</em></h2><div class="about-mark" aria-hidden="true">BT</div></div>
+          <div class="about-heading">
+            <figure class="about-portrait">
+              <img src="/about-portrait.webp" alt="Portrait of Butsha Tengwa" width="240" height="240" loading="lazy" decoding="async" />
+            </figure>
+            <h2>Progress isn't<br/>always <em>linear.</em></h2>
+            <div class="about-mark" aria-hidden="true">BT</div>
+          </div>
           <div class="about-copy">
             <p class="about-lead">I believe good software comes from curiosity, patience and the willingness to work through complexity.</p>
             <p>My focus is full-stack development, with particular interest in backend systems, databases and the decisions that make digital products dependable. I enjoy making the technical structure and the user experience feel like parts of the same whole.</p>

@@ -1161,3 +1161,51 @@
   .site-shell[data-element] .hero-art .art-disc,
   .site-shell[data-element] .flow-ribbon-glint { animation: none !important; }
 }
+
+
+/* ABOUT PORTRAIT — an editorial portrait that follows the selected elemental palette */
+.site-shell[data-element] .about-portrait {
+  position: relative;
+  display: block;
+  width: min(100%, 252px);
+  aspect-ratio: .9;
+  margin: 0 0 30px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 5px 20px 5px 20px;
+  background: var(--panel);
+  box-shadow: 0 18px 54px rgba(0,0,0,.24), inset 0 0 0 5px color-mix(in srgb,var(--bg) 72%,transparent);
+}
+.site-shell[data-element] .about-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  z-index: 1;
+  border: 1px solid color-mix(in srgb,var(--landscape-highlight) 28%,transparent);
+  border-radius: 2px 13px 2px 13px;
+  pointer-events: none;
+}
+.site-shell[data-element] .about-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+  filter: saturate(.88) contrast(1.025);
+  transition: transform .65s cubic-bezier(.2,.7,.2,1);
+}
+.site-shell[data-element] .about-portrait:hover img { transform: scale(1.035); }
+.site-shell[data-element] .about-heading .about-mark { margin-top: 22px; }
+@media (max-width: 900px) and (min-width: 651px) {
+  .site-shell[data-element] .about-portrait { width: min(100%, 225px); margin-bottom: 24px; }
+}
+@media (max-width: 650px) {
+  .site-shell[data-element] .about-portrait {
+    width: min(70%, 228px);
+    margin-bottom: 24px;
+  }
+  .site-shell[data-element] .about-heading .about-mark { margin-top: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-shell[data-element] .about-portrait img { transition: none; }
+}
