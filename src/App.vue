@@ -387,7 +387,6 @@ function traceSkills(projectVisual: string) {
     <main>
       <section v-if="currentPage === 'home'" id="home" class="hero section-wrap">
         <div class="hero-velvet" aria-hidden="true"></div>
-        <div class="hero-index"><span>BT / FIELD NOTES</span></div>
         <div class="hero-copy">
           <div class="eyebrow"><span class="status-light"></span> FULL-STACK DEVELOPMENT <span class="eyebrow-slash">/</span> BACKEND & DATA</div>
           <h1>Built through<br/><em>persistence.</em><br/><span class="hero-small-line">Driven by</span> possibility<span class="violet-period">.</span></h1>
