@@ -22,7 +22,7 @@ const previewLoaded = ref(false)
         allow="clipboard-read; clipboard-write"
       ></iframe>
       <div v-else class="preview-placeholder">
-        <span class="preview-placeholder-kicker">PROJECT FILE / {{ number }}</span>
+        <span class="preview-placeholder-kicker">PROJECT PREVIEW</span>
         <strong>{{ title }}</strong>
         <p>{{ url ? "Load the live application here when you want to explore it." : "A public live URL is not currently available for this project." }}</p>
         <button v-if="url" class="preview-load-button" type="button" @click="previewLoaded = true">

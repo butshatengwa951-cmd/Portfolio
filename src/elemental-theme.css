@@ -283,14 +283,11 @@
 .site-shell[data-element] h2 em,
 .site-shell[data-element] .violet-period,
 .site-shell[data-element] .hero-footnote > span:first-child,
-.site-shell[data-element] .section-kicker > span:first-child,
 .site-shell[data-element] .field-note-label,
 .site-shell[data-element] .case-study h4,
 .site-shell[data-element] .case-study-toggle,
 .site-shell[data-element] .about-copy h3,
-.site-shell[data-element] .about-mark span,
 .site-shell[data-element] .about-signature,
-.site-shell[data-element] .project-number,
 .site-shell[data-element] .outcome-dot,
 .site-shell[data-element] .journey-date,
 .site-shell[data-element] .journey-marker,
@@ -500,13 +497,13 @@
   box-shadow: 0 0 26px var(--accent-wash-transparent);
 }
 
-.site-shell[data-element] .project-node-number {
+.site-shell[data-element] .project-node-label {
   color: var(--element-accent);
   border-color: var(--stroke-subtle);
 }
 
-.site-shell[data-element] .project-node:hover .project-node-number,
-.site-shell[data-element] .project-node.is-selected .project-node-number {
+.site-shell[data-element] .project-node:hover .project-node-label,
+.site-shell[data-element] .project-node.is-selected .project-node-label {
   color: var(--element-contrast);
   border-color: color-mix(in srgb, var(--element-contrast) 30%, transparent);
 }

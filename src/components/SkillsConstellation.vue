@@ -4,7 +4,7 @@ import { ArrowUpRight, X } from 'lucide-vue-next'
 
 type ProjectId = 'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker'
 type SkillId = 'js' | 'htmlcss' | 'vue' | 'node' | 'mysql' | 'payfast' | 'chartjs' | 'scraping' | 'threejs' | 'python' | 'flask' | 'postgresql' | 'render'
-interface ProjectItem { id: ProjectId; file: string; name: string; description: string }
+interface ProjectItem { id: ProjectId; name: string; description: string }
 interface SkillItem { id: SkillId; name: string; category: string; projects: ProjectId[]; related: string[]; x: number; y: number }
 
 const props = defineProps<{ focusProject: ProjectId | null; focusVersion: number }>()
@@ -25,10 +25,10 @@ const technologies: SkillItem[] = [
   { id:'threejs',name:'THREE.JS',category:'3D / INTERACTION',projects:['lightningnews'],related:['3D scenes','Animation','Interaction','Visualisation'],x:900,y:290 },
 ]
 const projectItems: ProjectItem[] = [
-  { id:'stockwell',file:'02',name:'StockWell',description:'Community commerce with supplier comparison, role-based workflows, group proposals, voting and payment integration.' },
-  { id:'moderntechhr',file:'03',name:'ModernTechHR',description:'HR records, attendance, payroll calculations, search, filtering and visual reporting.' },
-  { id:'lightningnews',file:'04',name:'Lightning News',description:'Content extraction, feed parsing, structured data, and search/statistics APIs.' },
-  { id:'budgettracker',file:'05',name:'Budget Tracker',description:'Persistent budgets, transaction history, tasks and study planning backed by PostgreSQL.' },
+  { id:'stockwell',name:'StockWell',description:'Community commerce with supplier comparison, role-based workflows, group proposals, voting and payment integration.' },
+  { id:'moderntechhr',name:'ModernTechHR',description:'HR records, attendance, payroll calculations, search, filtering and visual reporting.' },
+  { id:'lightningnews',name:'Lightning News',description:'Content extraction, feed parsing, structured data, and search/statistics APIs.' },
+  { id:'budgettracker',name:'Budget Tracker',description:'Persistent budgets, transaction history, tasks and study planning backed by PostgreSQL.' },
 ]
 const positions: Record<ProjectId,{x:number;y:number}> = {
   stockwell:{x:125,y:530},moderntechhr:{x:375,y:530},budgettracker:{x:625,y:530},lightningnews:{x:875,y:530}
@@ -57,18 +57,17 @@ function toggleProject(id:ProjectId){selectedProject.value=selectedProject.value
 function skillDimmed(id:SkillId){if(!selectedSkill.value&&!selectedProject.value)return false;if(selectedSkill.value)return selectedSkill.value!==id;return !technologies.find(item=>item.id===id)?.projects.includes(selectedProject.value as ProjectId)}
 function projectDimmed(id:ProjectId){if(!selectedSkill.value&&!selectedProject.value)return false;if(selectedProject.value)return selectedProject.value!==id;return !technologies.find(item=>item.id===selectedSkill.value)?.projects.includes(id)}
 function projectName(id:ProjectId){return projectItems.find(item=>item.id===id)?.name ?? id}
-function projectFile(id:ProjectId){return projectItems.find(item=>item.id===id)?.file ?? '--'}
 </script>
 
 <template>
   <section id="skills" class="skills-section section-wrap">
-    <div class="section-kicker"><span>02</span><span class="kicker-rule"></span><span>THE SKILLS CONSTELLATION</span><span class="kicker-tail">TECHNOLOGY → PROJECT EVIDENCE</span></div>
+    <div class="section-kicker"><span class="kicker-rule"></span><span>THE SKILLS CONSTELLATION</span><span class="kicker-tail">TECHNOLOGY → PROJECT EVIDENCE</span></div>
     <div class="map-heading">
       <div><h2>Nothing exists<br/><em>in isolation.</em></h2><p>Every technology belongs to a context. Select a skill to trace its project connections, or select a project to reveal the tools associated with it.</p></div>
       <div class="map-legend"><span><i class="legend-dot"></i> DOCUMENTED CONNECTION</span><span><i class="legend-dot legend-muted"></i> OTHER NODES</span><small>SELECT ANY NODE TO EXPLORE</small></div>
     </div>
     <div class="constellation-frame">
-      <div class="map-edge-label"><span>TECHNOLOGY FIELD / 13 NODES</span><span>PROJECT EVIDENCE / 04 STUDIES</span></div>
+      <div class="map-edge-label"><span>TECHNOLOGY FIELD</span><span>PROJECT CONNECTIONS</span></div>
       <div class="map-scroller">
         <div class="map-canvas">
           <svg class="map-lines" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
@@ -80,20 +79,20 @@ function projectFile(id:ProjectId){return projectItems.find(item=>item.id===id)?
             <span class="skill-node-name">{{item.name}}</span><span class="skill-node-type">{{item.category}}</span>
           </button>
           <button v-for="item in projectItems" :key="item.id" type="button" class="project-node" :style="{left:(positions[item.id].x/10)+'%',top:(positions[item.id].y/6)+'%'}" :class="{'is-selected':selectedProject===item.id,'is-dimmed':projectDimmed(item.id)}" :aria-pressed="selectedProject===item.id" @click="toggleProject(item.id)">
-            <span class="project-node-number">FILE {{item.file}}</span><span class="project-node-name">{{item.name}}</span><ArrowUpRight :size="13"/>
+            <span class="project-node-label">PROJECT</span><span class="project-node-name">{{item.name}}</span><ArrowUpRight :size="13"/>
           </button>
           <div class="map-core-mark" aria-hidden="true"><i>∿</i></div>
         </div>
       </div>
-      <div class="map-bottom-line"><span>FIG. 02 — A MAP OF THE WORK</span><span>LINES INDICATE PROJECT USE, NOT PROFICIENCY</span></div>
+      <div class="map-bottom-line"><span>THE SKILLS MAP</span><span>LINES INDICATE PROJECT USE, NOT PROFICIENCY</span></div>
     </div>
     <div class="map-readout" aria-live="polite">
       <template v-if="activeSkill">
         <div class="readout-overline"><span class="readout-dot"></span> TECHNICAL NOTE / {{activeSkill.category}}</div>
-        <div class="readout-layout"><h3>{{activeSkill.name}}<em> in practice</em></h3><div class="readout-content"><p>Mapped to {{activeSkill.projects.length}} {{activeSkill.projects.length===1?'project':'projects'}} in the original portfolio.</p><div class="readout-pills"><span v-for="detail in activeSkill.related" :key="detail">{{detail}}</span></div><div class="readout-projects"><button v-for="id in activeSkill.projects" :key="id" type="button" @click="toggleProject(id)">FILE {{projectFile(id)}} / {{projectName(id)}} <ArrowUpRight :size="12"/></button></div></div></div>
+        <div class="readout-layout"><h3>{{activeSkill.name}}<em> in practice</em></h3><div class="readout-content"><p>Mapped to {{activeSkill.projects.length}} {{activeSkill.projects.length===1?'project':'projects'}} in the original portfolio.</p><div class="readout-pills"><span v-for="detail in activeSkill.related" :key="detail">{{detail}}</span></div><div class="readout-projects"><button v-for="id in activeSkill.projects" :key="id" type="button" @click="toggleProject(id)">{{projectName(id)}} <ArrowUpRight :size="12"/></button></div></div></div>
       </template>
       <template v-else-if="activeProject">
-        <div class="readout-overline"><span class="readout-dot"></span> PROJECT FILE / {{activeProject.file}}</div>
+        <div class="readout-overline"><span class="readout-dot"></span> PROJECT CONNECTIONS</div>
         <div class="readout-layout"><h3>{{activeProject.name}}<em> connected stack</em></h3><div class="readout-content"><p>Technologies associated with this project in the original skills map.</p><div class="readout-pills"><button v-for="item in activeProjectSkills" :key="item.id" type="button" @click="toggleSkill(item.id)">{{item.name}}</button></div><p class="readout-note">{{activeProject.description}}</p></div></div>
       </template>
       <template v-else>

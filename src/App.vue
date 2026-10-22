@@ -339,7 +339,7 @@ function traceSkills(projectVisual: string) {
           </button>
           <Transition name="portal-fade">
             <div v-if="elementPortalOpen" class="elemental-portal-menu" role="group" aria-label="Choose an element">
-              <div class="portal-menu-heading"><span>CHOOSE YOUR ELEMENT</span><span>04 WORLDS</span></div>
+              <div class="portal-menu-heading"><span>CHOOSE YOUR ELEMENT</span></div>
               <button
                 v-for="palette in elementalThemes"
                 :key="palette.id"
@@ -405,7 +405,7 @@ function traceSkills(projectVisual: string) {
       </section>
 
       <section v-if="currentPage === 'work'" id="work" class="work-section section-wrap">
-        <div class="section-kicker"><span>01</span><span class="kicker-rule"></span><span>SELECTED WORK</span><span class="kicker-tail">SELECTED PROJECTS</span></div>
+        <div class="section-kicker"><span class="kicker-rule"></span><span>SELECTED WORK</span><span class="kicker-tail">SELECTED PROJECTS</span></div>
         <div class="section-intro">
           <h2>Built with intent.<br/><em>Made to matter.</em></h2>
           <p>A selection of projects exploring how interfaces, application logic and structured data work together to solve real problems.</p>
@@ -439,7 +439,7 @@ function traceSkills(projectVisual: string) {
           <article v-for="project in projects" :key="project.number" class="project-row">
             <LivePreview :title="project.name" :url="project.preview" :number="project.number" />
             <div class="project-copy">
-              <div class="project-meta"><span>{{ project.kind }}</span><span class="project-number">{{ project.number }}</span></div>
+              <div class="project-meta"><span>{{ project.kind }}</span></div>
               <h3>{{ project.name }}</h3>
               <p>{{ project.description }}</p>
               <div class="project-outcome"><span class="outcome-dot"></span><span>{{ project.outcome }}</span></div>
@@ -466,14 +466,14 @@ function traceSkills(projectVisual: string) {
       <SkillsConstellation v-if="currentPage === 'skills'" :focus-project="skillsMapProject" :focus-version="skillsMapFocusVersion" />
 
       <section v-if="currentPage === 'journey'" id="journey" class="journey-section section-wrap">
-        <div class="section-kicker"><span>03</span><span class="kicker-rule"></span><span>JOURNEY</span><span class="kicker-tail">DEVELOPMENT TIMELINE</span></div>
+        <div class="section-kicker"><span class="kicker-rule"></span><span>JOURNEY</span><span class="kicker-tail">DEVELOPMENT TIMELINE</span></div>
         <div class="section-intro journey-intro">
           <h2>JOURNEY</h2>
           <p>A chronological record of the projects, problems and small breakthroughs that shaped the work.</p>
         </div>
         <div class="journey-timeline">
           <div v-for="(item, index) in journey" :key="`${item.date}-${index}`" class="journey-entry">
-            <div class="journey-marker"><span>{{ String(index + 1).padStart(2, '0') }}</span></div>
+            <div class="journey-marker" aria-hidden="true"></div>
             <div class="journey-date">{{ item.date }}</div>
             <div class="journey-entry-body">
               <h3>{{ item.title }}</h3>
@@ -484,9 +484,9 @@ function traceSkills(projectVisual: string) {
       </section>
 
       <section v-if="currentPage === 'about'" id="about" class="about-section section-wrap">
-        <div class="section-kicker"><span>04</span><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
+        <div class="section-kicker"><span class="kicker-rule"></span><span>A LITTLE CONTEXT</span><span class="kicker-tail">STILL BECOMING</span></div>
         <div class="about-layout">
-          <div class="about-heading"><h2>Progress isn't<br/>always <em>linear.</em></h2><div class="about-mark">BT<span>—</span>001</div></div>
+          <div class="about-heading"><h2>Progress isn't<br/>always <em>linear.</em></h2><div class="about-mark" aria-hidden="true">BT</div></div>
           <div class="about-copy">
             <p class="about-lead">I believe good software comes from curiosity, patience and the willingness to work through complexity.</p>
             <p>My focus is full-stack development, with particular interest in backend systems, databases and the decisions that make digital products dependable. I enjoy making the technical structure and the user experience feel like parts of the same whole.</p>
@@ -528,7 +528,7 @@ function traceSkills(projectVisual: string) {
       </section>
 
       <section v-if="currentPage === 'field-notes'" id="field-notes" class="section-wrap">
-        <div class="section-kicker"><span>05</span><span class="kicker-rule"></span><span>FIELD NOTES</span><span class="kicker-tail">LESSONS FROM THE WORK</span></div>
+        <div class="section-kicker"><span class="kicker-rule"></span><span>FIELD NOTES</span><span class="kicker-tail">LESSONS FROM THE WORK</span></div>
         <div class="section-intro"><h2>What the work<br/><em>taught me.</em></h2><p>Lessons from the process of building, debugging and connecting systems.</p></div>
         <div class="field-notes-grid">
           <article class="field-note"><span class="field-note-label">LESSON — JAVASCRIPT</span><h3>The happy path is not enough</h3><p>Early JavaScript taught me to check inputs before calculating and to test more than one outcome. My isPrime logic, validation and edge cases improved when I broke problems into smaller checks and tested beyond a single successful example.</p></article>
@@ -546,7 +546,7 @@ function traceSkills(projectVisual: string) {
       </section>
 
       <section v-if="currentPage === 'contact'" id="contact" class="contact-section section-wrap">
-        <div class="section-kicker"><span>06</span><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">CONTACT / OPEN CHANNEL</span></div>
+        <div class="section-kicker"><span class="kicker-rule"></span><span>THE NEXT CONNECTION</span><span class="kicker-tail">CONTACT / OPEN CHANNEL</span></div>
         <div class="contact-heading">
           <div>
             <span class="contact-eyebrow"><Sparkles :size="14" /> THERE'S ALWAYS ANOTHER WAY FORWARD</span>
