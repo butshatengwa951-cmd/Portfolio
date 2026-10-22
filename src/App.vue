@@ -235,12 +235,15 @@ function traceSkills(projectVisual: string) {
               <p>{{ project.description }}</p>
               <div class="project-outcome"><span class="outcome-dot"></span><span>{{ project.outcome }}</span></div>
               <div class="tech-list"><span v-for="tech in project.stack" :key="tech">{{ tech }}</span></div>
-              <div v-if="project.caseStudy" class="case-study">
-                <h4>CASE FILE / THE PROBLEM</h4><p>{{ project.caseStudy.problem }}</p>
-                <h4>WHAT I BUILT</h4><p>{{ project.caseStudy.build }}</p>
-                <h4>THE CHALLENGE</h4><p>{{ project.caseStudy.challenge }}</p>
-                <h4>FEATURE RECORD</h4><ul><li v-for="feature in project.caseStudy.features" :key="feature">{{ feature }}</li></ul>
-              </div>
+              <details v-if="project.caseStudy" class="case-study">
+                <summary><span>EXPLORE CASE FILE</span><span class="case-study-toggle" aria-hidden="true">+</span></summary>
+                <div class="case-study-content">
+                  <h4>CASE FILE / THE PROBLEM</h4><p>{{ project.caseStudy.problem }}</p>
+                  <h4>WHAT I BUILT</h4><p>{{ project.caseStudy.build }}</p>
+                  <h4>THE CHALLENGE</h4><p>{{ project.caseStudy.challenge }}</p>
+                  <h4>FEATURE RECORD</h4><ul><li v-for="feature in project.caseStudy.features" :key="feature">{{ feature }}</li></ul>
+                </div>
+              </details>
               <div class="project-links">
                 <a v-if="project.link" :href="project.link" target="_blank" rel="noreferrer">Live project <MoveUpRight :size="14" /></a>
                 <a v-if="project.repo" :href="project.repo" target="_blank" rel="noreferrer">Source & docs <Github :size="14" /></a>
