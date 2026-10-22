@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import App from './App.vue'
 import './styles.css'
 import './overrides.css'
+import './elemental-theme.css'
 
 // App.vue acts as the shared portfolio shell and renders the selected page.
 // Hash history keeps deep links working on static hosts without rewrite rules.

@@ -72,7 +72,7 @@ function projectFile(id:ProjectId){return projectItems.find(item=>item.id===id)?
       <div class="map-scroller">
         <div class="map-canvas">
           <svg class="map-lines" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-            <defs><linearGradient id="skillFlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9e85ec" stop-opacity=".1"/><stop offset=".58" stop-color="#c3b0ff" stop-opacity=".75"/><stop offset="1" stop-color="#e3d8ff" stop-opacity=".9"/></linearGradient></defs>
+            <defs><linearGradient id="skillFlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--element-accent)" stop-opacity=".1"/><stop offset=".58" stop-color="var(--element-accent)" stop-opacity=".75"/><stop offset="1" stop-color="var(--landscape-highlight)" stop-opacity=".9"/></linearGradient></defs>
             <path v-for="connection in connections" :key="connection.id" :d="connection.d" class="map-connection" :class="{'is-lit':selectedSkill===connection.skill||selectedProject===connection.project,'is-dimmed':Boolean(selectedSkill||selectedProject)&&selectedSkill!==connection.skill&&selectedProject!==connection.project}"/>
           </svg>
           <div class="map-axis axis-a">FOUNDATION</div><div class="map-axis axis-b">SHARED STACK</div><div class="map-axis axis-c">PROJECT-SPECIFIC</div>
