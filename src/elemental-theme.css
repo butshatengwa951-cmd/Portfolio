@@ -254,10 +254,6 @@
 .site-shell[data-element] .journey-entry-body p,
 .site-shell[data-element] .skill-item p,
 .site-shell[data-element] .system-node > span:last-child,
-.site-shell[data-element] .contact-feedback {
-  color: var(--text-muted);
-}
-
 .site-shell[data-element] .hero-index,
 .site-shell[data-element] .hero-side-note,
 .site-shell[data-element] .art-label,
@@ -321,9 +317,12 @@
 .site-shell[data-element] .status-light,
 .site-shell[data-element] .signal,
 .site-shell[data-element] .outcome-dot,
-.site-shell[data-element] .scroll-line,
 .site-shell[data-element] .readout-dot {
   background-color: var(--element-accent);
+}
+
+.site-shell[data-element] .scroll-line {
+  background: linear-gradient(var(--element-accent), transparent);
 }
 
 .site-shell[data-element] .marquee-band {
@@ -384,7 +383,6 @@
 .site-shell[data-element] .contact-form,
 .site-shell[data-element] .contact-aside,
 .site-shell[data-element] .contact-info-card,
-.site-shell[data-element] .contact-feedback,
 .site-shell[data-element] .system-panel,
 .site-shell[data-element] .map-readout,
 .site-shell[data-element] .readout-pills span,
@@ -687,3 +685,10 @@
 /* Success, error, and warning messages intentionally keep semantic status colours. */
 :root { color-scheme: dark; }
 .site-shell[data-element] { color-scheme: dark; }
+
+
+.site-shell[data-element] .contact-feedback:not(.is-success):not(.is-error) {
+  color: var(--text-muted);
+  border-color: var(--stroke-subtle);
+  background: color-mix(in srgb, var(--surface-panel) 88%, transparent);
+}
