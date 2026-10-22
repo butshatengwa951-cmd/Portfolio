@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import LivePreview from './components/LivePreview.vue'
 import SkillsConstellation from './components/SkillsConstellation.vue'
-import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, Sun, Moon, LayoutGrid, List as ListIcon, Flame, Waves, Sprout, Wind, ChevronDown, Check } from 'lucide-vue-next'
+import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, LayoutGrid, List as ListIcon, Flame, Waves, Sprout, Wind, ChevronDown, Check } from 'lucide-vue-next'
 
 const route = useRoute()
 const currentPage = computed(() => route.path === '/' ? 'home' : route.path.slice(1).replace(/\/$/, ''))
@@ -11,6 +11,8 @@ const mobileMenuOpen = ref(false)
 const projectLayout = ref<'list' | 'grid'>('list')
 const activeSection = ref('home')
 const reducedMotion = ref(false)
+const appReady = ref(false)
+let loaderTimer: number | undefined
 const skillsMapProject = ref<'stockwell' | 'moderntechhr' | 'lightningnews' | 'budgettracker' | null>(null)
 const skillsMapFocusVersion = ref(0)
 const contactEmail = (import.meta.env.VITE_CONTACT_EMAIL ?? '').trim()
@@ -33,7 +35,6 @@ const journey = [{"date":"MAY 2026","title":"HTML, CSS + JavaScript foundations"
 
 type ElementName = 'water' | 'fire' | 'earth' | 'air'
 
-const theme = ref<'dark' | 'light'>('dark')
 const element = ref<ElementName>('water')
 const elementPortalOpen = ref(false)
 const elementTransitioning = ref(false)
@@ -54,7 +55,7 @@ const projects = [ { number: '01', name: 'StockWell', kind: 'COMMUNITY COMMERCE 
 let observer: IntersectionObserver | undefined
 
 function syncAppearance() {
-  document.documentElement.dataset.theme = theme.value
+  document.documentElement.dataset.theme = 'dark'
   document.documentElement.dataset.element = element.value
 }
 
@@ -64,9 +65,8 @@ function handlePortalOutside(event: PointerEvent) {
 
 onMounted(() => {
   reducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const savedTheme = window.localStorage.getItem('butsha-portfolio-theme')
+  window.localStorage.removeItem('butsha-portfolio-theme')
   const savedElement = window.localStorage.getItem('butsha-portfolio-element')
-  if (savedTheme === 'light' || savedTheme === 'dark') theme.value = savedTheme
   if (elementalThemes.some((palette) => palette.id === savedElement)) element.value = savedElement as ElementName
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -76,19 +76,18 @@ onMounted(() => {
   document.querySelectorAll('main section[id]').forEach((section) => observer?.observe(section))
   syncAppearance()
   document.addEventListener('pointerdown', handlePortalOutside)
+  loaderTimer = window.setTimeout(() => {
+    appReady.value = true
+    loaderTimer = undefined
+  }, reducedMotion.value ? 140 : 1100)
 })
 
 onUnmounted(() => {
   observer?.disconnect()
   document.removeEventListener('pointerdown', handlePortalOutside)
   if (elementTransitionTimer !== undefined) window.clearTimeout(elementTransitionTimer)
+  if (loaderTimer !== undefined) window.clearTimeout(loaderTimer)
 })
-
-function toggleTheme() {
-  theme.value = theme.value === 'dark' ? 'light' : 'dark'
-  syncAppearance()
-  window.localStorage.setItem('butsha-portfolio-theme', theme.value)
-}
 
 function setElement(nextElement: ElementName) {
   elementPortalOpen.value = false
@@ -175,7 +174,16 @@ function traceSkills(projectVisual: string) {
 </script>
 
 <template>
-  <div class="site-shell" :class="{ 'reduce-motion': reducedMotion, 'theme-light': theme === 'light' }" :data-element="element" :data-theme="theme">
+  <div class="site-shell" :class="{ 'reduce-motion': reducedMotion }" :data-element="element" data-theme="dark">
+    <div class="elemental-loader" :class="{ 'is-gone': appReady }" :data-element="element" aria-hidden="true">
+      <div class="elemental-loader-mark">
+        <img src="/elemental-emblem.jpg" alt="" />
+        <span class="elemental-loader-ring"></span>
+      </div>
+      <div class="elemental-loader-brand">NOCTURNE</div>
+      <div class="elemental-loader-caption">ENTERING THE ELEMENTS</div>
+      <div class="elemental-loader-progress"><span></span></div>
+    </div>
     <div class="elemental-landscape" :class="'landscape-' + element" aria-hidden="true">
       <svg class="landscape-art" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
         <g v-if="element === 'water'">
@@ -368,17 +376,7 @@ function traceSkills(projectVisual: string) {
             </div>
           </Transition>
         </div>
-        <button
-          class="theme-toggle"
-          type="button"
-          :aria-label="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
-          :title="theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
-          @click="toggleTheme"
-        >
-          <Sun v-if="theme === 'dark'" :size="15" />
-          <Moon v-else :size="15" />
-          <span>{{ theme === 'dark' ? 'LIGHT' : 'DARK' }}</span>
-        </button>
+
       </nav>
     </header>
 
