@@ -2,6 +2,8 @@
 
 A tactile, atmospheric developer portfolio built with **Vue 3, TypeScript and Vite**, drawing on the intimate tension of silk, shadow, embroidery and pearl. Blackberry ink, bruised wine, smoked mauve, old ivory and pearl-lilac light shape an art-directed space that feels whimsical yet grounded.
 
+**Source repository:** [Portfolio on GitHub](https://github.com/butshatengwa951-cmd/Portfolio) · **Live site:** [Nocturne portfolio](https://butsha-nocturne-portfolio.onrender.com/) · **Previous case-file version:** [Projects on GitHub](https://github.com/butshatengwa951-cmd/Projects)
+
 ## Pages
 
 The portfolio is organised into seven navigable pages: Home (`/#/`), Selected Work (`/#/work`), Skills Map (`/#/skills`), Journey (`/#/journey`), About (`/#/about`), Field Notes (`/#/field-notes`) and Contact (`/#/contact`). Each page shares the same header, footer, textures, theme toggle and responsive styling. Vue Router hash history keeps direct links and refreshes working on static hosting.
