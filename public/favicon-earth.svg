@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Butsha Tengwa lettermark">
+  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="15" fill="#0E1711" stroke="#B7E36B" stroke-opacity=".44" stroke-width="1.5"/>
+  <text x="30.5" y="46" fill="#F3EFE8" font-family="Georgia, 'Times New Roman', serif" font-size="47" font-weight="400" text-anchor="middle">B</text>
+  <path d="M48 8.5 50.2 13.7 55.5 16 50.2 18.2 48 23.5 45.8 18.2 40.5 16 45.8 13.7Z" fill="#B7E36B"/>
+</svg>

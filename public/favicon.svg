@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b7a5ff"/><stop offset="1" stop-color="#6c55bd"/></linearGradient></defs><rect width="64" height="64" rx="15" fill="#0d0b14"/><path d="M10 41c9-2 10-21 22-20s11 22 22 7" fill="none" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/><path d="M10 48c11-1 12-17 22-16s11 17 22 5" fill="none" stroke="#b7a5ff" stroke-opacity=".42" stroke-width="1.5"/><circle cx="54" cy="28" r="3" fill="#f4f0f8"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Butsha Tengwa lettermark">
+  <rect x="1.25" y="1.25" width="61.5" height="61.5" rx="15" fill="#06171D" stroke="#43E4D6" stroke-opacity=".44" stroke-width="1.5"/>
+  <text x="30.5" y="46" fill="#F3EFE8" font-family="Georgia, 'Times New Roman', serif" font-size="47" font-weight="400" text-anchor="middle">B</text>
+  <path d="M48 8.5 50.2 13.7 55.5 16 50.2 18.2 48 23.5 45.8 18.2 40.5 16 45.8 13.7Z" fill="#43E4D6"/>
+</svg>
