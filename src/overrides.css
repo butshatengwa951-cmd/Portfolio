@@ -1438,10 +1438,16 @@ body { min-height:100%; }
 .site-shell.theme-light[data-element] .project-node:hover,.site-shell.theme-light[data-element] .project-node.is-selected {color:#fff}
 .site-shell.theme-light[data-element] .contact-form,.site-shell.theme-light[data-element] .contact-info-card,.site-shell.theme-light[data-element] .contact-aside {box-shadow:0 18px 50px rgba(42,68,67,.07)}
 .site-shell.theme-light[data-element] .contact-submit {background:linear-gradient(115deg,var(--violet),var(--violet2));color:#fff}
-.site-shell.theme-light[data-element] .button-primary {color:var(--bg)}
+.site-shell.theme-light[data-element] .button-primary {color:var(--ink)}
 .site-shell.theme-light[data-element] .main-nav.nav-open {border-color:var(--line)}
 .site-shell.theme-light[data-element] .theme-toggle {color:var(--ink)}
 .site-shell.theme-light[data-element] .skill-node-type,.site-shell.theme-light[data-element] .map-axis {color:var(--dim)}
+.site-shell[data-element] .main-nav.nav-open {background:color-mix(in srgb,var(--panel) 96%,transparent);border-color:var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.site-shell[data-element] .status-light,.site-shell[data-element] .signal {box-shadow:0 0 13px color-mix(in srgb,var(--violet) 58%,transparent)}
+.site-shell[data-element] .thread-path,.site-shell[data-element] .thread-detail {stroke:var(--violet)}
+.site-shell[data-element] .thread-shadow {stroke:var(--violet2)}
+.site-shell[data-element] .pearl-set circle {fill:var(--landscape-highlight);stroke:color-mix(in srgb,var(--violet) 58%,transparent)}
+
 @media(max-width:1050px) and (min-width:651px) {
   .site-header {padding-inline:3.5%}
   .main-nav {gap:12px}
