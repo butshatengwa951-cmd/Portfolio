@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import LivePreview from './components/LivePreview.vue'
 import SkillsConstellation from './components/SkillsConstellation.vue'
-import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, Sun, Moon, LayoutGrid, List as ListIcon } from 'lucide-vue-next'
+import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, Sun, Moon, LayoutGrid, List as ListIcon, Flame, Waves, Sprout, Wind, ChevronDown, Check } from 'lucide-vue-next'
 
 const route = useRoute()
 const currentPage = computed(() => route.path === '/' ? 'home' : route.path.slice(1).replace(/\/$/, ''))
@@ -31,28 +31,89 @@ const profile = {
 const year = new Date().getFullYear()
 const journey = [{"date":"MAY 2026","title":"HTML, CSS + JavaScript foundations","note":"05–28 May — started with HTML/CSS structure and styling, then moved into JavaScript fundamentals, functions, DOM manipulation and event-driven browser behaviour through the Week 3–4 exercise work."},{"date":"MAY–JUN 2026","title":"Interactive browser projects","note":"19 May–23 June — applied the fundamentals to practical projects including the Python Budget Tracker, Randomizer, Recipe Finder, Cooking Masterclass, catalogue work and a Food Fest landing page. Learned to turn isolated exercises into complete user-facing experiences."},{"date":"JUL 2026","title":"ModerntechHR — building a real front-end system","note":"July — developed the ModerntechHR HR platform and learned to structure multi-page interfaces around real workflows: employee management, payroll calculations, search/filtering, modal interactions, responsive layouts, dynamic DOM updates and Chart.js data visualisation."},{"date":"JUL–AUG 2026","title":"PHP + backend foundations","note":"30 July–11 August — progressed through the PHP exercise series while strengthening server-side thinking, form handling and application logic. This built the bridge from browser-only JavaScript work toward backend development."},{"date":"AUG 2026","title":"Lightning News — Python web scraping","note":"20 July–07 August — with Team Charlie, learned Python web scraping and backend API development using Flask, Requests, BeautifulSoup, lxml and RSS/XML parsing. Built source-specific and generic scrapers, extracted article metadata, saved raw JSON, cleaned datasets and exposed scraping/search/statistics functionality through API routes and tests."},{"date":"AUG–SEP 2026","title":"Node.js + full-stack architecture","note":"25 August–01 September — started the Module 3 e-commerce work and progressed through the Node.js exercise series. Learned how frontend applications communicate with REST APIs, how backend logic is structured, and how databases, authentication and server-side business rules fit together."},{"date":"SEP 2026","title":"Vue becomes the framework","note":"01 September — moved into Vue and component-based application development, learning reactive state, reusable components, routing and structured frontend architecture."},{"date":"SEP 2026","title":"StockWell — first serious full-stack build","note":"17–18 September — turned the accumulated skills into StockWell: Vue 3 + Node/Express + MySQL + PayFast, with authentication, supplier comparison, cart, proposals, majority voting, governed wallet payments, orders and delivery tracking. Learned transactional thinking, role-based authorization and payment/webhook handling."},{"date":"SEP–OCT 2026","title":"Interactive portfolio experiments","note":"21 September–01 October — explored the interactive 3D portfolio, isometric interfaces, animation, interaction patterns and embedded project previews before evolving the presentation into the current portfolio system."},{"date":"OCT 2026","title":"Budget Tracker — full-stack persistence + deployment","note":"02–05 October — rebuilt the original Python budget/productivity toolkit as a Vue 3 + Flask application backed by PostgreSQL. Added persistent transactions, configurable budget cycles, budget history, task management and study planning, then deployed the frontend and API through Render with a cloud-hosted database."},{"date":"OCT 2026","title":"Exploring identity through interactive web development","note":"As my technical foundation has grown, my focus has started shifting beyond simply learning new technologies. I am exploring new and creative ways for users to interact with web applications, experimenting with motion, 3D, interface design and unconventional presentation. The goal is not only to build functional applications, but to develop a distinct perspective and identity as a developer."},{"date":"OCT 2026","title":"Portfolio — turning the work into a case file","note":"03–05 October — rebuilt the portfolio around the detective-folder concept, bringing the projects together with live previews, a technology-to-project map, persistent evidence selection and a chronological development journey."}]
 
+type ElementName = 'water' | 'fire' | 'earth' | 'air'
+
 const theme = ref<'dark' | 'light'>('dark')
+const element = ref<ElementName>('water')
+const elementPortalOpen = ref(false)
+const elementTransitioning = ref(false)
+const transitionTo = ref<ElementName>('water')
+const portalRoot = ref<HTMLElement | null>(null)
+let elementTransitionTimer: number | undefined
+
+const elementalThemes = [
+  { id: 'water', name: 'Water', mood: 'Living currents', description: 'An oceanic world of depth, turquoise light and refracted blue.', icon: Waves, swatches: ['#06171D', '#0C2832', '#43E4D6', '#609CFF', '#9A75FF'] },
+  { id: 'fire', name: 'Fire', mood: 'Burning horizon', description: 'Volcanic shadows, molten light and a vivid ember horizon.', icon: Flame, swatches: ['#190D12', '#35151E', '#FF553D', '#FF9D45', '#FFC75E'] },
+  { id: 'earth', name: 'Earth', mood: 'Ancient wild', description: 'Deep forests, moss-lit stone and warm natural textures.', icon: Sprout, swatches: ['#0E1711', '#1B3021', '#3D5E38', '#B7E36B', '#E6A071'] },
+  { id: 'air', name: 'Air', mood: 'Above the storm', description: 'Indigo peaks, charged clouds and spacious blue-violet light.', icon: Wind, swatches: ['#101429', '#202849', '#4A57A7', '#AAB7FF', '#66D8F0'] }
+] as const
+
+const activeElement = computed(() => elementalThemes.find((palette) => palette.id === element.value) ?? elementalThemes[0])
 
 const projects = [ { number: '01', name: 'StockWell', kind: 'COMMUNITY COMMERCE PLATFORM', description: 'StockWell is a full e-commerce platform built around community purchasing, supplier comparison and shared decision-making. It combines a Vue frontend with Node/Express backend services, MySQL persistence and PayFast payments to support authentication, cart management, proposals, majority voting, wallet transactions, orders and delivery workflows.', caseStudy: { problem: 'Existing community proposals were fragmented across chats and sheets. No voting, no wallet, no payment traceability.', build: 'Vue frontend, Node API, PayFast ITN integration, wallet ledger with idempotency keys, cart persistence, proposal engine with vote weighting.', challenge: 'The main challenge was making the PayFast payment flow reliable from checkout to the wallet ledger. An early version appeared to succeed because the webhook returned a 200 response, but the wallet was not updated correctly and the PayFast signature could fail when parameters were handled in the wrong order. I logged and replayed the raw ITN request, checked payload encoding and signature validation, and added transaction protection and idempotency so a payment could not be processed twice.', features: ['Authentication and role-based workflows','Supplier comparison and cart management','Community proposals and majority voting','Governed group-wallet approvals','PayFast payment integration and transaction protection','Orders and delivery workflows'] }, stack: ['Vue', 'Node.js / Express', 'MySQL', 'PayFast'], detail: 'Engineering focus', outcome: 'Role-based workflows · Checkout and payment integration · Group decisions', link: 'https://stockwell-hl1e.onrender.com/', preview: 'https://stockwell-hl1e.onrender.com/', repo: '', visual: 'stockwell', }, { number: '02', name: 'Budget Tracker', kind: 'PERSONAL FINANCE & PRODUCTIVITY', description: 'Budget Tracker is a full-stack productivity application that brings personal budgeting, task management and study planning into one responsive dashboard. It supports persistent transactions, configurable daily, weekly, monthly and yearly budget cycles, budget history and study sessions in PostgreSQL.', caseStudy: { problem: 'The original project started as a Python command-line productivity suite. The challenge was turning separate budget, task and study tools into a practical web application with persistent data and a deployable full-stack architecture.', build: 'Rebuilt the experience as a Vue 3 + Vite frontend backed by a Flask REST API and PostgreSQL. Added persistent transactions, configurable budget periods, budget history, task management, study planning, South African local-date handling and Render deployment.', challenge: 'The biggest challenge was moving a local Python toolkit into a full-stack application without losing data integrity or introducing inconsistent dates and state. I tested across the frontend, Flask API and PostgreSQL layers and worked through period rollover, timezone handling, production dependencies and Render configuration.', features: ['Persistent transaction records','Daily, weekly, monthly and yearly budget cycles','Budget history and period rollover','Task management','Study planning and session tracking','South African local-date handling','Render deployment with a hosted database'] }, stack: ['Python', 'Vue 3', 'Flask', 'PostgreSQL'], detail: 'Engineering focus', outcome: 'API-driven workflows · Data persistence · Finance and productivity tools', link: 'https://budget-tracker-frontend-jf66.onrender.com/', preview: 'https://budget-tracker-frontend-jf66.onrender.com/', repo: 'https://github.com/butshatengwa951-cmd/Budget-Tracker-python-mini-toolkit/tree/main', visual: 'budget', }, { number: '03', name: 'Lightning News', kind: 'NEWS AGGREGATION & DATA EXTRACTION', description: 'Lightning News is a news aggregation platform built around automated data collection rather than manually entered articles. Python handles web scraping and feed processing with Requests, BeautifulSoup and lxml, while Flask exposes collected and cleaned information through API routes.', caseStudy: { problem: 'The project explored how a news platform could automatically collect and organise information from multiple online sources instead of relying on manually entered content.', build: 'Built a Python scraping backend using Requests, BeautifulSoup and lxml, with Flask API routes. Worked with RSS/XML feeds and webpage content, created source-specific and generic scrapers, extracted article metadata, stored raw JSON, cleaned results and exposed scraping, search and statistics functionality.', challenge: 'Web scraping and Three.js were both unfamiliar. We researched inconsistent HTML and RSS/XML structures, experimented with 3D work and applied repeated testing to the scraping pipeline, Flask API and interactive presentation.', features: ['Source-specific and generic web scrapers','RSS/XML feed parsing','Article metadata extraction','Raw JSON storage and data cleaning','Search and statistics API routes','Interactive visual presentation'] }, stack: ['Python', 'Flask', 'BeautifulSoup', 'Three.js'], detail: 'Engineering focus', outcome: 'Content extraction · Data processing · Search and statistics APIs', link: 'https://lightning-news.netlify.app/', preview: 'https://lightning-news.netlify.app/', repo: '', visual: 'news', }, { number: '04', name: 'ModernTechHR', kind: 'HUMAN RESOURCES MANAGEMENT', description: 'ModernTechHR is an HR management platform designed to bring employee records, attendance, payroll, leave management and reporting into one organised interface. JavaScript drives employee updates, searching, filtering, payroll calculations and modal interactions, while Chart.js turns HR information into visual reports.', caseStudy: { problem: 'The objective was to build an interactive HR management system bringing employee information, payroll, searching, filtering and reporting into one organised platform.', build: 'Built the frontend with HTML/CSS and JavaScript, dynamic employee data, DOM updates, search and filtering, modal workflows and payroll calculations. Chart.js turned HR and payroll data into visual reports, with frontend and backend services connected to a cloud-hosted MySQL database.', challenge: 'The main challenge was learning how separate frontend and backend repositories could be developed, deployed and connected as one application. Research, service-communication testing and deployment configuration helped connect the frontend, backend and cloud database.', features: ['Employee management and records','Attendance and leave workflows','Payroll calculations','Search and filtering','Modal interactions and responsive layouts','Chart.js dashboards and reporting','Separate frontend/backend deployment'] }, stack: ['JavaScript', 'MySQL', 'Chart.js'], detail: 'Engineering focus', outcome: 'Structured records · Management workflows · Reporting', link: 'https://module1-project-hr.onrender.com/', preview: 'https://module1-project-hr.onrender.com/', repo: '', visual: 'hr', }, { number: '05', name: 'Voya Bite', kind: 'TRAVEL EXPERIENCES & BOOKING INTERFACE', description: 'Voya Bite explores a travel website experience for discovering activities, hotels and flights. The interface combines curated travel content with browsing, filtering and booking interactions.', stack: ['HTML', 'CSS', 'JavaScript', 'Responsive UI'], detail: 'Engineering focus', outcome: 'Experience discovery · Filtering · Booking-modal flow', caseStudy: { problem: 'Travel discovery can feel fragmented when activities, destinations and booking actions are spread across disconnected interfaces.', build: 'Created a responsive static-site experience with navigation, filtering, booking-modal interactions and travel-oriented content for Cape Town hiking, a Kruger safari day, shark-cage diving, a Table Mountain abseil and a wine-tram tour.', challenge: 'The main design challenge was connecting browsing and booking interactions without making the page feel cluttered.', features: ['Curated travel activities','Filtering and browsing','Booking modal flow','Responsive navigation'] }, link: '', preview: '', repo: '', visual: '', }, ] 
 let observer: IntersectionObserver | undefined
+
+function syncAppearance() {
+  document.documentElement.dataset.theme = theme.value
+  document.documentElement.dataset.element = element.value
+}
+
+function handlePortalOutside(event: PointerEvent) {
+  if (portalRoot.value && !portalRoot.value.contains(event.target as Node)) elementPortalOpen.value = false
+}
+
 onMounted(() => {
   reducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const savedTheme = window.localStorage.getItem('butsha-portfolio-theme')
+  const savedElement = window.localStorage.getItem('butsha-portfolio-element')
   if (savedTheme === 'light' || savedTheme === 'dark') theme.value = savedTheme
+  if (elementalThemes.some((palette) => palette.id === savedElement)) element.value = savedElement as ElementName
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) activeSection.value = entry.target.id
     })
   }, { rootMargin: '-25% 0px -60% 0px' })
   document.querySelectorAll('main section[id]').forEach((section) => observer?.observe(section))
-  document.documentElement.dataset.theme = theme.value
+  syncAppearance()
+  document.addEventListener('pointerdown', handlePortalOutside)
 })
-onUnmounted(() => observer?.disconnect())
+
+onUnmounted(() => {
+  observer?.disconnect()
+  document.removeEventListener('pointerdown', handlePortalOutside)
+  if (elementTransitionTimer !== undefined) window.clearTimeout(elementTransitionTimer)
+})
 
 function toggleTheme() {
   theme.value = theme.value === 'dark' ? 'light' : 'dark'
-  document.documentElement.dataset.theme = theme.value
+  syncAppearance()
   window.localStorage.setItem('butsha-portfolio-theme', theme.value)
+}
+
+function setElement(nextElement: ElementName) {
+  elementPortalOpen.value = false
+  closeMenu()
+  if (nextElement === element.value) return
+  if (elementTransitionTimer !== undefined) window.clearTimeout(elementTransitionTimer)
+
+  transitionTo.value = nextElement
+  element.value = nextElement
+  syncAppearance()
+  window.localStorage.setItem('butsha-portfolio-element', nextElement)
+
+  if (reducedMotion.value) {
+    elementTransitioning.value = false
+    return
+  }
+
+  elementTransitioning.value = false
+  window.requestAnimationFrame(() => {
+    elementTransitioning.value = true
+    elementTransitionTimer = window.setTimeout(() => {
+      elementTransitioning.value = false
+      elementTransitionTimer = undefined
+    }, 780)
+  })
 }
 
 async function submitContactForm() {
@@ -102,6 +163,7 @@ async function submitContactForm() {
 
 function closeMenu() {
   mobileMenuOpen.value = false
+  elementPortalOpen.value = false
 }
 
 function traceSkills(projectVisual: string) {
@@ -113,7 +175,142 @@ function traceSkills(projectVisual: string) {
 </script>
 
 <template>
-  <div class="site-shell" :class="{ 'reduce-motion': reducedMotion, 'theme-light': theme === 'light' }">
+  <div class="site-shell" :class="{ 'reduce-motion': reducedMotion, 'theme-light': theme === 'light' }" :data-element="element" :data-theme="theme">
+    <div class="elemental-landscape" :class="'landscape-' + element" aria-hidden="true">
+      <svg class="landscape-art" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+        <g v-if="element === 'water'">
+          <defs>
+            <linearGradient id="waterSky" x1="0" y1="0" x2="0.2" y2="1">
+              <stop offset="0" style="stop-color:var(--landscape-top)" />
+              <stop offset=".58" style="stop-color:var(--landscape-mid)" />
+              <stop offset="1" style="stop-color:var(--landscape-horizon)" />
+            </linearGradient>
+            <linearGradient id="waterFloor" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color:var(--landscape-form-a)" />
+              <stop offset="1" style="stop-color:var(--landscape-dark)" />
+            </linearGradient>
+            <linearGradient id="waterRay" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color:var(--landscape-glow);stop-opacity:.42" />
+              <stop offset="1" style="stop-color:var(--landscape-glow);stop-opacity:0" />
+            </linearGradient>
+            <radialGradient id="waterSun">
+              <stop offset="0" style="stop-color:var(--landscape-glow);stop-opacity:.75" />
+              <stop offset="1" style="stop-color:var(--landscape-glow);stop-opacity:0" />
+            </radialGradient>
+          </defs>
+          <rect width="1600" height="900" fill="url(#waterSky)" />
+          <ellipse cx="1050" cy="290" rx="510" ry="370" fill="url(#waterSun)" />
+          <circle cx="1070" cy="260" r="90" fill="var(--landscape-orb)" opacity=".32" />
+          <path d="M830 0 L940 0 L1180 620 L1110 620 Z" fill="url(#waterRay)" />
+          <path d="M1020 0 L1050 0 L1320 650 L1240 650 Z" fill="url(#waterRay)" opacity=".7" />
+          <path d="M1210 0 L1245 0 L1450 580 L1390 580 Z" fill="url(#waterRay)" opacity=".42" />
+          <path d="M0 570 C150 500 225 420 365 445 C485 467 520 550 600 580 L600 900 L0 900 Z" fill="var(--landscape-form-b)" opacity=".82" />
+          <path d="M1600 480 C1450 420 1385 445 1310 510 C1240 570 1215 650 1110 680 L1040 900 L1600 900 Z" fill="var(--landscape-form-a)" />
+          <path d="M0 730 C190 665 330 710 470 685 C600 660 690 700 825 672 C970 642 1070 690 1200 665 C1370 632 1460 670 1600 625 L1600 900 L0 900 Z" fill="url(#waterFloor)" />
+          <path class="landscape-current landscape-current-one" d="M0 710 C240 685 315 742 540 710 S930 720 1125 691 S1435 705 1600 665" />
+          <path class="landscape-current landscape-current-two" d="M0 786 C190 755 380 800 585 772 S955 798 1170 758 S1450 775 1600 740" />
+          <path class="landscape-current landscape-current-three" d="M0 840 C280 810 380 852 660 826 S1040 850 1280 815 S1490 826 1600 805" />
+          <g fill="var(--landscape-glow)" opacity=".52">
+            <circle cx="350" cy="490" r="2.5" /><circle cx="405" cy="532" r="1.8" /><circle cx="1280" cy="420" r="2" /><circle cx="1360" cy="515" r="2.5" /><circle cx="980" cy="570" r="1.6" /><circle cx="760" cy="620" r="1.8" />
+          </g>
+        </g>
+
+        <g v-else-if="element === 'fire'">
+          <defs>
+            <linearGradient id="fireSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color:var(--landscape-top)" />
+              <stop offset=".56" style="stop-color:var(--landscape-mid)" />
+              <stop offset="1" style="stop-color:var(--landscape-horizon)" />
+            </linearGradient>
+            <radialGradient id="fireHorizon">
+              <stop offset="0" style="stop-color:var(--landscape-glow);stop-opacity:.8" />
+              <stop offset="1" style="stop-color:var(--landscape-glow);stop-opacity:0" />
+            </radialGradient>
+            <linearGradient id="lavaFlow" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" style="stop-color:var(--landscape-glow)" />
+              <stop offset="1" style="stop-color:var(--landscape-orb)" />
+            </linearGradient>
+          </defs>
+          <rect width="1600" height="900" fill="url(#fireSky)" />
+          <ellipse cx="850" cy="535" rx="670" ry="350" fill="url(#fireHorizon)" />
+          <circle cx="1050" cy="420" r="62" fill="var(--landscape-orb)" opacity=".65" />
+          <path d="M0 660 L165 558 L300 615 L470 505 L610 603 L805 410 L930 590 L1085 460 L1220 590 L1400 485 L1600 620 L1600 900 L0 900 Z" fill="var(--landscape-form-a)" />
+          <path d="M490 900 L575 700 L670 630 L760 470 L840 378 L908 515 L985 610 L1085 900 Z" fill="var(--landscape-dark)" />
+          <path d="M760 470 L840 378 L908 515 L882 490 L849 523 L829 478 L803 535 L784 493 Z" fill="var(--landscape-form-b)" />
+          <path d="M840 384 L851 503 L832 548 L858 587 L843 670 L873 726 L860 900 L815 900 L828 738 L808 682 L825 604 L805 557 L824 508 Z" fill="url(#lavaFlow)" opacity=".95" />
+          <path d="M840 384 L851 503 L832 548 L858 587 L843 670 L873 726 L860 900" fill="none" stroke="var(--landscape-highlight)" stroke-width="4" opacity=".82" />
+          <path d="M0 770 L180 700 L335 760 L500 720 L650 785 L790 760 L940 790 L1100 735 L1270 770 L1440 705 L1600 750 L1600 900 L0 900 Z" fill="var(--landscape-form-c)" />
+          <path d="M0 818 C220 790 300 830 470 807 S760 842 960 812 S1330 838 1600 795 L1600 900 L0 900 Z" fill="var(--landscape-dark)" />
+          <g fill="var(--landscape-glow)" opacity=".7">
+            <circle cx="490" cy="490" r="2" /><circle cx="550" cy="430" r="3" /><circle cx="1030" cy="470" r="2.5" /><circle cx="1200" cy="555" r="2" /><circle cx="1320" cy="450" r="1.8" /><circle cx="690" cy="560" r="2" /><circle cx="380" cy="600" r="1.5" /><circle cx="1150" cy="405" r="1.7" />
+          </g>
+        </g>
+
+        <g v-else-if="element === 'earth'">
+          <defs>
+            <linearGradient id="earthSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color:var(--landscape-top)" />
+              <stop offset=".56" style="stop-color:var(--landscape-mid)" />
+              <stop offset="1" style="stop-color:var(--landscape-horizon)" />
+            </linearGradient>
+            <radialGradient id="forestSun">
+              <stop offset="0" style="stop-color:var(--landscape-glow);stop-opacity:.65" />
+              <stop offset="1" style="stop-color:var(--landscape-glow);stop-opacity:0" />
+            </radialGradient>
+            <linearGradient id="forestRay" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color:var(--landscape-glow);stop-opacity:.25" />
+              <stop offset="1" style="stop-color:var(--landscape-glow);stop-opacity:0" />
+            </linearGradient>
+          </defs>
+          <rect width="1600" height="900" fill="url(#earthSky)" />
+          <ellipse cx="850" cy="360" rx="580" ry="410" fill="url(#forestSun)" />
+          <path d="M520 0 L650 0 L1000 720 L850 720 Z" fill="url(#forestRay)" />
+          <path d="M760 0 L820 0 L1170 730 L1085 730 Z" fill="url(#forestRay)" opacity=".7" />
+          <path d="M0 540 L190 385 L320 490 L505 290 L690 490 L850 355 L1040 525 L1200 360 L1415 505 L1600 400 L1600 900 L0 900 Z" fill="var(--landscape-form-a)" opacity=".7" />
+          <path d="M0 650 C190 555 350 655 520 600 S820 630 1000 570 S1320 632 1600 535 L1600 900 L0 900 Z" fill="var(--landscape-form-b)" />
+          <path d="M0 720 C220 650 370 732 550 680 S900 710 1090 655 S1400 700 1600 625 L1600 900 L0 900 Z" fill="var(--landscape-form-c)" />
+          <g fill="var(--landscape-dark)">
+            <path d="M0 900 L0 430 L75 545 L28 545 L104 653 L58 653 L135 755 L90 755 L90 900 Z" />
+            <path d="M125 900 L125 500 L205 616 L160 616 L240 720 L195 720 L263 807 L225 807 L225 900 Z" />
+            <path d="M1280 900 L1280 445 L1358 565 L1315 565 L1395 675 L1348 675 L1424 780 L1378 780 L1378 900 Z" />
+            <path d="M1430 900 L1430 390 L1515 530 L1470 530 L1555 650 L1510 650 L1580 760 L1540 760 L1540 900 Z" />
+          </g>
+          <g fill="var(--landscape-form-a)" opacity=".95">
+            <path d="M260 900 L260 605 L326 705 L290 705 L355 790 L321 790 L370 850 L340 850 L340 900 Z" />
+            <path d="M1170 900 L1170 600 L1236 696 L1200 696 L1265 785 L1230 785 L1280 850 L1250 850 L1250 900 Z" />
+          </g>
+          <path d="M0 858 C245 815 390 867 600 835 S1000 862 1210 830 S1435 850 1600 818 L1600 900 L0 900 Z" fill="var(--landscape-dark)" opacity=".8" />
+        </g>
+
+        <g v-else>
+          <defs>
+            <linearGradient id="airSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" style="stop-color:var(--landscape-top)" />
+              <stop offset=".58" style="stop-color:var(--landscape-mid)" />
+              <stop offset="1" style="stop-color:var(--landscape-horizon)" />
+            </linearGradient>
+            <radialGradient id="airSun">
+              <stop offset="0" style="stop-color:var(--landscape-glow);stop-opacity:.72" />
+              <stop offset="1" style="stop-color:var(--landscape-glow);stop-opacity:0" />
+            </radialGradient>
+          </defs>
+          <rect width="1600" height="900" fill="url(#airSky)" />
+          <ellipse cx="1050" cy="250" rx="520" ry="340" fill="url(#airSun)" />
+          <circle cx="1070" cy="240" r="77" fill="var(--landscape-orb)" opacity=".6" />
+          <g fill="var(--landscape-cloud)" opacity=".55">
+            <path d="M0 310 C75 230 180 242 240 290 C320 215 415 250 450 302 C530 285 580 328 590 360 L0 375 Z" />
+            <path d="M960 350 C1040 280 1120 292 1178 330 C1245 270 1350 290 1395 345 C1470 328 1545 360 1600 395 L1600 430 L960 420 Z" />
+            <path d="M500 240 C560 195 635 205 680 245 C740 205 812 222 842 260 L500 285 Z" opacity=".55" />
+          </g>
+          <path d="M0 610 L185 480 L320 570 L490 395 L670 585 L840 430 L1010 580 L1180 410 L1370 570 L1510 470 L1600 530 L1600 900 L0 900 Z" fill="var(--landscape-form-a)" />
+          <path d="M0 715 L175 610 L325 705 L505 535 L680 710 L855 570 L1035 713 L1225 545 L1410 700 L1530 610 L1600 650 L1600 900 L0 900 Z" fill="var(--landscape-form-b)" />
+          <path d="M0 808 L200 720 L360 790 L555 680 L740 817 L950 680 L1135 800 L1320 685 L1470 780 L1600 720 L1600 900 L0 900 Z" fill="var(--landscape-form-c)" />
+          <path d="M0 850 C250 814 400 858 620 831 S1030 852 1220 826 S1450 840 1600 820 L1600 900 L0 900 Z" fill="var(--landscape-dark)" opacity=".68" />
+          <path d="M360 0 L380 0 L760 630 L700 630 Z M1160 0 L1180 0 L1435 500 L1385 500 Z" fill="var(--landscape-glow)" opacity=".12" />
+        </g>
+      </svg>
+    </div>
+    <div class="elemental-transition" :class="{ 'is-active': elementTransitioning }" :data-next-element="transitionTo" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
     <div class="fibre-texture" aria-hidden="true"></div>
     <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -135,6 +332,42 @@ function traceSkills(projectVisual: string) {
         <a href="#/about" :class="{ active: currentPage === 'about' }" @click="closeMenu">About</a>
         <a href="#/field-notes" :class="{ active: currentPage === 'field-notes' }" @click="closeMenu">Field notes</a>
         <a class="nav-contact" href="#/contact" @click="closeMenu">Let's connect <ArrowUpRight :size="14" /></a>
+        <div ref="portalRoot" class="elemental-portal" @keydown.esc.stop="elementPortalOpen = false">
+          <button
+            class="elemental-portal-trigger"
+            type="button"
+            :aria-expanded="elementPortalOpen"
+            aria-haspopup="true"
+            aria-label="Choose an elemental theme"
+            @click="elementPortalOpen = !elementPortalOpen"
+          >
+            <span class="portal-trigger-icon"><component :is="activeElement.icon" :size="15" /></span>
+            <span class="portal-label">{{ activeElement.name }}</span>
+            <ChevronDown :size="13" class="portal-chevron" />
+          </button>
+          <Transition name="portal-fade">
+            <div v-if="elementPortalOpen" class="elemental-portal-menu" role="group" aria-label="Choose an element">
+              <div class="portal-menu-heading"><span>CHOOSE YOUR ELEMENT</span><span>04 WORLDS</span></div>
+              <button
+                v-for="palette in elementalThemes"
+                :key="palette.id"
+                class="portal-option"
+                :class="{ selected: element === palette.id }"
+                type="button"
+                :aria-pressed="element === palette.id"
+                @click="setElement(palette.id)"
+              >
+                <span class="portal-option-icon"><component :is="palette.icon" :size="17" /></span>
+                <span class="portal-option-copy">
+                  <span class="portal-option-heading"><span>{{ palette.name }}</span><small>{{ palette.mood }}</small></span>
+                  <span class="portal-option-description">{{ palette.description }}</span>
+                  <span class="portal-swatches"><i v-for="swatch in palette.swatches" :key="swatch" :style="{ backgroundColor: swatch }"></i></span>
+                </span>
+                <Check v-if="element === palette.id" :size="15" class="portal-option-check" />
+              </button>
+            </div>
+          </Transition>
+        </div>
         <button
           class="theme-toggle"
           type="button"
@@ -144,7 +377,7 @@ function traceSkills(projectVisual: string) {
         >
           <Sun v-if="theme === 'dark'" :size="15" />
           <Moon v-else :size="15" />
-          <span>{{ theme === 'dark' ? 'LIGHT MODE' : 'DARK MODE' }}</span>
+          <span>{{ theme === 'dark' ? 'LIGHT' : 'DARK' }}</span>
         </button>
       </nav>
     </header>
