@@ -398,36 +398,20 @@ function traceSkills(projectVisual: string) {
         </div>
         <div class="hero-art" aria-label="Textured abstract artwork inspired by silk, shadow and pearl embroidery">
           <div class="art-halo"></div>
-          <div class="art-disc"></div>
-          <svg class="flow-ribbons" viewBox="0 0 500 500" aria-hidden="true">
-            <defs>
-              <linearGradient id="silkFlowGradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color:var(--landscape-highlight);stop-opacity:.16" />
-                <stop offset="42%" style="stop-color:var(--violet);stop-opacity:.68" />
-                <stop offset="72%" style="stop-color:var(--violet2);stop-opacity:.48" />
-                <stop offset="100%" style="stop-color:var(--landscape-highlight);stop-opacity:.22" />
-              </linearGradient>
-            </defs>
-            <path class="flow-ribbon-shadow" d="M24 370 C82 338 99 271 136 223 C164 185 190 163 219 185 C248 207 261 258 296 249 C337 239 342 174 374 139 C398 113 431 115 472 146" />
-            <path class="flow-ribbon-band" d="M24 370 C82 338 99 271 136 223 C164 185 190 163 219 185 C248 207 261 258 296 249 C337 239 342 174 374 139 C398 113 431 115 472 146" />
-            <path class="flow-ribbon-glint" d="M24 366 C82 334 99 267 136 219 C164 181 190 159 219 181 C248 203 261 254 296 245 C337 235 342 170 374 135 C398 109 431 111 472 142" />
-            <path class="flow-ribbon-shadow ribbon-flow-secondary" d="M12 337 C73 310 88 243 124 197 C154 159 180 140 208 160 C237 181 249 231 283 223 C322 214 330 153 360 119 C384 92 415 94 456 122" />
-            <path class="flow-ribbon-band ribbon-flow-secondary" d="M12 337 C73 310 88 243 124 197 C154 159 180 140 208 160 C237 181 249 231 283 223 C322 214 330 153 360 119 C384 92 415 94 456 122" />
-            <path class="flow-ribbon-glint ribbon-flow-secondary" d="M12 333 C73 306 88 239 124 193 C154 155 180 136 208 156 C237 177 249 227 283 219 C322 210 330 149 360 115 C384 88 415 90 456 118" />
-            <path class="flow-ribbon-shadow ribbon-flow-tertiary" d="M42 397 C101 365 116 301 153 252 C182 214 205 194 234 216 C263 237 275 286 311 277 C352 267 359 202 390 168 C414 142 445 145 485 174" />
-            <path class="flow-ribbon-band ribbon-flow-tertiary" d="M42 397 C101 365 116 301 153 252 C182 214 205 194 234 216 C263 237 275 286 311 277 C352 267 359 202 390 168 C414 142 445 145 485 174" />
-            <path class="flow-ribbon-glint ribbon-flow-tertiary" d="M42 393 C101 361 116 297 153 248 C182 210 205 190 234 212 C263 233 275 282 311 273 C352 263 359 198 390 164 C414 138 445 141 485 170" />
-          </svg>
           <svg class="embroidered-thread" viewBox="0 0 500 500" aria-hidden="true">
-            <path class="thread-shadow" d="M48 369 C96 327 103 256 138 215 C168 178 192 159 219 181 C247 203 260 254 294 245 C333 235 340 169 371 136 C396 108 426 112 449 138" />
-            <path class="thread-path" d="M48 369 C96 327 103 256 138 215 C168 178 192 159 219 181 C247 203 260 254 294 245 C333 235 340 169 371 136 C396 108 426 112 449 138" />
-            <path class="thread-detail" d="M59 384 C107 342 114 271 149 230 C179 193 203 174 230 196 C258 218 271 269 305 260 C344 250 351 184 382 151 C407 123 437 127 460 153" />
+            <path class="thread-shadow" d="M62 355 C108 286 100 206 169 182 S266 259 307 189 S360 113 438 139" />
+            <path class="thread-path" d="M62 355 C108 286 100 206 169 182 S266 259 307 189 S360 113 438 139" />
+            <path class="thread-detail" d="M74 370 C118 300 113 225 177 200 S271 275 318 205 S371 128 446 153" />
             <g class="pearl-set">
-              <circle cx="48" cy="369" r="5" /><circle cx="138" cy="215" r="4" />
-              <circle cx="219" cy="181" r="3.5" /><circle cx="294" cy="245" r="5" />
-              <circle cx="371" cy="136" r="3.5" /><circle cx="449" cy="138" r="5.5" />
+              <circle cx="62" cy="355" r="5" /><circle cx="169" cy="182" r="4" />
+              <circle cx="238" cy="226" r="3" /><circle cx="307" cy="189" r="5" />
+              <circle cx="371" cy="128" r="3.5" /><circle cx="438" cy="139" r="5.5" />
             </g>
           </svg>
+          <div class="art-disc"></div>
+          <div class="art-ribbon ribbon-one"></div>
+          <div class="art-ribbon ribbon-two"></div>
+          <div class="art-ribbon ribbon-three"></div>
           <div class="art-contour contour-one"></div>
           <div class="art-contour contour-two"></div>
           <div class="art-contour contour-three"></div>

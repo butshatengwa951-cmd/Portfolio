@@ -1027,139 +1027,121 @@
 }
 
 
-/* HOMEPAGE ART REFINEMENT — one sculptural form, one continuous silk movement */
+/* HOMEPAGE ART SHAPE — keep the original pearl, silk, thread and orbit language; refine only their proportions */
 .site-shell[data-element] .hero-art {
-  height: 560px;
-  width: 100%;
-  transform: none;
+  height: 565px;
+  transform: rotate(1deg) scale(1.02);
   transform-origin: center;
-  mask-image: radial-gradient(ellipse at 51% 49%, #000 48%, rgba(0,0,0,.88) 64%, transparent 82%);
+  mask-image: radial-gradient(ellipse at 51% 49%, #000 47%, rgba(0,0,0,.88) 65%, transparent 81%);
 }
 .site-shell[data-element] .hero-art .art-halo {
-  width: min(440px, 96%);
-  height: 450px;
-  top: 35px;
-  filter: blur(26px);
-  opacity: .76;
+  width: min(420px, 95%);
+  height: 430px;
+  top: 42px;
+  opacity: .7;
+  filter: blur(22px);
 }
 .site-shell[data-element] .hero-art .art-disc {
-  width: 268px;
-  height: 354px;
-  top: 76px;
-  border-radius: 60% 40% 54% 46% / 39% 43% 57% 61%;
-  transform-origin: 52% 54%;
-  animation: pearl-form-drift 18s ease-in-out infinite alternate;
+  width: 274px;
+  height: 348px;
+  top: 73px;
+  border-radius: 57% 43% 48% 52% / 38% 42% 58% 62%;
+  transform-origin: 50% 52%;
+  animation: pearl-form-drift 20s ease-in-out infinite alternate;
 }
 .site-shell[data-element] .hero-art .art-disc::before {
-  inset: 8px;
+  inset: 9px;
   border-radius: inherit;
-  background: repeating-radial-gradient(ellipse at 34% 28%, transparent 0 10px, color-mix(in srgb,var(--landscape-highlight) 12%,transparent) 11px, transparent 12px 17px);
+  background: repeating-radial-gradient(ellipse at 34% 29%, transparent 0 9px, color-mix(in srgb,var(--landscape-highlight) 10%,transparent) 10px, transparent 11px 16px);
 }
-.site-shell[data-element] .flow-ribbons {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: block;
+.site-shell[data-element] .hero-art .art-ribbon {
+  width: 92%;
+  left: 4%;
+  top: 44%;
+  height: 120px;
+  transform: rotate(-25deg) skewX(-12deg);
+}
+.site-shell[data-element] .hero-art .ribbon-two {
   width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
+  left: 0;
+  top: 39%;
+  height: 146px;
+  transform: rotate(21deg) skewX(13deg);
 }
-.site-shell[data-element] .flow-ribbon-shadow,
-.site-shell[data-element] .flow-ribbon-band,
-.site-shell[data-element] .flow-ribbon-glint {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
+.site-shell[data-element] .hero-art .ribbon-three {
+  width: 80%;
+  left: 10%;
+  top: 48%;
+  height: 88px;
+  transform: rotate(-43deg) skewX(-20deg);
 }
-.site-shell[data-element] .flow-ribbon-shadow {
-  stroke: color-mix(in srgb,var(--bg) 77%,transparent);
-  stroke-width: 16;
+.site-shell[data-element] .hero-art .art-contour {
+  width: 352px;
+  height: 176px;
+  left: calc(50% - 176px);
+  top: 158px;
   opacity: .54;
 }
-.site-shell[data-element] .flow-ribbon-band {
-  stroke: url(#silkFlowGradient);
-  stroke-width: 12;
-  opacity: .52;
-  filter: drop-shadow(0 0 8px color-mix(in srgb,var(--violet) 13%,transparent));
+.site-shell[data-element] .hero-art .contour-two { top: 174px; opacity: .46; }
+.site-shell[data-element] .hero-art .contour-three { top: 192px; opacity: .34; }
+.site-shell[data-element] .hero-art .art-orbit {
+  width: 338px;
+  height: 252px;
+  left: calc(50% - 169px);
+  top: 111px;
+  opacity: .44;
 }
-.site-shell[data-element] .flow-ribbon-glint {
-  stroke: color-mix(in srgb,var(--landscape-highlight) 52%,var(--ink));
-  stroke-width: .8;
-  stroke-dasharray: 1 7;
-  opacity: .68;
-  animation: silk-current 26s linear infinite;
-}
-.site-shell[data-element] .ribbon-flow-secondary { opacity: .8; }
-.site-shell[data-element] .ribbon-flow-secondary.flow-ribbon-glint { animation-delay: -8s; }
-.site-shell[data-element] .ribbon-flow-tertiary { opacity: .68; }
-.site-shell[data-element] .ribbon-flow-tertiary.flow-ribbon-glint { animation-delay: -15s; }
-.site-shell[data-element] .art-contour {
-  width: 345px;
-  height: 185px;
-  top: 160px;
-  left: calc(50% - 172.5px);
-  opacity: .56;
-}
-.site-shell[data-element] .contour-two { top: 174px; }
-.site-shell[data-element] .contour-three { top: 192px; opacity: .4; }
-.site-shell[data-element] .art-orbit {
-  top: 112px;
-  left: calc(50% - 162.5px);
-  width: 325px;
-  height: 280px;
-  opacity: .48;
-}
-.site-shell[data-element] .orbit-two {
-  top: 126px;
-  left: calc(50% - 185px);
+.site-shell[data-element] .hero-art .orbit-two {
   width: 370px;
-  height: 230px;
-  opacity: .36;
+  height: 222px;
+  left: calc(50% - 185px);
+  top: 127px;
+  opacity: .32;
 }
-.site-shell[data-element] .embroidered-thread {
+.site-shell[data-element] .hero-art .embroidered-thread {
   inset: 2% 1%;
   width: 98%;
   height: 96%;
 }
 @keyframes pearl-form-drift {
-  0% { transform: translateX(-50%) rotate(11deg) translateY(-5px) scale(.99); }
-  100% { transform: translateX(-50%) rotate(16deg) translateY(6px) scale(1.015); }
-}
-@keyframes silk-current {
-  to { stroke-dashoffset: -224; }
+  0% { transform: translateX(-50%) rotate(17deg) translateY(-4px); }
+  100% { transform: translateX(-50%) rotate(21deg) translateY(4px); }
 }
 @media (max-width: 900px) and (min-width: 651px) {
   .site-shell[data-element] .hero-art { height: 500px; transform: none; }
-  .site-shell[data-element] .hero-art .art-disc { width: 240px; height: 315px; top: 73px; }
-  .site-shell[data-element] .hero-art .art-contour { width: 300px; left: calc(50% - 150px); }
-  .site-shell[data-element] .hero-art .art-orbit { width: 300px; left: calc(50% - 150px); }
-  .site-shell[data-element] .hero-art .orbit-two { width: 330px; left: calc(50% - 165px); }
+  .site-shell[data-element] .hero-art .art-disc { width: 238px; height: 304px; top: 71px; }
+  .site-shell[data-element] .hero-art .art-ribbon { height: 106px; }
+  .site-shell[data-element] .hero-art .ribbon-two { height: 126px; }
+  .site-shell[data-element] .hero-art .ribbon-three { height: 76px; }
+  .site-shell[data-element] .hero-art .art-contour { width: 300px; left: calc(50% - 150px); height: 154px; }
+  .site-shell[data-element] .hero-art .art-orbit { width: 296px; left: calc(50% - 148px); height: 226px; }
+  .site-shell[data-element] .hero-art .orbit-two { width: 324px; left: calc(50% - 162px); height: 198px; }
 }
 @media (max-width: 650px) {
   .site-shell[data-element] .hero-art {
-    height: 390px;
+    height: 385px;
     min-height: 0;
     margin-top: 12px;
     transform: none;
-    mask-image: radial-gradient(ellipse at 50% 49%, #000 42%, rgba(0,0,0,.86) 65%, transparent 84%);
+    mask-image: radial-gradient(ellipse at 50% 49%, #000 43%, rgba(0,0,0,.86) 65%, transparent 83%);
   }
-  .site-shell[data-element] .hero-art .art-halo { width: 100%; height: 340px; top: 24px; }
-  .site-shell[data-element] .hero-art .art-disc { width: 216px; height: 280px; top: 47px; }
-  .site-shell[data-element] .hero-art .art-contour { width: 280px; height: 145px; left: calc(50% - 140px); top: 123px; }
+  .site-shell[data-element] .hero-art .art-halo { width: 100%; height: 330px; top: 22px; }
+  .site-shell[data-element] .hero-art .art-disc { width: 214px; height: 274px; top: 47px; }
+  .site-shell[data-element] .hero-art .art-ribbon { height: 88px; }
+  .site-shell[data-element] .hero-art .ribbon-two { height: 106px; top: 39%; }
+  .site-shell[data-element] .hero-art .ribbon-three { height: 68px; top: 47%; }
+  .site-shell[data-element] .hero-art .art-contour { width: 274px; height: 137px; left: calc(50% - 137px); top: 122px; }
   .site-shell[data-element] .hero-art .contour-two { top: 135px; }
-  .site-shell[data-element] .hero-art .contour-three { top: 154px; }
-  .site-shell[data-element] .hero-art .art-orbit { width: 260px; height: 205px; left: calc(50% - 130px); top: 77px; }
-  .site-shell[data-element] .hero-art .orbit-two { width: 292px; height: 195px; left: calc(50% - 146px); top: 90px; }
+  .site-shell[data-element] .hero-art .contour-three { top: 149px; }
+  .site-shell[data-element] .hero-art .art-orbit { width: 254px; height: 190px; left: calc(50% - 127px); top: 75px; }
+  .site-shell[data-element] .hero-art .orbit-two { width: 286px; height: 180px; left: calc(50% - 143px); top: 89px; }
   .site-shell[data-element] .hero-art .art-node { width: 7px; height: 7px; }
   .site-shell[data-element] .hero-art .node-one { top: 83px; left: 20%; }
-  .site-shell[data-element] .hero-art .node-two { top: 272px; right: 14%; }
-  .site-shell[data-element] .hero-art .node-three { top: 202px; right: 18%; }
+  .site-shell[data-element] .hero-art .node-two { top: 260px; right: 14%; }
+  .site-shell[data-element] .hero-art .node-three { top: 197px; right: 18%; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .site-shell[data-element] .hero-art .art-disc,
-  .site-shell[data-element] .flow-ribbon-glint { animation: none !important; }
+  .site-shell[data-element] .hero-art .art-disc { animation: none !important; }
 }
 
 
