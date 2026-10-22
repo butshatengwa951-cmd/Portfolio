@@ -1025,3 +1025,134 @@
     line-height: 1.5;
   }
 }
+
+
+/* HOMEPAGE ART REFINEMENT — one sculptural form, one continuous silk movement */
+.site-shell[data-element] .hero-art {
+  height: 560px;
+  width: 100%;
+  transform: none;
+  transform-origin: center;
+  mask-image: radial-gradient(ellipse at 51% 49%, #000 48%, rgba(0,0,0,.88) 64%, transparent 82%);
+}
+.site-shell[data-element] .hero-art .art-halo {
+  width: min(440px, 96%);
+  height: 450px;
+  top: 35px;
+  filter: blur(26px);
+  opacity: .76;
+}
+.site-shell[data-element] .hero-art .art-disc {
+  width: 268px;
+  height: 354px;
+  top: 76px;
+  border-radius: 60% 40% 54% 46% / 39% 43% 57% 61%;
+  transform-origin: 52% 54%;
+  animation: pearl-form-drift 18s ease-in-out infinite alternate;
+}
+.site-shell[data-element] .hero-art .art-disc::before {
+  inset: 8px;
+  border-radius: inherit;
+  background: repeating-radial-gradient(ellipse at 34% 28%, transparent 0 10px, color-mix(in srgb,var(--landscape-highlight) 12%,transparent) 11px, transparent 12px 17px);
+}
+.site-shell[data-element] .flow-ribbons {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.site-shell[data-element] .flow-ribbon-shadow,
+.site-shell[data-element] .flow-ribbon-band,
+.site-shell[data-element] .flow-ribbon-glint {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.site-shell[data-element] .flow-ribbon-shadow {
+  stroke: color-mix(in srgb,var(--bg) 77%,transparent);
+  stroke-width: 16;
+  opacity: .54;
+}
+.site-shell[data-element] .flow-ribbon-band {
+  stroke: url(#silkFlowGradient);
+  stroke-width: 12;
+  opacity: .52;
+  filter: drop-shadow(0 0 8px color-mix(in srgb,var(--violet) 13%,transparent));
+}
+.site-shell[data-element] .flow-ribbon-glint {
+  stroke: color-mix(in srgb,var(--landscape-highlight) 52%,var(--ink));
+  stroke-width: .8;
+  stroke-dasharray: 1 7;
+  opacity: .68;
+  animation: silk-current 26s linear infinite;
+}
+.site-shell[data-element] .ribbon-flow-secondary { opacity: .8; }
+.site-shell[data-element] .ribbon-flow-tertiary { opacity: .68; }
+.site-shell[data-element] .art-contour {
+  width: 345px;
+  height: 185px;
+  top: 160px;
+  opacity: .56;
+}
+.site-shell[data-element] .contour-two { top: 174px; }
+.site-shell[data-element] .contour-three { top: 192px; opacity: .4; }
+.site-shell[data-element] .art-orbit {
+  top: 112px;
+  width: 325px;
+  height: 280px;
+  opacity: .48;
+}
+.site-shell[data-element] .orbit-two {
+  top: 126px;
+  width: 370px;
+  height: 230px;
+  opacity: .36;
+}
+.site-shell[data-element] .embroidered-thread {
+  inset: 2% 1%;
+  width: 98%;
+  height: 96%;
+}
+@keyframes pearl-form-drift {
+  0% { transform: translateX(-50%) rotate(11deg) translateY(-5px) scale(.99); }
+  100% { transform: translateX(-50%) rotate(16deg) translateY(6px) scale(1.015); }
+}
+@keyframes silk-current {
+  to { stroke-dashoffset: -224; }
+}
+@media (max-width: 900px) and (min-width: 651px) {
+  .site-shell[data-element] .hero-art { height: 500px; transform: none; }
+  .site-shell[data-element] .hero-art .art-disc { width: 240px; height: 315px; top: 73px; }
+  .site-shell[data-element] .hero-art .art-contour { width: 300px; left: calc(50% - 150px); }
+  .site-shell[data-element] .hero-art .art-orbit { width: 300px; left: calc(50% - 150px); }
+  .site-shell[data-element] .hero-art .orbit-two { width: 330px; left: calc(50% - 165px); }
+}
+@media (max-width: 650px) {
+  .site-shell[data-element] .hero-art {
+    height: 390px;
+    min-height: 0;
+    margin-top: 12px;
+    transform: none;
+    mask-image: radial-gradient(ellipse at 50% 49%, #000 42%, rgba(0,0,0,.86) 65%, transparent 84%);
+  }
+  .site-shell[data-element] .hero-art .art-halo { width: 100%; height: 340px; top: 24px; }
+  .site-shell[data-element] .hero-art .art-disc { width: 216px; height: 280px; top: 47px; }
+  .site-shell[data-element] .hero-art .art-contour { width: 280px; height: 145px; left: calc(50% - 140px); top: 123px; }
+  .site-shell[data-element] .hero-art .contour-two { top: 135px; }
+  .site-shell[data-element] .hero-art .contour-three { top: 154px; }
+  .site-shell[data-element] .hero-art .art-orbit { width: 260px; height: 205px; left: calc(50% - 130px); top: 77px; }
+  .site-shell[data-element] .hero-art .orbit-two { width: 292px; height: 195px; left: calc(50% - 146px); top: 90px; }
+  .site-shell[data-element] .hero-art .art-node { width: 7px; height: 7px; }
+  .site-shell[data-element] .hero-art .node-one { top: 83px; left: 20%; }
+  .site-shell[data-element] .hero-art .node-two { top: 272px; right: 14%; }
+  .site-shell[data-element] .hero-art .node-three { top: 202px; right: 18%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-shell[data-element] .hero-art .art-disc,
+  .site-shell[data-element] .flow-ribbon-glint { animation: none !important; }
+}
