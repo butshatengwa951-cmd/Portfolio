@@ -44,7 +44,7 @@ const elementalThemes = [
   { id: 'water', name: 'Water', mood: 'Living currents', description: 'An oceanic world of depth, turquoise light and refracted blue.', icon: Waves, swatches: ['#06171D', '#0C2832', '#43E4D6', '#609CFF', '#9A75FF'] },
   { id: 'fire', name: 'Fire', mood: 'Burning horizon', description: 'Volcanic shadows, molten light and a vivid ember horizon.', icon: Flame, swatches: ['#190D12', '#35151E', '#FF553D', '#FF9D45', '#FFC75E'] },
   { id: 'earth', name: 'Earth', mood: 'Ancient wild', description: 'Deep forests, moss-lit stone and warm natural textures.', icon: Sprout, swatches: ['#0E1711', '#1B3021', '#3D5E38', '#B7E36B', '#E6A071'] },
-  { id: 'air', name: 'Air', mood: 'Above the storm', description: 'Storm-grey peaks, drifting fog and a soft peach horizon.', icon: Wind, swatches: ['#191817', '#343231', '#8F8A86', '#D9A18F', '#F2C4A8'] }
+  { id: 'air', name: 'Air', mood: 'Above the storm', description: 'Monochrome storm clouds, drifting fog and a pale silver horizon.', icon: Wind, swatches: ['#17191B', '#31363B', '#626D77', '#A8B3BC', '#EDF2F5'] }
 ] as const
 
 const activeElement = computed(() => elementalThemes.find((palette) => palette.id === element.value) ?? elementalThemes[0])
