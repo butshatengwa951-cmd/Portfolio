@@ -988,3 +988,44 @@
     font-size: 12px;
   }
 }
+
+
+/* Field Notes kicker: anchor the descriptor to the far edge on wide screens
+   and give it its own line on small screens instead of squeezing the heading. */
+.site-shell #field-notes > .section-kicker {
+  display: grid;
+  grid-template-columns: auto minmax(20px, 37px) max-content minmax(max-content, 1fr);
+  align-items: center;
+  column-gap: clamp(9px, 1.2vw, 14px);
+  width: 100%;
+}
+
+.site-shell #field-notes > .section-kicker .kicker-rule {
+  width: 100%;
+}
+
+.site-shell #field-notes > .section-kicker .kicker-tail {
+  justify-self: end;
+  margin-left: 0;
+  max-width: 100%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+  .site-shell #field-notes > .section-kicker {
+    grid-template-columns: auto 20px minmax(0, 1fr);
+    row-gap: 9px;
+    column-gap: 9px;
+  }
+
+  .site-shell #field-notes > .section-kicker .kicker-tail {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: start;
+    margin: 0;
+    text-align: left;
+    white-space: normal;
+    line-height: 1.5;
+  }
+}
