@@ -12,7 +12,7 @@ The portfolio is organised into seven navigable pages: Home (`/#/`), Selected Wo
 - Restrained organic movement, pearlescent details and softened, tactile controls.
 - Backend, data and system thinking presented through real projects and an interactive skills constellation.
 - Responsive layout, keyboard-accessible links, and reduced-motion support.
-- No portfolio backend or environment secrets required for the static site.
+- Static Vue/Vite site; the contact form uses FormSubmit for email delivery and requires a public recipient address configured at build time.
 
 ## Stack
 
@@ -30,6 +30,10 @@ Requirements: Node.js 20.19+ or 22.12+.
 npm install
 npm run dev
 ```
+
+## Contact form setup
+
+Set `VITE_CONTACT_EMAIL` to the inbox that should receive messages. Copy `.env.example` to `.env.local` for local testing, and add the same variable in your hosting provider's environment settings before building the deployed site. The form submits through [FormSubmit's AJAX endpoint](https://formsubmit.co/ajax-documentation); on first use, FormSubmit sends an activation email to the configured recipient. Confirm that email before expecting submissions to arrive. The recipient address is a public Vite variable, so use an inbox address intended for public contact, not a secret.
 
 ## Validate and build
 
@@ -53,7 +57,7 @@ Create a **Static Site** connected to this repository.
 
 - Verify every project description, technology list and repository URL against the actual source.
 - Replace the StockWell source link if its code lives in a different repository.
-- Confirm the preferred professional email address and update the contact link.
+- Set `VITE_CONTACT_EMAIL` to the inbox that should receive portfolio enquiries, then submit a test message and confirm FormSubmit's activation email.
 - Check whether each live site permits iframe embedding; use the direct-open link when a host blocks embeds.
 - Keep live URLs and skills-map relationships aligned with the actual repositories.
 - Expand the ModernTechHR and Lightning News case studies with implementation details verified from code.
