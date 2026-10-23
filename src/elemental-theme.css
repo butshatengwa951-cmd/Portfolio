@@ -1440,9 +1440,6 @@
   --dim: #A1C3CB;
   --violet2: #83B4FF;
 }
-.site-shell[data-element="fire"] {
-  --dim: #C6A5A5;
-}
 .site-shell[data-element="earth"] {
   --dim: #AFC1AA;
 }
