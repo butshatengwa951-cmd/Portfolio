@@ -1416,3 +1416,20 @@
 @media (prefers-reduced-motion: reduce) {
   .site-shell[data-element] .about-portrait img { transition: none; }
 }
+
+
+/* LOGIN DETAILS — formatted like the existing project case-file panels */
+.site-shell[data-element] .login-details-panel{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.site-shell[data-element] .login-details-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:14px}
+.site-shell[data-element] .login-details-heading h4{margin:0 0 8px;color:var(--ink)}
+.site-shell[data-element] .login-details-heading p{max-width:60ch;margin:0;color:var(--muted);font-size:11px;line-height:1.75}
+.site-shell[data-element] .login-details-tag{flex:none;padding:6px 9px;border:1px solid color-mix(in srgb,var(--landscape-highlight) 35%,var(--line));border-radius:999px;color:var(--landscape-highlight);font:7px/1.4 var(--mono);letter-spacing:.12em}
+.site-shell[data-element] .login-account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.site-shell[data-element] .login-account{min-width:0;padding:14px;border:1px solid var(--line);border-radius:4px 12px 4px 12px;background:color-mix(in srgb,var(--panel) 76%,transparent)}
+.site-shell[data-element] .login-account h5{margin:0 0 12px;color:var(--landscape-highlight);font:8px/1.5 var(--mono);letter-spacing:.1em}
+.site-shell[data-element] .login-account dl{display:grid;gap:10px;margin:0}
+.site-shell[data-element] .login-account dl>div{min-width:0}
+.site-shell[data-element] .login-account dt{margin-bottom:4px;color:var(--dim);font:7px/1.4 var(--mono);letter-spacing:.12em}
+.site-shell[data-element] .login-account dd{overflow-wrap:anywhere;margin:0;color:var(--ink);font:11px/1.6 var(--mono);user-select:text}
+.site-shell[data-element] .login-account>p{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font:10px/1.7 var(--body)}
+@media(max-width:650px){.site-shell[data-element] .login-details-heading{flex-direction:column}.site-shell[data-element] .login-account-grid{grid-template-columns:minmax(0,1fr)}}
