@@ -1467,3 +1467,16 @@
   outline-width: 2px;
   outline-offset: 3px;
 }
+
+
+/* FIELD NOTES PAGE SPACING — establish breathing room below the persistent navigation. */
+.site-shell #field-notes.section-wrap {
+  padding-top: clamp(76px, 8vw, 112px);
+  padding-bottom: clamp(66px, 8vw, 104px);
+}
+@media (max-width: 650px) {
+  .site-shell #field-notes.section-wrap {
+    padding-top: 58px;
+    padding-bottom: 62px;
+  }
+}
