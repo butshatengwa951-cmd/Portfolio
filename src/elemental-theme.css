@@ -1027,6 +1027,79 @@
 }
 
 
+/* HOMEPAGE ART MOTION + POSITION — shift the full composition left without disturbing its internal anchors */
+.site-shell[data-element] .hero-art {
+  translate: -24px 0;
+}
+.site-shell[data-element] .hero-art .art-halo {
+  animation: halo-breathe 6.8s ease-in-out infinite alternate, halo-drift 12s ease-in-out infinite alternate;
+}
+.site-shell[data-element] .hero-art .art-ribbon {
+  animation: silk-float-one 8s ease-in-out infinite alternate;
+  will-change: translate;
+}
+.site-shell[data-element] .hero-art .ribbon-two {
+  animation: silk-float-two 10s ease-in-out infinite alternate;
+}
+.site-shell[data-element] .hero-art .ribbon-three {
+  animation: silk-float-three 9s ease-in-out infinite alternate;
+}
+.site-shell[data-element] .hero-art .art-contour {
+  animation: contour-breathe 7s ease-in-out infinite alternate;
+}
+.site-shell[data-element] .hero-art .contour-two { animation-delay: -2.2s; }
+.site-shell[data-element] .hero-art .contour-three { animation-delay: -4.1s; }
+.site-shell[data-element] .hero-art .art-orbit {
+  animation: orbit-pulse 15s ease-in-out infinite alternate;
+}
+.site-shell[data-element] .hero-art .orbit-two {
+  animation: orbit-pulse 19s ease-in-out -7s infinite alternate-reverse;
+}
+.site-shell[data-element] .hero-art .embroidered-thread {
+  animation: thread-glow 5.5s ease-in-out infinite alternate;
+}
+@keyframes halo-drift {
+  0% { translate: -50% -4px; scale: .96; }
+  100% { translate: -50% 5px; scale: 1.04; }
+}
+@keyframes silk-float-one {
+  0% { translate: 0 -5px; }
+  100% { translate: 0 7px; }
+}
+@keyframes silk-float-two {
+  0% { translate: 0 6px; }
+  100% { translate: 0 -7px; }
+}
+@keyframes silk-float-three {
+  0% { translate: 0 -4px; }
+  100% { translate: 0 6px; }
+}
+@keyframes contour-breathe {
+  0% { opacity: .27; }
+  100% { opacity: .58; }
+}
+@keyframes orbit-pulse {
+  0% { opacity: .24; filter: drop-shadow(0 0 3px color-mix(in srgb,var(--landscape-highlight) 10%,transparent)); }
+  100% { opacity: .52; filter: drop-shadow(0 0 11px color-mix(in srgb,var(--landscape-highlight) 24%,transparent)); }
+}
+@keyframes thread-glow {
+  0% { filter: drop-shadow(0 0 2px color-mix(in srgb,var(--landscape-highlight) 10%,transparent)); opacity: .76; }
+  100% { filter: drop-shadow(0 0 9px color-mix(in srgb,var(--landscape-highlight) 42%,transparent)); opacity: 1; }
+}
+@media (max-width: 900px) and (min-width: 651px) {
+  .site-shell[data-element] .hero-art { translate: -12px 0; }
+}
+@media (max-width: 650px) {
+  .site-shell[data-element] .hero-art { translate: -4px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-shell[data-element] .hero-art,
+  .site-shell[data-element] .hero-art * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* HOMEPAGE ART SHAPE — return the original artwork to a spherical centre with intentional orbital composition */
 .site-shell[data-element] .hero-art {
   height: 565px;
