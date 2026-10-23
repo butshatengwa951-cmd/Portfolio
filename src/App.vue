@@ -551,13 +551,50 @@ function traceSkills(projectVisual: string) {
           </section>
 
           <section class="profile-detail profile-certifications">
-            <h3>CERTIFICATIONS / CREDENTIALS</h3>
-            <div class="certification-placeholder">
-              <span class="certification-mark" aria-hidden="true">+</span>
+            <div class="certifications-heading">
               <div>
-                <p class="certification-title">A place for verified achievements</p>
-                <p class="certification-note">Certifications, course completions and professional credentials will be added here as they are earned.</p>
+                <h3>CERTIFICATIONS / CREDENTIALS</h3>
+                <p>Verified learning and achievements, collected as the journey develops.</p>
               </div>
+              <span class="certifications-count">3 PLACEHOLDERS</span>
+            </div>
+            <div class="certification-grid">
+              <article class="credential-card">
+                <div class="credential-art">
+                  <img src="/credentials/credential-placeholder-01.svg" alt="Abstract placeholder artwork for a future certification" loading="lazy" decoding="async" />
+                  <span class="credential-status">PLACEHOLDER</span>
+                  <span class="credential-art-label">LEARNING / 01</span>
+                </div>
+                <div class="credential-card-copy">
+                  <span class="credential-type">CERTIFICATE</span>
+                  <h4>Certification title</h4>
+                  <p>Issuing organisation · Date to be added</p>
+                </div>
+              </article>
+              <article class="credential-card">
+                <div class="credential-art">
+                  <img src="/credentials/credential-placeholder-02.svg" alt="Abstract placeholder artwork for a future course completion" loading="lazy" decoding="async" />
+                  <span class="credential-status">PLACEHOLDER</span>
+                  <span class="credential-art-label">LEARNING / 02</span>
+                </div>
+                <div class="credential-card-copy">
+                  <span class="credential-type">COURSE COMPLETION</span>
+                  <h4>Credential title</h4>
+                  <p>Issuing organisation · Date to be added</p>
+                </div>
+              </article>
+              <article class="credential-card">
+                <div class="credential-art">
+                  <img src="/credentials/credential-placeholder-03.svg" alt="Abstract placeholder artwork for a future professional credential" loading="lazy" decoding="async" />
+                  <span class="credential-status">PLACEHOLDER</span>
+                  <span class="credential-art-label">LEARNING / 03</span>
+                </div>
+                <div class="credential-card-copy">
+                  <span class="credential-type">CREDENTIAL</span>
+                  <h4>Achievement title</h4>
+                  <p>Issuing organisation · Date to be added</p>
+                </div>
+              </article>
             </div>
           </section>
         </div>
