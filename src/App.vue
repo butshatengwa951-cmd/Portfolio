@@ -699,7 +699,7 @@ function traceSkills(projectVisual: string) {
               <span>MESSAGE</span>
               <textarea v-model="contactForm.message" name="message" rows="6" minlength="10" maxlength="5000" placeholder="Tell me a little about it..." required></textarea>
             </label>
-            <input class="contact-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <input v-model="contactHoneypot" class="contact-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="contact-submit-row">
               <p class="contact-form-note">Your email address is used so I can reply to your message.</p>
               <button class="button-primary contact-submit" type="submit" :disabled="contactStatus === 'sending'">
