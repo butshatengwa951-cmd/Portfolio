@@ -1440,9 +1440,6 @@
   --dim: #A1C3CB;
   --violet2: #83B4FF;
 }
-.site-shell[data-element="fire"] {
-  --dim: #C6A5A5;
-}
 .site-shell[data-element="earth"] {
   --dim: #AFC1AA;
 }
@@ -1468,118 +1465,32 @@
   outline-offset: 3px;
 }
 
-
-/* FIRE MODE READABILITY PASS — higher contrast text, warmer accents, and more opaque reading surfaces. */
-:root[data-element="fire"][data-theme="dark"] {
-  background: #12090D;
-}
-.site-shell[data-element="fire"] {
-  --bg: #12090D;
-  --panel: #211117;
-  --panel2: #2B171D;
-  --ink: #FFF9F3;
-  --muted: #F1DED5;
-  --dim: #E6C9BB;
-  --violet: #FFBB70;
-  --violet2: #FFE0A0;
-  --line: rgba(255, 190, 120, .36);
-  --landscape-highlight: #FFE6B5;
-  --landscape-cloud: #FFE0CA;
-}
-/* Keep the Fire landscape, but put a deeper veil behind the text column. */
-.site-shell[data-element="fire"] .hero-velvet {
-  background-image:
-    linear-gradient(90deg,
-      color-mix(in srgb, var(--bg) 96%, transparent) 0%,
-      color-mix(in srgb, var(--bg) 86%, transparent) 27%,
-      color-mix(in srgb, var(--bg) 70%, transparent) 49%,
-      color-mix(in srgb, var(--bg) 20%, transparent) 83%,
-      color-mix(in srgb, var(--bg) 30%, transparent) 100%),
-    linear-gradient(180deg,
-      color-mix(in srgb, var(--bg) 34%, transparent) 0%,
-      transparent 34%,
-      color-mix(in srgb, var(--bg) 72%, transparent) 100%),
-    radial-gradient(ellipse at 68% 67%,
-      color-mix(in srgb, var(--landscape-glow) 18%, transparent),
-      transparent 48%),
-    repeating-linear-gradient(134deg,
-      transparent 0 38px,
-      color-mix(in srgb, var(--landscape-highlight) 8%, transparent) 39px,
-      transparent 41px 74px),
-    repeating-linear-gradient(43deg,
-      transparent 0 52px,
-      color-mix(in srgb, var(--landscape-dark) 45%, transparent) 53px,
-      transparent 55px 98px);
-}
-/* Make information cards behave as reliable reading surfaces instead of tinted glass. */
-.site-shell[data-element="fire"] .tech-list span,
-.site-shell[data-element="fire"] .about-copy .context-tags span,
-.site-shell[data-element="fire"] .field-note,
-.site-shell[data-element="fire"] .contact-form,
-.site-shell[data-element="fire"] .contact-info-card,
-.site-shell[data-element="fire"] .contact-aside,
-.site-shell[data-element="fire"] .journey-entry-body,
-.site-shell[data-element="fire"] .journey-entry,
-.site-shell[data-element="fire"] .profile-detail,
-.site-shell[data-element="fire"] .credential-card,
-.site-shell[data-element="fire"] .login-account,
-.site-shell[data-element="fire"] .map-readout,
-.site-shell[data-element="fire"] .system-panel {
-  background-color: color-mix(in srgb, #160B10 94%, var(--panel));
-  border-color: rgba(255, 190, 120, .3);
-}
-/* Improve the least legible small Fire labels and links without changing project layouts. */
-.site-shell[data-element="fire"] .project-meta,
-.site-shell[data-element="fire"] .site-footer,
-.site-shell[data-element="fire"] .email-note,
-.site-shell[data-element="fire"] .hero-side-note,
-.site-shell[data-element="fire"] .art-label,
-.site-shell[data-element="fire"] .art-coord,
-.site-shell[data-element="fire"] .portal-menu-heading,
-.site-shell[data-element="fire"] .skill-node-type,
-.site-shell[data-element="fire"] .map-axis,
-.site-shell[data-element="fire"] .login-account dt {
-  color: #E6C9BB !important;
-}
-.site-shell[data-element="fire"] .section-kicker > span:first-child,
-.site-shell[data-element="fire"] .section-kicker .kicker-tail,
-.site-shell[data-element="fire"] .field-note-label,
-.site-shell[data-element="fire"] .preview-placeholder-kicker,
-.site-shell[data-element="fire"] .case-study > summary,
-.site-shell[data-element="fire"] .login-details-tag {
-  color: #FFD59A !important;
-}
-.site-shell[data-element="fire"] .project-copy > p,
-.site-shell[data-element="fire"] .field-note p,
-.site-shell[data-element="fire"] .case-study p,
-.site-shell[data-element="fire"] .about-copy p,
-.site-shell[data-element="fire"] .contact-content > p,
-.site-shell[data-element="fire"] .profile-detail-copy,
-.site-shell[data-element="fire"] .credential-card-copy p,
-.site-shell[data-element="fire"] .login-details-heading p,
-.site-shell[data-element="fire"] .login-account > p {
-  color: #F1DED5 !important;
-}
-.site-shell[data-element="fire"] .text-link,
-.site-shell[data-element="fire"] .project-links a,
-.site-shell[data-element="fire"] .map-project-link {
-  color: #FFE0A0;
-}
-.site-shell[data-element="fire"] .main-nav,
-.site-shell[data-element="fire"] .main-nav a {
-  color: #E6C9BB;
-}
-.site-shell[data-element="fire"] .main-nav a:hover,
-.site-shell[data-element="fire"] .main-nav a.active {
-  color: #FFF9F3;
-}
-.site-shell[data-element="fire"] .contact-form input::placeholder,
-.site-shell[data-element="fire"] .contact-form textarea::placeholder {
-  color: #D5B5A8;
-  opacity: 1;
+/* FIRE TEXT EDGE — retain the original ember palette; add only a subtle dark edge for legibility. */
+.site-shell[data-element="fire"] h1,
+.site-shell[data-element="fire"] h2,
+.site-shell[data-element="fire"] h3,
+.site-shell[data-element="fire"] h4,
+.site-shell[data-element="fire"] h5,
+.site-shell[data-element="fire"] p,
+.site-shell[data-element="fire"] a,
+.site-shell[data-element="fire"] button,
+.site-shell[data-element="fire"] label,
+.site-shell[data-element="fire"] small,
+.site-shell[data-element="fire"] strong,
+.site-shell[data-element="fire"] em,
+.site-shell[data-element="fire"] span,
+.site-shell[data-element="fire"] li,
+.site-shell[data-element="fire"] dt,
+.site-shell[data-element="fire"] dd,
+.site-shell[data-element="fire"] input,
+.site-shell[data-element="fire"] textarea,
+.site-shell[data-element="fire"] select {
+  text-shadow:
+    0 1px 1px rgba(10, 3, 6, .42),
+    0 0 2px rgba(10, 3, 6, .26);
 }
 .site-shell[data-element="fire"] :focus-visible {
-  outline-color: #FFE6B5;
+  outline-color: var(--landscape-highlight);
   outline-width: 2px;
   outline-offset: 3px;
 }
