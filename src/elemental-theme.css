@@ -1104,8 +1104,8 @@
   height: 96%;
 }
 @keyframes pearl-sphere-drift {
-  0% { transform: translateY(-3px) scale(1); }
-  100% { transform: translateY(3px) scale(1.025); }
+  0% { transform: translateX(-50%) translateY(-3px) scale(1); }
+  100% { transform: translateX(-50%) translateY(3px) scale(1.025); }
 }
 @media (max-width: 900px) and (min-width: 651px) {
   .site-shell[data-element] .hero-art { height: 500px; }
