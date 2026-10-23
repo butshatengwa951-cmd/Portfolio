@@ -662,7 +662,7 @@ function traceSkills(projectVisual: string) {
       </section>
 
       <section v-if="currentPage === 'field-notes'" id="field-notes" class="section-wrap">
-        <div class="section-kicker"><span class="kicker-rule"></span><span>FIELD NOTES</span><span class="kicker-tail">LESSONS FROM THE WORK</span></div>
+        <div class="section-kicker"><span class="kicker-rule"></span><span>FIELD NOTES</span></div>
         <div class="section-intro"><h2>What the work<br/><em>taught me.</em></h2><p>Lessons from the process of building, debugging and connecting systems.</p></div>
         <div class="field-notes-grid">
           <article class="field-note"><span class="field-note-label">LESSON — JAVASCRIPT</span><h3>The happy path is not enough</h3><p>Early JavaScript taught me to check inputs before calculating and to test more than one outcome. My isPrime logic, validation and edge cases improved when I broke problems into smaller checks and tested beyond a single successful example.</p></article>
