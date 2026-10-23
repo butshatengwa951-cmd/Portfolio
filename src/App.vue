@@ -549,6 +549,17 @@ function traceSkills(projectVisual: string) {
             <h3>GOALS</h3>
             <ul><li v-for="item in profile.goals" :key="item">{{ item }}</li></ul>
           </section>
+
+          <section class="profile-detail profile-certifications">
+            <h3>CERTIFICATIONS / CREDENTIALS</h3>
+            <div class="certification-placeholder">
+              <span class="certification-mark" aria-hidden="true">+</span>
+              <div>
+                <p class="certification-title">A place for verified achievements</p>
+                <p class="certification-note">Certifications, course completions and professional credentials will be added here as they are earned.</p>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
