@@ -556,43 +556,39 @@ function traceSkills(projectVisual: string) {
                 <h3>CERTIFICATIONS / CREDENTIALS</h3>
                 <p>Verified learning and achievements, collected as the journey develops.</p>
               </div>
-              <span class="certifications-count">3 PLACEHOLDERS</span>
             </div>
             <div class="certification-grid">
               <article class="credential-card">
                 <div class="credential-art">
-                  <img src="/credentials/credential-placeholder-01.svg" alt="Abstract placeholder artwork for a future certification" loading="lazy" decoding="async" />
+                  <img src="https://i.ibb.co/gbq3LmZ1/Introduction-to-Cybersecurity-certificate-butshatengwa951-gmail-com-7f150461-4b70-442e-901d-4b4789c6.png" alt="Introduction-to-Cybersecurity-certificate-butshatengwa951-gmail-com-7f150461-4b70-442e-901d-4b4789c6" border="0" />
                   <span class="credential-status">PLACEHOLDER</span>
-                  <span class="credential-art-label">LEARNING / 01</span>
                 </div>
                 <div class="credential-card-copy">
                   <span class="credential-type">CERTIFICATE</span>
-                  <h4>Certification title</h4>
-                  <p>Issuing organisation · Date to be added</p>
+                  <h4>Introduction to Cybersecurity</h4>
+                  <p>Cisco · 01 September 2026</p>
                 </div>
               </article>
               <article class="credential-card">
                 <div class="credential-art">
-                  <img src="/credentials/credential-placeholder-02.svg" alt="Abstract placeholder artwork for a future course completion" loading="lazy" decoding="async" />
-                  <span class="credential-status">PLACEHOLDER</span>
-                  <span class="credential-art-label">LEARNING / 02</span>
+                  <img src="https://i.ibb.co/KxNW8tTS/Introduction-to-Data-Science-certificate-butshatengwa951-gmail-com-5c17c5d5-27dc-49c3-8cac-669b1a3ec.png" alt="Introduction-to-Data-Science-certificate-butshatengwa951-gmail-com-5c17c5d5-27dc-49c3-8cac-669b1a3ec" border="0" />
+                  <span class="credential-status">Certificate</span>
+                </div>
+                <div class="credential-card-copy">
+                  <span class="credential-type">CERTIFICATE</span>
+                  <h4>Introduction to Data Science</h4>
+                  <p>Cisco · 01 September 2026</p>
+                </div>
+              </article>
+              <article class="credential-card">
+                <div class="credential-art">
+                  <img src="https://i.ibb.co/KxNW8tTS/Introduction-to-Data-Science-certificate-butshatengwa951-gmail-com-5c17c5d5-27dc-49c3-8cac-669b1a3ec.png" alt="Introduction-to-Data-Science-certificate-butshatengwa951-gmail-com-5c17c5d5-27dc-49c3-8cac-669b1a3ec" border="0" />
+                  <span class="credential-status">Certificate</span>
                 </div>
                 <div class="credential-card-copy">
                   <span class="credential-type">COURSE COMPLETION</span>
-                  <h4>Credential title</h4>
-                  <p>Issuing organisation · Date to be added</p>
-                </div>
-              </article>
-              <article class="credential-card">
-                <div class="credential-art">
-                  <img src="/credentials/credential-placeholder-03.svg" alt="Abstract placeholder artwork for a future professional credential" loading="lazy" decoding="async" />
-                  <span class="credential-status">PLACEHOLDER</span>
-                  <span class="credential-art-label">LEARNING / 03</span>
-                </div>
-                <div class="credential-card-copy">
-                  <span class="credential-type">CREDENTIAL</span>
-                  <h4>Achievement title</h4>
-                  <p>Issuing organisation · Date to be added</p>
+                  <h4>Certificate of Completion</h4>
+                  <p>Life Choices Academy · 02 October 2026</p>
                 </div>
               </article>
             </div>
