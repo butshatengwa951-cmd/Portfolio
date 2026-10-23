@@ -1480,3 +1480,23 @@
     padding-bottom: 62px;
   }
 }
+
+
+/* ABOUT CV BUTTON — styled with the existing primary action, intentionally disabled until the CV is added. */
+.site-shell[data-element] .about-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+.site-shell[data-element] .cv-download-button,
+.site-shell[data-element] .cv-download-button:disabled {
+  cursor: not-allowed;
+  opacity: 1;
+  filter: none;
+}
+.site-shell[data-element] .cv-download-button:disabled:hover {
+  transform: none;
+  filter: none;
+}
