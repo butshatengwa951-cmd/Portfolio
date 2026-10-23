@@ -1433,3 +1433,37 @@
 .site-shell[data-element] .login-account dd{overflow-wrap:anywhere;margin:0;color:var(--ink);font:11px/1.6 var(--mono);user-select:text}
 .site-shell[data-element] .login-account>p{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);color:var(--muted);font:10px/1.7 var(--body)}
 @media(max-width:650px){.site-shell[data-element] .login-details-heading{flex-direction:column}.site-shell[data-element] .login-account-grid{grid-template-columns:minmax(0,1fr)}}
+
+
+/* ACCESSIBILITY CONTRAST REFINEMENT — preserve the dark elemental atmosphere while improving small text legibility. */
+.site-shell[data-element="water"] {
+  --dim: #A1C3CB;
+  --violet2: #83B4FF;
+}
+.site-shell[data-element="fire"] {
+  --dim: #C6A5A5;
+}
+.site-shell[data-element="earth"] {
+  --dim: #AFC1AA;
+}
+.site-shell[data-element="air"] {
+  --dim: #B8C1C8;
+}
+/* Slightly stronger labels and focus cues in all landscapes. */
+.site-shell[data-element] .project-meta,
+.site-shell[data-element] .site-footer,
+.site-shell[data-element] .email-note,
+.site-shell[data-element] .hero-side-note,
+.site-shell[data-element] .art-label,
+.site-shell[data-element] .art-coord,
+.site-shell[data-element] .portal-menu-heading,
+.site-shell[data-element] .skill-node-type,
+.site-shell[data-element] .map-axis,
+.site-shell[data-element] .login-account dt {
+  color: var(--dim);
+}
+.site-shell[data-element] :focus-visible {
+  outline-color: var(--landscape-highlight);
+  outline-width: 2px;
+  outline-offset: 3px;
+}
