@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import LivePreview from './components/LivePreview.vue'
 import SkillsConstellation from './components/SkillsConstellation.vue'
-import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, LayoutGrid, List as ListIcon, Flame, Waves, Sprout, Wind, ChevronDown, Check } from 'lucide-vue-next'
+import { ArrowDownRight, ArrowUpRight, ArrowRight, Github, Menu, X, MoveUpRight, Sparkles, LayoutGrid, List as ListIcon, Flame, Waves, Sprout, Wind, ChevronDown, Check, Download } from 'lucide-vue-next'
 
 const route = useRoute()
 const currentPage = computed(() => route.path === '/' ? 'home' : route.path.slice(1).replace(/\/$/, ''))
@@ -565,6 +565,18 @@ function traceSkills(projectVisual: string) {
               <span class="signature-copy"><span class="signature-name">BUTSHA TENGWA</span><small>DEVELOPER / CONTINUOUSLY LEARNING</small></span>
             </div>
             <p class="about-meta">FULL-STACK DEVELOPER / CREATIVE · SOUTH AFRICA · OPEN TO OPPORTUNITIES</p>
+            <div class="about-actions">
+              <button
+                type="button"
+                class="button-primary cv-download-button"
+                disabled
+                title="CV download will be available soon"
+                aria-label="Download CV, coming soon"
+              >
+                <span>Download CV</span>
+                <Download aria-hidden="true" />
+              </button>
+            </div>
           </div>
         </div>
 
