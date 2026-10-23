@@ -507,7 +507,7 @@ function traceSkills(projectVisual: string) {
         <div class="about-layout">
           <div class="about-heading">
             <figure class="about-portrait">
-              <img src="/about-portrait.webp" alt="Portrait of Butsha Tengwa" width="240" height="240" loading="lazy" decoding="async" />
+              <img src="https://i.ibb.co/8nCKbG5D/Chat-GPT-Image-Oct-23-2026-12-13-42-PM.png"" alt="Portrait of Butsha Tengwa" width="240" height="240" loading="lazy" decoding="async" />
             </figure>
             <h2>Progress isn't<br/>always <em>linear.</em></h2>
             <div class="about-mark" aria-hidden="true">BT</div>
