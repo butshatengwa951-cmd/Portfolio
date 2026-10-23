@@ -1027,9 +1027,9 @@
 }
 
 
-/* HOMEPAGE ART MOTION + POSITION — shift the full composition left without disturbing its internal anchors */
+/* HOMEPAGE ART MOTION + POSITION — shift the full composition right without disturbing its internal anchors */
 .site-shell[data-element] .hero-art {
-  translate: -24px 0;
+  translate: 24px 0;
 }
 .site-shell[data-element] .hero-art .art-halo {
   animation: halo-breathe 6.8s ease-in-out infinite alternate, halo-drift 12s ease-in-out infinite alternate;
@@ -1087,10 +1087,10 @@
   100% { filter: drop-shadow(0 0 9px color-mix(in srgb,var(--landscape-highlight) 42%,transparent)); opacity: 1; }
 }
 @media (max-width: 900px) and (min-width: 651px) {
-  .site-shell[data-element] .hero-art { translate: -12px 0; }
+  .site-shell[data-element] .hero-art { translate: 12px 0; }
 }
 @media (max-width: 650px) {
-  .site-shell[data-element] .hero-art { translate: -4px 0; }
+  .site-shell[data-element] .hero-art { translate: 4px 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   .site-shell[data-element] .hero-art,
