@@ -1529,3 +1529,30 @@
     cursor: var(--element-pointer-cursor), pointer;
   }
 }
+
+
+/* COMPACT ABOUT CV ACTION — keep the inactive control quieter than primary project actions. */
+.site-shell[data-element] .cv-download-button,
+.site-shell[data-element] .cv-download-button:disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+  height: 36px;
+  padding: 7px 12px;
+  gap: 7px;
+  font-size: 9px;
+  line-height: 1.25;
+  letter-spacing: .07em;
+  border-radius: 7px;
+}
+.site-shell[data-element] .cv-download-button svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
