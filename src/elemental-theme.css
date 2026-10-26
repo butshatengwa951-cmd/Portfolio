@@ -1573,7 +1573,7 @@
 }
 
 /* Honour system cursor rendering for users who enable forced-colour accessibility. */
-@media (forced-colors: active) {
+@media (forced-colors: active), (prefers-contrast: more) {
   .site-shell[data-element] {
     cursor: auto !important;
   }
