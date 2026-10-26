@@ -1502,35 +1502,6 @@
 }
 
 
-/* ELEMENTAL CUSTOM POINTERS — use the repository's theme-matched .cur files on desktop hover targets. */
-.site-shell[data-element="water"] {
-  --element-pointer-cursor: url("/cursors/Dripping%20Water%20Animated%20Cursor--pointer--SweezyCursors.cur");
-}
-.site-shell[data-element="fire"] {
-  --element-pointer-cursor: url("/cursors/Pixel%20Arrow%20%26%20Hand%20On%20Fire%20Animated%20Cursor--pointer--SweezyCursors.cur");
-}
-.site-shell[data-element="earth"] {
-  --element-pointer-cursor: url("/cursors/Earth%20Cursor--pointer--SweezyCursors.cur");
-}
-.site-shell[data-element="air"] {
-  --element-pointer-cursor: url("/cursors/Twirl%20Arrow%20Prank%20Windows%20Animated%20Cursor--pointer--SweezyCursors.cur");
-}
-@media (hover: hover) and (pointer: fine) {
-  .site-shell[data-element] a[href],
-  .site-shell[data-element] button:not(:disabled),
-  .site-shell[data-element] [role="button"],
-  .site-shell[data-element] summary,
-  .site-shell[data-element] .skill-node,
-  .site-shell[data-element] .project-node,
-  .site-shell[data-element] .clear-map,
-  .site-shell[data-element] .elemental-portal-trigger,
-  .site-shell[data-element] .portal-option,
-  .site-shell[data-element] .preview-load-button {
-    cursor: var(--element-pointer-cursor), pointer;
-  }
-}
-
-
 /* COMPACT ABOUT CV ACTION — keep the inactive control quieter than primary project actions. */
 .site-shell[data-element] .cv-download-button,
 .site-shell[data-element] .cv-download-button:disabled {
