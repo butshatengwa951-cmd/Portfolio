@@ -566,16 +566,17 @@ function traceSkills(projectVisual: string) {
             </div>
             <p class="about-meta">FULL-STACK DEVELOPER / CREATIVE · SOUTH AFRICA · OPEN TO OPPORTUNITIES</p>
             <div class="about-actions">
-              <button
-                type="button"
+              <a
+                href="/Butsha_Tengwa_CV.pdf"
                 class="button-primary cv-download-button"
-                disabled
-                title="CV download will be available soon"
-                aria-label="Download CV, coming soon"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Open CV in a new tab"
+                aria-label="Open CV in a new tab"
               >
                 <span>Download CV</span>
                 <Download aria-hidden="true" />
-              </button>
+              </a>
             </div>
           </div>
         </div>
