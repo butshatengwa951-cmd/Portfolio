@@ -677,7 +677,7 @@ function traceSkills(projectVisual: string) {
                 <div class="credential-card-copy">
                   <span class="credential-type">PROFESSIONAL CERTIFICATION</span>
                   <h4>Scrum Fundamentals Certified (SFC)</h4>
-                  <p>BA Learning · 03 November 2026</p>
+                  <p>ScrumStudy · 03 November 2026</p>
                 </div>
               </article>
               <article class="credential-card">
@@ -688,7 +688,7 @@ function traceSkills(projectVisual: string) {
                 <div class="credential-card-copy">
                   <span class="credential-type">PROFESSIONAL CERTIFICATION</span>
                   <h4>Business Analysis Fundamentals Certified</h4>
-                  <p>ScrumStudy · 03 November 2026</p>
+                  <p>BA Learning · 03 November 2026</p>
                 </div>
               </article>
             </div>

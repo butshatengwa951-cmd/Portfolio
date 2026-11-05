@@ -1,136 +1,98 @@
 %PDF-1.4
-% ASCII CV
+%“Œ‹ž ReportLab Generated PDF document (opensource)
 1 0 obj
-<< /Type /Catalog /Pages 2 0 R >>
+<<
+/F1 2 0 R /F2 3 0 R
+>>
 endobj
 2 0 obj
-<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R /Annots [7 0 R 8 0 R 9 0 R] >>
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
 endobj
 4 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+<<
+/A <<
+/S /URI /Type /Action /URI (https://butsha-nocturne-portfolio.onrender.com/)
+>> /Border [ 0 0 0 ] /Rect [ 397 776.64 422.8594 785.1 ] /Subtype /Link /Type /Annot
+>>
 endobj
 5 0 obj
-<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+<<
+/A <<
+/S /URI /Type /Action /URI (https://github.com/butshatengwa951-cmd)
+>> /Border [ 0 0 0 ] /Rect [ 428.6122 776.64 450.5518 785.1 ] /Subtype /Link /Type /Annot
+>>
 endobj
 6 0 obj
-<< /Length 8273 >>
-stream
-0.15 0.39 0.39 rg BT /F2 7.4 Tf 1 0 0 1 40 820 Tm (SOFTWARE DEVELOPMENT  /  BACKEND ENGINEERING) Tj ET
-0.10 0.13 0.16 rg BT /F2 28 Tf 1 0 0 1 40 786 Tm (BUTSHA TENGWA) Tj ET
-0.22 0.27 0.30 rg BT /F2 10.2 Tf 1 0 0 1 40 766 Tm (ASPIRING FULL-STACK DEVELOPER  |  BACKEND, DATABASES & SYSTEM DESIGN) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 748 Tm (Cape Town, South Africa   |   +27 63 428 5174   |   butshatengwa951@gmail.com) Tj ET
-0.12 0.35 0.38 rg BT /F2 7.4 Tf 1 0 0 1 40 731 Tm (PORTFOLIO) Tj ET
-0.12 0.35 0.38 rg BT /F2 7.4 Tf 1 0 0 1 117 731 Tm (GITHUB) Tj ET
-0.12 0.35 0.38 rg BT /F2 7.4 Tf 1 0 0 1 177 731 Tm (LINKEDIN) Tj ET
-0.25 0.42 0.43 RG 0.6 w 40 719 m 555 719 l S
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 40 700 Tm (PROFILE) Tj ET
-0.70 0.76 0.75 RG 0.6 w 40 695 m 375 695 l S
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 686 Tm (Aspiring full-stack developer focused on backend engineering, databases and) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 676 Tm (practical web applications. Trained through Life Choices Academy's YouthCode) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 666 Tm (programme, with hands-on experience building responsive interfaces, server-side) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 656 Tm (functionality, database-driven features and API integrations. Curious, analytical) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 646 Tm (and adaptable, with a strong interest in solving problems through thoughtful design.) Tj ET
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 40 627 Tm (PROJECT EXPERIENCE) Tj ET
-0.70 0.76 0.75 RG 0.6 w 40 622 m 375 622 l S
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 40 613 Tm (StockWell  |  Vue.js, Node.js/Express, MySQL, PayFast) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 602 Tm (Built a full-stack stock procurement platform with group purchasing workflows,) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 592 Tm (role-based approvals, proposal creation, majority voting and supplier comparisons.) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 582 Tm (Implemented cart and wallet functionality, PayFast payments, orders and delivery flows.) Tj ET
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 40 564 Tm (ModernTechHR  |  JavaScript, HTML, CSS, Chart.js) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 553 Tm (Developed an employee-management application with payroll calculations, employee) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 543 Tm (search and filtering, modal interactions, responsive layouts and dynamic UI updates.) Tj ET
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 40 525 Tm (Lightning News  |  Vue.js, Three.js, Python, Flask) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 514 Tm (Created a news application combining a Vue.js interface with a Python/Flask backend.) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 504 Tm (Used Requests, BeautifulSoup and lxml for web scraping and Three.js for interactive visuals.) Tj ET
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 40 486 Tm (Voya Bite  |  Web Application) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 475 Tm (Developed a food-related web project as part of a portfolio of practical application work.) Tj ET
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 40 457 Tm (Python Budget Tracker Mini Toolkit  |  Python) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 446 Tm (Built a Python budgeting toolkit to practise programming fundamentals and problem-solving.) Tj ET
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 40 425 Tm (EDUCATION) Tj ET
-0.70 0.76 0.75 RG 0.6 w 40 420 m 375 420 l S
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 40 411 Tm (Full-Stack Web Development  |  Life Choices Academy) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 400 Tm (12-month programme covering coding foundations, professional development and practical) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 390 Tm (project work across frontend, backend, databases and application deployment.) Tj ET
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 40 372 Tm (National Senior Certificate  |  Kuilsriver Technical High School) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 361 Tm (Graduated 2024  |  Pure Mathematics, Life Sciences, Physical Sciences and History.) Tj ET
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 40 340 Tm (CAREER FOCUS) Tj ET
-0.70 0.76 0.75 RG 0.6 w 40 335 m 375 335 l S
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 326 Tm (Backend development, backend architecture, APIs and integrations, databases, and) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 40 316 Tm (the development of reliable, user-focused web applications.) Tj ET
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 395 700 Tm (EDUCATION & TRAINING) Tj ET
-0.70 0.76 0.75 RG 0.6 w 395 695 m 555 695 l S
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 395 684 Tm (Life Choices Academy) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 673 Tm (YouthCode programme) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 663 Tm (Full-stack web development) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 646 Tm (National Senior Certificate) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 636 Tm (Kuilsriver Technical High) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 626 Tm (School  |  2024) Tj ET
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 395 605 Tm (TECHNICAL SKILLS) Tj ET
-0.70 0.76 0.75 RG 0.6 w 395 600 m 555 600 l S
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 395 589 Tm (Languages & Frameworks) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 578 Tm (JavaScript, Vue.js, Node.js/Express,) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 568 Tm (Python/Flask, PHP, HTML5 and CSS3.) Tj ET
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 395 550 Tm (Databases & Backend) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 539 Tm (MySQL, PostgreSQL, REST APIs,) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 529 Tm (authentication, sessions, data-driven) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 519 Tm (applications and web scraping.) Tj ET
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 395 501 Tm (Tools & Integrations) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 490 Tm (Git/GitHub, Render, PayFast, Chart.js,) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 480 Tm (Three.js.) Tj ET
-0.12 0.17 0.20 rg BT /F2 8.3 Tf 1 0 0 1 395 462 Tm (Professional Skills) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 451 Tm (Analytical thinking, problem-solving,) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 441 Tm (research, planning, communication,) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 431 Tm (teamwork, adaptability and time management.) Tj ET
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 395 410 Tm (CERTIFICATIONS) Tj ET
-0.70 0.76 0.75 RG 0.6 w 395 405 m 555 405 l S
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 395 Tm (Cisco - Introduction to Cybersecurity) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 385 Tm (\(1 September 2026\)) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 372 Tm (Cisco - Introduction to Data Science) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 362 Tm (\(1 September 2026\)) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 349 Tm (Advanced C++ \(In Progress\)) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 336 Tm (Foundational C# - Microsoft \(In Progress\)) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 323 Tm (Scrum Fundamentals Certified \(SFC\)) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 313 Tm (ScrumStudy  |  3 November 2026) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 300 Tm (Business Analysis Fundamentals) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 290 Tm (Certified \(BAFC\) - BA Learning) Tj ET
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 280 Tm (3 November 2026) Tj ET
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 395 258 Tm (LANGUAGES) Tj ET
-0.70 0.76 0.75 RG 0.6 w 395 253 m 555 253 l S
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 243 Tm (English  |  Xhosa) Tj ET
-0.13 0.31 0.34 rg BT /F2 9.2 Tf 1 0 0 1 395 218 Tm (AVAILABILITY) Tj ET
-0.70 0.76 0.75 RG 0.6 w 395 213 m 555 213 l S
-0.22 0.24 0.27 rg BT /F1 7.2 Tf 1 0 0 1 395 203 Tm (South Africa  |  Open to opportunities) Tj ET
-0.77 0.79 0.80 RG 0.6 w 40 34 m 555 34 l S
-0.34 0.39 0.40 rg BT /F2 6.8 Tf 1 0 0 1 40 20 Tm (BUTSHA TENGWA  /  SOFTWARE DEVELOPMENT) Tj ET
-0.34 0.39 0.40 rg BT /F2 6.8 Tf 1 0 0 1 500 20 Tm (CV 2026) Tj ET
-endstream
+<<
+/A <<
+/S /URI /Type /Action /URI (https://www.linkedin.com/in/butsha-tengwa-66378a313/)
+>> /Border [ 0 0 0 ] /Rect [ 456.3046 776.64 482.9536 785.1 ] /Subtype /Link /Type /Annot
+>>
 endobj
 7 0 obj
-<< /Type /Annot /Subtype /Link /Rect [40 728 95 741] /Border [0 0 0] /A << /S /URI /URI (https://butsha-portfolio.onrender.com/) >> >>
+<<
+/Annots [ 4 0 R 5 0 R 6 0 R ] /Contents 11 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 10 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 
+  /Trans <<
+
+>> /Type /Page
+>>
 endobj
 8 0 obj
-<< /Type /Annot /Subtype /Link /Rect [117 728 158 741] /Border [0 0 0] /A << /S /URI /URI (https://github.com/butshatengwa951-cmd) >> >>
+<<
+/PageMode /UseNone /Pages 10 0 R /Type /Catalog
+>>
 endobj
 9 0 obj
-<< /Type /Annot /Subtype /Link /Rect [177 728 235 741] /Border [0 0 0] /A << /S /URI /URI (https://www.linkedin.com/in/butsha-tengwa-66378a313/) >> >>
+<<
+/Author (Butsha Tengwa) /CreationDate (D:20261105065120+00'00') /Creator (anonymous) /Keywords () /ModDate (D:20261105065120+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (Full-stack developer CV) /Title (Butsha Tengwa - CV) /Trapped /False
+>>
+endobj
+10 0 obj
+<<
+/Count 1 /Kids [ 7 0 R ] /Type /Pages
+>>
+endobj
+11 0 obj
+<<
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 3406
+>>
+stream
+Gatm>>BAdn)L_@`po:bPlXW9.?*I+_Z##V3`^-&]Uae$7d=B5',.cF#C4?)PDI!f`X:2G"X%XbG\kdgBo3I#=.fM:#5M-NQq=O9<7[d*OOu-)lae+a^?RY29eV5t2VJ]N4&>,sY0F^WU(\*3YPN*LeW<^h)BdfEbg%(VHM@X8P`'B>7$8+"Lkc1"!#$O%!IVPPAKVcUWE)@&u;_?U_GLb8CWa#le<Om?R%dG(8V^.E<??!0`=T6fm,Uimj<\ttSJR[l/(iVjC,\@(6As:!'9CMh=s(O<6l.Z+":>\:k]/-)CB1R)#rmdQFP<6CIbZo?URGIj5rb(eOOttR0bJ_+5FuM:+3k"9dXo3B8Ci?7B2@$`X\bXb\hn'hiO$,[dg8c0IUK\K_`]uD93f^+@2P-n7f5N?4C0=P1oB>uiTFkCe]SD?Z:,a8le%Y#*<:s,E3RO2UTKTk-q4k!QkBcb&H%1(QH]OTOjEB*@p=DaHLG<nTM5^nkHaqkb>p[CA@)VcSB*`aY7T:h#[gtuqA%(L[-SKJ#]VNX#1g6bb^a&o"m!9+lk45)2O=`"n5aLQ"Eg"**=QJ/(jZHk_Yb@olGI:jfU]ef:RI[fbd,dWXk0#"W'03Z4/YlInkud=2bjUG0ZRdsCj!VR.`%?-0L;12=RGV>dbNS%3QHiuSZm!UJ'\sAHNNWq>/U`L:\u"&U3kHDKYA%8lA0VgO<",`G9e34+nmVOsAhnMD`p4%M/4Rb^6@]m3;_oDM=0\k3Y7=GS".UK'YFsUX?30G6`'$lEW[tH_U4H<iO"GpCZ>Gt`nVWW$'_Sf&"])M`cTFh.4JcU%'H(7S'%8)nn9@5QXYAmB4O^&/bLn,`GX`+N[ODT)fPEr/r38H^-/3;^>g1)2c4ohJL;t*pYLB:LX_A\+3K;W^(grJ'^_V=(qfbMZ#T"=*$][Z><Q[3=hP6DKDR%2V=[-UoiKF3MU`kd$:6.g\/];'qSo(`<prk1GF.P!%QL@\jdq>9GZOlFTM`;98=;9o0rCQjD'Ml]Tj=Dsgbl/G=i94Snf)q]239)1lP6+B5/@6o<04qKngLA!t7a3@)dfd`;*1l7/:mOMq5hg++UZ.,)ed*X1MiSjX_;&W$_GUm*ADo"=^9Xh-$Sg1Q)tP`NfI-E;&Eh!&NPEfBD.?Dq[2?TcCCq"OY\QsQ)TW"LYKU/Op@9JRqS]-7h"%`.b%E,9#%PLMn]h#Z$Ou%BrQb:Wg7nn]]4"k!,uJGc,O1eN:,eErgKo(-6d9$R/Z6bpAmt'-b\k>YS@0"3)lFXtMX;2'/.?k/_q<DG8:reC`.aO'I9K+^9@d4`j^b]Wj9fk41l6HafJQ?CMoD;kKS*d=9er)NOE,'W4kd-d8IA7dk9QCs/N/STDubL1QDJ!oHg`h=">%foTtdf[iq_3_</HjJCaY:lEgiSI/4gX[>)X4ZK#=EH3]tAY/NBb>S]aLj@1R)=o3cu*LRJ(WSs^CjiAU/PSUV0V(jd>'X`71)9d_L0;,3nIDWA70kSG_,M*m]QNq<5S%'qDmUW'/X]0OS:1t9XATSQ3Xl8=WSp)*/XJB=+]^P]ofaT@bNH&2^TUFlJ(fFD.k')Z2TZV;;'3L,IRLm*Gs5JY4+*GVQNSriG!!?+iG@q!Y/mcQ8S?oko;L$RI'e3+7,Up9EV)1Tb3]\otl?B-(Mi*4js9uO?8/m.7TJDBQ<@#!al2\\Fk?7=;tZ,"pk0:_JcPd";E\0_&&ZBVjbC_Ct5W"2nV<u"_ZF<Qe`\t&B,$H+'Wq22L&%m`RSi"_sGkjM6!\=\Wq:0E[aXgA^\Wtpu5h&$Q:Uf8]2P'6OoXGYho8oUFRB2e3<AB3m`bW3',$(se8q/pH")Bund:Q$g6D>R,#10g_GQj&?-3?cMb,^Ba_CgaG>:k*0b6EFT:MO^O5e-#_6=J0]h:002JV4L.S*>5P,m]'Bj_#6gg?u[XO_ba4H,gfPX6P[!jeW(uY'4-u8q'tK^]Ua$7PGu8p3H`,cP`V_+ab2NS'W%mT7p)%S=d\<&]V*2&CY1@4iaoWOY)obc/+.I<kUK_C;D*@%:"n5QbDX>7`:[6BFLSt`>oB4gLNBX`N(<m.rTq-o2cCIACmhr$j&bK71!o2"kpo_.>n>]eHFQr#S#W=.)j)"`1,BP,>re75A?-n,<tQ2.Yqi%D\uOM5r,]FpD4"'Cl#VMr:%*"`=P-DT\WHH2@<=dZbEHL8`/?ZMA(hR[W(`fJd]9X?VPIrC$(lL)bJXoZOX:t@(o9[HAMVduhJ4ULK8YL")gb;EQO>Fo"u3a=5Rg)aKA\c^4_&("803gZKU4D`_RgN7pecbF$AZnpWKr^giF5r8h''k'(TbG=;Yaqf!OUgb3ISf$8(9^moQt1H>?3in"_I_-#A!CIcgiq08P]=l9/H5B=fmR?A%g&2nG8;IarO##8\6c'6TX0\l'EAdqgFqA\f*,0GOA7E-7)*:/sp<[\=SIoUFApnd<p,i"oNQ3d"`+l>]N=pre`dVfbpCHJd5h)b4?(-J^d)[`Zj&5T-ePa0g%E9\`e;4#YsOgZ\%\]?mUkPF2#IjaVA_e*#NPU`/+&6(pDnk[6:#edBZNkWk'@J*\''i,Ig@m!D:Dd/Wlh+H0O.Ds88"ZBq>`M?cYL+rVVXo:&ST-m"0RaTHXT(dRa">&A$bRIPn.0?]A`Vl:>O>Vh$eV'5N,9n=p0.,657D]6?LqM<R<Z%ihJ\Km%M'l9oX@"=B5Ypg4TZI4.EUZHU&qPVG#@hG!Uun_FW/1aVVBa`Qg=:.$<WUML#SBrfDRWcb\DY:9%%`DFtViQV;!DZ5m>Wrf8-"tI;P'#6rGmZs<$R`I[&b1l>tF>UhV1qebF5<!lah*]j%Z",B'kf.LEFY3:dbO2r5;1>1=15G,NgsAe1>^$6N[fr6fV+5UYo0rD_eH&%n]EY^l'n]3Kb;:h%Z`L0jI'aF@4/f<o:FBL^Sk6;`3YPtn[$oX<]3@Yie?Z@.-uVITA,0R>;MA_.g2m_sh6t"]l]sms84T^DpFL\JIQr%uoB5Q.f"_)W[]sYBR?DL2nS?-!#KI/ugTC[hc_.[aae2.ZD]kcb--,gBN1Xi0P;7P7?Sh?/Y92hb3A3IJAZnnj+fpQs#7o#KUFp$MGK.a:;oEO&a>qu\hV6?oQ*3VCd3[XVog@5"qbjt'f;<uQfJ4Mm?$B%&n&HNa;q%UL`t^<iU1N^k?8kQsl=a`K/*lJ(:T,qjTcfR@HS6#U,rO,"H.AnuAUCVKh0OtpL#kCt,3*CPIMqqCbIpZi)(d0qLZ52+g$ORBXo"Ym1Bms&Zd`2>I]YV?h]Y*WE@6(2)m>ti>ON%$pN;Y(;t)aE(oR=%gFQ!tJ,\\c?2eqTTVtA03?bCplh,0Pj:<PsrD]SHqqrhCNhWT*Y[2,Cn`s/C0)c)eJ1c0~>endstream
 endobj
 xref
-0 10
+0 12
 0000000000 65535 f 
-0000000020 00000 n 
-0000000069 00000 n 
-0000000126 00000 n 
-0000000290 00000 n 
-0000000387 00000 n 
-0000000489 00000 n 
-0000008813 00000 n 
-0000008963 00000 n 
-0000009115 00000 n 
+0000000061 00000 n 
+0000000102 00000 n 
+0000000209 00000 n 
+0000000321 00000 n 
+0000000510 00000 n 
+0000000695 00000 n 
+0000000894 00000 n 
+0000001129 00000 n 
+0000001198 00000 n 
+0000001485 00000 n 
+0000001545 00000 n 
 trailer
-<< /Size 10 /Root 1 0 R >>
+<<
+/ID 
+[<a49700e328414222be63c83cc0892f74><a49700e328414222be63c83cc0892f74>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 9 0 R
+/Root 8 0 R
+/Size 12
+>>
 startxref
-9281
+5043
 %%EOF
