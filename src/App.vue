@@ -671,7 +671,7 @@ function traceSkills(projectVisual: string) {
               </article>
               <article class="credential-card">
                 <div class="credential-art certificate-art">
-                  <img src="/credentials/scrum-fundamentals-certified.webp" alt="Scrum Fundamentals Certified certificate issued to Butsha Tengwa on 3 November 2026" width="1200" height="760" loading="lazy" decoding="async" />
+                  <img src="https://i.ibb.co/HQpf425/Screenshot-2026-11-05-091004.png" alt="Scrum Fundamentals Certified certificate issued to Butsha Tengwa on 3 November 2026" width="1200" height="760" loading="lazy" decoding="async" />
                   <span class="credential-status">CERTIFICATE</span>
                 </div>
                 <div class="credential-card-copy">
@@ -682,7 +682,7 @@ function traceSkills(projectVisual: string) {
               </article>
               <article class="credential-card">
                 <div class="credential-art certificate-art">
-                  <img src="/credentials/business-analysis-fundamentals-certified.webp" alt="Business Analysis Fundamentals Certified certificate issued to Butsha Tengwa on 3 November 2026" width="1200" height="760" loading="lazy" decoding="async" />
+                  <img src="https://i.ibb.co/1Gx0h8Nx/Screenshot-2026-11-05-090922.png"  alt="Business Analysis Fundamentals Certified certificate issued to Butsha Tengwa on 3 November 2026" width="1200" height="760" loading="lazy" decoding="async" />
                   <span class="credential-status">CERTIFICATE</span>
                 </div>
                 <div class="credential-card-copy">
