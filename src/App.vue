@@ -691,6 +691,28 @@ function traceSkills(projectVisual: string) {
                   <p>BA Learning · 03 November 2026</p>
                 </div>
               </article>
+                            <article class="credential-card">
+                <div class="credential-art certificate-art">
+                  <img src="https://i.ibb.co/rG4J8h3g/Screenshot-2026-11-11-120304.png"   alt="Business Analysis Fundamentals Certified certificate issued to Butsha Tengwa on 3 November 2026" width="1200" height="760" loading="lazy" decoding="async" />
+                  <span class="credential-status">CERTIFICATE</span>
+                </div>
+                <div class="credential-card-copy">
+                  <span class="credential-type">PROFESSIONAL CERTIFICATION</span>
+                  <h4>Learn Firebase</h4>
+                  <p>Scrimba, Corsera Project Network · 11 November 2026</p>
+                </div>
+              </article>
+                            <article class="credential-card">
+                <div class="credential-art certificate-art">
+                  <img src="https://i.ibb.co/Vcp7qjL4/Screenshot-2026-11-11-115957.png"  alt="Business Analysis Fundamentals Certified certificate issued to Butsha Tengwa on 3 November 2026" width="1200" height="760" loading="lazy" decoding="async" />
+                  <span class="credential-status">CERTIFICATE</span>
+                </div>
+                <div class="credential-card-copy">
+                  <span class="credential-type">PROFESSIONAL CERTIFICATION</span>
+                  <h4>Build Your First React Website</h4>
+                  <p>Corsera Project Network · 11 November 2026</p>
+                </div>
+              </article>
             </div>
           </section>
         </div>
