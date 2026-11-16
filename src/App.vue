@@ -652,16 +652,16 @@ function traceSkills(projectVisual: string) {
                 </div>
               </article>
               <article class="credential-card">
-                <div class="credential-art">
+                <div class="credential-art-LCA">
                   <img
-                    src="/credentials/credential-placeholder-03.svg"
+                    src="https://i.ibb.co/pvjrZDjt/1794823522582-2c254fc8-4177-40fd-90c0-bff5e0787068-1.jpg"
                     alt="Placeholder artwork for a Life Choices Academy certificate of completion"
                     width="1200"
                     height="760"
                     loading="lazy"
                     decoding="async"
                   />
-                  <span class="credential-status">PLACEHOLDER ARTWORK</span>
+                  <span class="credential-status">Certificate</span>
                 </div>
                 <div class="credential-card-copy">
                   <span class="credential-type">COURSE COMPLETION</span>

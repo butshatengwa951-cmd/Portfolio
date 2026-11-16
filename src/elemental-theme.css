@@ -1223,7 +1223,7 @@
   gap: clamp(12px, 1.6vw, 19px);
 }
 .site-shell[data-element] .credential-card {
-  min-width: 0;
+  min-width: ;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 5px 16px 5px 16px;
@@ -1243,12 +1243,27 @@
   isolation: isolate;
   background: var(--panel2);
 }
+.site-shell[data-element] .credential-art-LCA {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.55 / 1;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--panel2);
+}
+
+.site-shell[data-element] .credential-art-LCA img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
 .site-shell[data-element] .credential-art::after {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: linear-gradient(180deg, rgba(5,5,9,.06), rgba(5,5,9,.12) 48%, rgba(5,5,9,.64));
+  background: linear-gradient();
   pointer-events: none;
 }
 
